@@ -1,6 +1,7 @@
 # Repository instructions for agents
 
 This repository is Angeal's durable learning workspace and minimal Astro site.
+App is hosted under domain https://learn.widacki.me/
 
 ## Hard rules
 
