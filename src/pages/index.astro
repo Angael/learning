@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css';
+import LessonList from '../components/LessonList.astro';
+import PageShell from '../components/PageShell.astro';
 import { topics } from '../data/catalog';
 
 const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
@@ -10,79 +11,67 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
 });
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Learning</title>
-    <style>
-      header { margin-bottom: 28px; }
-      h2 {
-        margin: 0 0 14px;
-        font-size: 1.15rem;
-        letter-spacing: -0.02em;
-      }
-      .topic {
-        padding: 20px 0;
-        border-top: 1px solid var(--line);
-      }
-      .topic-title {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 6px;
-      }
-      .topic-title a { font-weight: 750; font-size: 1.35rem; letter-spacing: -0.03em; }
-      .topic-title span { color: var(--muted); font-size: .95rem; white-space: nowrap; }
-    </style>
-  </head>
-  <body>
-    <main class="page-shell">
-      <header>
-        <h1 class="hero-title">Learning</h1>
-        <p>Topics and lessons. The index is for routing: every published lesson should be reachable from here.</p>
-      </header>
+<PageShell title="Learning" heading="Learning" summary="Topics and lessons. The index is for routing: every published lesson should be reachable from here.">
+  {topics.map((topic) => {
+    const lessons = sortedLessons(topic.lessons);
+    const visibleLessons = lessons.slice(0, 3);
+    const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
 
-      {topics.map((topic) => {
-        const lessons = sortedLessons(topic.lessons);
-        const visibleLessons = lessons.slice(0, 3);
-        const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
+    return (
+      <section class="topic" aria-labelledby={`${topic.slug}-title`}>
+        <div class="topic-title">
+          <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
+          <span>{topic.lessons.length} lessons</span>
+        </div>
+        <p>{topic.summary}</p>
 
-        return (
-        <section class="topic" aria-labelledby={`${topic.slug}-title`}>
-          <div class="topic-title">
-            <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
-            <span>{topic.lessons.length} lessons</span>
-          </div>
-          <p>{topic.summary}</p>
+        <div class="lesson-list-wrap">
+          <LessonList lessons={visibleLessons} />
+          {hiddenCount > 0 && (
+            <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
+          )}
+        </div>
+      </section>
+    );
+  })}
+</PageShell>
 
-          <div class="lesson-list-wrap">
-            {lessons.length > 0 ? (
-              <ul class="lesson-list">
-                {visibleLessons.map((lesson) => (
-                  <li>
-                    <a class="lesson-list-card" href={lesson.href}>
-                      <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
-                      <strong>{lesson.title}</strong>
-                      <span>{lesson.summary}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p class="empty-card">No lessons published yet.</p>
-            )}
-            {hiddenCount > 0 && (
-              <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
-            )}
-          </div>
-        </section>
-        );
-      })}
-    </main>
-  </body>
-</html>
+<style>
+  .topic {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .topic-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+
+  .topic-title a {
+    font-size: 1.35rem;
+    font-weight: 750;
+    letter-spacing: -.03em;
+  }
+
+  .topic-title span {
+    color: var(--muted);
+    font-size: .95rem;
+    white-space: nowrap;
+  }
+
+  .lesson-list-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .view-all-link {
+    align-self: flex-start;
+    color: var(--link);
+    font-weight: 650;
+  }
+</style>

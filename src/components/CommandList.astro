@@ -1,0 +1,28 @@
+---
+type Props = {
+  commands: string[];
+};
+
+const { commands } = Astro.props;
+---
+
+<ul class="commands">
+  {commands.map((command) => <li><code>{command}</code></li>)}
+</ul>
+
+<style>
+  .commands {
+    display: grid;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .commands li {
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--code);
+    color: var(--code-text);
+  }
+</style>

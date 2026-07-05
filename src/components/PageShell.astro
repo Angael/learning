@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+type Props = {
+  title: string;
+  heading: string;
+  summary?: string;
+  backHref?: string;
+  backLabel?: string;
+  narrow?: boolean;
+};
+
+const { title, heading, summary, backHref, backLabel, narrow = false } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <main class:list={["page-shell", { narrow }]}>
+    {backHref && backLabel && <nav><a href={backHref}>← {backLabel}</a></nav>}
+    <header>
+      <h1>{heading}</h1>
+      {summary && <p>{summary}</p>}
+    </header>
+    <slot />
+  </main>
+</BaseLayout>
+
+<style>
+  .page-shell {
+    width: min(760px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0 56px;
+  }
+
+  .page-shell.narrow {
+    width: min(720px, calc(100% - 32px));
+  }
+
+  nav,
+  header {
+    margin-bottom: 28px;
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: clamp(2.2rem, 12vw, 4.4rem);
+    line-height: .95;
+    letter-spacing: -.06em;
+  }
+
+  @media (min-width: 820px) {
+    .page-shell {
+      padding-top: 56px;
+    }
+  }
+</style>

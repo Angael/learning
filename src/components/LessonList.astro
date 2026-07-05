@@ -1,0 +1,79 @@
+---
+type Lesson = {
+  href: string;
+  title: string;
+  summary: string;
+  date?: string;
+};
+
+type Props = {
+  lessons: Lesson[];
+  ariaLabel?: string;
+};
+
+const { lessons, ariaLabel } = Astro.props;
+const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
+---
+
+{lessons.length > 0 ? (
+  <ul class="lesson-list" aria-label={ariaLabel}>
+    {lessons.map((lesson) => (
+      <li>
+        <a class="lesson-card" href={lesson.href}>
+          <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
+          <strong>{lesson.title}</strong>
+          <span>{lesson.summary}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p class="empty-card">No lessons published yet.</p>
+)}
+
+<style>
+  .lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lesson-card,
+  .empty-card {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+  }
+
+  .lesson-card small {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: .82rem;
+    font-weight: 650;
+  }
+
+  .lesson-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    letter-spacing: -.01em;
+  }
+
+  .lesson-card span,
+  .empty-card {
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  @media (min-width: 820px) {
+    .lesson-card {
+      padding: 16px 18px;
+    }
+  }
+</style>

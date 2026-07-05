@@ -6,6 +6,11 @@
   --muted: #61615c;
   --line: #deded8;
   --link: #154f9f;
+  --accent: #6d3df5;
+  --code: #202334;
+  --code-text: #f7f8ff;
+  --ok: #116149;
+  --warn: #92400e;
 }
 
 * {
@@ -34,97 +39,15 @@ p {
   line-height: 1.55;
 }
 
-.page-shell {
-  width: min(760px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 28px 0 56px;
-}
-
-.page-shell--narrow {
-  width: min(720px, calc(100% - 32px));
-}
-
-.page-nav {
-  margin-bottom: 28px;
-}
-
-.hero-title {
-  margin: 0 0 10px;
-  font-size: clamp(2.2rem, 12vw, 4.2rem);
-  line-height: .95;
-  letter-spacing: -.06em;
-}
-
-.hero-title--large {
-  font-size: clamp(2.4rem, 13vw, 4.4rem);
-}
-
-.lesson-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.lesson-list-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.lesson-list-card,
-.empty-card {
-  display: block;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  border-radius: 14px;
-  padding: 14px 16px;
-}
-
-.lesson-list-card small {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--muted);
-  font-size: .82rem;
-  font-weight: 650;
-}
-
-.lesson-list-card strong {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 1rem;
-  letter-spacing: -.01em;
-}
-
-.lesson-list-card span,
-.empty-card {
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-.view-all-link {
-  align-self: flex-start;
-  color: var(--link);
-  font-weight: 650;
-}
-
-@media (min-width: 820px) {
-  .page-shell {
-    padding-top: 56px;
-  }
-
-  .lesson-list-card {
-    padding: 16px 18px;
-  }
-}
-
 .shiki {
   max-width: 100%;
   overflow-x: auto;
 
   padding: 16px 20px;
   border-radius: 8px;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: .94em;
 }

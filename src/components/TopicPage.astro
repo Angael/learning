@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css';
+import LessonList from './LessonList.astro';
+import PageShell from './PageShell.astro';
 import type { Topic } from '../data/catalog';
 
 const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
@@ -17,38 +18,14 @@ const { topic } = Astro.props;
 const lessons = sortedLessons(topic.lessons);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{topic.title} · Learning</title>
-  </head>
-  <body>
-    <main class="page-shell page-shell--narrow">
-      <nav class="page-nav"><a href="/">← All topics</a></nav>
-      <h1 class="hero-title hero-title--large">{topic.title}</h1>
-      <p>{topic.summary}</p>
+<PageShell title={`${topic.title} · Learning`} heading={topic.title} summary={topic.summary} backHref="/" backLabel="All topics" narrow>
+  <div class="list-wrap">
+    <LessonList lessons={lessons} ariaLabel={`${topic.title} lessons`} />
+  </div>
+</PageShell>
 
-      <div class="lesson-list-wrap">
-        {lessons.length > 0 ? (
-          <ul class="lesson-list" aria-label={`${topic.title} lessons`}>
-            {lessons.map((lesson) => (
-              <li>
-                <a class="lesson-list-card" href={lesson.href}>
-                  <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
-                  <strong>{lesson.title}</strong>
-                  <span>{lesson.summary}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="empty-card">No lessons published yet.</p>
-        )}
-      </div>
-    </main>
-  </body>
-</html>
+<style>
+  .list-wrap {
+    margin-top: 18px;
+  }
+</style>
