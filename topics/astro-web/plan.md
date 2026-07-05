@@ -21,7 +21,11 @@ Angeal can build, modify, debug, and explain this Astro site from first principl
 - [ ] Convert a lesson into structured content.
 - [ ] Debug a broken build.
 
+## Current lesson
+
+- 2026-07-05: `lessons/astro-web/0001-what-astro-builds.html` assigned. Awaiting Angeal's retrieval answer before marking any achievement complete.
+
 ## Next lesson candidates
 
-- What happens when Astro builds a page?
 - Frontmatter vs HTML: two worlds in one file.
+- Routes from files: why `src/pages/about.astro` becomes `/about`.

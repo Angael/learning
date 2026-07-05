@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astro Web 0001 — What Astro Builds</title>
+    <link rel="stylesheet" href="../../assets/lesson.css" />
+  </head>
+  <body>
+    <main>
+      <article class="lesson-card">
+        <p class="eyebrow">Astro web · lesson 0001</p>
+        <h1>What Astro turns into a website</h1>
+        <p class="lede">
+          First principle: a browser does not understand an Astro project. It understands files it can request — mostly
+          HTML, CSS, JavaScript, images, and fonts. <strong>Astro's build step turns source files into those browser-ready files.</strong>
+        </p>
+
+        <section class="callout" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Primary source</h2>
+          <p>
+            Read later, not first: Astro's docs on
+            <a href="https://docs.astro.build/en/basics/project-structure/">project structure</a> and
+            <a href="https://docs.astro.build/en/basics/astro-pages/">pages</a>. The key documented ideas are:
+            <code>src/</code> is processed by Astro, <code>public/</code> is copied as static assets, and files in
+            <code>src/pages/</code> become routes.
+          </p>
+        </section>
+
+        <h2>The mental model</h2>
+        <div class="diagram" aria-label="Source to build output diagram">
+          <div class="box">source<br /><code>src/pages/index.astro</code></div>
+          <div class="arrow">→</div>
+          <div class="box">build<br /><code>npm run build</code></div>
+          <div class="arrow">→</div>
+          <div class="box">output<br /><code>dist/index.html</code></div>
+        </div>
+        <p>
+          When this repo builds, Astro reads the page source at <code>src/pages/index.astro</code>, runs the Astro parts,
+          and emits a static file under <code>dist/</code>. That <code>dist/</code> folder is what a static server or nginx can serve.
+        </p>
+
+        <h2>One distinction to keep</h2>
+        <p>
+          <code>src/</code> is for files Astro should understand and transform. <code>public/</code> is for files Astro should
+          leave alone and copy. If you can say that distinction out loud, Astro routing and deployment become much less mysterious.
+        </p>
+
+        <section class="task" aria-labelledby="tiny-task-heading">
+          <h2 id="tiny-task-heading">Tiny task</h2>
+          <p>Open the repo and compare these two files:</p>
+          <pre><code>src/pages/index.astro
+ dist/index.html</code></pre>
+          <p>
+            Look for one thing that exists in the source but not exactly the same way in the built output.
+            That difference is evidence that a build step happened.
+          </p>
+        </section>
+
+        <section class="retrieval" aria-labelledby="retrieval-heading">
+          <h2 id="retrieval-heading">Retrieval check</h2>
+          <p><strong>Without rereading above:</strong> in one or two sentences, explain the path from <code>src/pages/index.astro</code> to the page a browser receives.</p>
+          <textarea class="answer-box" id="answer" aria-label="Your answer" placeholder="Type your answer here..."></textarea>
+          <p><button type="button" id="check">Check my answer</button></p>
+          <p class="feedback" id="feedback" aria-live="polite"></p>
+        </section>
+
+        <h2>Ask the teacher</h2>
+        <p>
+          If any word feels slippery — <em>route</em>, <em>static</em>, <em>build</em>, <em>source</em>, <em>output</em> — ask me. Your job is not to pretend it is clear; your job is to make the model solid.
+        </p>
+
+        <footer>
+          Related plan: <a href="../../topics/astro-web/plan.md">topics/astro-web/plan.md</a>. Next likely lesson: frontmatter vs HTML.
+        </footer>
+      </article>
+    </main>
+    <script>
+      const answer = document.querySelector('#answer');
+      const feedback = document.querySelector('#feedback');
+      document.querySelector('#check').addEventListener('click', () => {
+        const text = answer.value.toLowerCase();
+        const hasSource = text.includes('src') || text.includes('source') || text.includes('index.astro');
+        const hasBuild = text.includes('build') || text.includes('astro') || text.includes('npm');
+        const hasOutput = text.includes('dist') || text.includes('html') || text.includes('browser');
+        if (hasSource && hasBuild && hasOutput) {
+          feedback.className = 'feedback good';
+          feedback.textContent = 'Good: you included source, build step, and browser-ready output.';
+        } else {
+          feedback.className = 'feedback retry';
+          feedback.textContent = 'Try again: include all three ideas — source file, build step, and output served to the browser.';
+        }
+      });
+    </script>
+  </body>
+</html>
