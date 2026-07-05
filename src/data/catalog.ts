@@ -22,7 +22,7 @@ export const topics: Topic[] = [
     lessons: [
       {
         title: 'var and numeric types',
-        href: '/lessons/csharp/0001-var-and-numeric-types/',
+        href: '/topics/csharp/lessons/001-var-and-numeric-types/',
         summary: 'Learn why C# var is static inference, why integer division prints 2, and how int, double, float, and decimal interact.',
         date: '2026-07-05',
       },
@@ -36,7 +36,7 @@ export const topics: Topic[] = [
     lessons: [
       {
         title: 'Your first minimal API',
-        href: '/lessons/dotnet/0001-your-first-minimal-api/',
+        href: '/topics/dotnet/lessons/001-your-first-minimal-api/',
         summary: 'Create and reason about a tiny ASP.NET Core Minimal API from the terminal on Linux or macOS.',
         date: '2026-07-05',
       },

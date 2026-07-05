@@ -11,13 +11,13 @@ A minimal Astro site and repo-backed learning workspace for Angeal.
 
 ## Structure
 
-- `src/pages/index.astro` — mobile-first routing index
-- `src/pages/topics/<topic>/index.astro` — topic routing pages
-- `src/pages/lessons/<topic>/<lesson>.astro` — fully custom lesson pages
-- `src/data/catalog.ts` — topic and lesson list used by routing pages
-- `topics/<topic>/plan.md` — compact topic-specific plan and notes
-- `MISSION.md` — sparse repository mission and current scope
-- `RESOURCES.md` — external references when needed
+- `src/pages/index.astro` — topic index
+- `src/pages/topics/<topic>/index.astro` — topic page
+- `src/pages/topics/<topic>/plan.md` — topic goal, progression, achievements, and student baseline
+- `src/pages/topics/<topic>/lessons/<001-slug>/index.astro` — lesson page
+- `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — lesson summary and student response
+- `src/data/catalog.ts` — explicit topic and lesson list used by routing pages
+- `AGENTS.md` — repository rules, mission, and layout contract for agents
 
 ## Current scope
 

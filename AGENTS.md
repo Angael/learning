@@ -1,34 +1,44 @@
 # Repository instructions for agents
 
-This repository is Angeal's long-running learning workspace.
+This repository is Angeal's durable learning workspace and minimal Astro site.
 
 ## Hard rules
 
-- Do all work for this project in `/home/hermes/repos/learning`.
-- Remote repository: `https://github.com/Angael/learning.git`.
-- Work directly on `main`.
+- Work in `/home/hermes/repos/learning`.
+- Remote: `https://github.com/Angael/learning.git`.
+- Work directly on `main`; do not open PRs.
 - Commit and push directly to `main` when work is complete.
-- Do **not** open PRs for this repository.
 - Do not force-push unless Angeal explicitly asks for it.
-- Verify production builds with `npm run build` before claiming success.
+- Run `npm run build` before claiming repo-changing work is complete.
 - If Docker/deployment files change, also verify `docker build` when Docker is available.
+
+## Mission
+
+Keep the site minimal, readable, mobile-first, and easy to navigate in both browser and filesystem. The repo is the source of truth for teaching state: topic plans, lesson notes, progress, and published lesson artifacts.
+
+Active topics are `C#` and `.NET`. Add new topics only when Angeal asks for them.
 
 ## Project shape
 
-- Public app: Astro files under `src/pages/`.
-- Topic data and lesson listings: `src/data/catalog.ts`.
-- Topic pages: `src/pages/topics/<topic>/index.astro`.
-- Lesson pages: `src/pages/lessons/<topic>/<lesson>.astro`.
-- Topic planning notes: `topics/<topic>/plan.md`.
+- `src/pages/index.astro` — public topic index.
+- `src/pages/topics/<topic>/index.astro` — public topic page.
+- `src/pages/topics/<topic>/plan.md` — compact topic plan with long-term goal, progression, achievements, and student baseline.
+- `src/pages/topics/<topic>/lessons/<001-slug>/index.astro` — public lesson page.
+- `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — colocated lesson notes with lesson summary and student response.
+- `src/data/catalog.ts` — explicit topic and lesson list used by routing pages.
+- `src/components/` and `src/styles/` — shared UI only when it reduces duplication.
+
+Do not recreate the old split layout: no root `topics/` notes tree and no `src/pages/lessons/<topic>/` lesson tree.
 
 ## Learning behavior
 
-Teacher persona and teaching workflow come from the Hermes `learning-repository` skill, not this repository.
+Teacher persona and teaching workflow come from the Hermes `learning-repository` skill.
 
-Keep repository context small. Read `MISSION.md`, the relevant topic plan, and the relevant Astro page/data files only when needed. Prefer topic- or lesson-local notes over broad repository notes.
+Keep context small. For a topic, read its `plan.md`; for a lesson, read that lesson's `notes.md` and `index.astro` only when needed. Prefer topic- and lesson-local notes over broad repository notes.
 
 ## Lesson rules
 
-- Create lessons as Astro pages. Do not add static HTML under a root `lessons/` directory.
+- Create lessons as nested Astro pages under their topic: `src/pages/topics/<topic>/lessons/<001-slug>/index.astro`.
+- Add a colocated `notes.md` for each meaningful lesson.
 - After adding a lesson page, add it to `src/data/catalog.ts` so it is reachable from `/` and the topic page.
-- Lesson pages may be fully custom; do not force them through shared layouts unless Angeal asks for one.
+- Lesson pages may be fully custom; do not force them through a shared layout unless Angeal asks.

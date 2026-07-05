@@ -1,10 +1,10 @@
 # Topic plan: C#
 
-## End goal
+## Long-term goal
 
 Angeal can read, write, and debug modern C# confidently enough to build .NET APIs without treating the language as magic or ceremony.
 
-## Starting point
+## Student baseline
 
 Baseline from 2026-07-05 grill:
 
@@ -14,23 +14,7 @@ Baseline from 2026-07-05 grill:
 - Knows the rough ecosystem split: C# language, .NET platform, ASP.NET Core web stack, IDEs/editors.
 - Has useful but fuzzy mental models around stack/heap, classes, methods, access modifiers, and `static`.
 - Needs targeted correction around numeric operations, type inference, runtime model, value/reference types, nullability, and how C# classes/interfaces differ from TS/JS habits.
-
-## Teaching stance
-
-Teach this as **C# for TypeScript/backend developers**, not C# from zero.
-
-Avoid:
-
-- Blazor unless Angeal explicitly asks.
-- Beginner programming filler.
-- IDE-first workflows.
-
-Prefer:
-
-- Terminal-first `dotnet` examples.
-- Direct comparisons to TypeScript/JavaScript where they reveal real differences.
-- Small executable snippets with prediction questions before explanations.
-- Backend/API relevance, especially where C# choices affect ASP.NET Core code.
+- Teach this as C# for TypeScript/backend developers, not C# from zero.
 
 ## Progression
 
@@ -54,9 +38,3 @@ Prefer:
 - [ ] Explain `static` without saying it "lives outside the lifecycle of one class".
 - [ ] Translate a TypeScript DTO/service mental model into idiomatic C#.
 - [ ] Read a small ASP.NET Core endpoint and identify the C# language features involved.
-
-## Lesson notes
-
-- 2026-07-05: Topic created after baseline grill. Best starting lesson: integer division + `var` + static typing, because Angeal correctly expects a division result but is unsure whether C# casts like JS/TS or rejects compilation.
-- 2026-07-05: Grill progress: Angeal correctly settled on `5 / 2` printing `2`; learned that `var` is compile-time static inference, not JS-style dynamic binding; corrected `5.0` from `float` to `double`; identified `5m` as `decimal`; correctly reasoned that `decimal * double` is a compile-time error and that `int / double` produces a `double` result. Began value/reference type discussion: correctly predicted `int` assignment copies and `List<int>` references share mutation; corrected misconception that string reference assignment plus `ToUpper()` mutates both variables. Angeal asked to stop the grill for today and continue next time.
-- 2026-07-05: Published lesson 1, "var and numeric types." Next session should start with the retrieval checkpoint from that lesson, then continue into value vs reference types and method-call mutation/reassignment.

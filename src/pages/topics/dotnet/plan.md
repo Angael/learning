@@ -1,8 +1,16 @@
 # Topic plan: .NET
 
-## End goal
+## Long-term goal
 
 Angeal can build and reason about practical .NET backend services, from C# fundamentals to deployment-aware APIs.
+
+## Student baseline
+
+- Strong backend API background.
+- Comfortable with terminal and Git workflows.
+- Prefers terminal-first development over IDE-first workflows.
+- Wants practical .NET APIs and deployment-aware backend services.
+- Does not want Blazor unless explicitly requested later.
 
 ## Progression
 
@@ -19,7 +27,3 @@ Angeal can build and reason about practical .NET backend services, from C# funda
 - [x] Build a minimal API endpoint.
 - [ ] Add configuration and dependency injection.
 - [ ] Write a test for endpoint behavior.
-
-## Lesson notes
-
-- 2026-07-05: Published lesson 1, "Your first minimal API." It starts from the terminal-based `dotnet` CLI workflow for Linux/macOS, introduces `Program.cs`, `MapGet`, and a `/status` JSON endpoint, then ends with a retrieval checkpoint before advancing.
