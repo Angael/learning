@@ -4,13 +4,9 @@ This repository is Angeal's durable learning workspace and minimal Astro site.
 
 ## Hard rules
 
-- Work in `/home/hermes/repos/learning`.
-- Remote: `https://github.com/Angael/learning.git`.
 - Work directly on `main`; do not open PRs.
 - Commit and push directly to `main` when work is complete.
-- Do not force-push unless Angeal explicitly asks for it.
 - Run `npm run build` before claiming repo-changing work is complete.
-- If Docker/deployment files change, also verify `docker build` when Docker is available.
 
 ## Mission
 
