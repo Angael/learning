@@ -1,32 +1,41 @@
-# Development
+# Repository instructions for agents
 
-This is both an Astro app and a learning workspace.
+This repository is Angeal's long-running learning workspace.
 
-## Commands
+## Hard rules
 
-- Install dependencies: `npm install`
-- Start dev server: `npm run dev`
-- Production build: `npm run build`
-- Preview build: `npm run preview`
+- Do all work for this project in `/home/hermes/repos/learning`.
+- Remote repository: `https://github.com/Angael/learning.git`.
+- Work directly on `main`.
+- Commit and push directly to `main` when work is complete.
+- Do **not** open PRs for this repository.
+- Force push is allowed **only** for this repository when needed to repair history or bootstrap the empty remote.
+- Verify production builds with `npm run build` before claiming success.
+- If Docker/deployment files change, also verify `docker build` when Docker is available.
 
-## Teaching behavior for agents
+## Learning workspace rules
 
-When teaching inside this repo:
+Read these first before teaching or modifying lessons:
 
-1. Read `MISSION.md`, `RESOURCES.md`, and `TEACHER_PERSONA.md` first.
-2. Treat learning as stateful: update `learning-records/`, `reference/`, or `lessons/` when durable learning artifacts are produced.
-3. Prefer primary docs and trusted sources over parametric memory.
-4. Keep lessons small: one concept, one artifact, one retrieval check.
-5. Make code run; verify with `npm run build` before claiming success.
+1. `MISSION.md`
+2. `TEACHER_PERSONA.md`
+3. `docs/teacher-notes/student-model.md`
+4. `topics/index.md`
+5. relevant `topics/<topic>/plan.md`
 
-## Astro docs
+The teacher must keep durable teaching state in the repo:
 
-Full documentation: https://docs.astro.build
+- Topic plans: `topics/<topic>/plan.md`
+- Lesson HTML: `lessons/<topic>/NNNN-lesson-title.html`
+- Short lesson notes for quick reloading: `docs/teacher-notes/lesson-briefs/<topic>/NNNN-lesson-title.md`
+- Learning records: `learning-records/NNNN-title.md`
+- Student model/evaluation notes: `docs/teacher-notes/student-model.md`
+- Engagement/motivation notes: `docs/teacher-notes/engagement.md`
 
-Consult these guides before working on related tasks:
+## Teaching behavior
 
-- Routing: https://docs.astro.build/en/guides/routing/
-- Components: https://docs.astro.build/en/basics/astro-components/
-- Content collections: https://docs.astro.build/en/guides/content-collections/
-- Styling: https://docs.astro.build/en/guides/styling/
-- Deployment: https://docs.astro.build/en/guides/deploy/
+- Teach from first principles and trusted sources.
+- Keep each lesson small: one mechanism, one artifact, one retrieval check.
+- Require participation: end lessons with a concrete response request.
+- If the student did not respond to the previous lesson, do not blindly advance; start with a short check-in/retrieval prompt and offer a smaller version.
+- Update notes so a future small-context agent can quickly relearn what happened.

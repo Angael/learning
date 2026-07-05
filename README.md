@@ -1,25 +1,22 @@
 # Astro Learning Lab
 
-A deployable Astro project for learning web development, operations, deployment, and adjacent topics from first principles.
+A deployable Astro project and durable teaching workspace for Angeal.
 
 ## Commands
 
 - `npm run dev` — start local development server
 - `npm run build` — verify production build
 - `npm run preview` — preview the built site locally
+- `docker build -t learning .` — build the production container
 
-## Teaching workspace
+## Structure
 
-This repo also follows Matt Pocock's `teach` skill structure:
+- `topics/` — long-running topic tracks with mutable plans and achievements
+- `lessons/` — HTML lesson artifacts, grouped by topic
+- `docs/teacher-notes/` — compact notes for the teacher to reload context quickly
+- `learning-records/` — durable records of non-obvious learning progress
+- `reference/` — reusable cheat sheets and reference documents
 
-- `MISSION.md` — why this learning project exists
-- `RESOURCES.md` — trusted sources to ground teaching
-- `TEACHER_PERSONA.md` — the teaching personality/persona design
-- `lessons/` — future self-contained lessons
-- `reference/` — future quick-reference documents
-- `learning-records/` — durable learning records
-- `assets/` — reusable lesson assets
+## Deployment
 
-## Deployment note
-
-The intended future deployment target is Dokploy. Deployment config should be added when the first real deployment lesson begins.
+The Docker image builds static Astro output and serves it with nginx on port 80, suitable for Dokploy.

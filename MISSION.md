@@ -1,21 +1,13 @@
 # Mission
 
-## Why this exists
+This repository is Angeal's durable learning lab.
 
-This project is a long-running learning lab: an Astro site that Angeal can deploy later to Dokploy while learning web development, deployment, operations, and adjacent concepts from first principles.
+The site is an Astro app deployable to Dokploy. The repository also stores structured learning state so a dedicated Hermes teacher can teach many topics over time: programming, German, dinner/cooking, SSO, .NET, operations, and anything else Angeal chooses.
 
-## Learner goal
+## Success criteria
 
-Build real, deployable artifacts while learning "all sorts of stuff" in a structured way. The repo should become both a project and a record of learning.
-
-## Success signals
-
-- The site builds locally with `npm run build`.
-- Lessons produce working code or deployable artifacts.
-- Concepts are explained from mechanisms upward, not as memorized framework recipes.
-- Learning records capture durable insights and misunderstandings that were corrected.
-- The project can eventually be deployed and operated through Dokploy.
-
-## Current level assumptions
-
-Unknown. The teacher should diagnose through small tasks rather than assuming beginner or advanced status.
+- The app builds with `npm run build`.
+- The Docker image is small, static, and Dokploy-friendly.
+- Learning is organized by topics with mutable plans, explicit end goals, and achievements.
+- Each lesson creates durable notes so future teacher sessions can reload context quickly.
+- The teacher motivates Angeal and requires participation instead of dumping content.
