@@ -15,6 +15,7 @@ type Props = {
 
 const { topic } = Astro.props;
 const lessons = sortedLessons(topic.lessons);
+const latestLesson = lessons[0];
 ---
 
 <html lang="en">
@@ -24,30 +25,69 @@ const lessons = sortedLessons(topic.lessons);
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{topic.title} · Learning</title>
+    <title>{topic.title} · Arcane Terminal Academy</title>
   </head>
   <body>
     <main class="page-shell page-shell--narrow">
-      <nav class="page-nav"><a href="/">← All topics</a></nav>
-      <h1 class="hero-title hero-title--large">{topic.title}</h1>
-      <p>{topic.summary}</p>
+      <nav class="app-chrome" aria-label="Primary">
+        <a class="brand-lockup" href="/">
+          <span class="brand-mark">λ</span>
+          <span>Arcane Terminal Academy</span>
+        </a>
+        <a class="nav-pill" href="/">All paths</a>
+      </nav>
 
-      <div class="lesson-list-wrap">
-        {lessons.length > 0 ? (
-          <ul class="lesson-list" aria-label={`${topic.title} lessons`}>
-            {lessons.map((lesson) => (
-              <li>
-                <a class="lesson-list-card" href={lesson.href}>
-                  <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
-                  <strong>{lesson.title}</strong>
-                  <span>{lesson.summary}</span>
-                </a>
-              </li>
-            ))}
+      <nav class="page-nav"><a href="/">← All topics</a></nav>
+
+      <header class="hero-panel">
+        <div class="hero-content">
+          <div>
+            <span class="eyebrow">{topic.slug} training path</span>
+            <h1 class="hero-title hero-title--large">{topic.title}</h1>
+            <p class="hero-lede">{topic.summary}</p>
+          </div>
+          <div class="hero-meta-grid">
+            <div class="stat-card">
+              <small>Lessons available</small>
+              <strong>{topic.lessons.length}</strong>
+            </div>
+            <div class="stat-card">
+              <small>Latest checkpoint</small>
+              <strong>{latestLesson ? latestLesson.title : 'Awaiting first lesson'}</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="topic-layout">
+        <section class="lesson-list-wrap" aria-label={`${topic.title} lessons`}>
+          {lessons.length > 0 ? (
+            <ul class="lesson-list">
+              {lessons.map((lesson) => (
+                <li>
+                  <a class="lesson-list-card" href={lesson.href}>
+                    <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
+                    <strong>{lesson.title}</strong>
+                    <span>{lesson.summary}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="empty-card">No lessons published yet.</p>
+          )}
+        </section>
+
+        <aside class="topic-sidebar side-card" aria-label="Path guide">
+          <span class="topic-kicker">Study ritual</span>
+          <h2>How to use this path</h2>
+          <p>Open the newest checkpoint, predict before reading the answer, then reply with your reasoning so progress can be recorded.</p>
+          <ul class="side-list">
+            <li>• One concept at a time.</li>
+            <li>• One retrieval check per lesson.</li>
+            <li>• Practice before abstraction.</li>
           </ul>
-        ) : (
-          <p class="empty-card">No lessons published yet.</p>
-        )}
+        </aside>
       </div>
     </main>
   </body>

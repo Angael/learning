@@ -8,6 +8,11 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
   if (dateCompare !== 0) return dateCompare;
   return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
 });
+
+const lessonCount = topics.reduce((count, topic) => count + topic.lessons.length, 0);
+const latestLesson = topics
+  .flatMap((topic) => topic.lessons.map((lesson) => ({ ...lesson, topic: topic.title })))
+  .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))[0];
 ---
 
 <html lang="en">
@@ -17,72 +22,79 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Learning</title>
-    <style>
-      header { margin-bottom: 28px; }
-      h2 {
-        margin: 0 0 14px;
-        font-size: 1.15rem;
-        letter-spacing: -0.02em;
-      }
-      .topic {
-        padding: 20px 0;
-        border-top: 1px solid var(--line);
-      }
-      .topic-title {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 6px;
-      }
-      .topic-title a { font-weight: 750; font-size: 1.35rem; letter-spacing: -0.03em; }
-      .topic-title span { color: var(--muted); font-size: .95rem; white-space: nowrap; }
-    </style>
+    <title>Arcane Terminal Academy · Learning</title>
   </head>
   <body>
     <main class="page-shell">
-      <header>
-        <h1 class="hero-title">Learning</h1>
-        <p>Topics and lessons. The index is for routing: every published lesson should be reachable from here.</p>
+      <nav class="app-chrome" aria-label="Primary">
+        <a class="brand-lockup" href="/" aria-label="Arcane Terminal Academy home">
+          <span class="brand-mark">λ</span>
+          <span>Arcane Terminal Academy</span>
+        </a>
+        <span class="nav-pill">{topics.length} paths · {lessonCount} lessons</span>
+      </nav>
+
+      <header class="hero-panel">
+        <div class="hero-content">
+          <div>
+            <span class="eyebrow">Socratic builder interface</span>
+            <h1 class="hero-title">Learn like a developer in a private spellbook.</h1>
+            <p class="hero-lede">
+              A dark, focused learning lab for C#, .NET, and every checkpoint that turns reading into durable practice.
+            </p>
+          </div>
+          <div class="hero-meta-grid" aria-label="Learning stats">
+            <div class="stat-card">
+              <small>Current paths</small>
+              <strong>{topics.map((topic) => topic.title).join(' + ')}</strong>
+            </div>
+            <div class="stat-card">
+              <small>Latest lesson</small>
+              <strong>{latestLesson ? `${latestLesson.topic}: ${latestLesson.title}` : 'No lessons yet'}</strong>
+            </div>
+          </div>
+        </div>
       </header>
 
-      {topics.map((topic) => {
-        const lessons = sortedLessons(topic.lessons);
-        const visibleLessons = lessons.slice(0, 3);
-        const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
+      <section class="topic-grid" aria-label="Learning paths">
+        {topics.map((topic) => {
+          const lessons = sortedLessons(topic.lessons);
+          const visibleLessons = lessons.slice(0, 3);
+          const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
 
-        return (
-        <section class="topic" aria-labelledby={`${topic.slug}-title`}>
-          <div class="topic-title">
-            <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
-            <span>{topic.lessons.length} lessons</span>
-          </div>
-          <p>{topic.summary}</p>
+          return (
+          <article class="topic" aria-labelledby={`${topic.slug}-title`}>
+            <span class="topic-kicker">Learning path</span>
+            <div class="topic-title">
+              <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
+              <span>{topic.lessons.length} lessons</span>
+            </div>
+            <p>{topic.summary}</p>
 
-          <div class="lesson-list-wrap">
-            {lessons.length > 0 ? (
-              <ul class="lesson-list">
-                {visibleLessons.map((lesson) => (
-                  <li>
-                    <a class="lesson-list-card" href={lesson.href}>
-                      <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
-                      <strong>{lesson.title}</strong>
-                      <span>{lesson.summary}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p class="empty-card">No lessons published yet.</p>
-            )}
-            {hiddenCount > 0 && (
-              <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
-            )}
-          </div>
-        </section>
-        );
-      })}
+            <div class="lesson-list-wrap">
+              {lessons.length > 0 ? (
+                <ul class="lesson-list">
+                  {visibleLessons.map((lesson) => (
+                    <li>
+                      <a class="lesson-list-card" href={lesson.href}>
+                        <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
+                        <strong>{lesson.title}</strong>
+                        <span>{lesson.summary}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="empty-card">No lessons published yet.</p>
+              )}
+              {hiddenCount > 0 && (
+                <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
+              )}
+            </div>
+          </article>
+          );
+        })}
+      </section>
     </main>
   </body>
 </html>
