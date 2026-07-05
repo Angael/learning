@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import { topics } from '../data/catalog';
 ---
 
@@ -11,46 +12,12 @@ import { topics } from '../data/catalog';
     <meta name="generator" content={Astro.generator} />
     <title>Learning</title>
     <style>
-      :root {
-        color-scheme: light;
-        --bg: #f7f7f4;
-        --panel: #ffffff;
-        --text: #161616;
-        --muted: #61615c;
-        --line: #deded8;
-        --link: #154f9f;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-      main {
-        width: min(760px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 28px 0 56px;
-      }
       header { margin-bottom: 28px; }
-      h1 {
-        margin: 0 0 10px;
-        font-size: clamp(2.2rem, 12vw, 4.2rem);
-        line-height: .95;
-        letter-spacing: -0.06em;
-      }
       h2 {
         margin: 0 0 14px;
         font-size: 1.15rem;
         letter-spacing: -0.02em;
       }
-      p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.55;
-      }
-      a { color: inherit; text-decoration: none; }
-      a:hover { color: var(--link); }
       .topic {
         padding: 20px 0;
         border-top: 1px solid var(--line);
@@ -64,39 +31,12 @@ import { topics } from '../data/catalog';
       }
       .topic-title a { font-weight: 750; font-size: 1.35rem; letter-spacing: -0.03em; }
       .topic-title span { color: var(--muted); font-size: .95rem; white-space: nowrap; }
-      .lessons {
-        list-style: none;
-        padding: 0;
-        margin: 18px 0 0;
-        display: grid;
-        gap: 10px;
-      }
-      .lesson a,
-      .empty {
-        display: block;
-        border: 1px solid var(--line);
-        background: var(--panel);
-        border-radius: 14px;
-        padding: 14px 16px;
-      }
-      .lesson strong {
-        display: block;
-        margin-bottom: 4px;
-        font-size: 1rem;
-        letter-spacing: -0.01em;
-      }
-      .lesson span,
-      .empty { color: var(--muted); line-height: 1.45; }
-      @media (min-width: 820px) {
-        main { padding-top: 56px; }
-        .lesson a { padding: 16px 18px; }
-      }
     </style>
   </head>
   <body>
-    <main>
+    <main class="page-shell">
       <header>
-        <h1>Learning</h1>
+        <h1 class="hero-title">Learning</h1>
         <p>Topics and lessons. The index is for routing: every published lesson should be reachable from here.</p>
       </header>
 
@@ -108,20 +48,22 @@ import { topics } from '../data/catalog';
           </div>
           <p>{topic.summary}</p>
 
-          {topic.lessons.length > 0 ? (
-            <ul class="lessons">
-              {topic.lessons.map((lesson) => (
-                <li class="lesson">
-                  <a href={lesson.href}>
-                    <strong>{lesson.title}</strong>
-                    <span>{lesson.summary}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p class="empty">No lessons published yet.</p>
-          )}
+          <div class="lesson-list-wrap">
+            {topic.lessons.length > 0 ? (
+              <ul class="lesson-list">
+                {topic.lessons.map((lesson) => (
+                  <li>
+                    <a class="lesson-list-card" href={lesson.href}>
+                      <strong>{lesson.title}</strong>
+                      <span>{lesson.summary}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p class="empty-card">No lessons published yet.</p>
+            )}
+          </div>
         </section>
       ))}
     </main>
