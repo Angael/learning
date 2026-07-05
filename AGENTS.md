@@ -22,7 +22,8 @@ Active topics are `C#` and `.NET`. Add new topics only when Angeal asks for them
 - `src/pages/topics/<topic>/lessons/<001-slug>/index.astro` — public lesson page.
 - `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — colocated lesson notes with lesson summary and student response.
 - `src/data/catalog.ts` — explicit topic and lesson list used by routing pages.
-- `src/components/` and `src/styles/` — shared UI only when it reduces duplication.
+- `src/components/` — shared page, lesson, and content components that keep lesson files compact.
+- `src/styles/global.css` — true global tokens/base defaults plus Shiki/code styling; do not add page- or lesson-specific class systems here.
 
 Do not recreate the old split layout: no root `topics/` notes tree and no `src/pages/lessons/<topic>/` lesson tree.
 
@@ -37,8 +38,10 @@ Keep context small. For a topic, read its `plan.md`; for a lesson, read that les
 - Create lessons as nested Astro pages under their topic: `src/pages/topics/<topic>/lessons/<001-slug>/index.astro`.
 - Add a colocated `notes.md` for each meaningful lesson.
 - After adding a lesson page, add it to `src/data/catalog.ts` so it is reachable from `/` and the topic page.
-- Use Shiki for all code blocks in lesson pages; do not render plain `<pre><code>` blocks for code samples.
-- Lesson pages may be fully custom; do not force them through a shared layout unless Angeal asks.
+- Build lesson pages with the standard components unless Angeal explicitly asks for a one-off page: `LessonPage`, `LessonSection`, `Code`, `Callout`, `LessonGrid`, `CommandList`, and `TagList`.
+- Use `Code.astro` for code samples: `<Code code={example} lang="csharp" />`. Do not import Shiki or render plain `<pre><code>` blocks in lesson pages.
+- Keep lesson-specific CSS out of lesson pages by default. If a pattern repeats, make a small component with colocated styles instead of adding reusable classes to `global.css`.
+- Do not add eyebrow/kicker markup to lesson headers.
 
 ## Lesson listing rules
 

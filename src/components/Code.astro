@@ -1,0 +1,13 @@
+---
+import { codeToHtml } from 'shiki';
+
+type Props = {
+  code: string;
+  lang: string;
+};
+
+const { code, lang } = Astro.props;
+const html = await codeToHtml(code, { lang, theme: 'github-dark' });
+---
+
+<Fragment set:html={html} />

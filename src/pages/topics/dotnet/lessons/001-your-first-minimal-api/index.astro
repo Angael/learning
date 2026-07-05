@@ -1,5 +1,5 @@
 ---
-import { codeToHtml } from 'shiki';
+import Code from '../../../../../components/Code.astro';
 import CommandList from '../../../../../components/CommandList.astro';
 import LessonGrid from '../../../../../components/LessonGrid.astro';
 import LessonPage from '../../../../../components/LessonPage.astro';
@@ -38,12 +38,6 @@ app.Run();`;
 const runStatus = `dotnet run
 curl http://localhost:5000/status`;
 
-const [tinyApiHtml, freshProgramHtml, statusEndpointHtml, runStatusHtml] = await Promise.all([
-  codeToHtml(tinyApi, { lang: 'csharp', theme: 'github-dark' }),
-  codeToHtml(freshProgram, { lang: 'csharp', theme: 'github-dark' }),
-  codeToHtml(statusEndpoint, { lang: 'csharp', theme: 'github-dark' }),
-  codeToHtml(runStatus, { lang: 'shellscript', theme: 'github-dark' }),
-]);
 ---
 
 <LessonPage
@@ -69,7 +63,7 @@ const [tinyApiHtml, freshProgramHtml, statusEndpointHtml, runStatusHtml] = await
       </div>
       <div>
         <h3>The tiny version</h3>
-        <Fragment set:html={tinyApiHtml} />
+        <Code code={tinyApi} lang="csharp" />
       </div>
     </LessonGrid>
   </LessonSection>
@@ -86,7 +80,7 @@ const [tinyApiHtml, freshProgramHtml, statusEndpointHtml, runStatusHtml] = await
 
   <LessonSection title="Open <code>Program.cs</code>">
     <p>For a fresh <code>dotnet new web</code> app, expect something close to this:</p>
-    <Fragment set:html={freshProgramHtml} />
+    <Code code={freshProgram} lang="csharp" />
     <p>
       Read it literally: create a builder, build an app, map <code>GET /</code> to a function, run the web server.
       The lambda <code>() =&gt; "Hello World!"</code> is the request handler.
@@ -95,9 +89,9 @@ const [tinyApiHtml, freshProgramHtml, statusEndpointHtml, runStatusHtml] = await
 
   <LessonSection title="Make it an API, not just hello world">
     <p>Replace the route with a small JSON response:</p>
-    <Fragment set:html={statusEndpointHtml} />
+    <Code code={statusEndpoint} lang="csharp" />
     <p>Then run again and call it:</p>
-    <Fragment set:html={runStatusHtml} />
+    <Code code={runStatus} lang="shellscript" />
     <p>
       If the console says it is listening on a different port, use that port. On modern templates it may choose a random dev port like <code>http://localhost:5123</code>.
     </p>

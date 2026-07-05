@@ -1,6 +1,6 @@
 ---
-import { codeToHtml } from 'shiki';
 import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
 import LessonGrid from '../../../../../components/LessonGrid.astro';
 import LessonPage from '../../../../../components/LessonPage.astro';
 import LessonSection from '../../../../../components/LessonSection.astro';
@@ -33,14 +33,6 @@ var result = count / total;
 
 Console.WriteLine(result); // 2.5`;
 
-const highlight = (code: string) => codeToHtml(code, { lang: 'csharp', theme: 'github-dark' });
-const [integerDivisionHtml, numericDefaultsHtml, mixedDecimalDoubleHtml, fixedDecimalHtml, mixedIntDoubleHtml] = await Promise.all([
-  highlight(integerDivision),
-  highlight(numericDefaults),
-  highlight(mixedDecimalDouble),
-  highlight(fixedDecimal),
-  highlight(mixedIntDouble),
-]);
 ---
 
 <LessonPage
@@ -61,13 +53,13 @@ const [integerDivisionHtml, numericDefaultsHtml, mixedDecimalDoubleHtml, fixedDe
 
   <LessonSection title="Integer division">
     <p>If both sides are <code>int</code>, the result is also <code>int</code>. The fractional part is discarded.</p>
-    <Fragment set:html={integerDivisionHtml} />
+    <Code code={integerDivision} lang="csharp" />
     <p>C# does not silently switch to floating-point just because the mathematical answer has a decimal part.</p>
   </LessonSection>
 
   <LessonSection title="Numeric literal defaults">
     <p>These defaults matter because they decide which operator overload C# chooses.</p>
-    <Fragment set:html={numericDefaultsHtml} />
+    <Code code={numericDefaults} lang="csharp" />
     <LessonGrid>
       <div>
         <h3>Practical rule</h3>
@@ -87,17 +79,17 @@ const [integerDivisionHtml, numericDefaultsHtml, mixedDecimalDoubleHtml, fixedDe
 
   <LessonSection title="C# makes you choose numeric domains">
     <p>This does not compile:</p>
-    <Fragment set:html={mixedDecimalDoubleHtml} />
+    <Code code={mixedDecimalDouble} lang="csharp" />
     <p>
       That refusal is good. Converting <code>decimal</code> to <code>double</code> can lose base-10 precision, and converting arbitrary <code>double</code> to <code>decimal</code> is not always safe. The compiler asks you to be explicit.
     </p>
     <p>Use one numeric domain intentionally:</p>
-    <Fragment set:html={fixedDecimalHtml} />
+    <Code code={fixedDecimal} lang="csharp" />
   </LessonSection>
 
   <LessonSection title="Compatible numeric promotion">
     <p>When the operands are compatible, C# can promote the narrower value for the operation:</p>
-    <Fragment set:html={mixedIntDoubleHtml} />
+    <Code code={mixedIntDouble} lang="csharp" />
     <p>Here, <code>count</code> is promoted from <code>int</code> to <code>double</code> for the division, so the result is <code>double</code>.</p>
   </LessonSection>
 
