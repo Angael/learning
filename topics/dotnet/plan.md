@@ -16,10 +16,10 @@ Angeal can build and reason about practical .NET backend services, from C# funda
 ## Achievements
 
 - [ ] Explain what the CLR/runtime does.
-- [ ] Build a minimal API endpoint.
+- [x] Build a minimal API endpoint.
 - [ ] Add configuration and dependency injection.
 - [ ] Write a test for endpoint behavior.
 
 ## Lesson notes
 
-No lessons are currently published. Create new lessons as Astro pages under `src/pages/lessons/dotnet/` and list them in `src/data/catalog.ts`.
+- 2026-07-05: Published lesson 1, "Your first minimal API." It starts from the terminal-based `dotnet` CLI workflow for Linux/macOS, introduces `Program.cs`, `MapGet`, and a `/status` JSON endpoint, then ends with a retrieval checkpoint before advancing.

@@ -19,6 +19,13 @@ export const topics: Topic[] = [
     slug: 'dotnet',
     href: '/topics/dotnet/',
     summary: 'C#, the .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
-    lessons: [],
+    lessons: [
+      {
+        title: 'Your first minimal API',
+        href: '/lessons/dotnet/0001-your-first-minimal-api/',
+        summary: 'Create and reason about a tiny ASP.NET Core Minimal API from the terminal on Linux or macOS.',
+        date: '2026-07-05',
+      },
+    ],
   },
 ];
