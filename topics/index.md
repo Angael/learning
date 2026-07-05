@@ -1,8 +1,9 @@
 # Topic index
 
-Only one topic is active right now.
+Active topics:
 
-- `dotnet` — C#, the .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.
+- `csharp` — Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.
+- `dotnet` — The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.
 
 Add new topics only when Angeal asks for them. For a new topic, create:
 

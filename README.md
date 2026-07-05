@@ -21,7 +21,7 @@ A minimal Astro site and repo-backed learning workspace for Angeal.
 
 ## Current scope
 
-Only `.NET` is active. Add new topics only when Angeal asks for them.
+Active topics are `C#` and `.NET`. Add new topics only when Angeal asks for them.
 
 ## Deployment
 

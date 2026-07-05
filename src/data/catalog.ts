@@ -15,10 +15,17 @@ export type Topic = {
 
 export const topics: Topic[] = [
   {
+    title: 'C#',
+    slug: 'csharp',
+    href: '/topics/csharp/',
+    summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
+    lessons: [],
+  },
+  {
     title: '.NET',
     slug: 'dotnet',
     href: '/topics/dotnet/',
-    summary: 'C#, the .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
+    summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
     lessons: [
       {
         title: 'Your first minimal API',

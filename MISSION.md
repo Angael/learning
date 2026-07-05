@@ -6,7 +6,7 @@ The public app is for routing through topics and Astro lesson pages. Keep it min
 
 ## Current scope
 
-- One active topic: `.NET`.
+- Active topics: `C#` and `.NET`.
 - Lessons are published as Astro pages under `src/pages/lessons/<topic>/`.
 - Topic routing pages live under `src/pages/topics/<topic>/`.
 - Shared topic/lesson listings live in `src/data/catalog.ts`.
