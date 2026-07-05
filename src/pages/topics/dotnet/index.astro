@@ -1,0 +1,54 @@
+---
+import { topics } from '../../../data/catalog';
+const topic = topics.find((item) => item.slug === 'dotnet');
+if (!topic) throw new Error('Missing .NET topic');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{topic.title} · Learning</title>
+    <style>
+      :root { color-scheme: light; --bg:#f7f7f4; --panel:#fff; --text:#161616; --muted:#61615c; --line:#deded8; --link:#154f9f; }
+      * { box-sizing: border-box; }
+      body { margin:0; background:var(--bg); color:var(--text); font-family:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      main { width:min(720px, calc(100% - 32px)); margin:0 auto; padding:28px 0 56px; }
+      nav { margin-bottom:28px; }
+      a { color:inherit; text-decoration:none; }
+      a:hover { color:var(--link); }
+      h1 { margin:0 0 10px; font-size:clamp(2.4rem, 13vw, 4.4rem); line-height:.95; letter-spacing:-.06em; }
+      p { margin:0; color:var(--muted); line-height:1.55; }
+      ul { list-style:none; padding:0; margin:24px 0 0; display:grid; gap:10px; }
+      .lesson a, .empty { display:block; border:1px solid var(--line); background:var(--panel); border-radius:14px; padding:14px 16px; }
+      .lesson strong { display:block; margin-bottom:4px; }
+      .lesson span, .empty { color:var(--muted); line-height:1.45; }
+      @media (min-width:820px) { main { padding-top:56px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav><a href="/">← All topics</a></nav>
+      <h1>{topic.title}</h1>
+      <p>{topic.summary}</p>
+
+      {topic.lessons.length > 0 ? (
+        <ul aria-label=".NET lessons">
+          {topic.lessons.map((lesson) => (
+            <li class="lesson">
+              <a href={lesson.href}>
+                <strong>{lesson.title}</strong>
+                <span>{lesson.summary}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="empty">No lessons published yet.</p>
+      )}
+    </main>
+  </body>
+</html>

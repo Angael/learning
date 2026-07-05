@@ -1,16 +1,11 @@
 # Topic index
 
-Topics are long-running learning tracks. Each topic has a mutable plan with a clear end goal and achievements.
+Only one topic is active right now.
 
-## Active seed topics
+- `dotnet` — C#, the .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.
 
-- `astro-web` — build and operate this Astro site.
-- `dokploy-deployment` — deploy and run the site on Dokploy.
-- `german` — learn practical German with spaced retrieval.
-- `dinner` — learn dinner planning/cooking from first principles.
-- `dotnet` — learn .NET fundamentals and practical backend development.
-- `sso` — learn SSO, OAuth/OIDC/SAML, and production auth mental models.
+Add new topics only when Angeal asks for them. For a new topic, create:
 
-## Adding a topic
-
-Create `topics/<slug>/plan.md` with end goal, why it matters, current assumptions, progression stages, achievements, next lesson candidates, and resources.
+1. `topics/<slug>/plan.md`
+2. `src/pages/topics/<slug>/index.astro`
+3. an entry in `src/data/catalog.ts`

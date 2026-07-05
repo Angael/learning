@@ -1,13 +1,20 @@
 # Mission
 
-This repository is Angeal's durable learning lab.
+This repository is Angeal's durable learning workspace and Astro site.
 
-The site is an Astro app deployable to Dokploy. The repository also stores structured learning state so a dedicated Hermes teacher can teach many topics over time: programming, German, dinner/cooking, SSO, .NET, operations, and anything else Angeal chooses.
+The public app is for routing through topics and Astro lesson pages. Keep it minimal, readable, mobile-first, and easy to extend.
+
+## Current scope
+
+- One active topic: `.NET`.
+- Lessons are published as Astro pages under `src/pages/lessons/<topic>/`.
+- Topic routing pages live under `src/pages/topics/<topic>/`.
+- Shared topic/lesson listings live in `src/data/catalog.ts`.
+- Topic-specific planning notes live under `topics/<topic>/plan.md`.
 
 ## Success criteria
 
-- The app builds with `npm run build`.
-- The Docker image is small, static, and Dokploy-friendly.
-- Learning is organized by topics with mutable plans, explicit end goals, and achievements.
-- Each lesson creates durable notes so future teacher sessions can reload context quickly.
-- The teacher motivates Angeal and requires participation instead of dumping content.
+- `npm run build` succeeds.
+- Every published lesson is reachable from `/`.
+- Lessons are free to define their own page structure and styling.
+- Repository-level notes stay small; topic and lesson notes carry local context.

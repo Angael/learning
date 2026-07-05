@@ -1,6 +1,6 @@
-# Astro Learning Lab
+# Learning
 
-A deployable Astro project and durable teaching workspace for Angeal.
+A minimal Astro site and repo-backed learning workspace for Angeal.
 
 ## Commands
 
@@ -11,12 +11,18 @@ A deployable Astro project and durable teaching workspace for Angeal.
 
 ## Structure
 
-- `topics/` — long-running topic tracks with mutable plans and achievements
-- `lessons/` — HTML lesson artifacts, grouped by topic
-- `docs/teacher-notes/` — compact notes for the teacher to reload context quickly
-- `learning-records/` — durable records of non-obvious learning progress
-- `reference/` — reusable cheat sheets and reference documents
+- `src/pages/index.astro` — mobile-first routing index
+- `src/pages/topics/<topic>/index.astro` — topic routing pages
+- `src/pages/lessons/<topic>/<lesson>.astro` — fully custom lesson pages
+- `src/data/catalog.ts` — topic and lesson list used by routing pages
+- `topics/<topic>/plan.md` — compact topic-specific plan and notes
+- `MISSION.md` — sparse repository mission and current scope
+- `RESOURCES.md` — external references when needed
+
+## Current scope
+
+Only `.NET` is active. Add new topics only when Angeal asks for them.
 
 ## Deployment
 
-The Docker image builds static Astro output and serves it with nginx on port 80, suitable for Dokploy.
+The Docker image builds static Astro output and serves it with nginx on port 80.

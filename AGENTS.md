@@ -9,33 +9,26 @@ This repository is Angeal's long-running learning workspace.
 - Work directly on `main`.
 - Commit and push directly to `main` when work is complete.
 - Do **not** open PRs for this repository.
-- Force push is allowed **only** for this repository when needed to repair history or bootstrap the empty remote.
+- Do not force-push unless Angeal explicitly asks for it.
 - Verify production builds with `npm run build` before claiming success.
 - If Docker/deployment files change, also verify `docker build` when Docker is available.
 
-## Learning workspace rules
+## Project shape
 
-Read these first before teaching or modifying lessons:
+- Public app: Astro files under `src/pages/`.
+- Topic data and lesson listings: `src/data/catalog.ts`.
+- Topic pages: `src/pages/topics/<topic>/index.astro`.
+- Lesson pages: `src/pages/lessons/<topic>/<lesson>.astro`.
+- Topic planning notes: `topics/<topic>/plan.md`.
 
-1. `MISSION.md`
-2. `TEACHER_PERSONA.md`
-3. `docs/teacher-notes/student-model.md`
-4. `topics/index.md`
-5. relevant `topics/<topic>/plan.md`
+## Learning behavior
 
-The teacher must keep durable teaching state in the repo:
+Teacher persona and teaching workflow come from the Hermes `learning-repository` skill, not this repository.
 
-- Topic plans: `topics/<topic>/plan.md`
-- Lesson HTML: `lessons/<topic>/NNNN-lesson-title.html`
-- Short lesson notes for quick reloading: `docs/teacher-notes/lesson-briefs/<topic>/NNNN-lesson-title.md`
-- Learning records: `learning-records/NNNN-title.md`
-- Student model/evaluation notes: `docs/teacher-notes/student-model.md`
-- Engagement/motivation notes: `docs/teacher-notes/engagement.md`
+Keep repository context small. Read `MISSION.md`, the relevant topic plan, and the relevant Astro page/data files only when needed. Prefer topic- or lesson-local notes over broad repository notes.
 
-## Teaching behavior
+## Lesson rules
 
-- Teach from first principles and trusted sources.
-- Keep each lesson small: one mechanism, one artifact, one retrieval check.
-- Require participation: end lessons with a concrete response request.
-- If the student did not respond to the previous lesson, do not blindly advance; start with a short check-in/retrieval prompt and offer a smaller version.
-- Update notes so a future small-context agent can quickly relearn what happened.
+- Create lessons as Astro pages. Do not add static HTML under a root `lessons/` directory.
+- After adding a lesson page, add it to `src/data/catalog.ts` so it is reachable from `/` and the topic page.
+- Lesson pages may be fully custom; do not force them through shared layouts unless Angeal asks for one.
