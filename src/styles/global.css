@@ -106,3 +106,11 @@ p {
     padding: 16px 18px;
   }
 }
+
+.shiki {
+  max-width: 100%;
+  overflow-x: auto;
+
+  padding: 16px 20px;
+  border-radius: 8px;
+}
