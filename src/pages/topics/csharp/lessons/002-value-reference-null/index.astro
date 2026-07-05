@@ -1,4 +1,6 @@
 ---
+import { codeToHtml } from 'shiki';
+
 const valueCopy = `var a = 10;
 var b = a;
 
@@ -35,6 +37,12 @@ if (maybeName is not null)
 {
     Console.WriteLine(maybeName.Length);
 }`;
+
+const highlight = (code: string) => codeToHtml(code, { lang: 'csharp', theme: 'github-dark' });
+const valueCopyHtml = await highlight(valueCopy);
+const referenceCopyHtml = await highlight(referenceCopy);
+const nullableWarningHtml = await highlight(nullableWarning);
+const nullableIntentHtml = await highlight(nullableIntent);
 ---
 
 <html lang="en">
@@ -100,13 +108,13 @@ if (maybeName is not null)
       <section>
         <h2>Value types copy the value</h2>
         <p>When you assign an <code>int</code> to another variable, you get another <code>int</code> value. Changing one variable does not change the other.</p>
-        <pre><code>{valueCopy}</code></pre>
+        <Fragment set:html={valueCopyHtml} />
       </section>
 
       <section>
         <h2>Reference types copy the reference</h2>
         <p>When you assign a class instance to another variable, you usually copy the reference. Both variables can point at the same object.</p>
-        <pre><code>{referenceCopy}</code></pre>
+        <Fragment set:html={referenceCopyHtml} />
         <p>
           <code>first</code> and <code>second</code> are separate variable slots, but the copied reference points to the same <code>Person</code> object.
         </p>
@@ -117,7 +125,7 @@ if (maybeName is not null)
         <p>
           A reference variable can sometimes point to nothing. That nothing is <code>null</code>. If you access a member through <code>null</code>, your program can throw a <code>NullReferenceException</code>.
         </p>
-        <pre><code>{nullableWarning}</code></pre>
+        <Fragment set:html={nullableWarningHtml} />
       </section>
 
       <section>
@@ -125,7 +133,7 @@ if (maybeName is not null)
         <p>
           With nullable reference types enabled, <code>string</code> means “I expect a real string”, while <code>string?</code> means “this might be missing.” The compiler then pushes you to check before using it.
         </p>
-        <pre><code>{nullableIntent}</code></pre>
+        <Fragment set:html={nullableIntentHtml} />
       </section>
 
       <aside class="warning">

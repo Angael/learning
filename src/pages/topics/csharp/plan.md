@@ -33,7 +33,7 @@ Baseline from 2026-07-05 grill:
 
 - [x] Predict the result of integer division and explain why `5 / 2` is not `2.5`.
 - [x] Explain when `var` is static type inference rather than JS-style dynamic typing.
-- [ ] Distinguish value types, reference types, and nullable reference types in practical code. Lesson 2 published; checkpoint pending.
+- [x] Distinguish value types, reference types, and nullable reference types in practical code.
 - [ ] Write a small class or record only where it improves the model.
 - [ ] Explain `static` without saying it "lives outside the lifecycle of one class".
 - [ ] Translate a TypeScript DTO/service mental model into idiomatic C#.

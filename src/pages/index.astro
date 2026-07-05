@@ -1,6 +1,13 @@
 ---
 import '../styles/global.css';
 import { topics } from '../data/catalog';
+
+const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
+const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) => [...lessons].sort((a, b) => {
+  const dateCompare = (b.date ?? '').localeCompare(a.date ?? '');
+  if (dateCompare !== 0) return dateCompare;
+  return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
+});
 ---
 
 <html lang="en">
@@ -40,7 +47,12 @@ import { topics } from '../data/catalog';
         <p>Topics and lessons. The index is for routing: every published lesson should be reachable from here.</p>
       </header>
 
-      {topics.map((topic) => (
+      {topics.map((topic) => {
+        const lessons = sortedLessons(topic.lessons);
+        const visibleLessons = lessons.slice(0, 3);
+        const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
+
+        return (
         <section class="topic" aria-labelledby={`${topic.slug}-title`}>
           <div class="topic-title">
             <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
@@ -49,11 +61,12 @@ import { topics } from '../data/catalog';
           <p>{topic.summary}</p>
 
           <div class="lesson-list-wrap">
-            {topic.lessons.length > 0 ? (
+            {lessons.length > 0 ? (
               <ul class="lesson-list">
-                {topic.lessons.map((lesson) => (
+                {visibleLessons.map((lesson) => (
                   <li>
                     <a class="lesson-list-card" href={lesson.href}>
+                      <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
                       <strong>{lesson.title}</strong>
                       <span>{lesson.summary}</span>
                     </a>
@@ -63,9 +76,13 @@ import { topics } from '../data/catalog';
             ) : (
               <p class="empty-card">No lessons published yet.</p>
             )}
+            {hiddenCount > 0 && (
+              <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
+            )}
           </div>
         </section>
-      ))}
+        );
+      })}
     </main>
   </body>
 </html>

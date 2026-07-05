@@ -37,4 +37,12 @@ Keep context small. For a topic, read its `plan.md`; for a lesson, read that les
 - Create lessons as nested Astro pages under their topic: `src/pages/topics/<topic>/lessons/<001-slug>/index.astro`.
 - Add a colocated `notes.md` for each meaningful lesson.
 - After adding a lesson page, add it to `src/data/catalog.ts` so it is reachable from `/` and the topic page.
+- Use Shiki for all code blocks in lesson pages; do not render plain `<pre><code>` blocks for code samples.
 - Lesson pages may be fully custom; do not force them through a shared layout unless Angeal asks.
+
+## Lesson listing rules
+
+- Show lesson number and date in lesson lists.
+- Sort lesson lists newest to oldest.
+- On the home index page, show at most 3 lessons per topic and link to the topic page for the full list.
+- On topic index pages, show all lessons without limiting them.

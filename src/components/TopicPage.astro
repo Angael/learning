@@ -2,11 +2,19 @@
 import '../styles/global.css';
 import type { Topic } from '../data/catalog';
 
+const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
+const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) => [...lessons].sort((a, b) => {
+  const dateCompare = (b.date ?? '').localeCompare(a.date ?? '');
+  if (dateCompare !== 0) return dateCompare;
+  return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
+});
+
 type Props = {
   topic: Topic;
 };
 
 const { topic } = Astro.props;
+const lessons = sortedLessons(topic.lessons);
 ---
 
 <html lang="en">
@@ -25,11 +33,12 @@ const { topic } = Astro.props;
       <p>{topic.summary}</p>
 
       <div class="lesson-list-wrap">
-        {topic.lessons.length > 0 ? (
+        {lessons.length > 0 ? (
           <ul class="lesson-list" aria-label={`${topic.title} lessons`}>
-            {topic.lessons.map((lesson) => (
+            {lessons.map((lesson) => (
               <li>
                 <a class="lesson-list-card" href={lesson.href}>
+                  <small>Lesson {lessonNumber(lesson.href)} · {lesson.date ?? 'Undated'}</small>
                   <strong>{lesson.title}</strong>
                   <span>{lesson.summary}</span>
                 </a>

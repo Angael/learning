@@ -84,6 +84,14 @@ p {
   padding: 14px 16px;
 }
 
+.lesson-list-card small {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 650;
+}
+
 .lesson-list-card strong {
   display: block;
   margin-bottom: 4px;
@@ -95,6 +103,12 @@ p {
 .empty-card {
   color: var(--muted);
   line-height: 1.45;
+}
+
+.view-all-link {
+  align-self: flex-start;
+  color: var(--link);
+  font-weight: 650;
 }
 
 @media (min-width: 820px) {

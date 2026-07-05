@@ -6,8 +6,10 @@ Published on 2026-07-05. This lesson teaches the practical assignment model for 
 
 ## Student response
 
-Pending. Angeal should answer the retrieval checkpoint:
+Angeal answered the retrieval checkpoint on 2026-07-05:
 
-1. Why does the value-type example print `10` and `99`?
-2. Why does changing `second.Name` also affect `first.Name`?
-3. What practical promise does `string` make that `string?` does not?
+1. `10` and `99` print because `int` is a by-value type; assigning `99` overwrites only the existing variable slot.
+2. `second` refers to the same mutable object as `first`; changing a class property mutates the shared instance rather than overwriting the reference.
+3. `string` promises a real string exists; `string?` may be `null`, so member calls like `ToUpper()` are unsafe until checked.
+
+Assessment: concept understood well enough to mark the value/reference/nullability achievement complete. Minor vocabulary correction to keep reinforcing later: `second` is not literally "a pointer to first"; `first` and `second` are two variables holding references to the same object.
