@@ -47,8 +47,8 @@ Prefer:
 
 ## Achievements
 
-- [ ] Predict the result of integer division and explain why `5 / 2` is not `2.5`.
-- [ ] Explain when `var` is static type inference rather than JS-style dynamic typing.
+- [x] Predict the result of integer division and explain why `5 / 2` is not `2.5`.
+- [x] Explain when `var` is static type inference rather than JS-style dynamic typing.
 - [ ] Distinguish value types, reference types, and nullable reference types in practical code.
 - [ ] Write a small class or record only where it improves the model.
 - [ ] Explain `static` without saying it "lives outside the lifecycle of one class".
@@ -58,3 +58,5 @@ Prefer:
 ## Lesson notes
 
 - 2026-07-05: Topic created after baseline grill. Best starting lesson: integer division + `var` + static typing, because Angeal correctly expects a division result but is unsure whether C# casts like JS/TS or rejects compilation.
+- 2026-07-05: Grill progress: Angeal correctly settled on `5 / 2` printing `2`; learned that `var` is compile-time static inference, not JS-style dynamic binding; corrected `5.0` from `float` to `double`; identified `5m` as `decimal`; correctly reasoned that `decimal * double` is a compile-time error and that `int / double` produces a `double` result. Began value/reference type discussion: correctly predicted `int` assignment copies and `List<int>` references share mutation; corrected misconception that string reference assignment plus `ToUpper()` mutates both variables. Angeal asked to stop the grill for today and continue next time.
+- 2026-07-05: Published lesson 1, "var and numeric types." Next session should start with the retrieval checkpoint from that lesson, then continue into value vs reference types and method-call mutation/reassignment.

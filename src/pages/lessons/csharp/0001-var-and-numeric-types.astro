@@ -1,0 +1,174 @@
+---
+const integerDivision = `var x = 5;
+var y = 2;
+
+Console.WriteLine(x / y); // 2`;
+
+const numericDefaults = `var a = 5;    // int
+var b = 5.0;  // double
+var c = 5f;   // float
+var d = 5m;   // decimal
+var e = "5";  // string`;
+
+const mixedDecimalDouble = `var price = 10m; // decimal
+var tax = 0.23;   // double
+
+Console.WriteLine(price * tax); // compile-time error`;
+
+const fixedDecimal = `var price = 10m;
+var tax = 0.23m;
+
+Console.WriteLine(price * tax); // 2.30`;
+
+const mixedIntDouble = `var count = 5;     // int
+var total = 2.0;   // double
+var result = count / total;
+
+Console.WriteLine(result); // 2.5`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Lesson 1 · C# var and numeric types</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7fb;
+        --paper: #ffffff;
+        --ink: #171923;
+        --muted: #5d6472;
+        --line: #dfe3ec;
+        --accent: #6f42c1;
+        --code: #202334;
+        --code-text: #f7f8ff;
+        --ok: #116149;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(111, 66, 193, .12), transparent 30rem),
+          var(--bg);
+        color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      main { width: min(860px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 64px; }
+      nav { margin-bottom: 32px; }
+      a { color: inherit; }
+      nav a { text-decoration: none; color: var(--muted); }
+      nav a:hover { color: var(--accent); }
+      header { margin-bottom: 28px; }
+      .eyebrow { color: var(--accent); font-weight: 750; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; }
+      h1 { margin: 8px 0 12px; font-size: clamp(2.5rem, 9vw, 5.4rem); line-height: .9; letter-spacing: -.07em; max-width: 800px; }
+      .lede { max-width: 690px; color: var(--muted); font-size: 1.12rem; line-height: 1.6; }
+      section, aside { background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 24px; padding: 22px; margin: 16px 0; box-shadow: 0 18px 60px rgba(35,40,60,.06); }
+      h2 { margin: 0 0 12px; font-size: 1.35rem; letter-spacing: -.02em; }
+      h3 { margin: 22px 0 8px; font-size: 1rem; }
+      p, li { color: var(--muted); line-height: 1.6; }
+      p { margin: 0 0 12px; }
+      ul, ol { padding-left: 1.25rem; margin: 10px 0 0; }
+      strong { color: var(--ink); }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: .94em; }
+      pre { margin: 12px 0 0; padding: 16px; overflow-x: auto; border-radius: 16px; background: var(--code); color: var(--code-text); line-height: 1.55; }
+      .grid { display: grid; gap: 16px; }
+      .two { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      .checkpoint { border-color: rgba(17,97,73,.35); background: rgba(235, 250, 244, .76); }
+      .checkpoint h2 { color: var(--ok); }
+      .callout { border-left: 5px solid var(--accent); padding-left: 16px; }
+      .tag { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--muted); font-size: .82rem; margin: 0 6px 6px 0; }
+      @media (min-width: 760px) { main { padding-top: 52px; } section, aside { padding: 28px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav><a href="/topics/csharp/">← C# lessons</a></nav>
+
+      <header>
+        <div class="eyebrow">C# · Lesson 1</div>
+        <h1><code>var</code> is not JavaScript <code>var</code></h1>
+        <p class="lede">
+          Today’s win: predict C# numeric expressions by reading their static types. This is the first place where a TypeScript brain can make the wrong guess.
+        </p>
+      </header>
+
+      <section>
+        <h2>The one-sentence model</h2>
+        <p class="callout">
+          In C#, <code>var</code> means: <strong>the compiler infers one static type now, and the variable keeps that type.</strong>
+        </p>
+        <p>
+          It is closer to TypeScript inference than JavaScript <code>var</code>. After <code>var x = 5;</code>, <code>x</code> is an <code>int</code>. You cannot later assign <code>"five"</code> to it.
+        </p>
+      </section>
+
+      <section>
+        <h2>Integer division</h2>
+        <p>If both sides are <code>int</code>, the result is also <code>int</code>. The fractional part is discarded.</p>
+        <pre><code>{integerDivision}</code></pre>
+        <p>
+          C# does not silently switch to floating-point just because the mathematical answer has a decimal part.
+        </p>
+      </section>
+
+      <section>
+        <h2>Numeric literal defaults</h2>
+        <p>These defaults matter because they decide which operator overload C# chooses.</p>
+        <pre><code>{numericDefaults}</code></pre>
+        <div class="grid two">
+          <div>
+            <h3>Practical rule</h3>
+            <ul>
+              <li><code>int</code>: counts and small whole numbers.</li>
+              <li><code>double</code>: default floating-point measurements.</li>
+              <li><code>float</code>: smaller floating-point, usually only when required.</li>
+              <li><code>decimal</code>: money-like precise base-10 values.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Suffixes</h3>
+            <span class="tag"><code>5</code> → int</span>
+            <span class="tag"><code>5.0</code> → double</span>
+            <span class="tag"><code>5f</code> → float</span>
+            <span class="tag"><code>5m</code> → decimal</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>C# makes you choose numeric domains</h2>
+        <p>This does not compile:</p>
+        <pre><code>{mixedDecimalDouble}</code></pre>
+        <p>
+          That refusal is good. Converting <code>decimal</code> to <code>double</code> can lose base-10 precision, and converting arbitrary <code>double</code> to <code>decimal</code> is not always safe. The compiler asks you to be explicit.
+        </p>
+        <p>Use one numeric domain intentionally:</p>
+        <pre><code>{fixedDecimal}</code></pre>
+      </section>
+
+      <section>
+        <h2>Compatible numeric promotion</h2>
+        <p>When the operands are compatible, C# can promote the narrower value for the operation:</p>
+        <pre><code>{mixedIntDouble}</code></pre>
+        <p>
+          Here, <code>count</code> is promoted from <code>int</code> to <code>double</code> for the division, so the result is <code>double</code>.
+        </p>
+      </section>
+
+      <section class="checkpoint">
+        <h2>Retrieval checkpoint — next time</h2>
+        <p>Before we continue, answer these from memory:</p>
+        <ol>
+          <li>What does <code>var</code> mean in C#, and what does it not mean?</li>
+          <li>Why does <code>5 / 2</code> print <code>2</code>?</li>
+          <li>What is the difference between <code>5.0</code>, <code>5f</code>, and <code>5m</code>?</li>
+          <li>Why does <code>decimal * double</code> fail to compile?</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

@@ -19,7 +19,14 @@ export const topics: Topic[] = [
     slug: 'csharp',
     href: '/topics/csharp/',
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
-    lessons: [],
+    lessons: [
+      {
+        title: 'var and numeric types',
+        href: '/lessons/csharp/0001-var-and-numeric-types/',
+        summary: 'Learn why C# var is static inference, why integer division prints 2, and how int, double, float, and decimal interact.',
+        date: '2026-07-05',
+      },
+    ],
   },
   {
     title: '.NET',
