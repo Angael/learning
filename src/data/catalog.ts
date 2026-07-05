@@ -26,6 +26,12 @@ export const topics: Topic[] = [
         summary: 'Learn why C# var is static inference, why integer division prints 2, and how int, double, float, and decimal interact.',
         date: '2026-07-05',
       },
+      {
+        title: 'Value types, reference types, and null',
+        href: '/topics/csharp/lessons/002-value-reference-null/',
+        summary: 'Predict assignment behavior for value types vs reference types, then use nullable reference types to reason about missing values.',
+        date: '2026-07-05',
+      },
     ],
   },
   {
