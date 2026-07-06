@@ -54,4 +54,11 @@ export const topics: Topic[] = [
       },
     ],
   },
+  {
+    title: 'German',
+    slug: 'german',
+    href: '/topics/german/',
+    summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
+    lessons: [],
+  },
 ];
