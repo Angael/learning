@@ -17,3 +17,7 @@ Feedback to reinforce next:
 - `MapGet` is endpoint routing, not exactly MVC controller code. It registers: HTTP method + route pattern + handler function.
 - SDK/runtime explanation is mostly correct. Sharpen: SDK = create/build/test/publish tooling plus runtime; runtime = execute already-built apps.
 - The ISO timestamp came from the lesson code's `DateTimeOffset.UtcNow`. In modern C# templates, implicit/global usings make common namespaces available without visible `using` lines.
+
+Follow-up retrieval:
+
+- Route vs handler: understood that the route matches/catches requests by method and path; the handler performs the work using the request context/data and returns the response.
