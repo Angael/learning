@@ -46,6 +46,12 @@ export const topics: Topic[] = [
         summary: 'Create and reason about a tiny ASP.NET Core Minimal API from the terminal on Linux or macOS.',
         date: '2026-07-05',
       },
+      {
+        title: 'The ASP.NET Core request pipeline',
+        href: '/topics/dotnet/lessons/002-request-pipeline/',
+        summary: 'Separate middleware from endpoint handlers, follow await next(context), and understand short-circuiting.',
+        date: '2026-07-06',
+      },
     ],
   },
 ];
