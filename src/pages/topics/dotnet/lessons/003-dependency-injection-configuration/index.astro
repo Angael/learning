@@ -1,0 +1,135 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import LessonGrid from '../../../../../components/LessonGrid.astro';
+import LessonPage from '../../../../../components/LessonPage.astro';
+import LessonSection from '../../../../../components/LessonSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+
+const before = `app.MapGet("/time", () =>
+{
+    var zone = "Europe/Warsaw";
+    return Results.Ok(new { Zone = zone, Now = DateTimeOffset.UtcNow });
+});`;
+
+const options = `public sealed class AppClockOptions
+{
+    public string Zone { get; set; } = "UTC";
+}`;
+
+const appsettings = `{
+  "AppClock": {
+    "Zone": "Europe/Warsaw"
+  }
+}`;
+
+const service = `public sealed class AppClock
+{
+    private readonly AppClockOptions _options;
+
+    public AppClock(AppClockOptions options)
+    {
+        _options = options;
+    }
+
+    public object Snapshot()
+    {
+        return new
+        {
+            Zone = _options.Zone,
+            Now = DateTimeOffset.UtcNow
+        };
+    }
+}`;
+
+const program = `var builder = WebApplication.CreateBuilder(args);
+
+var clockOptions = builder.Configuration
+    .GetSection("AppClock")
+    .Get<AppClockOptions>() ?? new AppClockOptions();
+
+builder.Services.AddSingleton(clockOptions);
+builder.Services.AddSingleton<AppClock>();
+
+var app = builder.Build();
+
+app.MapGet("/time", (AppClock clock) => Results.Ok(clock.Snapshot()));
+
+app.Run();`;
+---
+
+<LessonPage
+  title="Lesson 3 · Dependency injection and configuration"
+  heading="DI and configuration: stop hard-coding decisions in handlers"
+  lede="Today’s win: separate route code from the objects and settings it depends on."
+  backHref="/topics/dotnet/"
+  backLabel=".NET lessons"
+>
+  <LessonSection title="Tiny retrieval first">
+    <Callout>
+      In the request pipeline, <code>await next(context)</code> continues to the next pipeline step. That next step might be another middleware, endpoint routing, or eventually the matched endpoint handler — not necessarily directly “the next handler.”
+    </Callout>
+  </LessonSection>
+
+  <LessonSection title="The first-principles model">
+    <p>
+      A handler should mostly describe what this endpoint does. It should not personally construct every helper, read every setting, open every client, and decide every lifetime.
+    </p>
+    <p>
+      ASP.NET Core gives you two related tools:
+    </p>
+    <LessonGrid>
+      <div>
+        <h3>Configuration</h3>
+        <p>Values that come from files, environment variables, command-line arguments, secrets, or hosting settings.</p>
+      </div>
+      <div>
+        <h3>Dependency injection</h3>
+        <p>A container that knows how to create and provide objects your code asks for.</p>
+      </div>
+    </LessonGrid>
+    <TagList tags={['settings live outside handlers', 'services are registered once', 'handlers ask for what they need']} />
+  </LessonSection>
+
+  <LessonSection title="The smell: hard-coded work inside the handler">
+    <p>
+      This endpoint works, but the setting is trapped inside the route handler. Changing it later means editing code.
+    </p>
+    <Code code={before} lang="csharp" />
+  </LessonSection>
+
+  <LessonSection title="Move settings into configuration">
+    <p>
+      First create a small options object. Then a configuration source such as <code>appsettings.json</code> can fill it.
+    </p>
+    <Code code={options} lang="csharp" />
+    <Code code={appsettings} lang="json" />
+  </LessonSection>
+
+  <LessonSection title="Move behavior into a service">
+    <p>
+      A service is just an object with a job. Here, <code>AppClock</code> depends on <code>AppClockOptions</code>. It does not know whether those options came from JSON, environment variables, or tests.
+    </p>
+    <Code code={service} lang="csharp" />
+  </LessonSection>
+
+  <LessonSection title="Register once, ask where needed">
+    <p>
+      Before <code>builder.Build()</code>, register the objects the app can provide. Then the endpoint handler asks for <code>AppClock</code> as a parameter.
+    </p>
+    <Code code={program} lang="csharp" />
+    <Callout>
+      Mental model: <code>builder.Services</code> is setup time. Handler parameters are request time. The DI container connects the two.
+    </Callout>
+  </LessonSection>
+
+  <LessonSection title="Retrieval checkpoint — reply in Discord" variant="checkpoint">
+    <p>Answer from memory. Short is good:</p>
+    <ol>
+      <li>In one sentence, what is configuration for?</li>
+      <li>In one sentence, what is dependency injection for?</li>
+      <li>In the final example, who creates <code>AppClock</code>: the handler, or the DI container?</li>
+      <li>Bonus: why is this easier to test than hard-coding <code>"Europe/Warsaw"</code> inside the handler?</li>
+    </ol>
+  </LessonSection>
+</LessonPage>

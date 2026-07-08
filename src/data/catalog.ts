@@ -52,6 +52,12 @@ export const topics: Topic[] = [
         summary: 'Separate middleware from endpoint handlers, follow await next(context), and understand short-circuiting.',
         date: '2026-07-06',
       },
+      {
+        title: 'Dependency injection and configuration',
+        href: '/topics/dotnet/lessons/003-dependency-injection-configuration/',
+        summary: 'Separate settings from code, register services once, and let endpoint handlers ask for what they need.',
+        date: '2026-07-08',
+      },
     ],
   },
   {
