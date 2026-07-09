@@ -1,4 +1,6 @@
 ---
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 import LessonList from '../components/LessonList.astro';
 import PageShell from '../components/PageShell.astro';
 import { topics } from '../data/catalog';
@@ -9,6 +11,15 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
   if (dateCompare !== 0) return dateCompare;
   return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
 });
+
+const weeklyDir = join(process.cwd(), 'teacher-notes/weekly');
+const weeklyNotes = readdirSync(weeklyDir)
+  .filter((file) => /^\d{4}-W\d{2}\.md$/.test(file))
+  .sort((a, b) => b.localeCompare(a))
+  .map((file) => ({
+    title: file.replace(/\.md$/, ''),
+    href: `https://github.com/Angael/learning/blob/main/teacher-notes/weekly/${file}`,
+  }));
 ---
 
 <PageShell title="Learning" heading="Learning" summary="Topics and lessons. The index is for routing: every published lesson should be reachable from here.">
@@ -34,6 +45,19 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
       </section>
     );
   })}
+
+  {weeklyNotes.length > 0 && (
+    <section class="helper-notes" aria-labelledby="weekly-notes-title">
+      <div class="helper-title">
+        <h2 id="weekly-notes-title">Weekly notes</h2>
+        <span>teacher log</span>
+      </div>
+      <p>Small planning notes that explain recent learning state. The main page still stays focused on topics and lessons.</p>
+      <ul>
+        {weeklyNotes.map((note) => <li><a href={note.href}>{note.title}</a></li>)}
+      </ul>
+    </section>
+  )}
 </PageShell>
 
 <style>
@@ -73,5 +97,35 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
     align-self: flex-start;
     color: var(--link);
     font-weight: 650;
+  }
+
+  .helper-notes {
+    margin-top: 28px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+  }
+
+  .helper-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .helper-title h2 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .helper-title span,
+  .helper-notes p {
+    color: var(--muted);
+  }
+
+  .helper-notes ul {
+    margin: 12px 0 0;
+    padding-left: 1.1rem;
   }
 </style>

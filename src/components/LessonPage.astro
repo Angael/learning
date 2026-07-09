@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import BaseLayout from './BaseLayout.astro';
 
 type Props = {
@@ -10,6 +12,9 @@ type Props = {
 };
 
 const { title, heading, lede, backHref, backLabel } = Astro.props;
+const currentPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const notesPath = join(process.cwd(), 'src/pages', currentPath, 'notes.md');
+const hasNotes = existsSync(notesPath);
 ---
 
 <BaseLayout title={title}>
@@ -22,6 +27,14 @@ const { title, heading, lede, backHref, backLabel } = Astro.props;
     </header>
 
     <slot />
+
+    {hasNotes && (
+      <aside class="lesson-notes-link">
+        <strong>Lesson notes</strong>
+        <span>Helper note with checkpoint state, misconceptions, and next hints.</span>
+        <a href={`${currentPath}notes/`}>Open notes →</a>
+      </aside>
+    )}
   </main>
 </BaseLayout>
 
@@ -85,6 +98,25 @@ const { title, heading, lede, backHref, backLabel } = Astro.props;
 
   .lesson-shell strong {
     color: var(--text);
+  }
+
+  .lesson-notes-link {
+    display: grid;
+    gap: 4px;
+    margin-top: 34px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .lesson-notes-link span {
+    color: var(--muted);
+  }
+
+  .lesson-notes-link a {
+    margin-top: 4px;
+    font-weight: 650;
   }
 
   .lesson-shell pre {

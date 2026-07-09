@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import LessonList from './LessonList.astro';
 import PageShell from './PageShell.astro';
 import type { Topic } from '../data/catalog';
@@ -16,15 +18,44 @@ type Props = {
 
 const { topic } = Astro.props;
 const lessons = sortedLessons(topic.lessons);
+const planPath = join(process.cwd(), `src/pages/topics/${topic.slug}/plan.md`);
+const hasPlan = existsSync(planPath);
 ---
 
 <PageShell title={`${topic.title} · Learning`} heading={topic.title} summary={topic.summary} backHref="/" backLabel="All topics" narrow>
+  {hasPlan && (
+    <aside class="helper-link">
+      <strong>Topic plan</strong>
+      <span>Short helper note for goals, progression, and current state.</span>
+      <a href={`${topic.href}plan/`}>Open plan →</a>
+    </aside>
+  )}
+
   <div class="list-wrap">
     <LessonList lessons={lessons} ariaLabel={`${topic.title} lessons`} />
   </div>
 </PageShell>
 
 <style>
+  .helper-link {
+    display: grid;
+    gap: 4px;
+    margin: 0 0 22px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .helper-link span {
+    color: var(--muted);
+  }
+
+  .helper-link a {
+    margin-top: 4px;
+    font-weight: 650;
+  }
+
   .list-wrap {
     margin-top: 18px;
   }

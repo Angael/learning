@@ -12,11 +12,17 @@ Introduces lifetimes from first principles: how long an object should live and w
 
 ## Student response
 
-Pending. Checkpoint asks classify:
+Answered 2026-07-09. Checkpoint asks classify:
 
 1. `PricingRules`: fixed rules loaded at startup; no per-request state.
 2. `OrderDbContext`: tracks database changes during one HTTP request.
 3. `EmailSubjectFormatter`: tiny stateless string helper.
+
+Student answered:
+
+1. `PricingRules`: Singleton, because rules are static between routes/requests, loaded once, and do not change. Correct. Tighten wording: not static variable necessarily; app-wide immutable service/config/rules object.
+2. `OrderDbContext`: Scoped, because it tracks one request and may cache/change-track within that request. Correct. Typo only: cache.
+3. `EmailSubjectFormatter`: Transient, because it is a clean/stateless helper and cheap to create. Correct for the lesson default. Important nuance: transient is not chosen for performance. It may allocate more than singleton; it is chosen because identity/state do not matter and it avoids accidental shared state/lifetime coupling. Singleton can also be safe for pure stateless helpers if dependencies are singleton-safe.
 
 Expected: Singleton, Scoped, Transient. Accept Singleton for stateless formatter if reason is good, but teach default: transient is fine for lightweight stateless helper; singleton also safe if no captured state/dependencies.
 
