@@ -64,6 +64,12 @@ export const topics: Topic[] = [
         summary: 'Choose Singleton, Scoped, or Transient by reasoning about how long an object should live and what state it can safely remember.',
         date: '2026-07-09',
       },
+      {
+        title: 'Minimal API Program.cs structure',
+        href: '/topics/dotnet/lessons/005-program-structure-extension-methods/',
+        summary: 'Read builder, services, app, and extension methods as a clear ASP.NET Core startup structure instead of magic.',
+        date: '2026-07-09',
+      },
     ],
   },
   {
