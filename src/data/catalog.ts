@@ -58,6 +58,12 @@ export const topics: Topic[] = [
         summary: 'Separate settings from code, register services once, and let endpoint handlers ask for what they need.',
         date: '2026-07-08',
       },
+      {
+        title: 'Service lifetimes',
+        href: '/topics/dotnet/lessons/004-service-lifetimes/',
+        summary: 'Choose Singleton, Scoped, or Transient by reasoning about how long an object should live and what state it can safely remember.',
+        date: '2026-07-09',
+      },
     ],
   },
   {

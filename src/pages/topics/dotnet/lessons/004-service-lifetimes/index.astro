@@ -1,0 +1,115 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import LessonGrid from '../../../../../components/LessonGrid.astro';
+import LessonPage from '../../../../../components/LessonPage.astro';
+import LessonSection from '../../../../../components/LessonSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+
+const registrations = `builder.Services.AddSingleton<AppClock>();
+builder.Services.AddScoped<RequestAudit>();
+builder.Services.AddTransient<SlugFormatter>();`;
+
+const endpoint = `app.MapPost("/orders", (
+    CreateOrderRequest request,
+    OrderDbContext db,
+    RequestAudit audit,
+    SlugFormatter slugs) =>
+{
+    audit.Mark("creating order");
+
+    var slug = slugs.FromTitle(request.Title);
+    // db participates in this request's unit of work
+
+    return Results.Created($"/orders/{slug}", new { slug });
+});`;
+
+const badSingleton = `public sealed class CurrentUserCache
+{
+    public string? UserId { get; set; }
+}
+
+builder.Services.AddSingleton<CurrentUserCache>(); // dangerous`;
+---
+
+<LessonPage
+  title="Lesson 4 · Service lifetimes"
+  heading="Service lifetimes: how long should this object live?"
+  lede="Today’s win: choose Singleton, Scoped, or Transient by asking what state the object is allowed to remember."
+  backHref="/topics/dotnet/"
+  backLabel=".NET lessons"
+>
+  <LessonSection title="Correction anchor">
+    <Callout>
+      You were right to challenge the previous follow-up: the lesson code used <code>builder.Services.AddSingleton&lt;AppClock&gt;();</code>. So <code>AppClock</code> was registered as a singleton. The handler still did not create it. The DI container creates one <code>AppClock</code> and reuses it.
+    </Callout>
+  </LessonSection>
+
+  <LessonSection title="The first-principles question">
+    <p>
+      Dependency injection answers “who creates this object?” Lifetimes answer the next question: “how long does the created object stay alive?”
+    </p>
+    <p>
+      Do not memorize the names first. Ask what would break if the same instance were reused too long, or if a fresh instance were created too often.
+    </p>
+    <TagList tags={['same for app', 'same for request', 'new when asked']} />
+  </LessonSection>
+
+  <LessonSection title="The three default lifetimes">
+    <LessonGrid>
+      <div>
+        <h3>Singleton</h3>
+        <p>One instance for the whole app lifetime. Good for stateless services, app-wide caches, clocks, and configuration-shaped services.</p>
+      </div>
+      <div>
+        <h3>Scoped</h3>
+        <p>One instance per request scope. Good for database contexts, unit-of-work objects, request audit state, and request-specific data.</p>
+      </div>
+      <div>
+        <h3>Transient</h3>
+        <p>A new instance each time it is requested. Good for lightweight helpers where identity and stored state do not matter.</p>
+      </div>
+    </LessonGrid>
+  </LessonSection>
+
+  <LessonSection title="Registration syntax">
+    <p>
+      The method name chooses the lifetime. The type name chooses what the container can provide.
+    </p>
+    <Code code={registrations} lang="csharp" />
+  </LessonSection>
+
+  <LessonSection title="Backend mental model">
+    <p>
+      Imagine a request that creates an order. The handler asks for three helpers. The container decides whether each helper is reused globally, reused inside this request, or freshly created.
+    </p>
+    <Code code={endpoint} lang="csharp" />
+    <ul>
+      <li><code>OrderDbContext</code> should usually be <strong>scoped</strong>: one request, one unit of work.</li>
+      <li><code>RequestAudit</code> should be <strong>scoped</strong>: it records facts about this request, not every user’s request.</li>
+      <li><code>SlugFormatter</code> can be <strong>transient</strong> if it is a tiny stateless formatter.</li>
+      <li><code>AppClock</code> can be <strong>singleton</strong> if it only wraps time/options and stores no per-request user data.</li>
+    </ul>
+  </LessonSection>
+
+  <LessonSection title="The common dangerous mistake">
+    <p>
+      A singleton must not store per-request mutable state. If it remembers the current user, current request, or current database transaction, that state can leak between requests.
+    </p>
+    <Code code={badSingleton} lang="csharp" />
+    <Callout>
+      Rule of thumb: if the object says “current request,” “current user,” “current tenant,” or “current transaction,” be suspicious of <code>Singleton</code>.
+    </Callout>
+  </LessonSection>
+
+  <LessonSection title="Checkpoint">
+    <p>
+      Reply in Discord with three lines. Choose <strong>Singleton</strong>, <strong>Scoped</strong>, or <strong>Transient</strong>, and give one sentence why:
+    </p>
+    <ol>
+      <li><code>PricingRules</code>: reads fixed rules loaded at startup; no per-request state.</li>
+      <li><code>OrderDbContext</code>: tracks database changes while one HTTP request runs.</li>
+      <li><code>EmailSubjectFormatter</code>: tiny stateless string helper.</li>
+    </ol>
+  </LessonSection>
+</LessonPage>
