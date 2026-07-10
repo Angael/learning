@@ -12,13 +12,13 @@ const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) 
   return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
 });
 
-const weeklyDir = join(process.cwd(), 'teacher-notes/weekly');
+const weeklyDir = join(process.cwd(), 'src/pages/teacher-notes/weekly');
 const weeklyNotes = readdirSync(weeklyDir)
   .filter((file) => /^\d{4}-W\d{2}\.md$/.test(file))
   .sort((a, b) => b.localeCompare(a))
   .map((file) => ({
     title: file.replace(/\.md$/, ''),
-    href: `https://github.com/Angael/learning/blob/main/teacher-notes/weekly/${file}`,
+    href: `/teacher-notes/weekly/${file.replace(/\.md$/, '')}/`,
   }));
 ---
 
@@ -49,10 +49,10 @@ const weeklyNotes = readdirSync(weeklyDir)
   {weeklyNotes.length > 0 && (
     <section class="helper-notes" aria-labelledby="weekly-notes-title">
       <div class="helper-title">
-        <h2 id="weekly-notes-title">Weekly notes</h2>
-        <span>teacher log</span>
+        <h2 id="weekly-notes-title"><a href="/teacher-notes/">Teacher notes</a></h2>
+        <span>planning and evidence</span>
       </div>
-      <p>Small planning notes that explain recent learning state. The main page still stays focused on topics and lessons.</p>
+      <p>Weekly curriculum synthesis and the current implementation handoff, served directly from this site.</p>
       <ul>
         {weeklyNotes.map((note) => <li><a href={note.href}>{note.title}</a></li>)}
       </ul>

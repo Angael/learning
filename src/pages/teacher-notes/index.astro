@@ -1,0 +1,67 @@
+---
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import PageShell from '../../components/PageShell.astro';
+
+const weeklyDir = join(process.cwd(), 'src/pages/teacher-notes/weekly');
+const weeklyNotes = readdirSync(weeklyDir)
+  .filter((file) => /^\d{4}-W\d{2}\.md$/.test(file))
+  .sort((a, b) => b.localeCompare(a))
+  .map((file) => ({
+    title: file.replace(/\.md$/, ''),
+    href: `/teacher-notes/weekly/${file.replace(/\.md$/, '')}/`,
+  }));
+---
+
+<PageShell
+  title="Teacher notes · Learning"
+  heading="Teacher notes"
+  summary="Public planning handoffs and weekly curriculum synthesis. Exact student evidence stays with each lesson; durable direction stays in topic plans."
+>
+  <section class="notes-section">
+    <h2>Current handoff</h2>
+    <p><a href="/teacher-notes/next/">Open the next learning activities →</a></p>
+  </section>
+
+  <section class="notes-section">
+    <h2>Weekly notes</h2>
+    <ul>
+      {weeklyNotes.map((note) => <li><a href={note.href}>{note.title}</a></li>)}
+    </ul>
+  </section>
+
+  <section class="notes-section">
+    <h2>Topic plans</h2>
+    <ul>
+      <li><a href="/topics/csharp/plan/">C# plan</a></li>
+      <li><a href="/topics/dotnet/plan/">.NET plan</a></li>
+      <li><a href="/topics/german/plan/">German plan</a></li>
+    </ul>
+  </section>
+</PageShell>
+
+<style>
+  .notes-section {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .notes-section h2 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+  }
+
+  .notes-section ul {
+    margin: 10px 0 0;
+    padding-left: 1.15rem;
+  }
+
+  .notes-section li + li {
+    margin-top: 6px;
+  }
+
+  .notes-section a {
+    color: var(--link);
+    font-weight: 650;
+  }
+</style>

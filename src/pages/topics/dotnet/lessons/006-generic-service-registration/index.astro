@@ -4,6 +4,7 @@ import Code from '../../../../../components/Code.astro';
 import LessonGrid from '../../../../../components/LessonGrid.astro';
 import LessonPage from '../../../../../components/LessonPage.astro';
 import LessonSection from '../../../../../components/LessonSection.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
 
 const registration = `builder.Services.AddSingleton<AppInfo>();`;
 
@@ -31,6 +32,19 @@ const laterResolution = `app.MapGet("/status", (AppInfo info) => new
     info.Service,
     Status = "ok"
 });`;
+
+const replyTemplate = `[learn:dotnet/006:q1]
+
+Context: builder.Services.AddSingleton<StatusFormatter>(); and the /status handler asks for StatusFormatter.
+
+1. What useful facts would the registration descriptor need to store about StatusFormatter?
+Answer: ...
+
+2. On the first /status request, describe the chain from the handler asking for StatusFormatter to receiving an instance.
+Answer: ...
+
+3. Correct this precisely: “The generic type StatusFormatter runs the registration code.”
+Answer: ...`;
 ---
 
 <LessonPage
@@ -98,11 +112,17 @@ const laterResolution = `app.MapGet("/status", (AppInfo info) => new
   </LessonSection>
 
   <LessonSection title="Exercise — reply in Discord" variant="checkpoint">
-    <p>Answer from memory, 3 short lines:</p>
-    <ol>
-      <li>In <code>AddSingleton&lt;AppInfo&gt;()</code>, where is the logic: in <code>AppInfo</code>, or in <code>AddSingleton</code>?</li>
-      <li>What does <code>AppInfo</code> give the method?</li>
-      <li>Does the registration line mainly create the object now, or store instructions for the container?</li>
-    </ol>
+    <ReplyTask id="learn:dotnet/006:q1" copyText={replyTemplate} difficulty={3}>
+      <p>Transfer the model to a new service. Do not quote the lesson; explain the runtime story:</p>
+      <Code code={`builder.Services.AddSingleton<StatusFormatter>();
+
+app.MapGet("/status", (StatusFormatter formatter) =>
+    formatter.Format("ok"));`} lang="csharp" />
+      <ol>
+        <li>What useful facts would the registration descriptor need to store about <code>StatusFormatter</code>?</li>
+        <li>On the first request to <code>/status</code>, describe the chain from the handler asking for <code>StatusFormatter</code> to receiving an instance.</li>
+        <li>A teammate says, “the generic type <code>StatusFormatter</code> runs the registration code.” Correct that sentence precisely.</li>
+      </ol>
+    </ReplyTask>
   </LessonSection>
 </LessonPage>

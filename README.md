@@ -13,12 +13,14 @@ A minimal Astro site and repo-backed learning workspace for Angeal.
 
 - `src/pages/index.astro` — topic index
 - `src/pages/topics/<topic>/index.astro` — topic page
-- `src/pages/topics/<topic>/plan.md` — topic goal, baseline, progression, achievements
+- `src/pages/topics/<topic>/plan.md` — durable topic goal, baseline, progression, and achievements
 - `src/pages/topics/<topic>/lessons/<001-slug>/index.astro` — lesson page
-- `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — lesson summary and student response
+- `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — exact lesson evidence and student response
+- `src/pages/topics/<topic>/tasks/<YYYY-MM-DD-slug>/notes.md` — exact evidence for Discord-only diagnostics and tasks
+- `src/pages/teacher-notes/next.md` — dated planning-to-production handoff
+- `src/pages/teacher-notes/weekly/` — public weekly synthesis and multi-week outlook
 - `src/data/catalog.ts` — explicit topic and lesson list used by routing pages
-- `teacher-notes/weekly/` — compact internal teacher history, Telegraph English
-- `AGENTS.md` — repository rules, mission, and layout contract for agents
+- `AGENTS.md` — repository rules, state ownership, and layout contract for agents
 
 ## Current scope
 
@@ -28,7 +30,9 @@ Active topics:
 - `.NET`
 - `German`
 
-Internal teaching state lives in topic plans, lesson notes, and weekly logs. Weekly logs stay compact and use Telegraph English.
+Learning state has separate owners to avoid drift: lesson notes store exact evidence, weekly notes synthesize current cross-topic state, topic plans store durable direction, and `next.md` stores only the next dated implementation handoff.
+
+Teacher notes are published under `https://learn.widacki.me/teacher-notes/`.
 
 ## Deployment
 

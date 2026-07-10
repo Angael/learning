@@ -15,13 +15,15 @@ Core points:
 
 ## Student response
 
-Pending.
+Pending response to `[learn:dotnet/006:q1]`.
 
-Expected checkpoint:
+Expected transfer checkpoint:
 
-1. Logic is in `AddSingleton`, not `AppInfo`.
-2. `AppInfo` gives the method service type/runtime type metadata; acceptable wording: type to register.
-3. Registration stores instructions for the container; singleton object may be created later when first needed / provider validates / resolves, but beginner answer should be “stores instructions, not mainly create now.”
+1. Descriptor stores at least service type, implementation type, and singleton lifetime. Accept equivalent wording that preserves type-to-create and reuse policy.
+2. Handler parameter requests `StatusFormatter`; container finds descriptor, constructs it if singleton not created yet (including resolvable constructor dependencies), caches it, and supplies it to handler. Later requests reuse it.
+3. `AddSingleton<TService>()` runs registration logic; `StatusFormatter` supplies the type argument/type metadata used by that method. The type argument does not itself execute registration code.
+
+Difficulty target: 3/5. Require a causal runtime explanation, not three phrases copied from lesson.
 
 ## Watch
 
