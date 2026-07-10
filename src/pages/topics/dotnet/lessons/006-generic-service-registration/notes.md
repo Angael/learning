@@ -15,7 +15,9 @@ Core points:
 
 ## Student response
 
-Pending response to `[learn:dotnet/006:q1]`.
+On 2026-07-10, Angeal chose not to answer `[learn:dotnet/006:q1]` and asked to leave the lesson for another time.
+
+Reason: basic DI and service registration make sense, but this lesson went too deep into a specific framework mechanism before enough C# foundation. Treat as sequencing feedback, not failed work. Do not resurface this checkpoint until stronger C# fundamentals make the runtime detail useful.
 
 Expected transfer checkpoint:
 
