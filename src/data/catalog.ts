@@ -70,6 +70,12 @@ export const topics: Topic[] = [
         summary: 'Read builder, services, app, and extension methods as a clear ASP.NET Core startup structure instead of magic.',
         date: '2026-07-09',
       },
+      {
+        title: 'Generic service registration',
+        href: '/topics/dotnet/lessons/006-generic-service-registration/',
+        summary: 'Explain why AddSingleton<AppInfo>() works: the generic method contains logic, and the type argument supplies service metadata.',
+        date: '2026-07-10',
+      },
     ],
   },
   {
