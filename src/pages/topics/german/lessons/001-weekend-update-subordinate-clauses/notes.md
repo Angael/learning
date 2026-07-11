@@ -12,7 +12,8 @@ Published 2026-07-11 from the planned substantial German production task. This i
 
 ## Expected reasoning
 
-- Finite verb ends the subordinate clause after `weil`, `dass`, and `ob`.
+- Finite verb ends subordinate clause after `weil`, `dass`, and `ob`.
+- Polish support vocabulary: `czasownik odmieniony` = finite verb; `zdanie podrzędne` = subordinate clause; `czasownik posiłkowy` = auxiliary verb.
 - A fronted subordinate clause occupies first position; the main-clause finite verb follows the comma: `Weil ..., bin ich ...`, not `Weil ..., ich bin ...`.
 - In Perfekt, the auxiliary is finite: `weil ich viel gearbeitet habe`; the participle is not.
 - `ob` means whether, not conditional if.
