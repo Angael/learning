@@ -1,0 +1,75 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import LessonPage from '../../../../../components/LessonPage.astro';
+import LessonSection from '../../../../../components/LessonSection.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+
+const example = `Weil ich muede war, bin ich zu Hause geblieben.
+Ich glaube, dass der Film sehr gut war.
+Ich weiss noch nicht, ob ich morgen arbeiten muss.
+Am Samstag habe ich mit Freunden gekocht.`;
+
+const replyText = `[learn:2026-07-11:b2]
+
+Weekend update:
+1.
+2.
+3.
+4.
+5.
+6.
+7. (optional)
+8. (optional)
+
+Finite-verb check:
+- weil clause: __________ | finite verb: __________
+- dass clause: __________ | finite verb: __________
+- ob clause: __________ | finite verb: __________
+- fronted subordinate clause: __________ | finite verbs: subordinate clause __________; following main clause __________`;
+---
+
+<LessonPage
+  title="Lesson 1 · German weekend update"
+  heading="A weekend update with <code>weil</code>, <code>dass</code>, and <code>ob</code>"
+  lede="Write about a real weekend, then use finite verbs to check subordinate-clause word order."
+  backHref="/topics/german/"
+  backLabel="German lessons"
+>
+  <LessonSection title="The one rule to use">
+    <Callout>
+      After <code>weil</code>, <code>dass</code>, and <code>ob</code>, put the finite verb at the end of the subordinate clause.
+    </Callout>
+    <p>
+      In Perfekt, the auxiliary is the finite verb: <code>weil ich viel gearbeitet habe</code>. The participle <code>gearbeitet</code> is not finite.
+    </p>
+    <p>
+      If a subordinate clause comes first, the main-clause finite verb comes immediately after the comma: <code>Weil ich muede war, bin ich zu Hause geblieben.</code>
+    </p>
+  </LessonSection>
+
+  <LessonSection title="Use simple, real sentences">
+    <p>These are models for structure, not text to copy. Keep your own update natural and concrete.</p>
+    <pre>{example}</pre>
+    <ul>
+      <li><code>weil</code> = because</li>
+      <li><code>dass</code> = that</li>
+      <li><code>ob</code> = whether, not conditional “if”</li>
+    </ul>
+  </LessonSection>
+
+  <LessonSection title="Weekend update" variant="checkpoint">
+    <ReplyTask id="learn:2026-07-11:b2" difficulty={3} copyText={replyText}>
+      <p>Write a 6–8 sentence German update about this weekend: what you did, how it went, and one plan or uncertainty.</p>
+      <p>Requirements:</p>
+      <ul>
+        <li>use Perfekt for at least two completed actions;</li>
+        <li>use <code>weil</code> once;</li>
+        <li>use <code>dass</code> once;</li>
+        <li>use <code>ob</code> once;</li>
+        <li>begin one sentence with a subordinate clause; and</li>
+        <li>after your update, copy four relevant clauses and identify each finite verb.</li>
+      </ul>
+      <p>Focus on word order. Natural, simple sentences beat ambitious uncontrolled ones. You may use <code>ae</code>, <code>oe</code>, <code>ue</code>, or <code>ss</code>.</p>
+    </ReplyTask>
+  </LessonSection>
+</LessonPage>

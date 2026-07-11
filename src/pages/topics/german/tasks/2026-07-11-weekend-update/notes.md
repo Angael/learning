@@ -5,7 +5,8 @@
 - Date: 2026-07-11
 - ID: `[learn:2026-07-11:b2]`
 - Difficulty: 3/5
-- Artifact: Discord-only writing task
+- Artifact: public lesson page plus Discord writing task
+- Public page: `/topics/german/lessons/001-weekend-update-subordinate-clauses/`
 
 Exact visible task:
 

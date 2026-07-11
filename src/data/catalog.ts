@@ -89,6 +89,13 @@ export const topics: Topic[] = [
     slug: 'german',
     href: '/topics/german/',
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
-    lessons: [],
+    lessons: [
+      {
+        title: 'Weekend update: subordinate-clause word order',
+        href: '/topics/german/lessons/001-weekend-update-subordinate-clauses/',
+        summary: 'Write a practical weekend update with Perfekt, weil, dass, and ob, then identify finite verbs to check subordinate-clause order.',
+        date: '2026-07-11',
+      },
+    ],
   },
 ];
