@@ -1,48 +1,38 @@
 ---
+import LessonSection from './LessonSection.astro';
+
 type Props = {
   id: string;
   copyText: string;
-  difficulty?: number;
-  label?: string;
 };
 
 const {
   id,
   copyText,
-  difficulty = 3,
-  label = 'Reply task',
 } = Astro.props;
 
 if (!/^learn:[a-z0-9./-]+(?::[a-z0-9-]+)?$/i.test(id)) {
   throw new Error(`ReplyTask id must be a stable learn: identifier; received "${id}"`);
 }
 
-if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
-  throw new Error(`ReplyTask difficulty must be an integer between 1 and 5; received ${difficulty}`);
-}
-
 const marker = `[${id}]`;
 if (!copyText.trimStart().startsWith(marker)) {
   throw new Error(`ReplyTask copyText must start with "${marker}"`);
 }
-const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')}`;
 ---
 
-<section class="reply-task" data-reply-task data-copy-text={copyText} aria-labelledby={headingId}>
-  <div class="reply-task__header">
-    <div>
-      <h3 id={headingId}>{label}</h3>
-      <span>Difficulty {difficulty}/5</span>
+<div class="reply-task" data-reply-task data-copy-text={copyText}>
+  <LessonSection title="Reply task" variant="checkpoint">
+    <button slot="right" class="reply-task__copy" type="button" data-copy-trigger>Copy questions</button>
+    <div class="reply-task__content">
+      <code class="reply-task__id">{marker}</code>
+      <div class="reply-task__body">
+        <slot />
+      </div>
+      <p class="reply-task__status" data-copy-status aria-live="polite"></p>
     </div>
-    <button type="button" data-copy-trigger>Copy questions</button>
-  </div>
-
-  <code class="reply-task__id">{marker}</code>
-  <div class="reply-task__body">
-    <slot />
-  </div>
-  <p class="reply-task__status" data-copy-status aria-live="polite"></p>
-</section>
+  </LessonSection>
+</div>
 
 <script>
   const copyFallback = (text: string, restoreFocus: HTMLElement) => {
@@ -84,39 +74,12 @@ const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
 </script>
 
 <style>
-  .reply-task {
+  .reply-task__content {
     display: grid;
     gap: 14px;
-    margin-top: 16px;
-    padding: 18px;
-    border: 1px solid color-mix(in srgb, var(--accent) 36%, var(--line));
-    border-radius: 16px;
-    background: var(--panel);
   }
 
-  .reply-task__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .reply-task__header > div {
-    display: grid;
-    gap: 3px;
-  }
-
-  .reply-task__header h3 {
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .reply-task__header span {
-    color: var(--muted);
-    font-size: .88rem;
-  }
-
-  .reply-task button {
+  .reply-task__copy {
     padding: 9px 12px;
     border: 1px solid var(--line);
     border-radius: 10px;
@@ -140,6 +103,15 @@ const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
     color: var(--code-text);
   }
 
+  .reply-task__body {
+    min-width: 0;
+  }
+
+  .reply-task__body :global(.shiki) {
+    width: 100%;
+    min-width: 0;
+  }
+
   .reply-task__body :global(p:last-child),
   .reply-task__body :global(ol:last-child),
   .reply-task__body :global(ul:last-child),
@@ -152,24 +124,12 @@ const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
     font-size: .9rem;
   }
 
-  @media (max-width: 520px) {
-    .reply-task {
+  @media (max-width: 759px) {
+    .reply-task__content {
       gap: 12px;
-      margin-top: 14px;
-      padding: 14px 0 0;
-      border-right: 0;
-      border-bottom: 0;
-      border-left: 0;
-      border-radius: 0;
-      background: transparent;
     }
 
-    .reply-task__header {
-      align-items: stretch;
-      flex-direction: column;
-    }
-
-    .reply-task button {
+    .reply-task__copy {
       width: 100%;
       padding: 8px 10px;
     }

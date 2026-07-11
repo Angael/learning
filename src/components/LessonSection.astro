@@ -6,10 +6,14 @@ type Props = {
 
 const { title, variant } = Astro.props;
 const Tag = variant === 'warning' ? 'aside' : 'section';
+const hasRightSlot = Astro.slots.has('right');
 ---
 
 <Tag class={variant}>
-  <h2 set:html={title} />
+  <div class="section-header">
+    <h2 set:html={title} />
+    {hasRightSlot && <div class="section-header__right"><slot name="right" /></div>}
+  </div>
   <slot />
 </Tag>
 
@@ -25,8 +29,20 @@ const Tag = variant === 'warning' ? 'aside' : 'section';
     box-shadow: 0 18px 60px rgba(35, 40, 60, .06);
   }
 
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-header__right {
+    margin-left: auto;
+  }
+
   h2 {
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 1.35rem;
     letter-spacing: -.02em;
   }
@@ -63,6 +79,16 @@ const Tag = variant === 'warning' ? 'aside' : 'section';
 
     h2 {
       font-size: 1.25rem;
+    }
+
+    .section-header {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .section-header__right {
+      width: 100%;
+      margin-left: 0;
     }
   }
 

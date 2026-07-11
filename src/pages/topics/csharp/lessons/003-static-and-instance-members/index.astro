@@ -106,16 +106,14 @@ const replyText = `[learn:csharp/003:q1]
     <p>The smallest repairs are to choose an object for <code>Describe</code> and use <code>Workout</code> for <code>IsLong</code>.</p>
   </LessonSection>
 
-  <LessonSection title="Predict and repair" variant="checkpoint">
+  <ReplyTask id="learn:csharp/003:q1" copyText={replyText}>
     <Code code={taskCode} lang="csharp" />
-    <ReplyTask id="learn:csharp/003:q1" difficulty={3} copyText={replyText}>
-      <p>Without running the code:</p>
-      <ol>
-        <li>Predict the first two output lines.</li>
-        <li>Classify the properties, <code>Describe</code>, and <code>IsLong</code> by ownership.</li>
-        <li>Repair both invalid calls with the smallest changes.</li>
-        <li>Explain why the corrected calls need different receivers.</li>
-      </ol>
-    </ReplyTask>
-  </LessonSection>
+    <p>Without running the code:</p>
+    <ol>
+      <li>Predict the first two output lines.</li>
+      <li>Classify the properties, <code>Describe</code>, and <code>IsLong</code> by ownership.</li>
+      <li>Repair both invalid calls with the smallest changes.</li>
+      <li>Explain why the corrected calls need different receivers.</li>
+    </ol>
+  </ReplyTask>
 </LessonPage>

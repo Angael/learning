@@ -111,8 +111,7 @@ Answer: ...`;
     </p>
   </LessonSection>
 
-  <LessonSection title="Exercise — reply in Discord" variant="checkpoint">
-    <ReplyTask id="learn:dotnet/006:q1" copyText={replyTemplate} difficulty={3}>
+  <ReplyTask id="learn:dotnet/006:q1" copyText={replyTemplate}>
       <p>Transfer the model to a new service. Do not quote the lesson; explain the runtime story:</p>
       <Code code={`builder.Services.AddSingleton<StatusFormatter>();
 
@@ -123,6 +122,5 @@ app.MapGet("/status", (StatusFormatter formatter) =>
         <li>On the first request to <code>/status</code>, describe the chain from the handler asking for <code>StatusFormatter</code> to receiving an instance.</li>
         <li>A teammate says, “the generic type <code>StatusFormatter</code> runs the registration code.” Correct that sentence precisely.</li>
       </ol>
-    </ReplyTask>
-  </LessonSection>
+  </ReplyTask>
 </LessonPage>
