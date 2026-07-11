@@ -153,6 +153,17 @@ const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
   }
 
   @media (max-width: 520px) {
+    .reply-task {
+      gap: 12px;
+      margin-top: 14px;
+      padding: 14px 0 0;
+      border-right: 0;
+      border-bottom: 0;
+      border-left: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
     .reply-task__header {
       align-items: stretch;
       flex-direction: column;
@@ -160,6 +171,7 @@ const headingId = `reply-${id.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '')
 
     .reply-task button {
       width: 100%;
+      padding: 8px 10px;
     }
   }
 </style>

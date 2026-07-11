@@ -26,13 +26,13 @@ const { title, heading, summary, backHref, backLabel, narrow = false } = Astro.p
 
 <style>
   .page-shell {
-    width: min(760px, calc(100% - 32px));
+    width: min(760px, calc(100% - 20px));
     margin: 0 auto;
     padding: 28px 0 56px;
   }
 
   .page-shell.narrow {
-    width: min(720px, calc(100% - 32px));
+    width: min(720px, calc(100% - 20px));
   }
 
   nav,
@@ -49,7 +49,12 @@ const { title, heading, summary, backHref, backLabel, narrow = false } = Astro.p
 
   @media (min-width: 820px) {
     .page-shell {
+      width: min(760px, calc(100% - 32px));
       padding-top: 56px;
+    }
+
+    .page-shell.narrow {
+      width: min(720px, calc(100% - 32px));
     }
   }
 </style>

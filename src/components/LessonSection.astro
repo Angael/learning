@@ -49,6 +49,23 @@ const Tag = variant === 'warning' ? 'aside' : 'section';
     color: var(--warn);
   }
 
+  @media (max-width: 759px) {
+    section,
+    aside {
+      margin-right: -10px;
+      margin-left: -10px;
+      padding: 18px 14px;
+      border-right: 0;
+      border-left: 0;
+      border-radius: 16px;
+      box-shadow: 0 10px 36px rgba(35, 40, 60, .05);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+
   @media (min-width: 760px) {
     section,
     aside {
