@@ -1,0 +1,71 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+
+const example = `Weil ich muede war, bin ich zu Hause geblieben.
+Ich glaube, dass der Film sehr gut war.
+Ich weiss noch nicht, ob ich morgen arbeiten muss.
+Am Samstag habe ich mit Freunden gekocht.`;
+
+const replyText = `[learn:2026-07-11:b2]
+
+Aktualizacja o weekendzie lub ostatnich dniach:
+1.
+2.
+3.
+4.
+5.
+6.
+7. (opcjonalnie)
+8. (opcjonalnie)
+
+Sprawdzenie czasowników odmienionych:
+- zdanie z weil: __________ | czasownik odmieniony: __________
+- zdanie z dass: __________ | czasownik odmieniony: __________
+- zdanie z ob: __________ | czasownik odmieniony: __________
+- zdanie podrzędne na początku: __________ | czasowniki odmienne: podrzędne __________; główne __________`;
+---
+
+<SessionPage
+  title="Sesja 2 · Aktualizacja po niemiecku"
+  heading="Aktualizacja z <code>weil</code>, <code>dass</code> i <code>ob</code>"
+  lede="Opisz prawdziwy weekend lub ostatnie dni, a następnie sprawdź szyk zdań podrzędnych przez wskazanie czasowników odmienionych."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Jedna zasada">
+    <Callout>
+      Po <code>weil</code>, <code>dass</code> i <code>ob</code> czasownik odmieniony trafia na koniec zdania podrzędnego.
+    </Callout>
+    <p>
+      W czasie Perfekt czasownikiem odmienionym jest czasownik posiłkowy: <code>weil ich viel gearbeitet habe</code>. Imiesłów <code>gearbeitet</code> nie jest tutaj czasownikiem odmienionym.
+    </p>
+    <p>
+      Gdy zdanie podrzędne stoi na początku, po przecinku od razu pojawia się czasownik odmieniony zdania głównego: <code>Weil ich muede war, bin ich zu Hause geblieben.</code>
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Proste zdania o prawdziwych wydarzeniach">
+    <p>To wzory szyku, a nie tekst do kopiowania. Własna wypowiedź powinna być naturalna i konkretna.</p>
+    <pre>{example}</pre>
+    <ul>
+      <li><code>weil</code> = ponieważ</li>
+      <li><code>dass</code> = że</li>
+      <li><code>ob</code> = czy, a nie warunkowe „jeśli”</li>
+    </ul>
+  </SessionSection>
+
+  <ReplyTask id="learn:2026-07-11:b2" difficulty={3} copyText={replyText} language="pl">
+    <p>Napisz po niemiecku 6–8 zdań o weekendzie albo ostatnich dniach: co robiłeś, jak poszło oraz jaki masz plan lub niepewność.</p>
+    <p>Wymagania:</p>
+    <ul>
+      <li>użyj Perfekt dla co najmniej dwóch zakończonych czynności;</li>
+      <li>użyj po jednym zdaniu z <code>weil</code>, <code>dass</code> i <code>ob</code>;</li>
+      <li>zacznij jedno zdanie od zdania podrzędnego;</li>
+      <li>na końcu skopiuj cztery odpowiednie fragmenty i wskaż w każdym czasownik odmieniony.</li>
+    </ul>
+    <p>Najważniejszy jest szyk. Proste, kontrolowane zdania są lepsze niż ambitne zdania, nad którymi tracisz kontrolę. Możesz używać <code>ae</code>, <code>oe</code>, <code>ue</code> i <code>ss</code>.</p>
+  </ReplyTask>
+</SessionPage>

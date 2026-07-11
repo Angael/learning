@@ -1,0 +1,198 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+
+const tinyProgram = `var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () => new { ok = true });
+app.MapGet("/status", () => new
+{
+    Service = "HelloApi",
+    Status = "ok",
+    CheckedAt = DateTimeOffset.UtcNow
+});
+
+app.Run();`;
+
+const nodeAnalogy = `// Express-ish mental model, not ASP.NET code
+const app = express();
+
+// setup: register middleware/routes/services
+app.get("/", (req, res) => res.json({ ok: true }));
+
+// start listening
+app.listen(3000);`;
+
+const withServices = `var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<AppInfo>();
+
+var app = builder.Build();
+
+app.MapGet("/status", (AppInfo info) => new
+{
+    info.Service,
+    Status = "ok",
+    CheckedAt = DateTimeOffset.UtcNow
+});
+
+app.Run();
+
+public sealed class AppInfo
+{
+    public string Service { get; } = "HelloApi";
+}`;
+
+const endpointsExtension = `public static class EndpointRouteBuilderExtensions
+{
+    public static IEndpointRouteBuilder MapHelloEndpoints(
+        this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGet("/", () => new { ok = true });
+
+        endpoints.MapGet("/status", (AppInfo info) => new
+        {
+            info.Service,
+            Status = "ok",
+            CheckedAt = DateTimeOffset.UtcNow
+        });
+
+        return endpoints;
+    }
+}`;
+
+const organizedProgram = `var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<AppInfo>();
+
+var app = builder.Build();
+
+app.MapHelloEndpoints();
+
+app.Run();`;
+
+const servicesExtension = `public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddHelloServices(
+        this IServiceCollection services)
+    {
+        services.AddSingleton<AppInfo>();
+        return services;
+    }
+}`;
+
+const finalProgram = `var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHelloServices();
+
+var app = builder.Build();
+
+app.MapHelloEndpoints();
+
+app.Run();`;
+---
+
+<SessionPage
+  title="Session 5 · Minimal API Program.cs structure"
+  heading="Program.cs: builder, services, app, and extension methods"
+  lede="Today’s win: read a Minimal API startup file without treating it as magic."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="Start from what you already learned">
+    <p>
+      You already noticed the important part: <code>app.MapHelloEndpoints()</code> looks like an instance method, but it can be an extension method. ASP.NET Core uses that pattern everywhere because startup code can grow quickly.
+    </p>
+    <Callout>
+      Beginner rule: <code>Program.cs</code> is the app’s startup script. It builds the app, registers things the app can use, maps HTTP endpoints, then starts the server.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="The smallest useful shape">
+    <Code code={tinyProgram} lang="csharp" />
+    <p>Read it in four phases:</p>
+    <ol>
+      <li><code>builder</code>: collect configuration, logging, DI registrations, and hosting setup.</li>
+      <li><code>builder.Services</code>: register objects the DI container may create later.</li>
+      <li><code>app</code>: the built web application that can receive requests.</li>
+      <li><code>app.Run()</code>: start the server loop.</li>
+    </ol>
+  </SessionSection>
+
+  <SessionSection title="JS/Node analogy">
+    <p>
+      In Node/Express, one file often creates the app, registers routes/middleware, and starts listening. Minimal API <code>Program.cs</code> feels similar, but ASP.NET adds a formal builder phase before the app runs.
+    </p>
+    <Code code={nodeAnalogy} lang="js" />
+    <SessionGrid>
+      <div>
+        <h3>Node-ish mental model</h3>
+        <p>Create app, attach behavior, listen.</p>
+      </div>
+      <div>
+        <h3>ASP.NET mental model</h3>
+        <p>Create builder, register services/config, build app, map endpoints, run.</p>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Reuse your DI model: services are registered before Build()">
+    <p>
+      You already know the core DI idea from the previous sessions. Here we are using it only to understand <code>Program.cs</code>: <code>builder.Services</code> is where you tell ASP.NET, “this object is available for handlers to ask for.”
+    </p>
+    <Code code={withServices} lang="csharp" />
+    <p>
+      The handler does not call <code>new AppInfo()</code>. It asks for <code>AppInfo info</code>, and the DI container provides it using the registration made during startup.
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Why move endpoint mapping into an extension method?">
+    <p>
+      If every route stays in <code>Program.cs</code>, the file slowly becomes a long scroll of unrelated setup. Extension methods let you keep the startup script readable without inventing a big framework.
+    </p>
+    <Code code={endpointsExtension} lang="csharp" />
+    <Code code={organizedProgram} lang="csharp" />
+    <TagList tags={['Program.cs stays high-level', 'routes can be grouped by feature', 'same runtime behavior', 'easier to scan']} />
+    <Callout>
+      This does not make routes special. It is still just calling methods during startup. The extension method is organization, not magic.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="Same pattern for services">
+    <p>
+      ASP.NET projects often use another extension method for registrations. The target type changes: endpoint mapping extends <code>IEndpointRouteBuilder</code>; service registration extends <code>IServiceCollection</code>.
+    </p>
+    <Code code={servicesExtension} lang="csharp" />
+    <Code code={finalProgram} lang="csharp" />
+    <p>
+      Now <code>Program.cs</code> reads like a table of contents: add services, build app, map endpoints, run.
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Step-by-step request story">
+    <ol>
+      <li>The process starts and runs <code>Program.cs</code>.</li>
+      <li><code>builder.Services.AddHelloServices()</code> registers <code>AppInfo</code>.</li>
+      <li><code>builder.Build()</code> creates the <code>app</code> and its service provider.</li>
+      <li><code>app.MapHelloEndpoints()</code> registers routes such as <code>/status</code>.</li>
+      <li><code>app.Run()</code> starts accepting HTTP requests.</li>
+      <li>When a request hits <code>/status</code>, ASP.NET calls the handler and provides <code>AppInfo</code>.</li>
+    </ol>
+  </SessionSection>
+
+  <SessionSection title="Exercise — reply in Discord" variant="checkpoint">
+    <p>Answer from memory. Short is good:</p>
+    <ol>
+      <li>In <code>var builder = WebApplication.CreateBuilder(args);</code>, what is the builder mainly for?</li>
+      <li>Why do service registrations usually happen before <code>builder.Build()</code>?</li>
+      <li>In <code>app.MapHelloEndpoints()</code>, what type is probably being extended?</li>
+      <li>Rewrite this route name as a high-level extension-method call you might want in <code>Program.cs</code>: “map all order-related endpoints.”</li>
+    </ol>
+  </SessionSection>
+</SessionPage>

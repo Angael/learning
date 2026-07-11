@@ -38,7 +38,7 @@ Plans are provisional. Keep the sequence unless new evidence justifies a change.
 
 ## Evidence added this week
 
-- Lesson or task ID: concise result and link
+- Session ID: concise result and link
 
 ## Rolling outlook (3–6 weeks)
 

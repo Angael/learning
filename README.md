@@ -4,36 +4,22 @@ A minimal Astro site and repo-backed learning workspace for Angeal.
 
 ## Commands
 
-- `npm run dev` — start local development server
-- `npm run build` — verify production build
-- `npm run preview` — preview built site locally
-- `docker build -t learning .` — build production container
+- `npm run dev` — local development server
+- `npm run check` — validate session structure and build production output
+- `npm run build` — build production output
+- `npm run preview` — preview built output
+- `docker build -t learning .` — build the production container
 
 ## Structure
 
-- `src/pages/index.astro` — topic index
-- `src/pages/topics/<topic>/index.astro` — topic page
-- `src/pages/topics/<topic>/plan.md` — durable topic goal, baseline, progression, and achievements
-- `src/pages/topics/<topic>/lessons/<001-slug>/index.astro` — lesson page
-- `src/pages/topics/<topic>/lessons/<001-slug>/notes.md` — exact lesson evidence and student response
-- `src/pages/topics/<topic>/tasks/<YYYY-MM-DD-slug>/notes.md` — exact evidence for Discord-only diagnostics and tasks
-- `src/pages/teacher-notes/next.md` — dated planning-to-production handoff
-- `src/pages/teacher-notes/weekly/` — public weekly synthesis and multi-week outlook
-- `src/data/catalog.ts` — explicit topic and lesson list used by routing pages
-- `AGENTS.md` — repository rules, state ownership, and layout contract for agents
+Each topic lives under `src/pages/topics/<topic>/`. Its `plan.md` owns durable direction and topic-specific teaching policy. Every published learning event—teaching, practice, task, test, diagnostic, or repair—uses one colocated pair:
 
-## Current scope
+```text
+sessions/<NNN-slug>/
+├── index.astro
+└── notes.md
+```
 
-Active topics:
+`index.astro` is learner-facing; `notes.md` stores exact evidence. Weekly synthesis and the next production handoff live under `src/pages/teacher-notes/`.
 
-- `C#`
-- `.NET`
-- `German`
-
-Learning state has separate owners to avoid drift: lesson notes store exact evidence, weekly notes synthesize current cross-topic state, topic plans store durable direction, and `next.md` stores only the next dated implementation handoff.
-
-Teacher notes are published under `https://learn.widacki.me/teacher-notes/`.
-
-## Deployment
-
-Docker image builds static Astro output and serves it with nginx on port 80.
+See `AGENTS.md` for the complete repository and state-ownership contract.

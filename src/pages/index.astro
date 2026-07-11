@@ -1,15 +1,15 @@
 ---
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import LessonList from '../components/LessonList.astro';
+import SessionList from '../components/SessionList.astro';
 import PageShell from '../components/PageShell.astro';
 import { topics } from '../data/catalog';
 
-const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
-const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) => [...lessons].sort((a, b) => {
+const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? '';
+const sortedSessions = <T extends { href: string; date?: string }>(sessions: T[]) => [...sessions].sort((a, b) => {
   const dateCompare = (b.date ?? '').localeCompare(a.date ?? '');
   if (dateCompare !== 0) return dateCompare;
-  return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
+  return sessionNumber(b.href).localeCompare(sessionNumber(a.href));
 });
 
 const weeklyDir = join(process.cwd(), 'src/pages/teacher-notes/weekly');
@@ -22,24 +22,24 @@ const weeklyNotes = readdirSync(weeklyDir)
   }));
 ---
 
-<PageShell title="Learning" heading="Learning" summary="Topics and lessons. The index is for routing: every published lesson should be reachable from here.">
+<PageShell title="Learning" heading="Learning" summary="Topics and sessions. The index is for routing: every published session should be reachable from here.">
   {topics.map((topic) => {
-    const lessons = sortedLessons(topic.lessons);
-    const visibleLessons = lessons.slice(0, 3);
-    const hiddenCount = Math.max(0, lessons.length - visibleLessons.length);
+    const sessions = sortedSessions(topic.sessions);
+    const visibleSessions = sessions.slice(0, 3);
+    const hiddenCount = Math.max(0, sessions.length - visibleSessions.length);
 
     return (
       <section class="topic" aria-labelledby={`${topic.slug}-title`}>
         <div class="topic-title">
           <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
-          <span>{topic.lessons.length} lessons</span>
+          <span>{topic.sessions.length} sessions</span>
         </div>
         <p>{topic.summary}</p>
 
-        <div class="lesson-list-wrap">
-          <LessonList lessons={visibleLessons} />
+        <div class="session-list-wrap">
+          <SessionList sessions={visibleSessions} />
           {hiddenCount > 0 && (
-            <a class="view-all-link" href={topic.href}>View all {topic.lessons.length} {topic.title} lessons →</a>
+            <a class="view-all-link" href={topic.href}>View all {topic.sessions.length} {topic.title} sessions →</a>
           )}
         </div>
       </section>
@@ -86,7 +86,7 @@ const weeklyNotes = readdirSync(weeklyDir)
     white-space: nowrap;
   }
 
-  .lesson-list-wrap {
+  .session-list-wrap {
     display: flex;
     flex-direction: column;
     gap: 10px;

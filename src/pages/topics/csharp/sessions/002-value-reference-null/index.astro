@@ -1,0 +1,95 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const valueCopy = `var a = 10;
+var b = a;
+
+b = 99;
+
+Console.WriteLine(a); // 10
+Console.WriteLine(b); // 99`;
+
+const referenceCopy = `var first = new Person("Ada");
+var second = first;
+
+second.Name = "Grace";
+
+Console.WriteLine(first.Name);  // Grace
+Console.WriteLine(second.Name); // Grace
+
+class Person
+{
+    public string Name { get; set; }
+
+    public Person(string name)
+    {
+        Name = name;
+    }
+}`;
+
+const nullableWarning = `string name = null; // warning with nullable reference types enabled
+
+Console.WriteLine(name.Length); // possible crash at runtime`;
+
+const nullableIntent = `string? maybeName = FindName();
+
+if (maybeName is not null)
+{
+    Console.WriteLine(maybeName.Length);
+}`;
+
+---
+
+<SessionPage
+  title="Session 2 · C# value types, reference types, and null"
+  heading="Value, reference, and the danger of <code>null</code>"
+  lede="Today’s win: predict whether assignment copies the value itself or copies a reference to the same object."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="The first-principles model">
+    <Callout>
+      A variable slot either directly contains a small value, or it contains a reference that points to an object somewhere else.
+    </Callout>
+    <p>
+      In C#, types such as <code>int</code>, <code>bool</code>, <code>decimal</code>, <code>DateTime</code>, and most <code>struct</code>s are value types. Classes, strings, arrays, lists, and most objects you create with <code>new SomeClass(...)</code> are reference types.
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Value types copy the value">
+    <p>When you assign an <code>int</code> to another variable, you get another <code>int</code> value. Changing one variable does not change the other.</p>
+    <Code code={valueCopy} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Reference types copy the reference">
+    <p>When you assign a class instance to another variable, you usually copy the reference. Both variables can point at the same object.</p>
+    <Code code={referenceCopy} lang="csharp" />
+    <p><code>first</code> and <code>second</code> are separate variable slots, but the copied reference points to the same <code>Person</code> object.</p>
+  </SessionSection>
+
+  <SessionSection title="Where <code>null</code> enters">
+    <p>
+      A reference variable can sometimes point to nothing. That nothing is <code>null</code>. If you access a member through <code>null</code>, your program can throw a <code>NullReferenceException</code>.
+    </p>
+    <Code code={nullableWarning} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Modern C# wants you to state uncertainty">
+    <p>
+      With nullable reference types enabled, <code>string</code> means “I expect a real string”, while <code>string?</code> means “this might be missing.” The compiler then pushes you to check before using it.
+    </p>
+    <Code code={nullableIntent} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Retrieval checkpoint" variant="warning">
+    <p>Answer without running code:</p>
+    <ol>
+      <li>Why does the first example print <code>10</code> and <code>99</code>?</li>
+      <li>Why does changing <code>second.Name</code> also affect <code>first.Name</code>?</li>
+      <li>What practical promise does <code>string</code> make that <code>string?</code> does not?</li>
+    </ol>
+  </SessionSection>
+</SessionPage>

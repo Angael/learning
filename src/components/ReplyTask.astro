@@ -1,37 +1,71 @@
 ---
-import LessonSection from './LessonSection.astro';
+import SessionSection from './SessionSection.astro';
 
 type Props = {
   id: string;
   copyText: string;
+  difficulty?: number;
+  label?: string;
+  language?: 'en' | 'pl';
 };
 
 const {
   id,
   copyText,
+  difficulty = 3,
+  label,
+  language = 'en',
 } = Astro.props;
+
+const text = language === 'pl'
+  ? {
+      label: 'Zadanie do odpowiedzi',
+      difficulty: 'trudność',
+      copy: 'Kopiuj pytania',
+      copied: 'Skopiowano',
+      success: 'Skopiowano. Wklej treść na Discordzie i wpisz odpowiedź pod każdym polem.',
+      failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator i pytania ręcznie.',
+    }
+  : {
+      label: 'Reply task',
+      difficulty: 'difficulty',
+      copy: 'Copy questions',
+      copied: 'Copied',
+      success: 'Copied. Paste this into Discord and write below each answer label.',
+      failure: 'Copy failed. Select the ID and questions manually.',
+    };
 
 if (!/^learn:[a-z0-9./-]+(?::[a-z0-9-]+)?$/i.test(id)) {
   throw new Error(`ReplyTask id must be a stable learn: identifier; received "${id}"`);
+}
+if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
+  throw new Error(`ReplyTask difficulty must be an integer between 1 and 5; received ${difficulty}`);
 }
 
 const marker = `[${id}]`;
 if (!copyText.trimStart().startsWith(marker)) {
   throw new Error(`ReplyTask copyText must start with "${marker}"`);
 }
+const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
 ---
 
-<div class="reply-task" data-reply-task data-copy-text={copyText}>
-  <LessonSection title="Reply task" variant="checkpoint">
-    <button slot="right" class="reply-task__copy" type="button" data-copy-trigger>Copy questions</button>
+<div
+  class="reply-task"
+  data-reply-task
+  data-copy-text={copyText}
+  data-copy-label={text.copy}
+  data-copy-success={text.success}
+  data-copy-failure={text.failure}
+  data-copied-label={text.copied}
+>
+  <SessionSection title={title} variant="checkpoint">
+    <button slot="right" class="reply-task__copy" type="button" data-copy-trigger>{text.copy}</button>
     <div class="reply-task__content">
       <code class="reply-task__id">{marker}</code>
-      <div class="reply-task__body">
-        <slot />
-      </div>
+      <div class="reply-task__body"><slot /></div>
       <p class="reply-task__status" data-copy-status aria-live="polite"></p>
     </div>
-  </LessonSection>
+  </SessionSection>
 </div>
 
 <script>
@@ -58,27 +92,20 @@ if (!copyText.trimStart().startsWith(marker)) {
     button.addEventListener('click', async () => {
       const text = task.dataset.copyText ?? '';
       try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(text);
-        } else {
-          copyFallback(text, button);
-        }
-        status.textContent = 'Copied. Paste this into Discord and write below each answer label.';
-        button.textContent = 'Copied';
+        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+        else copyFallback(text, button);
+        status.textContent = task.dataset.copySuccess ?? '';
+        button.textContent = task.dataset.copiedLabel ?? '';
       } catch {
-        status.textContent = 'Copy failed. Select the ID and questions manually.';
-        button.textContent = 'Copy questions';
+        status.textContent = task.dataset.copyFailure ?? '';
+        button.textContent = task.dataset.copyLabel ?? '';
       }
     });
   });
 </script>
 
 <style>
-  .reply-task__content {
-    display: grid;
-    gap: 14px;
-  }
-
+  .reply-task__content { display: grid; gap: 14px; }
   .reply-task__copy {
     padding: 9px 12px;
     border: 1px solid var(--line);
@@ -89,12 +116,7 @@ if (!copyText.trimStart().startsWith(marker)) {
     font-weight: 700;
     cursor: pointer;
   }
-
-  .reply-task button:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
+  .reply-task button:hover { border-color: var(--accent); color: var(--accent); }
   .reply-task__id {
     width: fit-content;
     padding: 4px 7px;
@@ -102,36 +124,16 @@ if (!copyText.trimStart().startsWith(marker)) {
     background: var(--code);
     color: var(--code-text);
   }
-
-  .reply-task__body {
-    min-width: 0;
-  }
-
-  .reply-task__body :global(.shiki) {
-    width: 100%;
-    min-width: 0;
-  }
-
+  .reply-task__body { min-width: 0; }
+  .reply-task__body :global(.shiki) { width: 100%; min-width: 0; }
   .reply-task__body :global(p:last-child),
   .reply-task__body :global(ol:last-child),
   .reply-task__body :global(ul:last-child),
-  .reply-task__status {
-    margin-bottom: 0;
-  }
-
-  .reply-task__status {
-    min-height: 1.4em;
-    font-size: .9rem;
-  }
+  .reply-task__status { margin-bottom: 0; }
+  .reply-task__status { min-height: 1.4em; font-size: .9rem; }
 
   @media (max-width: 759px) {
-    .reply-task__content {
-      gap: 12px;
-    }
-
-    .reply-task__copy {
-      width: 100%;
-      padding: 8px 10px;
-    }
+    .reply-task__content { gap: 12px; }
+    .reply-task__copy { width: 100%; padding: 8px 10px; }
   }
 </style>

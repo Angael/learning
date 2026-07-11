@@ -1,0 +1,105 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+
+const integerDivision = `var x = 5;
+var y = 2;
+
+Console.WriteLine(x / y); // 2`;
+
+const numericDefaults = `var a = 5;    // int
+var b = 5.0;  // double
+var c = 5f;   // float
+var d = 5m;   // decimal
+var e = "5";  // string`;
+
+const mixedDecimalDouble = `var price = 10m; // decimal
+var tax = 0.23;   // double
+
+Console.WriteLine(price * tax); // compile-time error`;
+
+const fixedDecimal = `var price = 10m;
+var tax = 0.23m;
+
+Console.WriteLine(price * tax); // 2.30`;
+
+const mixedIntDouble = `var count = 5;     // int
+var total = 2.0;   // double
+var result = count / total;
+
+Console.WriteLine(result); // 2.5`;
+
+---
+
+<SessionPage
+  title="Session 1 · C# var and numeric types"
+  heading="<code>var</code> is not JavaScript <code>var</code>"
+  lede="Today’s win: predict C# numeric expressions by reading their static types. This is the first place where a TypeScript brain can make the wrong guess."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="The one-sentence model">
+    <Callout>
+      In C#, <code>var</code> means: <strong>the compiler infers one static type now, and the variable keeps that type.</strong>
+    </Callout>
+    <p>
+      It is closer to TypeScript inference than JavaScript <code>var</code>. After <code>var x = 5;</code>, <code>x</code> is an <code>int</code>. You cannot later assign <code>"five"</code> to it.
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Integer division">
+    <p>If both sides are <code>int</code>, the result is also <code>int</code>. The fractional part is discarded.</p>
+    <Code code={integerDivision} lang="csharp" />
+    <p>C# does not silently switch to floating-point just because the mathematical answer has a decimal part.</p>
+  </SessionSection>
+
+  <SessionSection title="Numeric literal defaults">
+    <p>These defaults matter because they decide which operator overload C# chooses.</p>
+    <Code code={numericDefaults} lang="csharp" />
+    <SessionGrid>
+      <div>
+        <h3>Practical rule</h3>
+        <ul>
+          <li><code>int</code>: counts and small whole numbers.</li>
+          <li><code>double</code>: default floating-point measurements.</li>
+          <li><code>float</code>: smaller floating-point, usually only when required.</li>
+          <li><code>decimal</code>: money-like precise base-10 values.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Suffixes</h3>
+        <TagList tags={['<code>5</code> → int', '<code>5.0</code> → double', '<code>5f</code> → float', '<code>5m</code> → decimal']} />
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="C# makes you choose numeric domains">
+    <p>This does not compile:</p>
+    <Code code={mixedDecimalDouble} lang="csharp" />
+    <p>
+      That refusal is good. Converting <code>decimal</code> to <code>double</code> can lose base-10 precision, and converting arbitrary <code>double</code> to <code>decimal</code> is not always safe. The compiler asks you to be explicit.
+    </p>
+    <p>Use one numeric domain intentionally:</p>
+    <Code code={fixedDecimal} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Compatible numeric promotion">
+    <p>When the operands are compatible, C# can promote the narrower value for the operation:</p>
+    <Code code={mixedIntDouble} lang="csharp" />
+    <p>Here, <code>count</code> is promoted from <code>int</code> to <code>double</code> for the division, so the result is <code>double</code>.</p>
+  </SessionSection>
+
+  <SessionSection title="Retrieval checkpoint — next time" variant="checkpoint">
+    <p>Before we continue, answer these from memory:</p>
+    <ol>
+      <li>What does <code>var</code> mean in C#, and what does it not mean?</li>
+      <li>Why does <code>5 / 2</code> print <code>2</code>?</li>
+      <li>What is the difference between <code>5.0</code>, <code>5f</code>, and <code>5m</code>?</li>
+      <li>Why does <code>decimal * double</code> fail to compile?</li>
+    </ol>
+  </SessionSection>
+</SessionPage>

@@ -13,7 +13,10 @@ Reactivate B1 German. Rebuild practical fluency: read, write, speak-like chat, g
 - Strengths: short reading comprehension, willingness to produce real-life sentences, remembers core case/Perfekt concepts.
 - Watch: der/die/das uncertainty leads to random articles; Dativ/Akkusativ mapping from Polish mostly useful but must be checked; subordinate-clause verb-final; `sein` vs `haben` in Perfekt under pressure.
 - Keyboard note: accepts ae/oe/ue/ss instead of German letters for now; do not make keyboard learning a blocker.
-- Grammatical labels in German lessons should be introduced in Polish first, with English terminology in parentheses only when it is useful: `zdanie podrzędne (subordinate clause)`, `czasownik odmieniony (finite verb)`, `czasownik posiłkowy (auxiliary verb)`.
+
+## Language policy
+
+Teach German through Polish. Learner-facing explanations, instructions, headings, grammar terms, feedback, and hints are Polish. German is used for examples, source text, dialogue, and requested production. Use English only when Angeal asks or a brief comparison is genuinely useful. Internal teacher notes may remain English.
 
 ## Progression
 

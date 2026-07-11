@@ -1,15 +1,15 @@
 ---
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import LessonList from './LessonList.astro';
+import SessionList from './SessionList.astro';
 import PageShell from './PageShell.astro';
 import type { Topic } from '../data/catalog';
 
-const lessonNumber = (href: string) => href.match(/lessons\/(\d+)/)?.[1] ?? '';
-const sortedLessons = <T extends { href: string; date?: string }>(lessons: T[]) => [...lessons].sort((a, b) => {
+const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? '';
+const sortedSessions = <T extends { href: string; date?: string }>(sessions: T[]) => [...sessions].sort((a, b) => {
   const dateCompare = (b.date ?? '').localeCompare(a.date ?? '');
   if (dateCompare !== 0) return dateCompare;
-  return lessonNumber(b.href).localeCompare(lessonNumber(a.href));
+  return sessionNumber(b.href).localeCompare(sessionNumber(a.href));
 });
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 };
 
 const { topic } = Astro.props;
-const lessons = sortedLessons(topic.lessons);
+const sessions = sortedSessions(topic.sessions);
 const planPath = join(process.cwd(), `src/pages/topics/${topic.slug}/plan.md`);
 const hasPlan = existsSync(planPath);
 ---
@@ -32,7 +32,7 @@ const hasPlan = existsSync(planPath);
   )}
 
   <div class="list-wrap">
-    <LessonList lessons={lessons} ariaLabel={`${topic.title} lessons`} />
+    <SessionList sessions={sessions} ariaLabel={`${topic.title} sessions`} />
   </div>
 </PageShell>
 

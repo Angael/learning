@@ -1,0 +1,79 @@
+---
+type Session = {
+  href: string;
+  title: string;
+  summary: string;
+  date?: string;
+};
+
+type Props = {
+  sessions: Session[];
+  ariaLabel?: string;
+};
+
+const { sessions, ariaLabel } = Astro.props;
+const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? '';
+---
+
+{sessions.length > 0 ? (
+  <ul class="session-list" aria-label={ariaLabel}>
+    {sessions.map((session) => (
+      <li>
+        <a class="session-card" href={session.href}>
+          <small>Session {sessionNumber(session.href)} · {session.date ?? 'Undated'}</small>
+          <strong>{session.title}</strong>
+          <span>{session.summary}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+) : (
+  <p class="empty-card">No sessions published yet.</p>
+)}
+
+<style>
+  .session-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .session-card,
+  .empty-card {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+  }
+
+  .session-card small {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: .82rem;
+    font-weight: 650;
+  }
+
+  .session-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    letter-spacing: -.01em;
+  }
+
+  .session-card span,
+  .empty-card {
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  @media (min-width: 820px) {
+    .session-card {
+      padding: 16px 18px;
+    }
+  }
+</style>

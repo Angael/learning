@@ -7,6 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "validate:learning": "node scripts/validate-learning-artifacts.mjs",
+    "check": "npm run validate:learning && npm run build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
