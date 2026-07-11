@@ -102,6 +102,17 @@ Received 2026-07-11:
 - Model repairs: `weil ich zu viel trainiert habe`; `ob ihr dieser Anime gefallen wird`; `Dass ich viel esse, wusste ich schon früher`; `Weil der Diablo-4-DLC herausgekommen ist, hat sich mein Build stark verändert.`
 - Finite verbs in relevant clauses: `dass ... soll`; `weil ... habe`; `ob ... wird`; fronted `Weil ... ist`, followed by main-clause `hat`.
 
-## Next hint
+## Repair response
 
-Copy only four repaired clauses and mark the verb that changes with person/tense: `dass ... soll`, `weil ... habe`, `ob ... wird`, and `Weil ... ist, hat ...`.
+Received 2026-07-11, verbatim:
+
+> 1. Soll
+> 2.habe
+> 3. Wird
+> 4. Ist, hat
+
+All four correct. Capitalisation and spacing are formatting issues only; within the completed German clauses the forms are lowercase: `soll`, `habe`, `wird`, `ist`, `hat`. Student correctly distinguished the finite verb in each subordinate clause and both finite verbs in the fronted-subordinate/main-clause pair.
+
+## Outcome
+
+Immediate repair complete. Finite-verb identification is now demonstrated with guided examples. Revisit later in fresh sentences to check retention; no further correction required now.
