@@ -46,6 +46,9 @@
 
 ## Implementation record
 
-- Status: not started
+- Status: implemented
 - Artifacts:
-- Commit:
+  - [C# lesson 003: static and instance members](/topics/csharp/lessons/003-static-and-instance-members/)
+  - [C# lesson 003 notes](/topics/csharp/lessons/003-static-and-instance-members/notes/)
+  - [German weekend update task notes](/topics/german/tasks/2026-07-11-weekend-update/notes/)
+- Commit: pending

@@ -21,6 +21,12 @@ export const topics: Topic[] = [
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
     lessons: [
       {
+        title: 'Static and instance members',
+        href: '/topics/csharp/lessons/003-static-and-instance-members/',
+        summary: 'Use one small class to distinguish object-owned state and behavior from type-owned static behavior, then predict and repair calls.',
+        date: '2026-07-11',
+      },
+      {
         title: 'var and numeric types',
         href: '/topics/csharp/lessons/001-var-and-numeric-types/',
         summary: 'Learn why C# var is static inference, why integer division prints 2, and how int, double, float, and decimal interact.',
