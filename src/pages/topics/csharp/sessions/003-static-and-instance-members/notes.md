@@ -37,4 +37,9 @@ Read expression left of dot. Object variable means one instance. Class name mean
 
 ## Student response
 
-Awaiting response.
+- 2026-07-11 — Angeal marked `[learn:csharp/003:q1]` complete without answering its prompts, reporting that the questions are trivial and that they understand basic static classes and basic static methods.
+
+## Evaluation
+
+- Completed by learner self-assessment; no written retrieval evidence was collected for the instance-versus-static distinctions in this session.
+- Treat basic static classes and methods as covered. Recheck only through a more demanding transfer task if later C# work makes the distinction consequential.
