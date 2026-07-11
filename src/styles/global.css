@@ -1,5 +1,6 @@
 :root {
   color-scheme: light;
+  scrollbar-gutter: stable;
   --bg: #f7f7f4;
   --panel: #ffffff;
   --text: #161616;
@@ -23,6 +24,7 @@ body {
   color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
+  text-size-adjust: 100%;
 }
 
 @media (max-width: 759px) {
@@ -40,15 +42,33 @@ a:hover {
   color: var(--link);
 }
 
+:where(a, button):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: 3px;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 p {
   margin: 0;
   color: var(--muted);
   line-height: 1.55;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 .shiki {
   max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
 
   padding: 16px 20px;
   border-radius: 8px;
