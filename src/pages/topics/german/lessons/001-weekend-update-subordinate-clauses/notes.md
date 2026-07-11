@@ -29,4 +29,6 @@ Published 2026-07-11 from the planned substantial German production task. This i
 
 ## Student response
 
-Awaiting response.
+Received 2026-07-11. Exact response and full feedback are recorded in the original [Discord task notes](/topics/german/tasks/2026-07-11-weekend-update/notes/).
+
+Outcome: developing. All target connectors appeared and the fronted-clause structure was attempted correctly. Main repair is recognising finite auxiliaries in Perfekt and producing the participles; lexical/case errors are secondary. The finite-verb-check instruction was not understood, so follow-up uses four clauses from the student's own text.

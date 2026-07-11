@@ -78,4 +78,30 @@ Underline one finite verb per clause. Move subordinate finite verb to end. If su
 
 ## Student response
 
-Awaiting response.
+Received 2026-07-11:
+
+> No weekend happened, so I'm gonna go about workday update:
+> 1. Gestern habe ich Diablo 4 viel gespielt.
+> 2. Der Arzt hat gesagt, dass ich neue Drogen nehmen soll und weiter wenig laufen oder spazieren soll.
+> 3. Meine Beine tunen mir Weh, weil ich zu viel trainieren habe.
+> 4. Letztens Zeit war ich im Büro, weil ich Dokumenten abholen musste.
+> 5. Am Dienstag werde ich
+> 6. Gestern habe ich mit meiner Freundin die erste Folge von Demon Slayer angeshaut, aber ich weiß nicht, ob sie diese Anime mag wird.
+> 7. Dass ich viel esse, wüsste ich früher.
+> 8. Weil Diablo 4 DLC angekommt ist, hat sich mein "build" viel verändert.
+>
+> Sprawdzenie czasowników odmienionych:
+> - tutaj nie zrozumiałem czego ode mnie chciałeś.
+
+## Feedback
+
+- Complete, understandable 7-sentence update plus one unfinished sentence. Required `weil`, `dass`, and `ob` all used; sentence 8 correctly attempts the fronted subordinate-clause pattern.
+- Developing: connector placement mostly sound, but Perfekt participles/auxiliaries and some lexical/case forms need repair.
+- `Drogen` means recreational/illegal drugs; intended medical word is `Medikamente`.
+- Finite-verb check was unclear to student. Clarification: a finite verb is the verb changed for person/tense. In Perfekt it is the auxiliary (`habe`, `ist`), not the participle (`trainiert`, `herausgekommen`).
+- Model repairs: `weil ich zu viel trainiert habe`; `ob ihr dieser Anime gefallen wird`; `Dass ich viel esse, wusste ich schon früher`; `Weil der Diablo-4-DLC herausgekommen ist, hat sich mein Build stark verändert.`
+- Finite verbs in relevant clauses: `dass ... soll`; `weil ... habe`; `ob ... wird`; fronted `Weil ... ist`, followed by main-clause `hat`.
+
+## Next hint
+
+Copy only four repaired clauses and mark the verb that changes with person/tense: `dass ... soll`, `weil ... habe`, `ob ... wird`, and `Weil ... ist, hat ...`.
