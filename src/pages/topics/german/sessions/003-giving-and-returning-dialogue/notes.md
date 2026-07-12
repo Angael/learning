@@ -39,8 +39,25 @@ Read the verb first. Then point to the recipient and ask `komu?`; point to the i
 
 ## Student response
 
-- Pending.
+- Received 2026-07-12 in Discord, verbatim:
+
+  > A. Uzupełnij rodzajniki, korzystając z tabeli:
+  > 1. Ich bringe dem Bruder den Regenschirm. (der Bruder / der Regenschirm)
+  > 2. Nora erklärt der Kollegin das Problem. (die Kollegin / das Problem)
+  > 3. Wir schicken dem Hotel die Nachricht. (das Hotel / die Nachricht)
+  > 4. Der Trainer zeigt den (l. Mnoga?) Spielern die Übung. (die Spieler / die Übung)
+  >
+  > B. Rozbierz zdanie 2:
+  > - Dativ: erklärt der Kollegin | dlaczego: bo wyjaśnia komu czemu koleżance
+  > - Akkusativ:  | dlaczego: tłumaczy kogo co coś
+  >
+  > C. Zbuduj jedno zdanie z podanych elementów:
+  > „Daję sąsiadce klucz.”
+  > ich / geben / die Nachbarin / der Schlüssel
+  > Odpowiedź: Ich gebe der Nachbarin den Schlüssel
 
 ## Evaluation
 
-- Pending learner response. Check eight article choices, the sentence-2 explanation, and the constrained sentence. Correct one high-value case mapping at a time; do not introduce an open dialogue unless this controlled step is secure and the learner wants it.
+- All eight article choices are correct, including Dativ plural `den Spielern` (the plural noun gains `-n`). The constrained production is also correct: `Ich gebe der Nachbarin den Schlüssel.`
+- The only correction is the sentence-2 analysis: name noun phrases, not the verb phrase. Dativ is `der Kollegin` (recipient: *komu?*); Akkusativ is `das Problem` (item: *co?*). `erklärt` licenses both complements but is neither one.
+- Evidence: the learner reliably mapped recipient and item to Dativ and Akkusativ across masculine, feminine, neuter, and plural forms, and transferred the pattern to `geben`.
