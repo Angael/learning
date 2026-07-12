@@ -1,47 +1,55 @@
----
-const rows = [
-  { caseName: 'Nominativ', question: 'kto? co?', tone: 'nom', masculine: ['d', 'er Mann', 'ein Mann'], feminine: ['d', 'ie Tasche', 'eine Tasche'], neuter: ['d', 'as Buch', 'ein Buch'], plural: ['d', 'ie Bücher', 'keine Bücher'] },
-  { caseName: 'Akkusativ', question: 'kogo? co?', tone: 'acc', masculine: ['d', 'en Mann', 'einen Mann'], feminine: ['d', 'ie Tasche', 'eine Tasche'], neuter: ['d', 'as Buch', 'ein Buch'], plural: ['d', 'ie Bücher', 'keine Bücher'] },
-  { caseName: 'Dativ', question: 'komu? czemu?', tone: 'dat', masculine: ['d', 'em Mann', 'einem Mann'], feminine: ['d', 'er Tasche', 'einer Tasche'], neuter: ['d', 'em Buch', 'einem Buch'], plural: ['d', 'en Bücher', 'keinen Bücher<span class="ending ending--dat">n</span>'] },
-];
----
-
-<div class="case-table-wrap">
-  <table class="case-table">
-    <thead>
-      <tr>
-        <th>Przypadek</th>
-        <th>męski</th>
-        <th>żeński</th>
-        <th>nijaki</th>
-        <th>liczba mnoga</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map((row) => (
-        <tr class={`case-table__${row.tone}`}>
-          <th><strong>{row.caseName}</strong><br /><small>{row.question}</small></th>
-          <td><span class={`ending ending--${row.tone}`}>{row.masculine[0]}</span>{row.masculine[1]}<br /><span set:html={row.masculine[2]} /></td>
-          <td><span class={`ending ending--${row.tone}`}>{row.feminine[0]}</span>{row.feminine[1]}<br /><span set:html={row.feminine[2]} /></td>
-          <td><span class={`ending ending--${row.tone}`}>{row.neuter[0]}</span>{row.neuter[1]}<br /><span set:html={row.neuter[2]} /></td>
-          <td><span class={`ending ending--${row.tone}`}>{row.plural[0]}</span>{row.plural[1]}<br /><span set:html={row.plural[2]} /></td>
+<div class="case-tables">
+  <div class="case-table-wrap">
+    <table class="case-table">
+      <caption>Rodzajnik określony — odpowiedniki <code>der / die / das</code></caption>
+      <thead>
+        <tr>
+          <th>Rodzaj</th>
+          <th>Nominativ<br /><small>kto? co?</small></th>
+          <th>Akkusativ<br /><small>kogo? co?</small></th>
+          <th>Dativ<br /><small>komu? czemu?</small></th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr><th>męski</th><td><code>der</code></td><td><strong><code>den</code></strong></td><td><strong><code>dem</code></strong></td></tr>
+        <tr><th>żeński</th><td><code>die</code></td><td><code>die</code></td><td><strong><code>der</code></strong></td></tr>
+        <tr><th>nijaki</th><td><code>das</code></td><td><code>das</code></td><td><strong><code>dem</code></strong></td></tr>
+        <tr><th>liczba mnoga</th><td><code>die</code></td><td><code>die</code></td><td><strong><code>den</code></strong> + zwykle <code>-n</code> przy rzeczowniku</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="case-table-wrap">
+    <table class="case-table">
+      <caption>Rodzajnik nieokreślony — odpowiedniki <code>ein / eine</code></caption>
+      <thead>
+        <tr>
+          <th>Rodzaj</th>
+          <th>Nominativ</th>
+          <th>Akkusativ</th>
+          <th>Dativ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>męski</th><td><code>ein</code></td><td><strong><code>einen</code></strong></td><td><strong><code>einem</code></strong></td></tr>
+        <tr><th>żeński</th><td><code>eine</code></td><td><code>eine</code></td><td><strong><code>einer</code></strong></td></tr>
+        <tr><th>nijaki</th><td><code>ein</code></td><td><code>ein</code></td><td><strong><code>einem</code></strong></td></tr>
+        <tr><th>liczba mnoga</th><td colspan="3">Brak liczby mnogiej dla <code>ein</code>; np. <code>keine / keine / keinen</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-<p class="legend"><span class="ending ending--nom">niebieski</span> = Nominativ · <span class="ending ending--acc">fioletowy</span> = Akkusativ · <span class="ending ending--dat">zielony</span> = Dativ. Podkreślona litera lub końcówka jest tym, co warto zauważyć.</p>
+
+<p class="case-table-note"><strong>Pogrubione</strong> są tylko formy, które różnią się od Nominativ. Najważniejszy skrót: w Akkusativ zmienia się przede wszystkim rodzaj męski; w Dativ zmieniają się wszystkie rodzaje.</p>
 
 <style>
+  .case-tables { display: grid; gap: 18px; }
   .case-table-wrap { overflow-x: auto; }
-  .case-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .93rem; }
+  .case-table { width: 100%; min-width: 590px; border-collapse: collapse; font-size: .93rem; }
+  .case-table caption { margin-bottom: 8px; text-align: left; font-weight: 700; }
   .case-table th, .case-table td { padding: 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
   .case-table thead { background: var(--code); color: var(--code-text); }
   .case-table tbody th { background: rgba(35, 40, 60, .04); }
   .case-table small { font-weight: 400; }
-  .ending { font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
-  .ending--nom { color: #155eae; }
-  .ending--acc { color: #8b2676; }
-  .ending--dat { color: #18794e; }
-  .legend { margin-bottom: 0; font-size: .9rem; }
+  .case-table-note { margin-bottom: 0; font-size: .93rem; }
 </style>

@@ -11,7 +11,7 @@
 - Difficulty: 2/5.
 - Exact task: copy three supplied sentences, fill six article forms, then label each supplied Dativ/Akkusativ pair as `komu?` / `co?`.
 - Scope: noun articles in Nominativ, Akkusativ, and Dativ for one masculine, feminine, neuter, and plural reference set; common `zeigen / geben / schicken` patterns.
-- The public page includes a colour-coded, underlined case table, vocabulary with articles and Polish translations, and a reference-only pronoun preview.
+- The public page includes clean, separate definite/indefinite article tables organised by gender and case, vocabulary with articles and Polish translations, and a reference-only pronoun preview.
 - Copy template is embedded in the session and begins with the permanent ID.
 
 ## Teaching decision
