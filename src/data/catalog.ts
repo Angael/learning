@@ -21,6 +21,12 @@ export const topics: Topic[] = [
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
     sessions: [
       {
+        title: 'Constructors, properties, and state',
+        href: '/topics/csharp/sessions/004-constructors-properties-and-state/',
+        summary: 'Construct two independent stateful objects, control public mutation, and choose between an instance method and a static helper.',
+        date: '2026-07-12',
+      },
+      {
         title: 'Static and instance members',
         href: '/topics/csharp/sessions/003-static-and-instance-members/',
         summary: 'Use one small class to distinguish object-owned state and behavior from type-owned static behavior, then predict and repair calls.',
@@ -91,16 +97,22 @@ export const topics: Topic[] = [
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
       {
-        title: 'Diagnoza i pierwszy powrót do niemieckiego',
-        href: '/topics/german/sessions/001-diagnostic/',
-        summary: 'Historyczny zapis punktu wyjścia, pierwszego utrwalenia Perfekt i Dativ oraz kierunku dalszej reaktywacji B1.',
-        date: '2026-07-06',
+        title: 'Dialog: zwrot lub wymiana',
+        href: '/topics/german/sessions/003-giving-and-returning-dialogue/',
+        summary: 'Napisz praktyczny dialog o zwrocie lub wymianie z Perfekt, wzorami Dativ/Akkusativ i jednym zdaniem podrzędnym.',
+        date: '2026-07-12',
       },
       {
         title: 'Aktualizacja: szyk zdań podrzędnych',
         href: '/topics/german/sessions/002-weekend-update-subordinate-clauses/',
         summary: 'Napisz praktyczną aktualizację z Perfekt, weil, dass i ob, a następnie wskaż czasowniki odmienne i sprawdź szyk.',
         date: '2026-07-11',
+      },
+      {
+        title: 'Diagnoza i pierwszy powrót do niemieckiego',
+        href: '/topics/german/sessions/001-diagnostic/',
+        summary: 'Historyczny zapis punktu wyjścia, pierwszego utrwalenia Perfekt i Dativ oraz kierunku dalszej reaktywacji B1.',
+        date: '2026-07-06',
       },
     ],
   },

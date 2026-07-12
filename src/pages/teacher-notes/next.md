@@ -1,7 +1,7 @@
 # Next learning sessions
 
 - Date: 2026-07-12 (Europe/Warsaw)
-- Status: planned
+- Status: implemented
 - Weekly note: [2026-W28](/teacher-notes/weekly/2026-W28/)
 - Capacity: weekend-two-long
 
@@ -46,6 +46,6 @@
 
 ## Implementation record
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [C# 004](/topics/csharp/sessions/004-constructors-properties-and-state/) and [German 003](/topics/german/sessions/003-giving-and-returning-dialogue/)
+- Commit: this production commit on `main`

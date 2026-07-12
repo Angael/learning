@@ -1,0 +1,121 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+
+const classExample = `class RetryTracker
+{
+    public string Operation { get; }
+    public int MaxAttempts { get; }
+    public int Attempts { get; private set; }
+
+    public RetryTracker(string operation, int maxAttempts)
+    {
+        Operation = operation;
+        MaxAttempts = maxAttempts;
+        Attempts = 0;
+    }
+
+    public bool RecordAttempt()
+    {
+        if (Attempts >= MaxAttempts)
+        {
+            return false;
+        }
+
+        Attempts++;
+        return true;
+    }
+
+    public static bool IsValidMaxAttempts(int maxAttempts)
+    {
+        return maxAttempts > 0;
+    }
+}`;
+
+const taskCode = `var email = new RetryTracker("send-email", 3);
+var webhook = new RetryTracker("post-webhook", 1);
+
+Console.WriteLine(email.RecordAttempt());
+Console.WriteLine(email.Attempts);
+Console.WriteLine(webhook.Attempts);
+
+RetryTracker.RecordAttempt();
+email.IsValidMaxAttempts(2);`;
+
+const replyText = `[learn:csharp/004:q1]
+
+1. Predicted output:
+- Line 1:
+- Line 2:
+- Line 3:
+
+2. Repaired calls:
+\`\`\`csharp
+// Replace the final two invalid lines here.
+\`\`\`
+
+3. Ownership:
+- Why RecordAttempt is an instance method:
+- Why IsValidMaxAttempts is static:
+
+4. Separate state:
+- Why email.Attempts changed but webhook.Attempts did not:`;
+---
+
+<SessionPage
+  title="Session 4 · C# constructors, properties, and state"
+  heading="Give each object state, then choose its receiver"
+  lede="Today’s win: construct two independent objects, keep their public state controlled, and distinguish a state-changing instance method from a type-level helper."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="A class is a shape; each object has its own state">
+    <Callout>
+      Constructor-set <code>get;</code> properties are fixed for each object after construction. A property with <code>private set;</code> can still change, but only through behavior inside the class.
+    </Callout>
+    <p>
+      <code>RetryTracker</code> could represent retry state for a backend operation. Its operation name and limit are chosen when it is created. Its attempt count starts at zero and changes only when the tracker records an attempt.
+    </p>
+    <p>
+      This is not a static-versus-instance vocabulary drill. The question is practical: which operation needs one selected tracker and its current state?
+    </p>
+  </SessionSection>
+
+  <SessionSection title="One small stateful class">
+    <Code code={classExample} lang="csharp" />
+    <ul>
+      <li><code>Operation</code> and <code>MaxAttempts</code> are assigned by the constructor and then read-only through the public API.</li>
+      <li><code>Attempts</code> is readable by callers, but only this class can update it.</li>
+      <li><code>RecordAttempt()</code> needs a particular tracker’s <code>Attempts</code> and <code>MaxAttempts</code>, so it is an instance method.</li>
+      <li><code>IsValidMaxAttempts(...)</code> needs only its argument, so it is a static type-level helper.</li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="Read state and receiver together">
+    <p>
+      Calling <code>email.RecordAttempt()</code> selects the <code>email</code> object. It may change <code>email.Attempts</code>, but it cannot silently change <code>webhook.Attempts</code>: those are separate objects created from the same class.
+    </p>
+    <p>
+      A static method has no implicit <code>this</code> object. Call it through <code>RetryTracker</code> and supply every value it needs explicitly.
+    </p>
+  </SessionSection>
+
+  <SessionSection title="Two useful compiler failures" variant="warning">
+    <p><code>RetryTracker.RecordAttempt()</code> fails because no tracker was selected, so there is no <code>Attempts</code> state to read or update.</p>
+    <p><code>email.IsValidMaxAttempts(2)</code> fails because this helper belongs to the type. Use <code>RetryTracker.IsValidMaxAttempts(2)</code>.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/004:q1" copyText={replyText} difficulty={3}>
+    <Code code={taskCode} lang="csharp" />
+    <p>Without running the code:</p>
+    <ol>
+      <li>Predict the first three output lines.</li>
+      <li>Repair the final two invalid calls with the smallest changes.</li>
+      <li>Explain why <code>RecordAttempt</code> belongs to an instance while <code>IsValidMaxAttempts</code> belongs to the type.</li>
+      <li>Explain why <code>email.Attempts</code> changed but <code>webhook.Attempts</code> did not.</li>
+    </ol>
+  </ReplyTask>
+</SessionPage>
