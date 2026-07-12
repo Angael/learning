@@ -38,8 +38,20 @@ When choosing a receiver, ask: “Which object’s state could this line read or
 
 ## Student response
 
-- Pending.
+- Received 2026-07-12:
+  - Predicted output: `false`, `1`, `0`.
+  - Repairs: `webhook.RecordAttempt();` and `RetryTracker.IsValidMaxAttempts(webhook Attempts);`.
+  - Ownership: `RecordAttempt` needs separate stored state; static validation can accept an `int` explicitly.
+  - Separate state: `email.RecordAttempt()` changes `email.Attempts`, not `webhook.Attempts`.
+- Learner feedback: this session felt almost identical to the previous `static` session.
 
 ## Evaluation
 
-- Pending learner response. Prior session supplied only self-report for basic `static`; evaluate this task for transfer into stateful object construction and receiver choice.
+- Correct: the second and third output values are `1` and `0`; the separate-object explanation is correct; `webhook.RecordAttempt()` is a valid minimal repair because it selects one tracker.
+- Correction: the first printed value is `True` (capital T), because the first `email.RecordAttempt()` succeeds before incrementing `email.Attempts`. The second repair needs `webhook.Attempts` with a dot; it is a valid `int` argument, though `RetryTracker.IsValidMaxAttempts(2)` preserves the original supplied value.
+- Important distinction: `RecordAttempt` is instance-owned because it reads and changes the selected tracker's `Attempts` and reads its `MaxAttempts`. `IsValidMaxAttempts` is static because it needs no selected tracker: every input it uses is an explicit argument. Accepting an `int` is a consequence, not the main reason.
+- Pedagogical correction: the session changed the surrounding class, but its assessed work still largely repeated receiver/static classification from session 003. That was insufficiently novel transfer after the learner had already said the basic material was trivial. Do not count this as meaningful new progress beyond confirming separate object state.
+
+## Next hint
+
+- Deliberate stopping point: no extra repair is assigned from this duplicate practice. The next C# event must move to a new decision—model a small API/domain type and justify its public surface—rather than ask another static-versus-instance receiver repair.
