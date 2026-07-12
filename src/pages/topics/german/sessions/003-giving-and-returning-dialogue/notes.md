@@ -1,41 +1,40 @@
-# Notes: giving and returning dialogue
+# Notes: Dativ and Akkusativ, controlled practice
 
-## Session summary
+## Session remake
 
-Published 2026-07-12. Fresh practical dialogue tests transfer after guided finite-verb repair. Scope is common recipient-plus-object patterns, two Perfekt actions, and one subordinate clause; it deliberately avoids a full case table or new tense.
+- Originally published 2026-07-12 as a long return/exchange dialogue.
+- Remade 2026-07-12 after direct learner feedback, retaining permanent reply ID `[learn:german/003:q1]`.
+- The earlier task imposed 8–10 lines of open shop dialogue, two Perfekt actions, two Dativ/Akkusativ patterns, and a subordinate clause before the learner had a dependable reference or enough controlled practice. It created avoidable planning and vocabulary load.
 
-## Reply task
+## Current task
 
-- ID: `[learn:german/003:q1]`
-- Difficulty: 3/5
-- Exact task: write an 8–10-line German return/exchange dialogue. Include two Perfekt actions, two `jemandem etwas geben/bringen/zeigen/schicken` patterns, and one `weil`/`dass`/`ob` clause; mark two Dativ/Akkusativ pairs and the finite verb in the clause.
+- Difficulty: 2/5.
+- Exact task: copy three supplied sentences, fill six article forms, then label each supplied Dativ/Akkusativ pair as `komu?` / `co?`.
+- Scope: noun articles in Nominativ, Akkusativ, and Dativ for one masculine, feminine, neuter, and plural reference set; common `zeigen / geben / schicken` patterns.
+- The public page includes a colour-coded, underlined case table, vocabulary with articles and Polish translations, and a reference-only pronoun preview.
 - Copy template is embedded in the session and begins with the permanent ID.
+
+## Teaching decision
+
+- Do not assess open dialogue, Perfekt, or subordinate-clause word order in this response.
+- Treat `ihm / ihnen / sie / sein` as a later, short pronoun-focused step. The current page gives a compact reference only, so the learner can orient themselves without being tested on it prematurely.
+- The learner explicitly prefers reference at hand, visible articles/translations for non-tested vocabulary, varied textbook-like exercise types, and a controlled progression before open production. Include a compact case reference in future German sessions whenever case choice is material.
 
 ## Expected reasoning
 
-- In the target patterns, the recipient is Dativ and the item/person given, brought, shown, or sent is Akkusativ.
-- Common controlled forms include `Ihnen/mir/meiner Schwester` for a recipient and `den Pullover/eine Groesse/ein Foto` for a thing.
-- Perfekt uses finite auxiliary plus participle: `Ich habe ihn gekauft`; in a subordinate clause, the finite verb is final: `weil sie dieselbe Groesse traegt`.
-- The dialogue should be communicatively coherent: request, receipt/previous action, offer or explanation, and outcome.
-
-## Acceptable variants
-
-- Any realistic shop, delivery, return, exchange, or gift context is acceptable.
-- `ae/oe/ue/ss` are accepted.
-- Either recipient-first or a natural alternative word order is acceptable when case marking is clear.
-- `weil`, `dass`, or `ob` is sufficient for the fresh subordinate clause.
-- Simple vocabulary and controlled sentences are preferred over ambitious but uncontrolled production.
+- In `jemandem etwas zeigen / geben / schicken`, the recipient answers `komu?` and is Dativ; the item answers `co?` and is Akkusativ.
+- Expected forms: `dem Mann / den Pullover`; `der Frau / die Tasche`; `dem Kind / das Foto`.
+- The task deliberately permits copying and consulting the table; the evidence sought is careful lookup and role mapping, not unaided recall.
 
 ## Likely misconception
 
-- Using accusative for the recipient, for example `Ich zeige Sie die Groessen` rather than `Ich zeige Ihnen die Groessen`.
-- Retaining main-clause verb order after `weil`.
-- Calling the Perfekt participle rather than the auxiliary the finite verb.
-- Treating minor spelling or missing umlauts as the main issue before communication, case role, and verb position.
+- Treating the first noun as automatically Dativ without using the verb's recipient-plus-item meaning.
+- Applying the masculine accusative change (`der` → `den`) to feminine or neuter nouns.
+- Confusing the pronoun reference with a requirement to produce pronouns now.
 
 ## Next hint
 
-Build the sentence in two parts: first ask “komu?” and choose the recipient, then ask “co?” and choose the item. For the one connector clause, underline the finite verb and move it to the end before sending.
+Read the verb first. Then point to the recipient and ask `komu?`; point to the item and ask `co?`. Only then copy the matching article from the table.
 
 ## Student response
 
@@ -43,4 +42,4 @@ Build the sentence in two parts: first ask “komu?” and choose the recipient,
 
 ## Evaluation
 
-- Pending learner response. Prior session showed guided finite-verb identification, so prioritise fresh transfer of verb-final order and communicative Dativ/Akkusativ choices; do not reopen broad case review.
+- Pending learner response. Check only the three copied patterns, six article choices, and Polish role labels. Correct one high-value case mapping at a time; do not introduce an open dialogue unless this controlled step is secure and the learner wants it.

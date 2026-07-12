@@ -97,9 +97,9 @@ export const topics: Topic[] = [
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
       {
-        title: 'Dialog: zwrot lub wymiana',
+        title: 'Dativ i Akkusativ: krok po kroku',
         href: '/topics/german/sessions/003-giving-and-returning-dialogue/',
-        summary: 'Napisz praktyczny dialog o zwrocie lub wymianie z Perfekt, wzorami Dativ/Akkusativ i jednym zdaniem podrzędnym.',
+        summary: 'Użyj tabeli przypadków, przepisz trzy krótkie wzory i dobierz rodzajniki do Dativ/Akkusativ bez otwartego dialogu.',
         date: '2026-07-12',
       },
       {

@@ -27,6 +27,13 @@ Teach German through Polish. Learner-facing explanations, instructions, headings
 5. Writing: 5-10 sentence notes, corrected in chat.
 6. Fluency: opinions, plans, work/life topics, storytelling.
 
+## Teaching policy
+
+- When case choice matters, provide a compact Nominativ/Akkusativ/Dativ reference table with visible endings; it is a working aid, not a memory test.
+- Give articles and Polish translations for vocabulary that is not being tested explicitly.
+- Sequence new grammar through modelled examples, copying or matching, and short controlled transformations before open dialogue or free production.
+- Keep pronoun forms such as `ihm`, `Ihnen`, `sie`, and possessives such as `sein` in a separate, focused step rather than mixing them into an early noun-case task.
+
 ## Achievements
 
 - [x] Write 5 simple sentences about recent life/weekend with correction support.

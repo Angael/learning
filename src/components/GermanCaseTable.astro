@@ -1,0 +1,47 @@
+---
+const rows = [
+  { caseName: 'Nominativ', question: 'kto? co?', tone: 'nom', masculine: ['d', 'er Mann', 'ein Mann'], feminine: ['d', 'ie Tasche', 'eine Tasche'], neuter: ['d', 'as Buch', 'ein Buch'], plural: ['d', 'ie Bücher', 'keine Bücher'] },
+  { caseName: 'Akkusativ', question: 'kogo? co?', tone: 'acc', masculine: ['d', 'en Mann', 'einen Mann'], feminine: ['d', 'ie Tasche', 'eine Tasche'], neuter: ['d', 'as Buch', 'ein Buch'], plural: ['d', 'ie Bücher', 'keine Bücher'] },
+  { caseName: 'Dativ', question: 'komu? czemu?', tone: 'dat', masculine: ['d', 'em Mann', 'einem Mann'], feminine: ['d', 'er Tasche', 'einer Tasche'], neuter: ['d', 'em Buch', 'einem Buch'], plural: ['d', 'en Bücher', 'keinen Bücher<span class="ending ending--dat">n</span>'] },
+];
+---
+
+<div class="case-table-wrap">
+  <table class="case-table">
+    <thead>
+      <tr>
+        <th>Przypadek</th>
+        <th>męski</th>
+        <th>żeński</th>
+        <th>nijaki</th>
+        <th>liczba mnoga</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr class={`case-table__${row.tone}`}>
+          <th><strong>{row.caseName}</strong><br /><small>{row.question}</small></th>
+          <td><span class={`ending ending--${row.tone}`}>{row.masculine[0]}</span>{row.masculine[1]}<br /><span set:html={row.masculine[2]} /></td>
+          <td><span class={`ending ending--${row.tone}`}>{row.feminine[0]}</span>{row.feminine[1]}<br /><span set:html={row.feminine[2]} /></td>
+          <td><span class={`ending ending--${row.tone}`}>{row.neuter[0]}</span>{row.neuter[1]}<br /><span set:html={row.neuter[2]} /></td>
+          <td><span class={`ending ending--${row.tone}`}>{row.plural[0]}</span>{row.plural[1]}<br /><span set:html={row.plural[2]} /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="legend"><span class="ending ending--nom">niebieski</span> = Nominativ · <span class="ending ending--acc">fioletowy</span> = Akkusativ · <span class="ending ending--dat">zielony</span> = Dativ. Podkreślona litera lub końcówka jest tym, co warto zauważyć.</p>
+
+<style>
+  .case-table-wrap { overflow-x: auto; }
+  .case-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .93rem; }
+  .case-table th, .case-table td { padding: 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+  .case-table thead { background: var(--code); color: var(--code-text); }
+  .case-table tbody th { background: rgba(35, 40, 60, .04); }
+  .case-table small { font-weight: 400; }
+  .ending { font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+  .ending--nom { color: #155eae; }
+  .ending--acc { color: #8b2676; }
+  .ending--dat { color: #18794e; }
+  .legend { margin-bottom: 0; font-size: .9rem; }
+</style>

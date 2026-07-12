@@ -1,87 +1,86 @@
 ---
 import Callout from '../../../../../components/Callout.astro';
-import Code from '../../../../../components/Code.astro';
+import GermanCaseTable from '../../../../../components/GermanCaseTable.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
-import ReplyTask from '../../../../../components/ReplyTask.astro';
-
-const modelDialogue = `Kundin: Guten Tag. Ich moechte diesen Pullover umtauschen.
-Verkaeufer: Haben Sie den Kassenbon?
-Kundin: Ja, ich habe ihn gestern gekauft, aber er ist zu klein.
-Verkaeufer: Kein Problem. Ich zeige Ihnen die groesseren Groessen.
-Kundin: Koennen Sie mir auch diesen Pullover in Blau bringen?
-Verkaeufer: Ja, ich bringe Ihnen gleich eine blaue Groesse.
-Kundin: Ich habe meiner Schwester schon ein Foto geschickt, weil sie dieselbe Groesse traegt.
-Verkaeufer: Passt Ihnen die blaue Groesse?
-Kundin: Ja. Bitte geben Sie mir diese Groesse.
-Verkaeufer: Gern. Ich nehme den anderen Pullover zurueck.`;
 
 const replyText = `[learn:german/003:q1]
 
-Dialog: zwrot albo wymiana (8–10 linijek)
-1. Klient/klientka:
-2. Pracownik/pracowniczka:
-3. Klient/klientka:
-4. Pracownik/pracowniczka:
-5. Klient/klientka:
-6. Pracownik/pracowniczka:
-7. Klient/klientka:
-8. Pracownik/pracowniczka:
-9. (opcjonalnie)
-10. (opcjonalnie)
+A. Przepisz dokładnie trzy zdania:
+1. Ich zeige dem Mann den Pullover.
+2. Die Verkäuferin gibt der Frau die Tasche.
+3. Wir schicken dem Kind das Foto.
 
-Wymagania:
-- dwa zdania w Perfekt: zaznacz je tutaj: __________ / __________
-- jedno zdanie z weil albo dass albo ob: __________
-- zaznacz czasownik odmieniony w tym zdaniu: __________
-- oznacz dwie pary: komu? [Dat.] + co? [Akk.]
-  1. __________
-  2. __________`;
+B. Wstaw właściwe formy (tylko rodzajniki):
+1. Ich zeige ___ Mann ___ Pullover. (der Mann / der Pullover)
+2. Die Verkäuferin gibt ___ Frau ___ Tasche. (die Frau / die Tasche)
+3. Wir schicken ___ Kind ___ Foto. (das Kind / das Foto)
+
+C. Dopisz po polsku przy każdym zdaniu: komu? / co?
+1. komu: __________ | co: __________
+2. komu: __________ | co: __________
+3. komu: __________ | co: __________`;
 ---
 
 <SessionPage
-  title="Sesja 3 · Niemiecki: dialog o zwrocie lub wymianie"
-  heading="Komu? Co? Praktyczny dialog o zwrocie lub wymianie"
-  lede="Dziś: napisz krótki dialog po niemiecku, w którym naprawdę coś oddajesz albo wymieniasz — z dwoma zdaniami w Perfekt, prostymi wzorami Dativ/Akkusativ i jednym świeżym zdaniem podrzędnym."
+  title="Sesja 3 · Niemiecki: Dativ i Akkusativ krok po kroku"
+  heading="<code>der / die / das</code>: najpierw zobacz wzór, potem użyj go w trzech zdaniach"
+  lede="Poprzednia wersja za szybko przeszła do długiego dialogu. Ta sesja zaczyna od ściągi i krótkich, kontrolowanych przykładów — bez wymyślania sytuacji w sklepie."
   backHref="/topics/german/"
   backLabel="Sesje z niemieckiego"
 >
-  <SessionSection title="Dwa proste pytania pomagają wybrać przypadek">
+  <SessionSection title="Co robimy dziś — i czego jeszcze nie testujemy">
     <Callout>
-      W częstych wzorach <code>jemandem etwas geben / bringen / zeigen / schicken</code> osoba odpowiada na pytanie <strong>komu?</strong> (Dativ), a rzecz na pytanie <strong>co?</strong> (Akkusativ).
+      Dziś ćwiczysz tylko rzeczowniki z rodzajnikami: <strong>komu?</strong> = Dativ oraz <strong>co?</strong> = Akkusativ. Nie musisz jeszcze samodzielnie ogarniać całego zestawu <code>ihm / ihnen / sie / sein</code>.
     </Callout>
-    <p>
-      Nie uczysz się dziś całej tabeli przypadków. Wystarczy, że w dwóch własnych zdaniach świadomie wybierzesz odbiorcę i rzecz: <code>Ich zeige <strong>Ihnen</strong> <strong>die Groessen</strong>.</code>
-    </p>
+    <p>Najpierw patrzysz na gotowy wzór, potem go przepisujesz, a na końcu uzupełniasz same rodzajniki. To ma odciążyć pamięć roboczą; dłuższy dialog wróci dopiero po kilku takich małych krokach.</p>
   </SessionSection>
 
-  <SessionSection title="Krótka ściąga">
+  <SessionSection title="Ściąga: rodzajniki w Nominativ, Akkusativ i Dativ">
+    <p>Używaj tej tabeli podczas zadania. Kolor i podkreślenie pokazują końcówkę, na którą patrzysz — nie trzeba jej teraz recytować z pamięci.</p>
+    <GermanCaseTable />
+    <p><strong>Wzór dzisiejszych czasowników:</strong> <code>jemandem etwas zeigen / geben / schicken</code>. Najpierw pytaj <em>komu?</em>, potem <em>co?</em>.</p>
+  </SessionSection>
+
+  <SessionSection title="Słownictwo przydatne w tej sesji">
     <ul>
-      <li><code>jemandem etwas zeigen / bringen / geben / schicken</code> → <code>Ich bringe <strong>Ihnen</strong> <strong>eine blaue Groesse</strong>.</code></li>
-      <li>Perfekt: <code>haben</code> + Partizip II → <code>Ich habe <strong>ihm</strong> ein Foto <strong>geschickt</strong>.</code></li>
-      <li>Po <code>weil</code>, <code>dass</code> lub <code>ob</code> czasownik odmieniony stoi na końcu → <code>..., weil sie dieselbe Groesse <strong>traegt</strong>.</code></li>
+      <li><code>der Mann</code> — mężczyzna</li>
+      <li><code>die Frau</code> — kobieta</li>
+      <li><code>das Kind</code> — dziecko</li>
+      <li><code>der Pullover</code> — sweter</li>
+      <li><code>die Tasche</code> — torba</li>
+      <li><code>das Foto</code> — zdjęcie</li>
+      <li><code>zeigen</code> — pokazywać; <code>geben</code> — dawać; <code>schicken</code> — wysyłać</li>
     </ul>
-    <p>Możesz pisać <code>ae</code>, <code>oe</code>, <code>ue</code> i <code>ss</code>.</p>
+    <p>Rodzajnik podaję zawsze, gdy słowo ma być użyte w zadaniu. Gdy go nie testujemy, dostajesz też tłumaczenie.</p>
   </SessionSection>
 
-  <SessionSection title="Model: zwrot lub wymiana">
-    <p>Przeczytaj model jako zestaw użytecznych wzorów, nie jako tekst do przepisania. Zauważ, że oznaczone pary są różne: <code>Ihnen</code>/<code>mir</code>/<code>meiner Schwester</code> to odbiorcy, a rozmiary, sweter i zdjęcie to rzeczy.</p>
-    <Code code={modelDialogue} lang="text" />
+  <SessionSection title="Trzy wzory do przepisania">
+    <p>Nie twórz jeszcze własnych zdań. Przeczytaj je, wskaż sobie parę <em>komu? + co?</em>, a potem przepisz je w odpowiedzi.</p>
+    <ol>
+      <li><code>Ich zeige <u>dem</u> Mann <u>den</u> Pullover.</code> — Pokazuję mężczyźnie sweter.</li>
+      <li><code>Die Verkäuferin gibt <u>der</u> Frau <u>die</u> Tasche.</code> — Sprzedawczyni daje kobiecie torbę.</li>
+      <li><code>Wir schicken <u>dem</u> Kind <u>das</u> Foto.</code> — Wysyłamy dziecku zdjęcie.</li>
+    </ol>
+    <Callout>W każdym zdaniu pierwszy podkreślony rodzajnik odpowiada na <strong>komu?</strong> (Dativ), a drugi na <strong>co?</strong> (Akkusativ).</Callout>
   </SessionSection>
 
-  <SessionSection title="Jedna kontrola szyku" variant="warning">
-    <p>Nie pisz: <code>weil sie traegt dieselbe Groesse</code>. Po <code>weil</code> czasownik odmieniony idzie na koniec: <code>weil sie dieselbe Groesse traegt</code>.</p>
-    <p>W Perfekt czasownikiem odmienionym jest zwykle <code>habe</code> albo <code>hat</code>, a nie końcowy imiesłów, np. <code>geschickt</code>.</p>
+  <SessionSection title="Mini-ściąga do późniejszego użycia: zaimki">
+    <p>To jest referencja, nie materiał do odpytywania w tej odpowiedzi. <code>sie</code> może znaczyć „ona” albo „ich/je”, a <code>Sie</code> (wielka litera) to grzecznościowe „Pan/Pani/Państwo”.</p>
+    <table>
+      <thead><tr><th></th><th>on</th><th>ona</th><th>ono</th><th>Pan/Pani/Państwo</th></tr></thead>
+      <tbody>
+        <tr><th>Nominativ</th><td><code>er</code></td><td><code>sie</code></td><td><code>es</code></td><td><code>Sie</code></td></tr>
+        <tr><th>Akkusativ</th><td><code>ihn</code></td><td><code>sie</code></td><td><code>es</code></td><td><code>Sie</code></td></tr>
+        <tr><th>Dativ</th><td><code>ihm</code></td><td><code>ihr</code></td><td><code>ihm</code></td><td><code>Ihnen</code></td></tr>
+      </tbody>
+    </table>
+    <p><code>sein</code> = „jego / jego rzecz”; zachowuje się jak rodzajnik: <code>sein Bruder</code>, <code>seinen Bruder</code>, <code>seinem Bruder</code>. Zaimki weźmiemy w osobnej, krótkiej sesji po tym kroku.</p>
   </SessionSection>
 
-  <ReplyTask id="learn:german/003:q1" copyText={replyText} difficulty={3} language="pl">
-    <p>Napisz po niemiecku praktyczny dialog o zwrocie albo wymianie w sklepie. Użyj 8–10 linijek; mogą to być role klienta/klientki i pracownika/pracowniczki.</p>
-    <ul>
-      <li>Użyj co najmniej dwóch zakończonych czynności w Perfekt.</li>
-      <li>Użyj przynajmniej dwóch zdań ze wzorem: odbiorca <strong>komu?</strong> + rzecz <strong>co?</strong>, z <code>geben</code>, <code>bringen</code>, <code>zeigen</code> albo <code>schicken</code>.</li>
-      <li>Dodaj jedno własne zdanie z <code>weil</code>, <code>dass</code> albo <code>ob</code> i wskaż w nim czasownik odmieniony.</li>
-      <li>Po dialogu oznacz dwie pary Dativ/Akkusativ zgodnie z szablonem.</li>
-    </ul>
-    <p>Cel to zrozumiały, użyteczny dialog. Najpierw kontroluj komunikację, odbiorcę/rzecz i szyk; drobne literówki poprawimy później.</p>
+  <ReplyTask id="learn:german/003:q1" copyText={replyText} difficulty={2} language="pl">
+    <p>Odpowiedz tylko według szablonu: przepisz trzy wzory, wstaw sześć rodzajników i nazwij pary <em>komu? / co?</em>. Tabela ma być otwarta obok — to ćwiczenie używania ściągi, nie test pamięci.</p>
+    <p>Nie ma tu dialogu ani wymyślania własnej sytuacji. Po Twojej odpowiedzi sprawdzę wyłącznie wybór Dativ/Akkusativ; następny krok zrobimy dopiero wtedy, gdy ten będzie spokojny.</p>
   </ReplyTask>
 </SessionPage>

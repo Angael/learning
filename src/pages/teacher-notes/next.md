@@ -27,14 +27,14 @@
 ## Block 2
 
 - Topic: German
-- Type: writing
-- Target: write a practical 8–10-line exchange/return dialogue using common recipient-plus-object patterns, two Perfekt actions, and one fresh subordinate clause; mark Dativ/Akkusativ roles and the finite verb in selected lines.
-- Why now: guided finite-verb repair succeeded. A new communicative setting tests delayed transfer and advances the open common-case and chat-production goals.
-- Evidence links: [German 002 notes](/topics/german/sessions/002-weekend-update-subordinate-clauses/notes/), [German plan](/topics/german/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
-- Prerequisites: familiar Perfekt forms; basic `weil`/`dass`/`ob`; common nominative/accusative/dative article forms with a compact reference.
-- Scope boundary: common `geben`/`bringen`/`zeigen`/`schicken` patterns, communicative dialogue, and one clause-order retrieval. No full case table, pronoun-order taxonomy, new tense, or exhaustive correction.
+- Type: controlled practice
+- Target: use a visible Nominativ/Akkusativ/Dativ table to copy three recipient-plus-object patterns, select six article forms, and label `komu?` / `co?` roles.
+- Why now: learner feedback showed that the planned open dialogue created avoidable vocabulary and planning load. The remade task establishes calm, reference-supported noun-case use before renewed free production.
+- Evidence links: [German 002 notes](/topics/german/sessions/002-weekend-update-subordinate-clauses/notes/), [German 003 notes](/topics/german/sessions/003-giving-and-returning-dialogue/notes/), [German plan](/topics/german/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
+- Prerequisites: recognise the questions `komu?` and `co?`; consult a compact noun-article reference.
+- Scope boundary: noun articles with `geben`/`bringen`/`zeigen`/`schicken` patterns only. No open dialogue, Perfekt, subordinate-clause retrieval, or assessed pronoun forms.
 - Session: new `/topics/german/sessions/003-giving-and-returning-dialogue/`
-- Difficulty: 3/5
+- Difficulty: 2/5
 - Reply ID: learn:german/003:q1
 
 ## Backlog handling
