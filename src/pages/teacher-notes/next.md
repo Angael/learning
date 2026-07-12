@@ -1,53 +1,51 @@
 # Next learning sessions
 
-- Date: 2026-07-11 (Europe/Warsaw)
-- Status: implemented
+- Date: 2026-07-12 (Europe/Warsaw)
+- Status: planned
 - Weekly note: [2026-W28](/teacher-notes/weekly/2026-W28/)
 - Capacity: weekend-two-long
 
 ## Why this day
 
-- Weekly balance: C# has no W28 contact; German needs substantial production; .NET is already overrepresented.
-- Recent sessions considered: [C# 001–002](/topics/csharp/), [.NET 006](/topics/dotnet/sessions/006-generic-service-registration/), and [German diagnostic/reinforcement notes](/topics/german/sessions/001-diagnostic/notes/).
-- Sequence judgment: restore C# foundations and German production. Keep .NET internals deferred until the language model is stronger.
+- Weekly balance: Saturday restored C# and German contact; .NET remains overrepresented and needs no new W28 progression.
+- Recent sessions considered: [C# 003 notes](/topics/csharp/sessions/003-static-and-instance-members/notes/), [German 002 notes](/topics/german/sessions/002-weekend-update-subordinate-clauses/notes/), and [.NET 006 notes](/topics/dotnet/sessions/006-generic-service-registration/notes/).
+- Sequence judgment: advance instead of repeating basic `static`; test German repair through fresh production. Keep both blocks applied and .NET deferred.
 
 ## Block 1
 
 - Topic: C#
-- Type: new concept
-- Target: distinguish `static` from instance members through one small class with state, constructor, properties, and one member of each kind; predict and repair calls.
-- Why now: coldest active topic; directly supplies prerequisites for later service and generic reasoning.
-- Evidence links: [C# plan](/topics/csharp/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
-- Prerequisites: `var`, numeric operations, value/reference/nullability; basic parameters and return values.
-- Scope boundary: one class and member ownership. No records, interfaces, inheritance, DI, or ASP.NET internals.
-- Session: update `/topics/csharp/sessions/003-static-and-instance-members/`
+- Type: practice
+- Target: build one small stateful class with constructor-set state, read-only properties, an instance method, and a simple static validation/helper; use two instances, repair one wrong receiver, and explain the ownership choice.
+- Why now: session 003 was marked trivial without written evidence. Construction advances the classes arc while making instance/type ownership consequential.
+- Evidence links: [C# 003 notes](/topics/csharp/sessions/003-static-and-instance-members/notes/), [C# plan](/topics/csharp/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
+- Prerequisites: basic methods and calls; value/reference/nullability; self-reported basic `static` understanding.
+- Scope boundary: one class, constructor, getter-only properties, stateful behavior, and receiver choice. No records, interfaces, inheritance, generics, DI, or framework internals.
+- Session: new `/topics/csharp/sessions/004-constructors-properties-and-state/`
 - Difficulty: 3/5
-- Reply ID: learn:csharp/003:q1
+- Reply ID: learn:csharp/004:q1
 
 ## Block 2
 
 - Topic: German
 - Type: writing
-- Target: produce a practical 6–8 sentence weekend update using `weil`, `dass`, and `ob`, including Perfekt and one fronted subordinate clause; identify finite verbs before correction.
-- Why now: recent Perfekt/Dativ retrieval was successful; transfer into unsupported rusty-B1 production and repair verb-final order.
-- Evidence links: [German plan](/topics/german/plan/), [diagnostic/reinforcement notes](/topics/german/sessions/001-diagnostic/notes/)
-- Prerequisites: main-clause verb-second; familiar present and Perfekt forms; meanings of `weil`, `dass`, and `ob`.
-- Scope boundary: practical production and subordinate-clause order. No article tables, separate Perfekt reteaching, or broad connector taxonomy.
-- Session: update `/topics/german/sessions/002-weekend-update-subordinate-clauses/`
+- Target: write a practical 8–10-line exchange/return dialogue using common recipient-plus-object patterns, two Perfekt actions, and one fresh subordinate clause; mark Dativ/Akkusativ roles and the finite verb in selected lines.
+- Why now: guided finite-verb repair succeeded. A new communicative setting tests delayed transfer and advances the open common-case and chat-production goals.
+- Evidence links: [German 002 notes](/topics/german/sessions/002-weekend-update-subordinate-clauses/notes/), [German plan](/topics/german/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
+- Prerequisites: familiar Perfekt forms; basic `weil`/`dass`/`ob`; common nominative/accusative/dative article forms with a compact reference.
+- Scope boundary: common `geben`/`bringen`/`zeigen`/`schicken` patterns, communicative dialogue, and one clause-order retrieval. No full case table, pronoun-order taxonomy, new tense, or exhaustive correction.
+- Session: new `/topics/german/sessions/003-giving-and-returning-dialogue/`
 - Difficulty: 3/5
-- Reply ID: learn:2026-07-11:b2
+- Reply ID: learn:german/003:q1
 
 ## Backlog handling
 
 - Pressure: medium
-- One item to resurface: C# object-model foundation, not the deferred .NET 006 checkpoint.
-- Help or catch-up support: keep both blocks coherent; permit `ae/oe/ue/ss`; German correction should target word order before minor spelling.
-- Deliberately deferred: .NET 006 checkpoint, framework source/overload internals, records/interfaces, and unrelated repairs.
+- One item to resurface: C# class construction as the useful prerequisite for later .NET work.
+- Help or catch-up support: provide a C# starter shape and a compact German case/verb reference; accept `ae/oe/ue/ss`; prioritize communicative accuracy over minor spelling.
+- Deliberately deferred: .NET 006 checkpoint, framework source/overload internals, C# records/interfaces, and broad German case review.
 
 ## Implementation record
 
-- Status: implemented
+- Status: not started
 - Sessions:
-  - [C# session 003: static and instance members](/topics/csharp/sessions/003-static-and-instance-members/)
-  - [German session 002: weekend update](/topics/german/sessions/002-weekend-update-subordinate-clauses/)
-- Commit: superseded by the session migration
+- Commit:
