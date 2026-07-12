@@ -8,8 +8,8 @@
 
 ## Current task
 
-- Difficulty: 2/5.
-- Exact task: copy three supplied sentences, fill six article forms, then label each supplied Dativ/Akkusativ pair as `komu?` / `co?`.
+- Difficulty: 3/5.
+- Exact task: fill eight article forms in four new sentences, explain the Dativ/Akkusativ roles in one sentence, then build one constrained sentence from a Polish cue and supplied German words.
 - Scope: noun articles in Nominativ, Akkusativ, and Dativ for one masculine, feminine, neuter, and plural reference set; common `zeigen / geben / schicken` patterns.
 - The public page includes clean, separate definite/indefinite article tables organised by gender and case, vocabulary with articles and Polish translations, and a reference-only pronoun preview.
 - Copy template is embedded in the session and begins with the permanent ID.
@@ -18,13 +18,14 @@
 
 - Do not assess open dialogue, Perfekt, or subordinate-clause word order in this response.
 - Treat `ihm / ihnen / sie / sein` as a later, short pronoun-focused step. The current page gives a compact reference only, so the learner can orient themselves without being tested on it prematurely.
-- The learner explicitly prefers reference at hand, visible articles/translations for non-tested vocabulary, varied textbook-like exercise types, and a controlled progression before open production. Include a compact case reference in future German sessions whenever case choice is material.
+- The learner explicitly prefers reference at hand, articles/translations for non-tested vocabulary, varied textbook-like exercise types, and a controlled progression before open production. The learner also rejected an exercise whose copied models supplied the exact answers to the completion items. Worked examples must use different lexical material from assessed items unless deliberate copying itself is the stated learning objective.
 
 ## Expected reasoning
 
 - In `jemandem etwas zeigen / geben / schicken`, the recipient answers `komu?` and is Dativ; the item answers `co?` and is Akkusativ.
-- Expected forms: `dem Mann / den Pullover`; `der Frau / die Tasche`; `dem Kind / das Foto`.
-- The task deliberately permits copying and consulting the table; the evidence sought is careful lookup and role mapping, not unaided recall.
+- Expected forms: `dem Bruder / den Regenschirm`; `der Kollegin / das Problem`; `dem Hotel / die Nachricht`; `den Spielern / die Übung`.
+- Constrained production: `Ich gebe der Nachbarin den Schlüssel.`
+- Consulting the table is permitted. Evidence sought: role mapping, correct lookup, Dativ plural recognition, and one controlled transfer—not copying a nearby answer.
 
 ## Likely misconception
 
@@ -42,4 +43,4 @@ Read the verb first. Then point to the recipient and ask `komu?`; point to the i
 
 ## Evaluation
 
-- Pending learner response. Check only the three copied patterns, six article choices, and Polish role labels. Correct one high-value case mapping at a time; do not introduce an open dialogue unless this controlled step is secure and the learner wants it.
+- Pending learner response. Check eight article choices, the sentence-2 explanation, and the constrained sentence. Correct one high-value case mapping at a time; do not introduce an open dialogue unless this controlled step is secure and the learner wants it.

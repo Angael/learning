@@ -31,7 +31,7 @@ Teach German through Polish. Learner-facing explanations, instructions, headings
 
 - When case choice matters, provide a compact Nominativ/Akkusativ/Dativ reference table organised for direct comparison; it is a working aid, not a memory test.
 - Give articles and Polish translations for vocabulary that is not being tested explicitly.
-- Sequence new grammar through modelled examples, copying or matching, and short controlled transformations before open dialogue or free production.
+- Sequence new grammar through modelled examples, matching, short controlled transformations, and constrained production before open dialogue. Unless copying is itself the objective, worked examples must use different words from assessed items.
 - Keep pronoun forms such as `ihm`, `Ihnen`, `sie`, and possessives such as `sein` in a separate, focused step rather than mixing them into an early noun-case task.
 
 ## Achievements

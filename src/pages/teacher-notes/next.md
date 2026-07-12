@@ -28,13 +28,13 @@
 
 - Topic: German
 - Type: controlled practice
-- Target: use a visible Nominativ/Akkusativ/Dativ table to copy three recipient-plus-object patterns, select six article forms, and label `komu?` / `co?` roles.
+- Target: use a Nominativ/Akkusativ/Dativ table to select eight article forms in new sentences, explain one recipient/item pair, and build one constrained sentence from supplied words.
 - Why now: learner feedback showed that the planned open dialogue created avoidable vocabulary and planning load. The remade task establishes calm, reference-supported noun-case use before renewed free production.
 - Evidence links: [German 002 notes](/topics/german/sessions/002-weekend-update-subordinate-clauses/notes/), [German 003 notes](/topics/german/sessions/003-giving-and-returning-dialogue/notes/), [German plan](/topics/german/plan/), [weekly note](/teacher-notes/weekly/2026-W28/)
 - Prerequisites: recognise the questions `komu?` and `co?`; consult a compact noun-article reference.
 - Scope boundary: noun articles with `geben`/`bringen`/`zeigen`/`schicken` patterns only. No open dialogue, Perfekt, subordinate-clause retrieval, or assessed pronoun forms.
 - Session: new `/topics/german/sessions/003-giving-and-returning-dialogue/`
-- Difficulty: 2/5
+- Difficulty: 3/5
 - Reply ID: learn:german/003:q1
 
 ## Backlog handling

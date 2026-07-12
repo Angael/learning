@@ -7,25 +7,25 @@ import SessionSection from '../../../../../components/SessionSection.astro';
 
 const replyText = `[learn:german/003:q1]
 
-A. Przepisz dokładnie trzy zdania:
-1. Ich zeige dem Mann den Pullover.
-2. Die Verkäuferin gibt der Frau die Tasche.
-3. Wir schicken dem Kind das Foto.
+A. Uzupełnij rodzajniki, korzystając z tabeli:
+1. Ich bringe ___ Bruder ___ Regenschirm. (der Bruder / der Regenschirm)
+2. Nora erklärt ___ Kollegin ___ Problem. (die Kollegin / das Problem)
+3. Wir schicken ___ Hotel ___ Nachricht. (das Hotel / die Nachricht)
+4. Der Trainer zeigt ___ Spielern ___ Übung. (die Spieler / die Übung)
 
-B. Wstaw właściwe formy (tylko rodzajniki):
-1. Ich zeige ___ Mann ___ Pullover. (der Mann / der Pullover)
-2. Die Verkäuferin gibt ___ Frau ___ Tasche. (die Frau / die Tasche)
-3. Wir schicken ___ Kind ___ Foto. (das Kind / das Foto)
+B. Rozbierz zdanie 2:
+- Dativ: __________ | dlaczego: __________
+- Akkusativ: __________ | dlaczego: __________
 
-C. Dopisz po polsku przy każdym zdaniu: komu? / co?
-1. komu: __________ | co: __________
-2. komu: __________ | co: __________
-3. komu: __________ | co: __________`;
+C. Zbuduj jedno zdanie z podanych elementów:
+„Daję sąsiadce klucz.”
+ich / geben / die Nachbarin / der Schlüssel
+Odpowiedź: __________`;
 ---
 
 <SessionPage
   title="Sesja 3 · Niemiecki: Dativ i Akkusativ krok po kroku"
-  heading="<code>der / die / das</code>: najpierw zobacz wzór, potem użyj go w trzech zdaniach"
+  heading="<code>der / die / das</code>: wybierz przypadek w nowych zdaniach"
   lede="Poprzednia wersja za szybko przeszła do długiego dialogu. Ta sesja zaczyna od ściągi i krótkich, kontrolowanych przykładów — bez wymyślania sytuacji w sklepie."
   backHref="/topics/german/"
   backLabel="Sesje z niemieckiego"
@@ -34,7 +34,7 @@ C. Dopisz po polsku przy każdym zdaniu: komu? / co?
     <Callout>
       Dziś ćwiczysz tylko rzeczowniki z rodzajnikami: <strong>komu?</strong> = Dativ oraz <strong>co?</strong> = Akkusativ. Nie musisz jeszcze samodzielnie ogarniać całego zestawu <code>ihm / ihnen / sie / sein</code>.
     </Callout>
-    <p>Najpierw patrzysz na gotowy wzór, potem go przepisujesz, a na końcu uzupełniasz same rodzajniki. To ma odciążyć pamięć roboczą; dłuższy dialog wróci dopiero po kilku takich małych krokach.</p>
+    <p>Dostajesz jeden rozwiązany wzór, ale zadanie używa innych rzeczowników i zdań. Tabela zostaje pod ręką; wybór przypadku i formy należy już do Ciebie.</p>
   </SessionSection>
 
   <SessionSection title="Ściąga: rodzajniki w Nominativ, Akkusativ i Dativ">
@@ -45,25 +45,23 @@ C. Dopisz po polsku przy każdym zdaniu: komu? / co?
 
   <SessionSection title="Słownictwo przydatne w tej sesji">
     <ul>
-      <li><code>der Mann</code> — mężczyzna</li>
-      <li><code>die Frau</code> — kobieta</li>
-      <li><code>das Kind</code> — dziecko</li>
-      <li><code>der Pullover</code> — sweter</li>
-      <li><code>die Tasche</code> — torba</li>
-      <li><code>das Foto</code> — zdjęcie</li>
-      <li><code>zeigen</code> — pokazywać; <code>geben</code> — dawać; <code>schicken</code> — wysyłać</li>
+      <li><code>der Bruder</code> — brat; <code>der Regenschirm</code> — parasol</li>
+      <li><code>die Kollegin</code> — koleżanka z pracy; <code>das Problem</code> — problem</li>
+      <li><code>das Hotel</code> — hotel; <code>die Nachricht</code> — wiadomość</li>
+      <li><code>die Spieler</code> — gracze/zawodnicy; <code>die Übung</code> — ćwiczenie</li>
+      <li><code>die Nachbarin</code> — sąsiadka; <code>der Schlüssel</code> — klucz</li>
+      <li><code>bringen</code> — przynosić; <code>erklären</code> — wyjaśniać; <code>schicken</code> — wysyłać; <code>zeigen</code> — pokazywać; <code>geben</code> — dawać</li>
     </ul>
     <p>Rodzajnik podaję zawsze, gdy słowo ma być użyte w zadaniu. Gdy go nie testujemy, dostajesz też tłumaczenie.</p>
   </SessionSection>
 
-  <SessionSection title="Trzy wzory do przepisania">
-    <p>Nie twórz jeszcze własnych zdań. Przeczytaj je, wskaż sobie parę <em>komu? + co?</em>, a potem przepisz je w odpowiedzi.</p>
-    <ol>
-      <li><code>Ich zeige <strong>dem</strong> Mann <strong>den</strong> Pullover.</code> — Pokazuję mężczyźnie sweter.</li>
-      <li><code>Die Verkäuferin gibt <strong>der</strong> Frau <strong>die</strong> Tasche.</code> — Sprzedawczyni daje kobiecie torbę.</li>
-      <li><code>Wir schicken <strong>dem</strong> Kind <strong>das</strong> Foto.</code> — Wysyłamy dziecku zdjęcie.</li>
-    </ol>
-    <Callout>W każdym zdaniu pierwszy pogrubiony rodzajnik odpowiada na <strong>komu?</strong> (Dativ), a drugi na <strong>co?</strong> (Akkusativ).</Callout>
+  <SessionSection title="Jeden rozwiązany przykład">
+    <p><code>Der Lehrer zeigt <strong>dem Schüler</strong> <strong>das Bild</strong>.</code> — Nauczyciel pokazuje uczniowi obrazek.</p>
+    <ul>
+      <li><em>komu?</em> uczniowi → <code>der Schüler</code> jest rodzaju męskiego → Dativ: <code>dem Schüler</code>;</li>
+      <li><em>co?</em> obrazek → <code>das Bild</code> jest rodzaju nijakiego → Akkusativ: <code>das Bild</code>.</li>
+    </ul>
+    <Callout>Przykład pokazuje metodę, ale nie zawiera odpowiedzi do zdań z zadania. W każdym nowym zdaniu sam ustal odbiorcę i rzecz, a potem odczytaj formę z tabeli.</Callout>
   </SessionSection>
 
   <SessionSection title="Mini-ściąga do późniejszego użycia: zaimki">
@@ -79,8 +77,8 @@ C. Dopisz po polsku przy każdym zdaniu: komu? / co?
     <p><code>sein</code> = „jego / jego rzecz”; zachowuje się jak rodzajnik: <code>sein Bruder</code>, <code>seinen Bruder</code>, <code>seinem Bruder</code>. Zaimki weźmiemy w osobnej, krótkiej sesji po tym kroku.</p>
   </SessionSection>
 
-  <ReplyTask id="learn:german/003:q1" copyText={replyText} difficulty={2} language="pl">
-    <p>Odpowiedz tylko według szablonu: przepisz trzy wzory, wstaw sześć rodzajników i nazwij pary <em>komu? / co?</em>. Tabela ma być otwarta obok — to ćwiczenie używania ściągi, nie test pamięci.</p>
-    <p>Nie ma tu dialogu ani wymyślania własnej sytuacji. Po Twojej odpowiedzi sprawdzę wyłącznie wybór Dativ/Akkusativ; następny krok zrobimy dopiero wtedy, gdy ten będzie spokojny.</p>
+  <ReplyTask id="learn:german/003:q1" copyText={replyText} difficulty={3} language="pl">
+    <p>Uzupełnij osiem rodzajników w czterech nowych zdaniach, krótko uzasadnij przypadki w jednym z nich i zbuduj jedno zdanie z podanych elementów. Korzystaj z tabeli oraz listy słów.</p>
+    <p>To nadal zadanie kontrolowane — nie musisz wymyślać dialogu — ale rozwiązania nie są wcześniej pokazane w tych samych zdaniach.</p>
   </ReplyTask>
 </SessionPage>

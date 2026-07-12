@@ -99,7 +99,7 @@ export const topics: Topic[] = [
       {
         title: 'Dativ i Akkusativ: krok po kroku',
         href: '/topics/german/sessions/003-giving-and-returning-dialogue/',
-        summary: 'Użyj tabeli przypadków, przepisz trzy krótkie wzory i dobierz rodzajniki do Dativ/Akkusativ bez otwartego dialogu.',
+        summary: 'Użyj tabeli przypadków, dobierz rodzajniki w nowych zdaniach i zbuduj jedno kontrolowane zdanie z Dativ/Akkusativ.',
         date: '2026-07-12',
       },
       {
