@@ -1,4 +1,4 @@
-# Repository instructions for agents
+# Learning repository
 
 Angeal's durable learning workspace and minimal Astro site: https://learn.widacki.me/.
 
@@ -19,32 +19,14 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - `src/data/catalog.ts` — public topics and sessions
 - `src/components/` — shared page, session, and content components
 
-## Notes
-
-- Sessions use permanent `[learn:...]` IDs, which are used on discord to specify topic/session/lesson/task.
-- Weekly note: concise cross-topic synthesis, coverage, backlog, weekly map, and outlook. Linked evidence instead of copied.
-- Topic `plan.md`: long-term goal, baseline, progression, durable achievements, major plan changes, and topic-specific teaching policy—not daily picks.
-
-Follow-up updates matching session notes first, then weekly synthesis only when planning state changes. Planning updates weekly state and replaces `next.md`. Session production implements the handoff and marks it implemented. Change topic plans only for durable evidence or consequential goal/sequence changes.
-
-## Context and planning
-
-- Resolve exact `[learn:...]` IDs before reading broader context.
-- Read only linked/current evidence; avoid broad scans.
-- Internal notes and planning use Telegraph English.
-- Learner-facing content follows the relevant topic plan's language policy.
-- Discord is the main answer and feedback channel.
-- Workdays normally have two blocks; weekends allow two longer or up to three purposeful blocks.
-- Give every active topic meaningful weekly contact; avoid topic monopolies and repeated loops.
-- Backlog reduces scope and novelty, not all momentum. Resurface one worthwhile item without guilt.
-- Default exercises to difficulty 3/5 through transfer, explanation, comparison, debugging, or production.
-
-## Session rules
+## Content rules
 
 - A session is one published learning event, not a content type. It may be explanation-only, assessment-only, or mixed.
 - Every assigned action must appear on a session `index.astro` page before delivery. Related actions and repairs may share or update one page.
-- Discord links to the session page, never `/notes/` or GitHub source.
+- Sessions and response tasks use permanent `[learn:...]` IDs.
+- Public links target session pages, never `/notes/` or GitHub source.
 - Every session directory has both `index.astro` and `notes.md`, and every public session is cataloged.
+- Internal notes use Telegraph English. Learner-facing content follows the topic plan's language policy.
 - Use `SessionPage`, `SessionSection`, `SessionGrid`, `SessionList`, `Code`, `Callout`, `CommandList`, `TagList`, and `ReplyTask` rather than one-off markup.
 - Use `Code.astro` for code samples; do not import Shiki or render plain `<pre><code>` for code sessions.
 - Every response request uses `ReplyTask` with a permanent ID. Never renumber published IDs.

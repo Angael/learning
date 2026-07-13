@@ -2,20 +2,18 @@
 
 ## Weekly intent
 
+- Active topics:
 - Primary outcomes:
-- Topic balance target:
-- Weekend capacity:
 
-## Curriculum map
+## Rolling five-day map
 
-- Monday:
-- Tuesday:
-- Wednesday:
-- Thursday:
-- Friday:
-- Weekend:
+- YYYY-MM-DD:
+- YYYY-MM-DD:
+- YYYY-MM-DD:
+- YYYY-MM-DD:
+- YYYY-MM-DD:
 
-Plans are provisional. Keep the sequence unless new evidence justifies a change.
+Provisional; roll daily and change sequence when evidence warrants.
 
 ## Coverage ledger
 
@@ -29,16 +27,12 @@ Plans are provisional. Keep the sequence unless new evidence justifies a change.
 - .NET:
 - German:
 
-## Backlog and open loops
+## Backlog
 
 - Backlog pressure: low / medium / high
 - Worth resurfacing now:
 - Help/catch-up action:
-- Deferred without penalty:
-
-## Evidence added this week
-
-- Session ID: concise result and link
+- Deferred:
 
 ## Rolling outlook (3–6 weeks)
 
