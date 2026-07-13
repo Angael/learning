@@ -6,31 +6,24 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 
 - Work directly on `main`; no PRs or force-push unless explicitly requested.
 - Run `npm run check`, then commit and push completed repository changes.
-- Keep the site minimal, readable, mobile-first, and easy to navigate in browser and filesystem.
-- Load `teacher` for pedagogical work and only the specialized learning workflow required by the task.
 
 ## Project shape
 
-- `src/pages/index.astro` — topic index.
-- `src/pages/topics/<topic>/index.astro` — topic page.
-- `src/pages/topics/<topic>/plan.md` — durable topic direction and topic-specific teaching policy.
-- `src/pages/topics/<topic>/sessions/<NNN-slug>/index.astro` — learner-facing learning event; may combine teaching, practice, a task, test, diagnostic, or repair.
-- `src/pages/topics/<topic>/sessions/<NNN-slug>/notes.md` — exact evidence and response history for that event.
-- `src/pages/teacher-notes/next.md` — dated planning-to-production handoff.
-- `src/pages/teacher-notes/weekly/YYYY-Www.md` — rolling synthesis, coverage, open loops, and 3–6 week outlook.
-- `src/data/catalog.ts` — public topics and sessions.
-- `src/components/` — shared page, session, and content components.
+- `src/pages/index.astro` — topic index
+- `src/pages/topics/<topic>/index.astro` — topic page
+- `src/pages/topics/<topic>/plan.md` — durable topic direction and topic-specific teaching policy
+- `src/pages/topics/<topic>/sessions/<NNN-slug>/index.astro` — learner-facing learning event; teaching, practice, tasks, tests, diagnostics,  repairs
+- `src/pages/topics/<topic>/sessions/<NNN-slug>/notes.md` — teacher notes, exact evidence, response history for that event
+- `src/pages/teacher-notes/next.md` — dated planning-to-production handoff
+- `src/pages/teacher-notes/weekly/YYYY-Www.md` — rolling synthesis, coverage, open loops, and 3–6 week outlook
+- `src/data/catalog.ts` — public topics and sessions
+- `src/components/` — shared page, session, and content components
 
-Do not recreate `tasks/`, root `teacher-notes/`, root `topics/`, `lessons/`, or `src/pages/sessions/<topic>/` trees.
+## Notes
 
-## State ownership
-
-- Session `notes.md`: exact prompt, permanent `[learn:...]` ID, response, correction, misconception, and next hint.
-- Weekly note: concise cross-topic synthesis, coverage, backlog, weekly map, and outlook. Link evidence instead of copying it.
+- Sessions use permanent `[learn:...]` IDs, which are used on discord to specify topic/session/lesson/task.
+- Weekly note: concise cross-topic synthesis, coverage, backlog, weekly map, and outlook. Linked evidence instead of copied.
 - Topic `plan.md`: long-term goal, baseline, progression, durable achievements, major plan changes, and topic-specific teaching policy—not daily picks.
-- `next.md`: only the next dated execution handoff; never treat it as learning evidence.
-
-Precedence: exact session evidence → latest weekly synthesis → topic plan. `next.md` is disposable scheduling state.
 
 Follow-up updates matching session notes first, then weekly synthesis only when planning state changes. Planning updates weekly state and replaces `next.md`. Session production implements the handoff and marks it implemented. Change topic plans only for durable evidence or consequential goal/sequence changes.
 
