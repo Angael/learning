@@ -48,4 +48,4 @@
 
 - Status: implemented
 - Sessions: [C# 005](/topics/csharp/sessions/005-api-models-records-and-classes/); [German 004](/topics/german/sessions/004-dative-accusative-pronouns/)
-- Commit: pending
+- Commit: `4a4d527` (session production)
