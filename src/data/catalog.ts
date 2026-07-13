@@ -21,6 +21,12 @@ export const topics: Topic[] = [
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
     sessions: [
       {
+        title: 'API models: records and classes',
+        href: '/topics/csharp/sessions/005-api-models-records-and-classes/',
+        summary: 'Choose a record for fixed request data and a class for guarded domain state, then contrast C# nominal types with TypeScript structural compatibility.',
+        date: '2026-07-13',
+      },
+      {
         title: 'Constructors, properties, and state',
         href: '/topics/csharp/sessions/004-constructors-properties-and-state/',
         summary: 'Construct two independent stateful objects, control public mutation, and choose between an instance method and a static helper.',
@@ -96,6 +102,12 @@ export const topics: Topic[] = [
     href: '/topics/german/',
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
+      {
+        title: 'Dativ i Akkusativ: zaimki po jednej grupie',
+        href: '/topics/german/sessions/004-dative-accusative-pronouns/',
+        summary: 'Wskaż pełne grupy Dativ/Akkusativ i zastąp dokładnie jedną z nich zaimkiem, bez ćwiczenia kolejności dwóch zaimków.',
+        date: '2026-07-13',
+      },
       {
         title: 'Dativ i Akkusativ: krok po kroku',
         href: '/topics/german/sessions/003-giving-and-returning-dialogue/',

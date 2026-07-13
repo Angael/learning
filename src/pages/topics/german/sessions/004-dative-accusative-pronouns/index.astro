@@ -1,0 +1,89 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const replyText = `[learn:german/004:q1]
+
+A1. Poprawione zdanie:
+- komu?:
+- co?:
+
+A2. Poprawione zdanie:
+- komu?:
+- co?:
+
+A3. Poprawione zdanie:
+- komu?:
+- co?:
+
+B1. Jedna zamiana:
+B2. Jedna zamiana:
+B3. Jedna zamiana:
+
+C. Pełna wersja:
+C. Wersja z jednym zaimkiem:`;
+---
+
+<SessionPage
+  title="Sesja 4 · Niemiecki: zaimki w Dativ i Akkusativ"
+  heading="Zastąp jedną grupę rzeczownikową — nie cały sens zdania"
+  lede="Dziś naprawiasz jedno ważne nazwanie: Dativ i Akkusativ to grupy rzeczownikowe, nie czasownik. Potem zamieniasz tylko jedną z nich na zaimek."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Najpierw: wskaż całe grupy rzeczownikowe">
+    <Callout>
+      W zdaniu <code>Ich bringe dem Bruder den Regenschirm.</code> <code>dem Bruder</code> to Dativ — <em>komu?</em>; <code>den Regenschirm</code> to Akkusativ — <em>co?</em>. <code>bringe</code> jest czasownikiem, więc nie jest ani Dativem, ani Akkusativem.
+    </Callout>
+    <p>To jest mała naprawa po poprzedniej sesji. Nadal możesz korzystać ze ściągi: najpierw znajdź odbiorcę i rzecz, a dopiero potem wybierz formę lub zaimek.</p>
+  </SessionSection>
+
+  <SessionSection title="Ściąga: zaimek zależy od przypadku i rodzaju">
+    <table>
+      <thead><tr><th>Zastępujesz</th><th>Akkusativ: <em>co? kogo?</em></th><th>Dativ: <em>komu?</em></th></tr></thead>
+      <tbody>
+        <tr><th>rodzaj męski</th><td><code>ihn</code></td><td><code>ihm</code></td></tr>
+        <tr><th>rodzaj żeński</th><td><code>sie</code></td><td><code>ihr</code></td></tr>
+        <tr><th>rodzaj nijaki</th><td><code>es</code></td><td><code>ihm</code></td></tr>
+        <tr><th>liczba mnoga</th><td><code>sie</code></td><td><code>ihnen</code></td></tr>
+        <tr><th>forma grzecznościowa</th><td><code>Sie</code></td><td><code>Ihnen</code> — tylko referencja</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Ważne:</strong> <code>das Hotel</code> → Dativ <code>ihm</code>, chociaż hotel nie jest osobą. Rodzaj zaimka bierzesz od rzeczownika. W tej sesji nie używaj dwóch zaimków w jednym zdaniu — nie ćwiczymy jeszcze ich kolejności.</p>
+  </SessionSection>
+
+  <SessionSection title="Wzór: jedna zamiana, druga grupa zostaje">
+    <p><code>Die Ärztin zeigt der Frau den Plan.</code></p>
+    <ul>
+      <li><em>komu?</em> <code>der Frau</code> → Dativ; po jednej zamianie: <code>Die Ärztin zeigt <strong>ihr</strong> den Plan.</code></li>
+      <li><em>co?</em> <code>den Plan</code> → Akkusativ; po jednej zamianie: <code>Die Ärztin zeigt der Frau <strong>ihn</strong>.</code></li>
+    </ul>
+    <p>Wzór używa innych słów niż zadanie. Metoda zostaje taka sama: wskaż pełną grupę, określ jej rolę, zastąp tylko ją.</p>
+  </SessionSection>
+
+  <SessionSection title="Słownictwo do zadania">
+    <ul>
+      <li><code>der Kollege</code> — kolega; <code>die Nachbarin</code> — sąsiadka; <code>das Kind</code> — dziecko</li>
+      <li><code>der Schlüssel</code> — klucz; <code>die Nachricht</code> — wiadomość; <code>das Foto</code> — zdjęcie</li>
+      <li><code>geben</code> — dawać; <code>zeigen</code> — pokazywać; <code>schicken</code> — wysyłać</li>
+    </ul>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/004:q1" copyText={replyText} difficulty={3} language="pl">
+    <p><strong>A. Najpierw popraw i wskaż grupy rzeczownikowe.</strong> W każdym zdaniu popraw rodzajnik, jeśli trzeba. Następnie przepisz dokładnie grupę dla <em>komu?</em> i grupę dla <em>co?</em> — nie wpisuj czasownika ani całego zdania.</p>
+    <ol>
+      <li><code>Mara gibt die Kollegin der Schlüssel.</code></li>
+      <li><code>Der Vater zeigt das Kind den Foto.</code></li>
+      <li><code>Ich schicke die Nachbarin die Nachricht.</code></li>
+    </ol>
+    <p><strong>B. Jedna kontrolowana zamiana na zaimek.</strong> Przepisz poprawione zdania z części A. Zastąp tylko wskazaną grupę; druga zostaje pełną grupą rzeczownikową.</p>
+    <ol>
+      <li>Ze zdania 1 zastąp odbiorcę zaimkiem.</li>
+      <li>Ze zdania 2 zastąp rzecz zaimkiem.</li>
+      <li>Ze zdania 3 zastąp odbiorcę zaimkiem.</li>
+    </ol>
+    <p><strong>C. Jedna produkcja kontrolowana.</strong> Zbuduj zdanie z <code>ich / zeigen / der Kollege / das Foto</code>, z poprawnymi przypadkami. Potem napisz drugą wersję, w której zastępujesz tylko odbiorcę jednym zaimkiem. <code>das Foto</code> zostaje pełną grupą rzeczownikową.</p>
+  </ReplyTask>
+</SessionPage>
