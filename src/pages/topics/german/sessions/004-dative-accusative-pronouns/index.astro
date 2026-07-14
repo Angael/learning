@@ -1,5 +1,6 @@
 ---
 import Callout from '../../../../../components/Callout.astro';
+import GermanCaseTable from '../../../../../components/GermanCaseTable.astro';
 import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
@@ -7,16 +8,16 @@ import SessionSection from '../../../../../components/SessionSection.astro';
 const replyText = `[learn:german/004:q1]
 
 A1. Poprawione zdanie:
-- komu?:
-- co?:
+- Dativ — komu? (cała grupa):
+- Akkusativ — co? (cała grupa):
 
 A2. Poprawione zdanie:
-- komu?:
-- co?:
+- Dativ — komu? (cała grupa):
+- Akkusativ — co? (cała grupa):
 
 A3. Poprawione zdanie:
-- komu?:
-- co?:
+- Dativ — komu? (cała grupa):
+- Akkusativ — co? (cała grupa):
 
 B1. Jedna zamiana:
 B2. Jedna zamiana:
@@ -40,6 +41,11 @@ C. Wersja z jednym zaimkiem:`;
     <p>To jest mała naprawa po poprzedniej sesji. Nadal możesz korzystać ze ściągi: najpierw znajdź odbiorcę i rzecz, a dopiero potem wybierz formę lub zaimek.</p>
   </SessionSection>
 
+  <SessionSection title="Ściąga: rodzajniki w Nominativ, Akkusativ i Dativ">
+    <p>Używaj tej tabeli podczas zadania A i C. Zacznij od rodzaju rzeczownika, a potem wybierz kolumnę Akkusativ lub Dativ. Pogrubienie oznacza tylko formę inną niż w Nominativ.</p>
+    <GermanCaseTable />
+  </SessionSection>
+
   <SessionSection title="Ściąga: zaimek zależy od przypadku i rodzaju">
     <table>
       <thead><tr><th>Zastępujesz</th><th>Akkusativ: <em>co? kogo?</em></th><th>Dativ: <em>komu?</em></th></tr></thead>
@@ -58,8 +64,9 @@ C. Wersja z jednym zaimkiem:`;
     <p><code>Die Ärztin zeigt der Frau den Plan.</code></p>
     <ul>
       <li><em>komu?</em> <code>der Frau</code> → Dativ; po jednej zamianie: <code>Die Ärztin zeigt <strong>ihr</strong> den Plan.</code></li>
-      <li><em>co?</em> <code>den Plan</code> → Akkusativ; po jednej zamianie: <code>Die Ärztin zeigt der Frau <strong>ihn</strong>.</code></li>
+      <li><em>co?</em> <code>den Plan</code> → Akkusativ; po jednej zamianie: <code>Die Ärztin zeigt <strong>ihn</strong> der Frau.</code></li>
     </ul>
+    <p>Gdy zastępujesz rzecz w Akkusativ zaimkiem, a odbiorca w Dativ zostaje pełną grupą rzeczownikową, zaimek stawiamy przed tą grupą. Nie ćwiczymy jeszcze zdań z dwoma zaimkami.</p>
     <p>Wzór używa innych słów niż zadanie. Metoda zostaje taka sama: wskaż pełną grupę, określ jej rolę, zastąp tylko ją.</p>
   </SessionSection>
 

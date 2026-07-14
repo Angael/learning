@@ -15,6 +15,6 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [German 004](/topics/german/sessions/004-dative-accusative-pronouns/)
+- Commit: main — German 004 repair (2026-07-14)

@@ -2,7 +2,14 @@
 
 ## Session summary
 
-Published 2026-07-13. This session repairs noun-phrase identification from session 003, then extends demonstrated noun-article case control into controlled single-pronoun substitutions. It deliberately avoids dual-pronoun order, possessives, Perfekt, subordinate clauses, and open dialogue.
+Published 2026-07-13; repaired 2026-07-14. This session repairs noun-phrase identification from session 003, then extends demonstrated noun-article case control into controlled single-pronoun substitutions. It deliberately avoids dual-pronoun order, possessives, Perfekt, subordinate clauses, and open dialogue.
+
+## 2026-07-14 repair
+
+- Added the required compact Nominativ/Akkusativ/Dativ article table as a permitted working aid.
+- Corrected the single-Akkusativ-pronoun frame: with a remaining Dativ noun phrase, the pronoun comes first (`Die Ärztin zeigt ihn der Frau.`).
+- Clarified the reply template so each answer must give the complete Dativ and Akkusativ noun phrase.
+- Content-accuracy and exercise-quality review both confirmed the scope remains coherent and the one-replacement limit remains appropriate.
 
 ## Reply task
 
@@ -15,7 +22,7 @@ Published 2026-07-13. This session repairs noun-phrase identification from sessi
 
 - A Dativ/Akkusativ answer names the whole case-bearing noun phrase, not the verb.
 - A1: `Mara gibt der Kollegin den Schlüssel.` Recipient `der Kollegin`; item `den Schlüssel`; replacement `Mara gibt ihr den Schlüssel.`
-- A2: `Der Vater zeigt dem Kind das Foto.` Recipient `dem Kind`; item `das Foto`; replacement `Der Vater zeigt dem Kind es.`
+- A2: `Der Vater zeigt dem Kind das Foto.` Recipient `dem Kind`; item `das Foto`; replacement `Der Vater zeigt es dem Kind.`
 - A3: `Ich schicke der Nachbarin die Nachricht.` Recipient `der Nachbarin`; item `die Nachricht`; replacement `Ich schicke ihr die Nachricht.`
 - Controlled production: `Ich zeige dem Kollegen das Foto.` Then: `Ich zeige ihm das Foto.`
 - Pronoun choice follows both role and grammatical gender: `ihm` is Dativ masculine/neuter, `ihr` Dativ feminine, `ihnen` Dativ plural; `ihn`, `sie`, and `es` are the relevant Akkusativ forms.
