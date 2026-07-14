@@ -69,3 +69,9 @@ Circle one full noun phrase first. Ask either `komu?` or `co?`; then use the tab
 - Highest-value correction: `das Foto` is neuter, so A2 is `Der Vater zeigt dem Kind das Foto.` In B2, where the remaining Dativ group is a noun phrase, put Akkusativ `es` first: `Der Vater zeigt es dem Kind.`
 - Assigned a narrow repair on the current session: `[learn:german/004:q2]` asks only for corrected B2. No two-pronoun ordering is introduced.
 - Minor capitalization (`Ich`) is noted but not treated as a grammar blocker.
+
+### 2026-07-14 — `[learn:german/004:q2]`
+
+- Response: `Der Vater zeigt es dem Kind.`
+- Angeal clarified that the A2 form `den Foto` was produced by autocorrect rather than a deliberate article choice.
+- Repair is correct: Akkusativ pronoun `es` precedes the remaining Dativ noun phrase `dem Kind`.
