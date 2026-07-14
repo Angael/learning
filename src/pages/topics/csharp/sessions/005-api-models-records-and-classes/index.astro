@@ -91,6 +91,28 @@ C. TypeScript and C#
     </p>
   </SessionSection>
 
+  <SessionSection title="Clarification: <code>record</code> and <code>sealed</code>">
+    <p>
+      <code>record</code> says that a type is primarily a <strong>value-shaped model</strong>. For a record class, C# supplies useful value-oriented behaviour: a concise positional declaration, value-based equality, deconstruction, and <code>with</code>-copy syntax. It does <strong>not</strong> mean “immutable”. A record can expose mutable members, and a class can be designed to be immutable.
+    </p>
+    <Code code={`public record ShippingAddress(string Street, string City, string PostalCode);
+
+var home = new ShippingAddress("River Road 1", "Gdańsk", "80-001");
+var movedHome = home with { City = "Warsaw" };
+
+// home and movedHome are separate values; this is a copy, not a mutation.`} lang="csharp" />
+    <p>
+      <code>sealed</code> is unrelated to mutability. It closes an inheritance branch: no type may derive from a <code>sealed class</code> or <code>sealed record</code>. In the worked example, <code>public sealed record Currency(...)</code> means “a value-shaped record which no one may extend.” The <code>sealed</code> is optional for the address exercise; use it only when you deliberately do not want derived address types.
+    </p>
+    <Code code={`public sealed record Currency(string Code, int DecimalPlaces);
+
+// This would not compile:
+// public class SpecialCurrency : Currency { ... }`} lang="csharp" />
+    <Callout>
+      Separate the questions: <strong>record or class?</strong> asks what the type represents and which generated value behaviour helps. <strong>sealed or extensible?</strong> asks whether other types may inherit from it. <strong>mutable or guarded?</strong> asks which state changes callers may make.
+    </Callout>
+  </SessionSection>
+
   <SessionSection title="Your design boundary">
     <p>Stay inside one request model and one domain model. No endpoints, JSON, inheritance, interfaces, generics, validation libraries, or record internals are needed.</p>
     <ul>

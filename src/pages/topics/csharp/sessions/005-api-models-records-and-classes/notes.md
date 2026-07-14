@@ -39,7 +39,9 @@ When reviewing a public property, ask: “May any caller set this without the ob
 
 ## Student response
 
-- Pending.
+- 2026-07-14: Asked for further explanation of what `sealed` and a C# `record` mean. This signals that the prior compact worked example introduced both terms faster than their distinct roles were established.
+- Clarification added to the learner-facing session: records are value-oriented types with compiler-supported value equality, positional members, deconstruction, and `with` copies; they are not automatically immutable. `sealed` prevents inheritance and is unrelated to whether an object’s state can change. It is optional for the exercise’s `ShippingAddress`.
+- Next retrieval prompt, if the learner continues: classify each concern independently—record/class (model and generated value behaviour), sealed/extensible (inheritance), mutable/guarded (permitted state changes).
 
 ## Evaluation
 
