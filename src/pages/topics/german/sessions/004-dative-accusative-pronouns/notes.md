@@ -46,8 +46,26 @@ Circle one full noun phrase first. Ask either `komu?` or `co?`; then use the tab
 
 ## Student response
 
-- Pending.
+### 2026-07-14 — `[learn:german/004:q1]`
+
+- Submitted A1–A3, B1–B3, and both C forms.
+- Response (verbatim, normalized only for Markdown):
+  > A1. Mara gibt der Kollegin den Schlüssel. Dativ: `der Kollegin`; Akkusativ: `den Schlüssel`.
+  >
+  > A2. Der Vater zeigt dem Kind den Foto. Dativ: `dem Kind`; Akkusativ: `den Foto`.
+  >
+  > A3. ich schicke der Nachbarin die Nachricht. Dativ: `der Nachbarin`; Akkusativ: `die Nachricht`.
+  >
+  > B1. Mara gibt ihr den Schlüssel. B2. Der Vater zeigt dem Kind es. B3. Ich schicke ihr die Nachricht.
+  >
+  > C. Ich zeige dem Kollegen das Foto. / Ich zeige ihm das Foto.
+- Substantive answer: A1 and A3 cases were correct; A2 used `den Foto` instead of `das Foto`. B1 and B3 were correct. B2 correctly chose `es` for `das Foto` but used noun-before-pronoun order (`Der Vater zeigt dem Kind es.`). C was fully correct apart from initial capitalization in the first sentence.
 
 ## Evaluation
 
-- Pending learner response.
+### 2026-07-14
+
+- Strong evidence that Angeal identifies complete Dativ and Akkusativ noun phrases and selects the appropriate single pronoun.
+- Highest-value correction: `das Foto` is neuter, so A2 is `Der Vater zeigt dem Kind das Foto.` In B2, where the remaining Dativ group is a noun phrase, put Akkusativ `es` first: `Der Vater zeigt es dem Kind.`
+- Assigned a narrow repair on the current session: `[learn:german/004:q2]` asks only for corrected B2. No two-pronoun ordering is introduced.
+- Minor capitalization (`Ich`) is noted but not treated as a grammar blocker.

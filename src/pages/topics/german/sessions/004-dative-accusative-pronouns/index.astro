@@ -25,6 +25,9 @@ B3. Jedna zamiana:
 
 C. Pełna wersja:
 C. Wersja z jednym zaimkiem:`;
+
+const repairText = `[learn:german/004:q2]
+Popraw B2:`;
 ---
 
 <SessionPage
@@ -93,4 +96,13 @@ C. Wersja z jednym zaimkiem:`;
     </ol>
     <p><strong>C. Jedna produkcja kontrolowana.</strong> Zbuduj zdanie z <code>ich / zeigen / der Kollege / das Foto</code>, z poprawnymi przypadkami. Potem napisz drugą wersję, w której zastępujesz tylko odbiorcę jednym zaimkiem. <code>das Foto</code> zostaje pełną grupą rzeczownikową.</p>
   </ReplyTask>
+
+  <SessionSection title="Krótka naprawa: zaimek w Akkusativ">
+    <Callout>
+      W zdaniu B2 zastąpiłeś poprawną grupę (<code>das Foto</code> → <code>es</code>), ale przy pozostającym <code>dem Kind</code> zaimek stoi przed grupą w Dativ.
+    </Callout>
+    <ReplyTask id="learn:german/004:q2" copyText={repairText} difficulty={2} language="pl">
+      <p>Przepisz tylko poprawne B2: <code>Der Vater zeigt …</code></p>
+    </ReplyTask>
+  </SessionSection>
 </SessionPage>
