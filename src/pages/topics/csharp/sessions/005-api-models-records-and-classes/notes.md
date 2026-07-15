@@ -58,4 +58,9 @@ When reviewing a public property, ask: “May any caller set this without the ob
 
 ## Evaluation
 
-- Pending learner response.
+### 2026-07-15 · `[learn:csharp/005:q1]`
+
+- The learner correctly identified `ShippingAddress` and `Street`, connected an address to value equality, correctly explained public reading through `get`, and correctly identified that only the declaring `Parcel` class may use `private set`. The encapsulation explanation was strong: outside callers cannot change status “willy-nilly” or bypass parcel rules.
+- One terminology repair: positional-record items are generated public properties, not “readonly public parameters.” In this declaration they are `string` properties such as `Street`, with init-only assignment in the normal positional-record shape.
+- One important nuance: records are not incapable of change. A record can be designed with mutable properties or copied with a `with` expression. A `class` remains the better fit here because the same parcel has a guarded, changing lifecycle (`Created` → `Dispatched`), not merely because “records cannot change.”
+- Feedback given: all core choices were correct; retain the distinction between value equality and absolute immutability. No further repair assigned.
