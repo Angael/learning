@@ -27,60 +27,22 @@ public sealed class GiftCard
     }
 }`;
 
-const taskCode = `// Use a positional record for ShippingAddress.
-public ____ ShippingAddress(string Street, string City, string PostalCode);
-
-public ____ Parcel
-{
-    public string TrackingNumber { get; }
-    public string Status { get; ____ }
-
-    public Parcel(string trackingNumber)
-    {
-        TrackingNumber = __________;
-        Status = __________; // starts as "Created"
-    }
-
-    public bool __________()
-    {
-        if (Status != "Created") return false;
-
-        Status = "Dispatched";
-        return true;
-    }
-}
-
-var parcel = new Parcel("PL-42");
-var first = parcel.Dispatch();
-var second = parcel.Dispatch();`;
-
 const replyText = `[learn:csharp/005:q1]
 
-A. Quick design check (one short phrase each)
-- \`record\`/\`class\` concerns:
-- \`sealed\`/extensible concerns:
-- mutable/guarded concerns:
+A. Read this record syntax:
+\`public record ShippingAddress(string Street, string City, string PostalCode);\`
+- What is the type name?
+- Name one property it creates.
+- Why does a record fit an address here? (one short phrase)
 
-B. Public API
-\`\`\`csharp
-// Complete the scaffold from the session.
-\`\`\`
+B. Read this property:
+\`public string Status { get; private set; }\`
+- What can any caller do because of \`get\`?
+- Who can change \`Status\` because of \`private set\`?
+- Why is that useful for a parcel status? (one short phrase)
 
-Choices
-- ShippingAddress is a record/class because:
-- Parcel is a record/class because:
-- Why \`sealed\` is not needed for this task:
-- How the public API guards status changes:
-
-C. State trace
-- First call returns:
-- Status after first call:
-- Second call returns:
-- Status after second call:
-
-D. TypeScript and C#
-- If \`WarehouseAddress\` independently has the same three string properties, can it be used where \`ShippingAddress\` is needed in ordinary TypeScript? Why?
-- Can it be used where \`ShippingAddress\` is needed in C#? Why?`;
+C. One final choice
+- Would you use a record or a class for a parcel whose status changes? Why? (one short phrase)`;
 ---
 
 <SessionPage
@@ -109,65 +71,24 @@ D. TypeScript and C#
     <Callout>Do not turn this into “records are immutable” or “classes are mutable.” Either kind of type can be designed differently. Here the choice expresses this particular API and lifecycle.</Callout>
   </SessionSection>
 
-  <SessionSection title="A useful TypeScript comparison">
-    <p>
-      TypeScript is usually <strong>structural</strong>: independently declared objects with the same required properties can often be used in the same place. C# is <strong>nominal</strong>: two separately named types remain different even if their public properties have matching names and types.
-    </p>
-    <p>
-      That makes a named C# public surface a deliberate contract. A <code>WarehouseAddress</code> with the same three strings is not automatically a <code>ShippingAddress</code>.
-    </p>
-  </SessionSection>
-
-  <SessionSection title="Clarification: <code>record</code> and <code>sealed</code>">
-    <p>
-      <code>record</code> says that a type is primarily a <strong>value-shaped model</strong>. For a record class, C# supplies useful value-oriented behaviour: a concise positional declaration, value-based equality, deconstruction, and <code>with</code>-copy syntax. It does <strong>not</strong> mean “immutable”. A record can expose mutable members, and a class can be designed to be immutable.
-    </p>
-    <Code code={`public record ShippingAddress(string Street, string City, string PostalCode);
-
-var home = new ShippingAddress("River Road 1", "Gdańsk", "80-001");
-var movedHome = home with { City = "Warsaw" };
-
-// home and movedHome are separate values; this is a copy, not a mutation.`} lang="csharp" />
-    <p>
-      <code>sealed</code> is unrelated to mutability. It closes an inheritance branch: no type may derive from a <code>sealed class</code> or <code>sealed record</code>. In the worked example, <code>public sealed record Currency(...)</code> means “a value-shaped record which no one may extend.” The <code>sealed</code> is optional for the address exercise; use it only when you deliberately do not want derived address types.
-    </p>
-    <Code code={`public sealed record Currency(string Code, int DecimalPlaces);
-
-// This would not compile:
-// public class SpecialCurrency : Currency { ... }`} lang="csharp" />
-    <Callout>
-      Separate the questions: <strong>record or class?</strong> asks what the type represents and which generated value behaviour helps. <strong>sealed or extensible?</strong> asks whether other types may inherit from it. <strong>mutable or guarded?</strong> asks which state changes callers may make.
-    </Callout>
-  </SessionSection>
-
-  <SessionSection title="Your design boundary">
-    <p>Stay inside one request model and one domain model. No endpoints, JSON, inheritance, interfaces, generics, validation libraries, or record internals are needed.</p>
+  <SessionSection title="The only distinction to keep today">
     <ul>
-      <li><code>ShippingAddress</code> has <code>Street</code>, <code>City</code>, and <code>PostalCode</code>. Once created, callers must not change its public values.</li>
-      <li><code>Parcel</code> has a tracking number and a current status. It starts as <code>Created</code>.</li>
-      <li>Callers may read the status but not set it directly.</li>
-      <li>The only transition today is <code>Created</code> → <code>Dispatched</code>. A later attempt reports failure and leaves the status unchanged.</li>
-    </ul>
-  </SessionSection>
-
-  <SessionSection title="Quick design check">
-    <p>Before filling the C# scaffold, name what each question controls. One short phrase is enough.</p>
-    <ul>
-      <li><strong><code>record</code> or <code>class</code>:</strong> what the type represents and whether value-oriented generated behaviour fits.</li>
-      <li><strong><code>sealed</code> or extensible:</strong> whether another type may derive from it. This exercise does not need <code>sealed</code>; do not add it just because the address is fixed.</li>
-      <li><strong>mutable or guarded:</strong> whether callers may write state directly, or must use a named rule.</li>
+      <li><code>public record ShippingAddress(...)</code> declares a type named <code>ShippingAddress</code>. Its positional values become properties such as <code>Street</code>.</li>
+      <li>Use a <code>record</code> for a small value-shaped description, such as an address that is supplied as a whole.</li>
+      <li>Use a <code>class</code> when an object has a changing lifecycle, such as a parcel whose status changes.</li>
+      <li><code>{`{ get; private set; }`}</code> means everyone can read the property, but only code inside that class can change it. That prevents callers from setting a parcel status however they like.</li>
     </ul>
   </SessionSection>
 
   <ReplyTask id="learn:csharp/005:q1" copyText={replyText} difficulty={3}>
-    <p>Do not write an application or <code>Main</code>. First complete the quick design check, then fill only the blanks in the two-type scaffold and give short reasons.</p>
+    <p><strong>Phone-friendly version:</strong> do not write code, an application, or <code>Main</code>. Reply with six very short answers—single words or short phrases are enough.</p>
     <ol>
-      <li>For <code>ShippingAddress</code>, use the positional <code>record</code> scaffold. For <code>Parcel</code>, choose the type kind, make <code>Status</code> readable but not directly writable by callers, initialize it to <code>"Created"</code>, and complete its one Boolean transition method. Do not add <code>sealed</code>, an enum, or another rule.</li>
-      <li>For the displayed <code>first</code>/<code>second</code> sequence, give both Boolean results and the status after each call.</li>
+      <li>Read the positional <code>ShippingAddress</code> record below. Identify its type name, one generated property, and why this kind of fixed address data can be a record.</li>
+      <li>Read <code>Status {`{ get; private set; }`}</code>. Say what <code>get</code> lets callers do, who may use the setter, and why that protects a parcel’s status.</li>
+      <li>Choose <code>record</code> or <code>class</code> for a parcel whose status changes, with one short reason.</li>
     </ol>
-    <Code code={taskCode} lang="csharp" />
-    <ol start="3">
-      <li>Assume <code>ShippingAddress</code> and <code>WarehouseAddress</code> independently declare the same three <code>string</code> properties. Predict whether a <code>WarehouseAddress</code> can be used where a <code>ShippingAddress</code> is needed in ordinary TypeScript, then in C#, and say why.</li>
-    </ol>
+    <Code code={`public record ShippingAddress(string Street, string City, string PostalCode);
+
+public string Status { get; private set; }`} lang="csharp" />
   </ReplyTask>
 </SessionPage>

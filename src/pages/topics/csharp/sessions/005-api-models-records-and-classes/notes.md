@@ -50,6 +50,12 @@ When reviewing a public property, ask: “May any caller set this without the ob
 - The trace is explicit: first `Dispatch()` returns `true` and leaves `Status` as `"Dispatched"`; second returns `false` and leaves it `"Dispatched"`. Status remains strings to keep enums out of scope.
 - The TypeScript/C# comparison now asks one concrete independently declared `WarehouseAddress` assignability prediction: ordinarily yes for matching structural TypeScript object types, no for separately named C# types with no relationship.
 
+## 2026-07-15 phone-friendly homework reduction
+
+- Learner said they are mostly on a phone and cannot write much. The active task `[learn:csharp/005:q1]` now requires no code writing, state trace, TypeScript comparison, or `sealed` explanation.
+- It asks six short retrieval answers only: identify the name and one property in a positional `record`, say why an address fits a record, explain `get`, identify who may use `private set`, say why that protects status, and choose `record` or `class` for a changing parcel.
+- The session keeps its compact explanation and permanent response ID, but the assigned work now assesses basic syntax and the purpose of getters/setters with minimal phone typing.
+
 ## Evaluation
 
 - Pending learner response.
