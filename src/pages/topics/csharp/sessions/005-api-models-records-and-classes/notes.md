@@ -43,6 +43,13 @@ When reviewing a public property, ask: “May any caller set this without the ob
 - Clarification added to the learner-facing session: records are value-oriented types with compiler-supported value equality, positional members, deconstruction, and `with` copies; they are not automatically immutable. `sealed` prevents inheritance and is unrelated to whether an object’s state can change. It is optional for the exercise’s `ShippingAddress`.
 - Next retrieval prompt, if the learner continues: classify each concern independently—record/class (model and generated value behaviour), sealed/extensible (inheritance), mutable/guarded (permitted state changes).
 
+## 2026-07-15 scaffolded retrieval repair
+
+- The canonical task keeps `[learn:csharp/005:q1]` and now begins with a compact three-axis check: record/class, sealed/extensible, and mutable/guarded. It explicitly treats `sealed` as an inheritance choice and says it is not needed for this task.
+- The API response is now a constrained scaffold: a positional `ShippingAddress` record, and a `Parcel` whose remaining choices demonstrate a class, `Status { get; private set; }`, constructor initialization to `"Created"`, and a Boolean `Dispatch()` guard. This reduces C# ceremony without revealing the Parcel decisions.
+- The trace is explicit: first `Dispatch()` returns `true` and leaves `Status` as `"Dispatched"`; second returns `false` and leaves it `"Dispatched"`. Status remains strings to keep enums out of scope.
+- The TypeScript/C# comparison now asks one concrete independently declared `WarehouseAddress` assignability prediction: ordinarily yes for matching structural TypeScript object types, no for separately named C# types with no relationship.
+
 ## Evaluation
 
 - Pending learner response.

@@ -27,33 +27,60 @@ public sealed class GiftCard
     }
 }`;
 
-const taskCode = `var parcel = new Parcel("PL-42");
+const taskCode = `// Use a positional record for ShippingAddress.
+public ____ ShippingAddress(string Street, string City, string PostalCode);
 
-// Call your transition method twice.`;
+public ____ Parcel
+{
+    public string TrackingNumber { get; }
+    public string Status { get; ____ }
+
+    public Parcel(string trackingNumber)
+    {
+        TrackingNumber = __________;
+        Status = __________; // starts as "Created"
+    }
+
+    public bool __________()
+    {
+        if (Status != "Created") return false;
+
+        Status = "Dispatched";
+        return true;
+    }
+}
+
+var parcel = new Parcel("PL-42");
+var first = parcel.Dispatch();
+var second = parcel.Dispatch();`;
 
 const replyText = `[learn:csharp/005:q1]
 
-A. Public API
-\`\`\`csharp
-// ShippingAddress
+A. Quick design check (one short phrase each)
+- \`record\`/\`class\` concerns:
+- \`sealed\`/extensible concerns:
+- mutable/guarded concerns:
 
-// Parcel
+B. Public API
+\`\`\`csharp
+// Complete the scaffold from the session.
 \`\`\`
 
 Choices
 - ShippingAddress is a record/class because:
 - Parcel is a record/class because:
-- How the public API prevents direct status changes:
+- Why \`sealed\` is not needed for this task:
+- How the public API guards status changes:
 
-B. State trace
+C. State trace
 - First call returns:
 - Status after first call:
 - Second call returns:
 - Status after second call:
 
-C. TypeScript and C#
-- TypeScript:
-- C#:`;
+D. TypeScript and C#
+- If \`WarehouseAddress\` independently has the same three string properties, can it be used where \`ShippingAddress\` is needed in ordinary TypeScript? Why?
+- Can it be used where \`ShippingAddress\` is needed in C#? Why?`;
 ---
 
 <SessionPage
@@ -123,15 +150,24 @@ var movedHome = home with { City = "Warsaw" };
     </ul>
   </SessionSection>
 
+  <SessionSection title="Quick design check">
+    <p>Before filling the C# scaffold, name what each question controls. One short phrase is enough.</p>
+    <ul>
+      <li><strong><code>record</code> or <code>class</code>:</strong> what the type represents and whether value-oriented generated behaviour fits.</li>
+      <li><strong><code>sealed</code> or extensible:</strong> whether another type may derive from it. This exercise does not need <code>sealed</code>; do not add it just because the address is fixed.</li>
+      <li><strong>mutable or guarded:</strong> whether callers may write state directly, or must use a named rule.</li>
+    </ul>
+  </SessionSection>
+
   <ReplyTask id="learn:csharp/005:q1" copyText={replyText} difficulty={3}>
-    <p>Do not write an application or <code>Main</code>. Propose only the two public type definitions and short reasons.</p>
+    <p>Do not write an application or <code>Main</code>. First complete the quick design check, then fill only the blanks in the two-type scaffold and give short reasons.</p>
     <ol>
-      <li>Write the C# API for <code>ShippingAddress</code> and <code>Parcel</code>. Choose <code>record</code> or <code>class</code> for each, using constructor, properties, and one transition method as needed.</li>
-      <li>For this sequence, give the two Boolean results and the status after each call. Do not add a public setter.</li>
+      <li>For <code>ShippingAddress</code>, use the positional <code>record</code> scaffold. For <code>Parcel</code>, choose the type kind, make <code>Status</code> readable but not directly writable by callers, initialize it to <code>"Created"</code>, and complete its one Boolean transition method. Do not add <code>sealed</code>, an enum, or another rule.</li>
+      <li>For the displayed <code>first</code>/<code>second</code> sequence, give both Boolean results and the status after each call.</li>
     </ol>
     <Code code={taskCode} lang="csharp" />
     <ol start="3">
-      <li>In 2–3 sentences, contrast two independently declared matching address shapes in ordinary TypeScript with independently declared C# <code>ShippingAddress</code> and <code>WarehouseAddress</code> types.</li>
+      <li>Assume <code>ShippingAddress</code> and <code>WarehouseAddress</code> independently declare the same three <code>string</code> properties. Predict whether a <code>WarehouseAddress</code> can be used where a <code>ShippingAddress</code> is needed in ordinary TypeScript, then in C#, and say why.</li>
     </ol>
   </ReplyTask>
 </SessionPage>

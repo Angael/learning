@@ -15,6 +15,6 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [C# 005 repair](/topics/csharp/sessions/005-api-models-records-and-classes/)
+- Commit: recorded on `main` with this implementation
