@@ -1,0 +1,122 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const endpointCode = `public record ShippingAddress(
+    string Street,
+    string City,
+    string PostalCode);
+
+app.MapPost("/shipping-addresses", (ShippingAddress address) =>
+{
+    if (string.IsNullOrWhiteSpace(address.Street))
+    {
+        return Results.BadRequest(new
+        {
+            error = "Street is required."
+        });
+    }
+
+    return Results.Ok(new
+    {
+        accepted = true,
+        city = address.City
+    });
+});`;
+
+const validBody = `{
+  "street": "12 Oak Street",
+  "city": "Gdańsk",
+  "postalCode": "80-001"
+}`;
+
+const blankBody = `{
+  "street": "   ",
+  "city": "Gdańsk",
+  "postalCode": "80-001"
+}`;
+
+const replyText = `[learn:dotnet/007:q1]
+
+Read the supplied code only; do not write or run a project.
+
+Code:
+public record ShippingAddress(
+    string Street,
+    string City,
+    string PostalCode);
+
+app.MapPost("/shipping-addresses", (ShippingAddress address) =>
+{
+    if (string.IsNullOrWhiteSpace(address.Street))
+    {
+        return Results.BadRequest(new { error = "Street is required." });
+    }
+
+    return Results.Ok(new { accepted = true, city = address.City });
+});
+
+A. Which handler parameter receives the request-body data, and what is its type?
+Answer:
+
+B. Does the non-nullable type string itself reject "   " at runtime? Which expression performs this check?
+Answer:
+
+C. Valid request:
+{"street":"12 Oak Street","city":"Gdańsk","postalCode":"80-001"}
+Predicted HTTP status and JSON values:
+
+D. Blank-street request:
+{"street":"   ","city":"Gdańsk","postalCode":"80-001"}
+Predicted HTTP status and JSON values:`;
+---
+
+<SessionPage
+  title="Session 7 · .NET: request model validation"
+  heading="Follow one request from JSON body to runtime validation"
+  lede="Read a supplied Minimal API boundary, separate C# nullability guidance from an actual runtime rule, and predict two responses. No project construction is required."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="The path through this endpoint">
+    <p><code>JSON request body → ShippingAddress address → handler check → HTTP response</code></p>
+    <p>For this endpoint, ASP.NET Core creates a <code>ShippingAddress</code> value from the JSON request body and passes it into the handler as <code>address</code>. The positional record gives that request data three named public properties.</p>
+  </SessionSection>
+
+  <SessionSection title="One distinction: annotation versus runtime rule">
+    <Callout>
+      <code>string Street</code> tells C# tooling that this property is intended to be non-null. It does not make blank text such as <code>"   "</code> invalid by itself. The executable <code>string.IsNullOrWhiteSpace(...)</code> check enforces that boundary rule at runtime.
+    </Callout>
+    <p>This lesson uses a whitespace-only value deliberately. Every JSON property is present, so you can focus on the validation branch rather than missing-body or serializer behaviour.</p>
+  </SessionSection>
+
+  <SessionSection title="Supplied record and endpoint">
+    <Code code={endpointCode} lang="csharp" />
+    <ul>
+      <li>If <code>Street</code> is null, empty, or only whitespace, the first return ends the handler with <code>BadRequest</code>.</li>
+      <li>Otherwise execution reaches <code>Ok</code>.</li>
+      <li>The record carries request-shaped data; it does not validate itself.</li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="The two request bodies">
+    <p><strong>Request 1: ordinary street value</strong></p>
+    <Code code={validBody} lang="json" />
+    <p><strong>Request 2: whitespace-only street value</strong></p>
+    <Code code={blankBody} lang="json" />
+  </SessionSection>
+
+  <ReplyTask id="learn:dotnet/007:q1" copyText={replyText} difficulty={3}>
+    <p>Without running the code, answer four compact questions:</p>
+    <ol>
+      <li>Which handler parameter receives the body data, and what is its type?</li>
+      <li>Does non-nullable <code>string</code> itself reject whitespace at runtime? Name the expression that performs the check.</li>
+      <li>For Request 1, predict the HTTP status and returned JSON values.</li>
+      <li>For Request 2, predict the HTTP status and returned JSON values.</li>
+    </ol>
+    <p>Exact JSON spacing and property order do not matter.</p>
+  </ReplyTask>
+</SessionPage>

@@ -59,28 +59,16 @@ export const topics: Topic[] = [
     summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
     sessions: [
       {
-        title: 'Your first minimal API',
-        href: '/topics/dotnet/sessions/001-your-first-minimal-api/',
-        summary: 'Create and reason about a tiny ASP.NET Core Minimal API from the terminal on Linux or macOS.',
-        date: '2026-07-05',
+        title: 'Request model validation',
+        href: '/topics/dotnet/sessions/007-request-model-validation/',
+        summary: 'Trace JSON into a supplied request record, distinguish C# nullability guidance from runtime validation, and predict accepted and rejected responses.',
+        date: '2026-07-16',
       },
       {
-        title: 'The ASP.NET Core request pipeline',
-        href: '/topics/dotnet/sessions/002-request-pipeline/',
-        summary: 'Separate middleware from endpoint handlers, follow await next(context), and understand short-circuiting.',
-        date: '2026-07-06',
-      },
-      {
-        title: 'Dependency injection and configuration',
-        href: '/topics/dotnet/sessions/003-dependency-injection-configuration/',
-        summary: 'Separate settings from code, register services once, and let endpoint handlers ask for what they need.',
-        date: '2026-07-08',
-      },
-      {
-        title: 'Service lifetimes',
-        href: '/topics/dotnet/sessions/004-service-lifetimes/',
-        summary: 'Choose Singleton, Scoped, or Transient by reasoning about how long an object should live and what state it can safely remember.',
-        date: '2026-07-09',
+        title: 'Generic service registration',
+        href: '/topics/dotnet/sessions/006-generic-service-registration/',
+        summary: 'Explain why AddSingleton<AppInfo>() works: the generic method contains logic, and the type argument supplies service metadata.',
+        date: '2026-07-10',
       },
       {
         title: 'Minimal API Program.cs structure',
@@ -89,10 +77,28 @@ export const topics: Topic[] = [
         date: '2026-07-09',
       },
       {
-        title: 'Generic service registration',
-        href: '/topics/dotnet/sessions/006-generic-service-registration/',
-        summary: 'Explain why AddSingleton<AppInfo>() works: the generic method contains logic, and the type argument supplies service metadata.',
-        date: '2026-07-10',
+        title: 'Service lifetimes',
+        href: '/topics/dotnet/sessions/004-service-lifetimes/',
+        summary: 'Choose Singleton, Scoped, or Transient by reasoning about how long an object should live and what state it can safely remember.',
+        date: '2026-07-09',
+      },
+      {
+        title: 'Dependency injection and configuration',
+        href: '/topics/dotnet/sessions/003-dependency-injection-configuration/',
+        summary: 'Separate settings from code, register services once, and let endpoint handlers ask for what they need.',
+        date: '2026-07-08',
+      },
+      {
+        title: 'The ASP.NET Core request pipeline',
+        href: '/topics/dotnet/sessions/002-request-pipeline/',
+        summary: 'Separate middleware from endpoint handlers, follow await next(context), and understand short-circuiting.',
+        date: '2026-07-06',
+      },
+      {
+        title: 'Your first minimal API',
+        href: '/topics/dotnet/sessions/001-your-first-minimal-api/',
+        summary: 'Create and reason about a tiny ASP.NET Core Minimal API from the terminal on Linux or macOS.',
+        date: '2026-07-05',
       },
     ],
   },
@@ -102,6 +108,12 @@ export const topics: Topic[] = [
     href: '/topics/german/',
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
+      {
+        title: 'Ostatnie dni: krótka produkcja ze wsparciem',
+        href: '/topics/german/sessions/005-recent-life-spaced-production/',
+        summary: 'Napisz trzy krótkie zdania z podanym słownictwem, Perfekt i weil/dass, a potem wykonaj jedną kontrolowaną zamianę na zaimek.',
+        date: '2026-07-16',
+      },
       {
         title: 'Dativ i Akkusativ: zaimki po jednej grupie',
         href: '/topics/german/sessions/004-dative-accusative-pronouns/',

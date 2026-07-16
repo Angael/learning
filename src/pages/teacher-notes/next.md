@@ -24,6 +24,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/dotnet/sessions/007-request-model-validation/](/topics/dotnet/sessions/007-request-model-validation/); [/topics/german/sessions/005-recent-life-spaced-production/](/topics/german/sessions/005-recent-life-spaced-production/)
+- Review: two read-only advisers checked content accuracy and exercise quality; technical and linguistic keys, cognitive load, and self-contained reply templates were incorporated.
+- Commit: this implementation commit

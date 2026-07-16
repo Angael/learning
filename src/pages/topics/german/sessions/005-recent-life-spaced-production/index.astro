@@ -1,0 +1,108 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import GermanCaseTable from '../../../../../components/GermanCaseTable.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const replyText = `[learn:german/005:q1]
+
+Napisz odpowiedź po niemiecku. Możesz używać ae/oe/ue/ss.
+
+Ściąga:
+- weil/dass: czasownik odmieniony stoi na końcu zdania podrzędnego.
+- Akkusativ: ihn / sie / es / sie.
+- Dativ: ihm / ihr / ihm / ihnen.
+- Gdy zaimek w Akkusativ zastępuje rzecz, stoi przed pozostającą grupą rzeczownikową w Dativ.
+
+Słowa:
+- arbeiten — pracować — hat gearbeitet
+- spielen — grać — hat gespielt
+- einkaufen — robić zakupy — hat eingekauft
+- sehen — widzieć/oglądać — hat gesehen
+- müde — zmęczony/zmęczona
+- zu Hause — w domu
+- die Ärztin (rodzaj żeński) — lekarka; Dativ: der Ärztin
+- die Datei (rodzaj żeński) — plik
+- schicken — wysyłać — ich schicke
+
+A. Napisz dokładnie 3 krótkie zdania o swoich ostatnich dniach.
+W całej części A:
+- użyj 1 albo 2 form Perfekt, ale nie więcej;
+- użyj raz weil albo dass;
+- w części z weil/dass postaw czasownik odmieniony na końcu;
+- użyj co najmniej 2 elementów z listy słów.
+
+1.
+2.
+3.
+
+B. Zastąp tylko die Datei jednym zaimkiem. Grupa der Ärztin ma zostać bez zmian:
+Ich schicke der Ärztin die Datei.
+
+Odpowiedź:`;
+---
+
+<SessionPage
+  title="Sesja 5 · Niemiecki: krótka aktualizacja z ostatnich dni"
+  heading="Połącz Perfekt, szyk po weil/dass i jedną zamianę na zaimek"
+  lede="Napiszesz tylko trzy krótkie zdania z podanym słownictwem, a potem wykonasz jedną kontrolowaną zamianę. Ściągi są częścią zadania, nie ukrytym testem pamięci."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Ściąga: rodzajniki i jeden zaimek">
+    <p>Możesz korzystać z tabeli przez całe zadanie. Najpierw znajdź całą grupę rzeczownikową, potem wybierz przypadek i zaimek.</p>
+    <GermanCaseTable />
+    <table>
+      <thead><tr><th>Zastępujesz</th><th>Akkusativ</th><th>Dativ</th></tr></thead>
+      <tbody>
+        <tr><th>rodzaj męski</th><td><code>ihn</code></td><td><code>ihm</code></td></tr>
+        <tr><th>rodzaj żeński</th><td><code>sie</code></td><td><code>ihr</code></td></tr>
+        <tr><th>rodzaj nijaki</th><td><code>es</code></td><td><code>ihm</code></td></tr>
+        <tr><th>liczba mnoga</th><td><code>sie</code></td><td><code>ihnen</code></td></tr>
+      </tbody>
+    </table>
+    <p>W transformacji zastępujesz dokładnie jedną grupę. Nie twórz zdania z dwoma zaimkami.</p>
+  </SessionSection>
+
+  <SessionSection title="Ściąga: Perfekt i szyk zdania podrzędnego">
+    <ul>
+      <li>Perfekt: odmienione <code>haben/sein</code> stoi w zdaniu głównym, a Partizip II zwykle na końcu: <code>Ich habe viel gekocht.</code></li>
+      <li>Po <code>weil</code> lub <code>dass</code> czasownik odmieniony idzie na koniec części podrzędnej: <code>..., weil ich heute Zeit habe.</code></li>
+      <li>Jeżeli zaczynasz od części z <code>weil</code>, po przecinku występuje inwersja: <code>Weil ich Zeit habe, koche ich heute.</code></li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="Wzór na innych słowach">
+    <p><code>Gestern habe ich meinem Bruder einen Schlüssel gebracht.</code></p>
+    <p><code>Heute bleibe ich zu Hause, weil ich Kopfschmerzen habe.</code></p>
+    <p><code>Jetzt zeige ich der Nachbarin das Foto.</code></p>
+    <p>Jedna zamiana: <code>Jetzt zeige ich <strong>es</strong> der Nachbarin.</code></p>
+    <Callout>
+      W ostatnim zdaniu tylko <code>das Foto</code> zmienia się na Akkusativ <code>es</code>. Grupa Dativ <code>der Nachbarin</code> zostaje, a zaimek Akkusativ stoi przed nią. Zadanie używa innych rzeczowników i czasowników.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="Słownictwo do twoich zdań">
+    <ul>
+      <li><code>arbeiten</code> — pracować; Perfekt: <code>hat gearbeitet</code></li>
+      <li><code>spielen</code> — grać; Perfekt: <code>hat gespielt</code></li>
+      <li><code>einkaufen</code> — robić zakupy; Perfekt: <code>hat eingekauft</code></li>
+      <li><code>sehen</code> — widzieć, oglądać; Perfekt: <code>hat gesehen</code></li>
+      <li><code>müde</code> — zmęczony / zmęczona; <code>zu Hause</code> — w domu</li>
+      <li><code>die Ärztin</code> (rodzaj żeński) — lekarka; Dativ: <code>der Ärztin</code></li>
+      <li><code>die Datei</code> (rodzaj żeński) — plik; <code>schicken</code> — wysyłać; <code>ich schicke</code></li>
+    </ul>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/005:q1" copyText={replyText} difficulty={3} language="pl">
+    <p><strong>A.</strong> Napisz dokładnie trzy krótkie zdania o swoich ostatnich dniach.</p>
+    <ul>
+      <li>W całej odpowiedzi użyj jednej albo dwóch form Perfekt, ale nie więcej.</li>
+      <li>Użyj raz <code>weil</code> albo <code>dass</code> i postaw czasownik odmieniony na końcu części podrzędnej.</li>
+      <li>Użyj co najmniej dwóch elementów z podanej listy słów.</li>
+    </ul>
+    <p><strong>B.</strong> W zdaniu <code>Ich schicke der Ärztin die Datei.</code> zastąp tylko <code>die Datei</code> jednym zaimkiem. <code>der Ärztin</code> musi zostać bez zmian.</p>
+    <p>Możesz używać <code>ae/oe/ue/ss</code>. Nie dodawaj analizy ani tłumaczenia — wystarczą cztery krótkie linie.</p>
+  </ReplyTask>
+</SessionPage>
