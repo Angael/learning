@@ -21,6 +21,12 @@ export const topics: Topic[] = [
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
     sessions: [
       {
+        title: 'Public surface choice',
+        href: '/topics/csharp/sessions/006-public-surface-choice/',
+        summary: 'Choose a positional record for one fixed request value, a class for related guarded state, the safer property surface, and the result of two transition calls.',
+        date: '2026-07-17',
+      },
+      {
         title: 'API models: records and classes',
         href: '/topics/csharp/sessions/005-api-models-records-and-classes/',
         summary: 'Choose a record for fixed request data and a class for guarded domain state, then contrast C# nominal types with TypeScript structural compatibility.',

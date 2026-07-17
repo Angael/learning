@@ -1,0 +1,102 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const propertyChoices = `// Choice 1
+public string Status { get; set; }
+
+// Choice 2
+public string Status { get; private set; }`;
+
+const transitionCode = `// Initial value: Status == "Pending"
+public bool Confirm()
+{
+    if (Status != "Pending") return false;
+
+    Status = "Confirmed";
+    return true;
+}`;
+
+const replyText = `[learn:csharp/006:q1]
+
+Use only the supplied facts, choices, and method. Do not write code. Reply with four short answers.
+
+Domain facts:
+- TableBookingRequest has Name and PartySize. It is one request value supplied as a whole; this workflow does not change it.
+- TableBooking represents the same continuing booking. Its Status may change only through Confirm().
+
+Available type choices for each: positional record or class.
+
+Status property choices:
+1. public string Status { get; set; }
+2. public string Status { get; private set; }
+
+Supplied transition method:
+// Initial value: Status == "Pending"
+public bool Confirm()
+{
+    if (Status != "Pending") return false;
+
+    Status = "Confirmed";
+    return true;
+}
+
+A. For TableBookingRequest, choose positional record or class and give one short reason.
+Answer:
+
+B. For TableBooking, choose positional record or class and give one short reason.
+Answer:
+
+C. Which Status property is safer for this design: choice 1 or choice 2? Why?
+Answer:
+
+D. On one new TableBooking, call Confirm() twice in sequence. Predict both calls:
+- First Confirm(): returned Boolean / final Status
+- Second Confirm(): returned Boolean / final Status
+Answer:`;
+---
+
+<SessionPage
+  title="Session 6 · C#: public surface choice"
+  heading="Choose what callers may change, then trace the guard"
+  lede="Make one fresh record/class choice, select the safer public property surface, and predict two calls to a supplied state-transition method."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="A compact reference for the decision">
+    <ul>
+      <li>A positional <code>record</code> is a compact option for a value-shaped description supplied as one whole. It also has compiler-supported value equality.</li>
+      <li>A <code>class</code> is a natural option for one continuing domain object with a guarded lifecycle.</li>
+      <li>Neither keyword decides mutability by itself: a record is not automatically immutable, and a class is not automatically mutable.</li>
+      <li><code>get; private set;</code> lets outside callers read a property while reserving assignment for code inside the declaring type.</li>
+    </ul>
+    <Callout>
+      Decide from the facts of this design. Then trace the method from top to bottom separately for each call; the second call starts from the status left by the first.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="Fresh domain facts and candidate surfaces">
+    <p><code>TableBookingRequest</code> contains <code>Name</code> and <code>PartySize</code>. It is supplied as one request value, and this workflow does not change it.</p>
+    <p><code>TableBooking</code> represents the same continuing booking. Its <code>Status</code> may change only through <code>Confirm()</code>.</p>
+    <p>For each type, your available choices are <strong>positional record</strong> or <strong>class</strong>.</p>
+    <Code code={propertyChoices} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Supplied transition method">
+    <Code code={transitionCode} lang="csharp" />
+    <p>The initial status and every branch needed for the prediction are shown. Treat the two calls as sequential calls on the same booking.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/006:q1" copyText={replyText} difficulty={3}>
+    <p><strong>Phone-ready:</strong> use only the supplied facts, choices, and method; write no code; give four short answers.</p>
+    <ol>
+      <li>Choose <strong>positional record</strong> or <strong>class</strong> for <code>TableBookingRequest</code>, with one short reason.</li>
+      <li>Choose <strong>positional record</strong> or <strong>class</strong> for <code>TableBooking</code>, with one short reason.</li>
+      <li>Choose the safer <code>Status</code> property surface, and say why.</li>
+      <li>On one new booking, call <code>Confirm()</code> twice in sequence. For each call, predict the returned Boolean and final status.</li>
+    </ol>
+  </ReplyTask>
+</SessionPage>

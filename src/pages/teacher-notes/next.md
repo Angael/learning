@@ -15,6 +15,6 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: `/topics/csharp/sessions/006-public-surface-choice/`
+- Commit: current production commit
