@@ -42,3 +42,7 @@ Trace one call at a time. Write the status before the call, evaluate `Status != 
 ## Evaluation
 
 Not answered yet. Secure evidence requires both the safer-surface reason and the complete two-call trace. Correct type labels alone repeat prior evidence and do not establish guarded-state prediction.
+
+## Resurfacing
+
+- 2026-07-18: assigned the existing four-part checkpoint as the sole catch-up action. Preserved the canonical page, task wording, and permanent ID; no new assessment or model was added while this reply remains outstanding.
