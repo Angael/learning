@@ -44,4 +44,13 @@ For the clause, underline the verb changed for person and put it at the end afte
 
 ## Evaluation
 
-Not answered yet. Prioritize the clause-final finite verb and the exact transformation `Ich schicke sie der Ärztin.` Correct only the highest-value additional issue. A narrow repair should ask for only the faulty sentence with the same reference visible.
+### 2026-07-18 · `[learn:german/005:q1]`
+
+- Learner response:
+  1. `Weil ich einen Urlaub habe, arbeite ich nicht.`
+  2. `Ich habe so viel gespielt, dass ich ein bisschen arbeiten möchte.`
+  3. `Ich bin müde, weil ich spät zum Bett gegangen bin.`
+  B. `ich schicke sie der Ärztin.`
+- Result: task completed successfully. Part A has exactly two Perfekt forms (`habe gespielt`, `bin ... gegangen`), uses supplied vocabulary, and has correct verb-final order in both subordinate clauses. The single-pronoun transformation is correct: feminine Akkusativ `sie` replaces only `die Datei` and precedes the retained Dativ phrase.
+- One low-value lexical correction: use `ins Bett gegangen` rather than `zum Bett gegangen` for “went to bed.” Capitalize the initial `Ich` in B.
+- No repair assigned; proceed to the next planned German event.
