@@ -41,7 +41,11 @@ Trace one call at a time. Write the status before the call, evaluate `Status != 
 
 ## Evaluation
 
-Not answered yet. Secure evidence requires both the safer-surface reason and the complete two-call trace. Correct type labels alone repeat prior evidence and do not establish guarded-state prediction.
+Answered 2026-07-18. All four parts are correct.
+
+- Response: chose a positional `record` for `TableBookingRequest` because it is supplied as a whole and unchanged; chose a `class` for `TableBooking` because `Confirm()` changes its status; chose choice 2 because it keeps the change logic inside the class and narrows the public API; predicted `true` then `false`, with final status `Confirmed` after both calls.
+- Feedback: secure new evidence for the guarded property surface and sequential guarded-state trace. The reason for choice 2 is correct; callers can read `Status` but cannot assign it and bypass `Confirm()`.
+- Next: C# 006 is complete. The next C# contact may move to a small model-construction task.
 
 ## Resurfacing
 
