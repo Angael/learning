@@ -15,6 +15,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/dotnet/sessions/007-request-model-validation/](/topics/dotnet/sessions/007-request-model-validation/)
+- Review: two read-only advisers checked technical accuracy and exercise quality. The existing code, predictions, four-part task, and self-contained copy template were accurate; production added only a short one-action cue.
+- Commit: current production commit

@@ -41,3 +41,7 @@ Trace only the first decision: substitute the supplied `street` value into `stri
 ## Evaluation
 
 Not answered yet. Grade the causal model and branch predictions, not exact JSON formatting. Secure evidence requires the annotation/runtime distinction and both response branches. A correct scaffolded answer does not establish missing-property binding, validation frameworks, or independent endpoint construction.
+
+## Delivery history
+
+- 2026-07-19: Resurfaced the same task as the day’s one action. Added a short read-only cue on the canonical page; preserved the supplied code, request bodies, task wording, expected answers, and permanent ID. No new learner evidence.
