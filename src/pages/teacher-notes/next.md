@@ -1,20 +1,20 @@
 # Next learning sessions
 
-- Date: 2026-07-18
-- Status: completed
+- Date: 2026-07-19
+- Status: planned
 - Weekly note: [2026-W29](/teacher-notes/weekly/2026-W29/)
 
 ## Block 1
 
-- Topic / type: C# / catch-up resurfacing of one existing phone-ready checkpoint
-- Outcome: complete the existing four-part public-surface task: choose the request and domain type shapes, explain why callers should not receive a public `Status` setter, and trace the Boolean result and final status across two calls on the same object.
-- Evidence: [C# 006 notes](/topics/csharp/sessions/006-public-surface-choice/notes/) and [2026-W29](/teacher-notes/weekly/2026-W29/). `[learn:csharp/006:q1]` was answered accurately on 2026-07-18: the request/domain type choices, guarded setter reason, and two-call trace are secure. The next C# contact may move to bounded model construction.
-- Scope limit: assign only the existing four short answers and preserve the current page, task wording, and permanent ID. No new session, model, code construction, worked duplicate, second checkpoint, simultaneous .NET or German deadline, interfaces, generics, collections, inheritance, `sealed`, object initializers, `with`, enums, exceptions, endpoint work, project setup, TypeScript comparison, or multi-state workflow. Delivery should frame this as one worthwhile catch-up action, not three overdue tasks.
-- Session: update `/topics/csharp/sessions/006-public-surface-choice/`
-- Reply ID: learn:csharp/006:q1
+- Topic / type: .NET / catch-up resurfacing of one existing request-boundary checkpoint
+- Outcome: identify the body-bound `ShippingAddress address` parameter, separate non-nullable C# guidance from runtime validation, name the whitespace check, and predict the supplied accepted and rejected responses.
+- Evidence: [.NET 007 notes](/topics/dotnet/sessions/007-request-model-validation/notes/) and [2026-W29](/teacher-notes/weekly/2026-W29/). `[learn:dotnet/007:q1]` remains unanswered. C# 006 and German 005 were both completed accurately on 2026-07-18, so this is the only active compact backlog item.
+- Scope limit: preserve the existing page, code, request bodies, task wording, and permanent ID. No new session, equivalent checkpoint, missing-property or serializer edge cases, validation framework, endpoint construction, project setup, generic-registration internals, C# model task, German task, or second reply request. Frame this as one worthwhile action, not backlog clearance.
+- Session: update `/topics/dotnet/sessions/007-request-model-validation/`
+- Reply ID: learn:dotnet/007:q1
 
 ## Implementation
 
-- Status: implemented
-- Sessions: `/topics/csharp/sessions/006-public-surface-choice/`
-- Commit: current production commit
+- Status: not started
+- Sessions:
+- Commit:
