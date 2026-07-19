@@ -40,7 +40,10 @@ Trace only the first decision: substitute the supplied `street` value into `stri
 
 ## Evaluation
 
-Not answered yet. Grade the causal model and branch predictions, not exact JSON formatting. Secure evidence requires the annotation/runtime distinction and both response branches. A correct scaffolded answer does not establish missing-property binding, validation frameworks, or independent endpoint construction.
+- 2026-07-19 learner reply: Correctly traced JSON body data into the `address` parameter and identified that ASP.NET Core creates a `ShippingAddress` record when compatible fields are supplied. Correctly identified `string.IsNullOrWhiteSpace(address.Street)` as the guard for null, empty, or whitespace-only text, while raising the useful question of what non-nullability does at runtime.
+- Correctly predicted the success branch as `200 OK` with `accepted: true` and the city value, and the rejection branch as `400 Bad Request` with an error field.
+- Feedback to give: name the whole parameter precisely as `ShippingAddress address` (parameter name `address`, type `ShippingAddress`). Non-nullable `string` is mainly a compiler/tooling promise; it does not independently reject incoming null, empty, or whitespace-only JSON values at runtime. The explicit `IsNullOrWhiteSpace` expression enforces this endpoint’s street rule.
+- Evidence is secure for this narrowly scaffolded request-binding and branch-tracing task. It does not establish missing-property binding, validation frameworks, or independent endpoint construction.
 
 ## Delivery history
 
