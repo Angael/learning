@@ -1,21 +1,20 @@
 # Next learning sessions
 
-- Date: 2026-07-19
+- Date: 2026-07-20
 - Status: planned
-- Weekly note: [2026-W29](/teacher-notes/weekly/2026-W29/)
+- Weekly note: [2026-W30](/teacher-notes/weekly/2026-W30/)
 
 ## Block 1
 
-- Topic / type: .NET / catch-up resurfacing of one existing request-boundary checkpoint
-- Outcome: identify the body-bound `ShippingAddress address` parameter, separate non-nullable C# guidance from runtime validation, name the whitespace check, and predict the supplied accepted and rejected responses.
-- Evidence: [.NET 007 notes](/topics/dotnet/sessions/007-request-model-validation/notes/) and [2026-W29](/teacher-notes/weekly/2026-W29/). `[learn:dotnet/007:q1]` remains unanswered. C# 006 and German 005 were both completed accurately on 2026-07-18, so this is the only active compact backlog item.
-- Scope limit: preserve the existing page, code, request bodies, task wording, and permanent ID. No new session, equivalent checkpoint, missing-property or serializer edge cases, validation framework, endpoint construction, project setup, generic-registration internals, C# model task, German task, or second reply request. Frame this as one worthwhile action, not backlog clearance.
-- Session: update `/topics/dotnet/sessions/007-request-model-validation/`
-- Reply ID: learn:dotnet/007:q1
+- Topic / type: C# / bounded positional-record construction
+- Outcome: write one compact public positional record from a supplied three-field specification, construct one value, and read one generated property.
+- Evidence: [C# 006 notes](/topics/csharp/sessions/006-public-surface-choice/notes/) and [2026-W30](/teacher-notes/weekly/2026-W30/). `[learn:csharp/006:q1]` securely established model choice, a restricted setter, and guarded-state tracing, but independent declaration and use remain untested. [.NET 007 notes](/topics/dotnet/sessions/007-request-model-validation/notes/) now record a secure reply, so the prior catch-up is complete.
+- Scope limit: specify the record choice and fields rather than asking for another record/class decision. Use one fresh non-shipping request shape with two required members and one nullable `string?` member. Give a compact syntax model with different names. Ask for one declaration, one `new` expression, and one property read only. No class alternative, setter choice, guarded method, state trace, endpoint, binding, runtime validation, attributes, equality, `with`, deconstruction, interfaces, generics, project setup, or second reply request.
+- Session: new `/topics/csharp/sessions/007-compact-request-model/`
+- Reply ID: learn:csharp/007:q1
 
 ## Implementation
 
-- Status: implemented
-- Sessions: [/topics/dotnet/sessions/007-request-model-validation/](/topics/dotnet/sessions/007-request-model-validation/)
-- Review: two read-only advisers checked technical accuracy and exercise quality. The existing code, predictions, four-part task, and self-contained copy template were accurate; production added only a short one-action cue.
-- Commit: current production commit
+- Status: not started
+- Sessions:
+- Commit:
