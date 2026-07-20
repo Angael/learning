@@ -15,6 +15,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/csharp/sessions/007-compact-request-model/](/topics/csharp/sessions/007-compact-request-model/)
+- Review: two read-only advisers checked C# accuracy and exercise quality. Production keeps nullable distinct from optional, uses a different-name two-field model, and asks for exactly three valid C# lines.
+- Commit: current production commit
