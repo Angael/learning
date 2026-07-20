@@ -45,6 +45,16 @@ var seats = signup.SeatCount;
 
 Copy the three-line shape from the model. Change the type name, then copy the three supplied property names and types in order. Use the same order for the three values.
 
-## Evaluation
+## Response and evaluation
 
-Awaiting response.
+- 2026-07-20: Angeal answered exactly the required three lines:
+
+  ```csharp
+  public record WorkshopSignupRequest(string AttendeeName, int SeatCount, string? Note);
+  var signup = new WorkshopSignupRequest("Maya", 2, null);
+  var seats = signup.SeatCount;
+  ```
+
+- Result: correct and complete. The declaration preserves `public record`, the requested names, types, order, and semicolon. Construction supplies all three values in order, including `null` for nullable `Note`. The final line reads the generated PascalCase `SeatCount` property.
+- Evidence: secure for this bounded positional-record declaration, construction, and property-read pattern.
+- Next: proceed to a small read/debug transfer rather than repair this task.
