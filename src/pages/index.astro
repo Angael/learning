@@ -1,9 +1,16 @@
 ---
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import SessionList from '../components/SessionList.astro';
 import PageShell from '../components/PageShell.astro';
+import SessionList from '../components/SessionList.astro';
 import { topics } from '../data/catalog';
+
+type CatalogSession = (typeof topics)[number]['sessions'][number];
+type TimelineSession = CatalogSession & {
+  topicTitle: string;
+  topicHref: string;
+  topicSlug: string;
+};
 
 const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? '';
 const sortedSessions = <T extends { href: string; date?: string }>(sessions: T[]) => [...sessions].sort((a, b) => {
@@ -11,6 +18,15 @@ const sortedSessions = <T extends { href: string; date?: string }>(sessions: T[]
   if (dateCompare !== 0) return dateCompare;
   return sessionNumber(b.href).localeCompare(sessionNumber(a.href));
 });
+
+const timelineSessions = sortedSessions(
+  topics.flatMap((topic) => topic.sessions.map((session) => ({
+    ...session,
+    topicTitle: topic.title,
+    topicHref: topic.href,
+    topicSlug: topic.slug,
+  }))),
+);
 
 const weeklyDir = join(process.cwd(), 'src/pages/teacher-notes/weekly');
 const weeklyNotes = readdirSync(weeklyDir)
@@ -22,29 +38,59 @@ const weeklyNotes = readdirSync(weeklyDir)
   }));
 ---
 
-<PageShell title="Learning" heading="Learning" summary="Topics and sessions. The index is for routing: every published session should be reachable from here.">
-  {topics.map((topic) => {
-    const sessions = sortedSessions(topic.sessions);
-    const visibleSessions = sessions.slice(0, 3);
-    const hiddenCount = Math.max(0, sessions.length - visibleSessions.length);
+<PageShell title="Learning" heading="Learning" summary="Choose a topic overview or browse every published session in date order.">
+  <div class="view-switcher" data-view-switcher>
+    <div class="view-switcher__controls" role="group" aria-label="Session display mode">
+      <button type="button" class="view-switcher__button" data-view-trigger="topics" aria-pressed="true">Topics and latest</button>
+      <button type="button" class="view-switcher__button" data-view-trigger="timeline" aria-pressed="false">All sessions by date</button>
+    </div>
 
-    return (
-      <section class="topic" aria-labelledby={`${topic.slug}-title`}>
-        <div class="topic-title">
-          <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
-          <span>{topic.sessions.length} sessions</span>
-        </div>
-        <p>{topic.summary}</p>
+    <div data-view-panel="topics">
+      <p class="view-intro">Start with a topic. Its latest sessions are shown on a short timeline; open the topic for its full history.</p>
+      <div class="topic-timeline">
+        {topics.map((topic) => {
+          const sessions = sortedSessions(topic.sessions);
+          const visibleSessions = sessions.slice(0, 3);
+          const hiddenCount = Math.max(0, sessions.length - visibleSessions.length);
 
-        <div class="session-list-wrap">
-          <SessionList sessions={visibleSessions} />
-          {hiddenCount > 0 && (
-            <a class="view-all-link" href={topic.href}>View all {topic.sessions.length} {topic.title} sessions →</a>
-          )}
-        </div>
-      </section>
-    );
-  })}
+          return (
+            <section class="topic" aria-labelledby={`${topic.slug}-title`}>
+              <div class="topic-title">
+                <a id={`${topic.slug}-title`} href={topic.href}>{topic.title}</a>
+                <span>{topic.sessions.length} sessions</span>
+              </div>
+              <p>{topic.summary}</p>
+              <div class="topic-timeline__sessions">
+                <SessionList sessions={visibleSessions} ariaLabel={`Latest ${topic.title} sessions`} />
+                {hiddenCount > 0 && (
+                  <a class="view-all-link" href={topic.href}>View all {topic.sessions.length} {topic.title} sessions →</a>
+                )}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </div>
+
+    <div data-view-panel="timeline" hidden>
+      <p class="view-intro">Every published session, newest first. Sessions from different topics share one date-ordered timeline.</p>
+      <ol class="all-sessions-timeline" aria-label="All sessions in date order">
+        {timelineSessions.map((session) => (
+          <li>
+            <time datetime={session.date}>{session.date ?? 'Undated'}</time>
+            <div class="all-sessions-timeline__dot" aria-hidden="true"></div>
+            <article>
+              <a class="all-sessions-timeline__topic" href={session.topicHref}>{session.topicTitle}</a>
+              <a class="all-sessions-timeline__session" href={session.href}>
+                <strong>Session {sessionNumber(session.href)} · {session.title}</strong>
+                <span>{session.summary}</span>
+              </a>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
 
   {weeklyNotes.length > 0 && (
     <section class="helper-notes" aria-labelledby="weekly-notes-title">
@@ -60,12 +106,64 @@ const weeklyNotes = readdirSync(weeklyDir)
   )}
 </PageShell>
 
-<style>
-  .topic {
-    padding: 20px 0;
-    border-top: 1px solid var(--line);
-  }
+<script>
+  document.querySelectorAll<HTMLElement>('[data-view-switcher]').forEach((switcher) => {
+    const triggers = switcher.querySelectorAll<HTMLButtonElement>('[data-view-trigger]');
+    const panels = switcher.querySelectorAll<HTMLElement>('[data-view-panel]');
 
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const selected = trigger.dataset.viewTrigger;
+        triggers.forEach((button) => button.setAttribute('aria-pressed', String(button === trigger)));
+        panels.forEach((panel) => { panel.hidden = panel.dataset.viewPanel !== selected; });
+      });
+    });
+  });
+</script>
+
+<style>
+  .view-switcher { display: grid; gap: 20px; }
+  .view-switcher__controls {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+  }
+  .view-switcher__button {
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .view-switcher__button[aria-pressed="true"] { background: var(--code); color: var(--code-text); }
+  .view-intro { margin-bottom: 20px; }
+  .topic-timeline { border-top: 1px solid var(--line); }
+  .topic {
+    position: relative;
+    padding: 20px 0 20px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .topic::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
   .topic-title {
     display: flex;
     align-items: baseline;
@@ -73,32 +171,50 @@ const weeklyNotes = readdirSync(weeklyDir)
     gap: 16px;
     margin-bottom: 6px;
   }
-
-  .topic-title a {
-    font-size: 1.35rem;
-    font-weight: 750;
-    letter-spacing: -.03em;
+  .topic-title a { font-size: 1.35rem; font-weight: 750; letter-spacing: -.03em; }
+  .topic-title span { color: var(--muted); font-size: .95rem; white-space: nowrap; }
+  .topic-timeline__sessions { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .view-all-link { align-self: flex-start; color: var(--link); font-weight: 650; }
+  .all-sessions-timeline { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .all-sessions-timeline li {
+    display: grid;
+    grid-template-columns: 6.6rem 18px minmax(0, 1fr);
+    gap: 12px;
+    position: relative;
+    padding: 0 0 20px;
   }
-
-  .topic-title span {
-    color: var(--muted);
-    font-size: .95rem;
-    white-space: nowrap;
+  .all-sessions-timeline li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: calc(6.6rem + 8px);
+    width: 1px;
+    background: var(--line);
   }
-
-  .session-list-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 18px;
+  .all-sessions-timeline time { padding-top: 2px; color: var(--muted); font-size: .86rem; font-weight: 650; }
+  .all-sessions-timeline__dot {
+    z-index: 1;
+    width: 10px;
+    height: 10px;
+    margin-top: 6px;
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
   }
-
-  .view-all-link {
-    align-self: flex-start;
-    color: var(--link);
-    font-weight: 650;
+  .all-sessions-timeline article { display: grid; gap: 6px; }
+  .all-sessions-timeline__topic { width: fit-content; color: var(--link); font-size: .86rem; font-weight: 750; }
+  .all-sessions-timeline__session {
+    display: grid;
+    gap: 4px;
+    padding: 13px 15px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
   }
-
+  .all-sessions-timeline__session strong { font-size: 1rem; letter-spacing: -.01em; }
+  .all-sessions-timeline__session span { color: var(--muted); line-height: 1.45; }
   .helper-notes {
     margin-top: 28px;
     padding: 18px;
@@ -106,26 +222,17 @@ const weeklyNotes = readdirSync(weeklyDir)
     border-radius: 18px;
     background: var(--surface);
   }
+  .helper-title { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+  .helper-title h2 { margin: 0; font-size: 1.05rem; }
+  .helper-title span, .helper-notes p { color: var(--muted); }
+  .helper-notes ul { margin: 12px 0 0; padding-left: 1.1rem; }
 
-  .helper-title {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .helper-title h2 {
-    margin: 0;
-    font-size: 1.05rem;
-  }
-
-  .helper-title span,
-  .helper-notes p {
-    color: var(--muted);
-  }
-
-  .helper-notes ul {
-    margin: 12px 0 0;
-    padding-left: 1.1rem;
+  @media (max-width: 480px) {
+    .view-switcher__controls { width: 100%; }
+    .view-switcher__button { flex: 1; padding: 8px 6px; font-size: .82rem; }
+    .all-sessions-timeline li { grid-template-columns: 1fr; gap: 7px; padding: 0 0 22px 20px; }
+    .all-sessions-timeline li:not(:last-child)::after { top: 25px; left: 4px; }
+    .all-sessions-timeline time { grid-column: 1; }
+    .all-sessions-timeline__dot { position: absolute; top: 1px; left: 0; }
   }
 </style>

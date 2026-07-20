@@ -3,7 +3,6 @@ import SessionSection from './SessionSection.astro';
 
 type Props = {
   id: string;
-  copyText: string;
   difficulty?: number;
   label?: string;
   language?: 'en' | 'pl';
@@ -11,7 +10,6 @@ type Props = {
 
 const {
   id,
-  copyText,
   difficulty = 3,
   label,
   language = 'en',
@@ -21,18 +19,22 @@ const text = language === 'pl'
   ? {
       label: 'Zadanie do odpowiedzi',
       difficulty: 'trudność',
-      copy: 'Kopiuj pytania',
+      answer: 'Twoja odpowiedź',
+      placeholder: 'Wpisz tylko odpowiedzi do tego zadania.',
+      copy: 'Kopiuj odpowiedź',
       copied: 'Skopiowano',
-      success: 'Skopiowano. Wklej treść na Discordzie i wpisz odpowiedź pod każdym polem.',
-      failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator i pytania ręcznie.',
+      success: 'Skopiowano identyfikator i Twoją odpowiedź. Wklej je na Discordzie.',
+      failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator i odpowiedź ręcznie.',
     }
   : {
       label: 'Reply task',
       difficulty: 'difficulty',
-      copy: 'Copy questions',
+      answer: 'Your answer',
+      placeholder: 'Write only your answers to this task.',
+      copy: 'Copy answer',
       copied: 'Copied',
-      success: 'Copied. Paste this into Discord and write below each answer label.',
-      failure: 'Copy failed. Select the ID and questions manually.',
+      success: 'Copied the ID and your answer. Paste them into Discord.',
+      failure: 'Copy failed. Select the ID and answer manually.',
     };
 
 if (!/^learn:[a-z0-9./-]+(?::[a-z0-9-]+)?$/i.test(id)) {
@@ -43,16 +45,13 @@ if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
 }
 
 const marker = `[${id}]`;
-if (!copyText.trimStart().startsWith(marker)) {
-  throw new Error(`ReplyTask copyText must start with "${marker}"`);
-}
 const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
 ---
 
 <div
   class="reply-task"
   data-reply-task
-  data-copy-text={copyText}
+  data-reply-id={marker}
   data-copy-label={text.copy}
   data-copy-success={text.success}
   data-copy-failure={text.failure}
@@ -63,6 +62,10 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
     <div class="reply-task__content">
       <code class="reply-task__id">{marker}</code>
       <div class="reply-task__body"><slot /></div>
+      <label class="reply-task__answer">
+        <span>{text.answer}</span>
+        <textarea data-answer placeholder={text.placeholder} rows="8"></textarea>
+      </label>
       <p class="reply-task__status" data-copy-status aria-live="polite"></p>
     </div>
   </SessionSection>
@@ -85,15 +88,18 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
 
   document.querySelectorAll<HTMLElement>('[data-reply-task]').forEach((task) => {
     const button = task.querySelector<HTMLButtonElement>('[data-copy-trigger]');
+    const answer = task.querySelector<HTMLTextAreaElement>('[data-answer]');
     const status = task.querySelector<HTMLElement>('[data-copy-status]');
-    if (!button || !status || button.dataset.ready === 'true') return;
+    if (!button || !answer || !status || button.dataset.ready === 'true') return;
 
     button.dataset.ready = 'true';
     button.addEventListener('click', async () => {
-      const text = task.dataset.copyText ?? '';
+      const id = task.dataset.replyId ?? '';
+      const response = answer.value.trim();
+      const copyText = response ? `${id}\n${response}` : id;
       try {
-        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
-        else copyFallback(text, button);
+        if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(copyText);
+        else copyFallback(copyText, button);
         status.textContent = task.dataset.copySuccess ?? '';
         button.textContent = task.dataset.copiedLabel ?? '';
       } catch {
@@ -126,6 +132,21 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
   }
   .reply-task__body { min-width: 0; }
   .reply-task__body :global(.shiki) { width: 100%; min-width: 0; }
+  .reply-task__answer { display: grid; gap: 6px; font-weight: 700; }
+  .reply-task__answer textarea {
+    width: 100%;
+    min-height: 9rem;
+    resize: vertical;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    font: inherit;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .reply-task__answer textarea:focus { border-color: var(--accent); outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent); }
   .reply-task__body :global(p:last-child),
   .reply-task__body :global(ol:last-child),
   .reply-task__body :global(ul:last-child),
