@@ -3,6 +3,7 @@ import SessionSection from './SessionSection.astro';
 
 type Props = {
   id: string;
+  copyText?: string;
   difficulty?: number;
   label?: string;
   language?: 'en' | 'pl';
@@ -10,6 +11,7 @@ type Props = {
 
 const {
   id,
+  copyText = '',
   difficulty = 3,
   label,
   language = 'en',
@@ -45,6 +47,9 @@ if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
 }
 
 const marker = `[${id}]`;
+if (copyText && !copyText.trimStart().startsWith(marker)) {
+  throw new Error(`ReplyTask copyText must start with "${marker}"`);
+}
 const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
 ---
 
@@ -52,6 +57,8 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
   class="reply-task"
   data-reply-task
   data-reply-id={marker}
+  data-copy-text={copyText}
+  data-answer-label={text.answer}
   data-copy-label={text.copy}
   data-copy-success={text.success}
   data-copy-failure={text.failure}
@@ -96,7 +103,11 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
     button.addEventListener('click', async () => {
       const id = task.dataset.replyId ?? '';
       const response = answer.value.trim();
-      const copyText = response ? `${id}\n${response}` : id;
+      const template = task.dataset.copyText?.trim() ?? '';
+      const answerLabel = task.dataset.answerLabel ?? 'Answer';
+      const taskText = template || id;
+      const textWithId = taskText.startsWith(id) ? taskText : `${id}\n${taskText}`;
+      const copyText = response ? `${textWithId}\n\n${answerLabel}:\n${response}` : textWithId;
       try {
         if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(copyText);
         else copyFallback(copyText, button);

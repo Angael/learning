@@ -121,6 +121,12 @@ export const topics: Topic[] = [
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
       {
+        title: 'Zamówienie w kawiarni ze wsparciem',
+        href: '/topics/german/sessions/006-supported-cafe-order/',
+        summary: 'Uzupełnij trzy wypowiedzi klienta: zamów kawę i bułkę z poprawnym Akkusativ, odmów kolejnej propozycji i zakończ uprzejmie.',
+        date: '2026-07-21',
+      },
+      {
         title: 'Ostatnie dni: krótka produkcja ze wsparciem',
         href: '/topics/german/sessions/005-recent-life-spaced-production/',
         summary: 'Napisz trzy krótkie zdania z podanym słownictwem, Perfekt i weil/dass, a potem wykonaj jedną kontrolowaną zamianę na zaimek.',

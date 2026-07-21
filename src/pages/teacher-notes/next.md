@@ -15,6 +15,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/german/sessions/006-supported-cafe-order/](/topics/german/sessions/006-supported-cafe-order/)
+- Review: two read-only advisers checked German accuracy and exercise quality. Production uses a different-noun model, one small selection, a visible article aid, fixed polite frames, and exactly three customer replies.
+- Commit: current production commit
