@@ -57,4 +57,9 @@ Look only at the lower `ein/eine` table and the Akkusativ column. Start from eac
 
 ## Evaluation
 
-Awaiting response.
+### 2026-07-21 · `[learn:german/006:q1]`
+
+- Learner response: `Was moechten Sie? Ich haette gern einen Kaffe und ein Broetchen, bitte. Moechten Sie sonst noch etwas? Nein, danke. Bitte schoen. Danke, auf Wiedersehen!`
+- Result: the target Akkusativ articles are correct: `einen Kaffee` is masculine Akkusativ and `ein Brötchen` is neuter Akkusativ. The decline and farewell are also correct in meaning.
+- Correction: the task requested exactly three customer utterances, but the learner also copied the staff lines. Write only the three customer lines next time. Spell `Kaffee` with two `e`; `Broetchen` is accepted as the keyboard form of `Brötchen`.
+- Repair assigned: `[learn:german/006:q2]` asks for the same three customer lines only. This is a short format-and-spelling repair, not a new grammar assessment.
