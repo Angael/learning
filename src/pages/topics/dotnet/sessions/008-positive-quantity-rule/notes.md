@@ -39,4 +39,10 @@ Separate “a read that looks clear now” from “the one write that must remai
 
 ## Evaluation
 
-- Await `[learn:dotnet/008:q1]`.
+### 2026-07-22 · `[learn:dotnet/008:q1]`
+
+- The learner correctly identified the concurrent-request shape: ASP.NET Core can run two endpoint invocations at once, and `await` creates a point where an invocation can yield while database work is in progress.
+- The learner correctly expects one request to succeed and the raced duplicate to become a deliberate `409 Conflict`; they also correctly judged that request cancellation is unrelated to duplicate detection.
+- High-value correction: `db.Users.Add(...)` is synchronous EF Core change tracking only. It does not send an insert and therefore cannot throw a database unique-constraint error. The database write occurs when `await db.SaveChangesAsync(cancellationToken)` runs, so that is where the expected provider exception arises and must be translated.
+- Useful next distinction: a transaction alone does not make a read-then-insert uniqueness check safe at usual isolation levels. Keep a database unique constraint/index as the final authority. An in-process semaphore or single-server queue is not a durable solution: it reduces concurrency only in one process and fails with multiple server instances. Use it only for a distinct, explicitly process-local resource.
+- No repair is warranted. The target is secure after the `Add` versus `SaveChangesAsync` correction. Next planned .NET work may progress to a different data-access or validation transfer.
