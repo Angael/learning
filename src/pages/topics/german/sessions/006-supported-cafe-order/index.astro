@@ -5,35 +5,6 @@ import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
 
-const replyText = `[learn:german/006:q1]
-
-Napisz po niemiecku dokładnie 3 wypowiedzi klienta. Możesz używać ae/oe/ue/ss.
-Nie zmieniaj kwestii obsługi. Nie dodawaj nowych produktów, pytań ani wyjaśnienia.
-
-Ściąga — użyj kolumny Akkusativ:
-- rodzaj męski: Nominativ ein | Akkusativ einen | Dativ einem
-- rodzaj nijaki: Nominativ ein | Akkusativ ein | Dativ einem
-
-Słowa i gotowe ramy:
-- der Kaffee — kawa
-- das Brötchen — bułka
-- Ich hätte gern ..., bitte. — Poproszę ...
-- Nein, danke. — Nie, dziękuję.
-- Danke. Auf Wiedersehen. — Dziękuję. Do widzenia.
-
-1. Obsługa: Guten Tag. Was möchten Sie?
-Zamów der Kaffee i das Brötchen. Użyj ramy Ich hätte gern ..., bitte.
-Klient:
-
-2. Obsługa: Möchten Sie sonst noch etwas?
-Użyj podanej odpowiedzi odmownej.
-Klient:
-
-3. Obsługa: Bitte schön.
-Użyj podanego podziękowania i pożegnania.
-Klient:`;
-
-
 ---
 
 <SessionPage
@@ -80,7 +51,7 @@ Klient:`;
     <Callout><strong>Sprawdź:</strong> poprawna jest para 2. Rodzaj męski zmienia <code>ein</code> na <code>einen</code>. Rodzaj żeński zostaje jako <code>eine</code>.</Callout>
   </SessionSection>
 
-  <ReplyTask id="learn:german/006:q1" copyText={replyText} difficulty={3} language="pl">
+  <ReplyTask id="learn:german/006:q1" difficulty={3} language="pl">
     <p>Napisz dokładnie trzy wypowiedzi klienta w podanej rozmowie.</p>
     <ol>
       <li>Po <code>Was möchten Sie?</code> zamów <code>der Kaffee</code> i <code>das Brötchen</code> za pomocą ramy <code>Ich hätte gern ..., bitte.</code></li>

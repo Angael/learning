@@ -30,6 +30,6 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - Use `SessionPage`, `SessionSection`, `SessionGrid`, `SessionList`, `Code`, `Callout`, `CommandList`, `TagList`, and `ReplyTask` rather than one-off markup.
 - Use `Code.astro` for code samples; do not import Shiki or render plain `<pre><code>` for code sessions.
 - Every response request uses `ReplyTask` with a permanent ID. Never renumber published IDs.
-- Copied templates include the ID and enough context to answer without reconstructing the prompt.
+- The `ReplyTask` copy button must copy only the permanent ID and the learner's typed answer. Do not add a copy-content prop or duplicate task text in copied replies.
 - Keep session-specific CSS out by default and do not add eyebrow/kicker headers.
 - Sort session lists newest-first; show number and date, all sessions on topic pages, and at most three per topic on home.

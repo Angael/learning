@@ -30,45 +30,6 @@ Request B: AnyAsync(email) → false
 Request A: SaveChangesAsync() → succeeds
 Request B: SaveChangesAsync() → database unique constraint fails`;
 
-const replyText = `[learn:dotnet/008:q1]
-
-Read the supplied code and timeline. Do not build a project.
-
-Endpoint:
-app.MapPost("/users", async (
-    CreateUserRequest request,
-    AppDbContext db,
-    CancellationToken cancellationToken) =>
-{
-    var exists = await db.Users.AnyAsync(
-        user => user.Email == request.Email,
-        cancellationToken);
-
-    if (exists)
-    {
-        return Results.Conflict(new { error = "Email is already in use." });
-    }
-
-    db.Users.Add(new User { Email = request.Email });
-    await db.SaveChangesAsync(cancellationToken);
-
-    return Results.Created($"/users/{request.Email}", new { request.Email });
-});
-
-Concurrent timeline:
-A: AnyAsync(email) → false
-B: AnyAsync(email) → false
-A: SaveChangesAsync() → succeeds
-B: SaveChangesAsync() → database unique constraint fails
-
-A. Why can both AnyAsync calls return false even though the endpoint checks first? Answer in 2–4 sentences.
-Answer:
-
-B. Name the layer that must be the final authority for email uniqueness. What HTTP outcome should the API deliberately return when that layer rejects a duplicate created by this race?
-Answer:
-
-C. Give a compact production approach (3–5 bullets or pseudocode). Include the database rule, where the exception is translated, and how CancellationToken is handled. Do not write provider-specific exception-number code.
-Answer:`;
 ---
 
 <SessionPage
@@ -100,7 +61,7 @@ Answer:`;
     <p>The exact exception type and constraint inspection are database-provider-specific. That detail belongs behind a small, tested translation boundary rather than scattered through endpoint code.</p>
   </SessionSection>
 
-  <ReplyTask id="learn:dotnet/008:q1" copyText={replyText} difficulty={4}>
+  <ReplyTask id="learn:dotnet/008:q1" difficulty={4}>
     <p>Review this as a backend engineer. Explain the race, identify the real uniqueness authority, then propose a concise production approach.</p>
     <ol>
       <li>Explain how both reads can say “not found.”</li>
