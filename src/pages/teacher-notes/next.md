@@ -24,6 +24,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/dotnet/sessions/008-positive-quantity-rule/](/topics/dotnet/sessions/008-positive-quantity-rule/); [/topics/german/sessions/006-supported-cafe-order/](/topics/german/sessions/006-supported-cafe-order/)
+- Review: two read-only advisers checked .NET content accuracy and exercise quality. Production keeps the numeric rule separate from the `int` type, traces only the supplied values, and keeps the German repair to three copied customer lines with a self-contained reply template.
+- Commit: current production commit

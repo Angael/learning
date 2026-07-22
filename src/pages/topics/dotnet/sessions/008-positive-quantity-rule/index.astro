@@ -1,0 +1,126 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const requestCode = `public record AddCartItemRequest(
+    string Sku,
+    int Quantity);`;
+
+const endpointCode = `app.MapPost("/cart/items", (AddCartItemRequest request) =>
+{
+    if (request.Quantity <= 0)
+    {
+        return Results.BadRequest(new
+        {
+            error = "Quantity must be greater than zero."
+        });
+    }
+
+    return Results.Ok(new
+    {
+        accepted = true,
+        sku = request.Sku,
+        quantity = request.Quantity
+    });
+});`;
+
+const positiveBody = `{
+  "sku": "ABC-123",
+  "quantity": 2
+}`;
+
+const zeroBody = `{
+  "sku": "ABC-123",
+  "quantity": 0
+}`;
+
+const replyText = `[learn:dotnet/008:q1]
+
+Read the supplied code only. Do not write or run a project.
+
+Request type:
+public record AddCartItemRequest(
+    string Sku,
+    int Quantity);
+
+Handler:
+app.MapPost("/cart/items", (AddCartItemRequest request) =>
+{
+    if (request.Quantity <= 0)
+    {
+        return Results.BadRequest(new { error = "Quantity must be greater than zero." });
+    }
+
+    return Results.Ok(new
+    {
+        accepted = true,
+        sku = request.Sku,
+        quantity = request.Quantity
+    });
+});
+
+Request 1:
+{"sku":"ABC-123","quantity":2}
+
+Request 2:
+{"sku":"ABC-123","quantity":0}
+
+A. Does the type int itself reject 0? Which expression enforces the positive-quantity rule?
+Answer:
+
+B. For Request 1, is request.Quantity <= 0 true or false? Give the exact HTTP status and returned JSON values.
+Answer:
+
+C. For Request 2, is request.Quantity <= 0 true or false? Give the exact HTTP status and returned JSON values.
+Answer:
+
+Exact JSON spacing and property order do not matter. Property names and values do matter.`;
+---
+
+<SessionPage
+  title="Session 8 · .NET: positive quantity rule"
+  heading="Trace one positive-quantity runtime rule"
+  lede="Read a supplied request type and handler. Decide what int permits, test one condition with two values, and predict each response."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="Type and rule are different">
+    <Callout>
+      <code>int</code> represents whole numbers. It permits negative numbers, <code>0</code>, and positive numbers. It does not mean “positive number.”
+    </Callout>
+    <p>This endpoint needs a separate runtime rule. The condition <code>request.Quantity &lt;= 0</code> rejects zero and negative quantities.</p>
+  </SessionSection>
+
+  <SessionSection title="Supplied request type">
+    <Code code={requestCode} lang="csharp" />
+    <p>The request has a product code and a whole-number quantity. The record carries the values. The handler applies the positive-quantity rule.</p>
+  </SessionSection>
+
+  <SessionSection title="Supplied handler">
+    <Code code={endpointCode} lang="csharp" />
+    <ul>
+      <li>If <code>request.Quantity &lt;= 0</code> is <code>true</code>, the handler returns <code>400 Bad Request</code>.</li>
+      <li>If it is <code>false</code>, execution continues to <code>200 OK</code>.</li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="Two complete request bodies">
+    <p><strong>Request 1: quantity 2</strong></p>
+    <Code code={positiveBody} lang="json" />
+    <p><strong>Request 2: quantity 0</strong></p>
+    <Code code={zeroBody} lang="json" />
+  </SessionSection>
+
+  <ReplyTask id="learn:dotnet/008:q1" copyText={replyText} difficulty={3}>
+    <p>Answer three short questions. Read the code only; do not create or run a project.</p>
+    <ol>
+      <li>Does <code>int</code> itself reject <code>0</code>? Which expression enforces the positive-quantity rule?</li>
+      <li>For Request 1, is the condition <code>true</code> or <code>false</code>? Give the exact HTTP status and returned JSON values.</li>
+      <li>For Request 2, is the condition <code>true</code> or <code>false</code>? Give the exact HTTP status and returned JSON values.</li>
+    </ol>
+    <p>Exact JSON spacing and property order do not matter. Property names and values do matter.</p>
+  </ReplyTask>
+</SessionPage>

@@ -71,6 +71,12 @@ export const topics: Topic[] = [
     summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
     sessions: [
       {
+        title: 'Positive quantity rule',
+        href: '/topics/dotnet/sessions/008-positive-quantity-rule/',
+        summary: 'Explain why int permits zero, evaluate one explicit positive-quantity guard, and predict its success and rejection responses.',
+        date: '2026-07-22',
+      },
+      {
         title: 'Request model validation',
         href: '/topics/dotnet/sessions/007-request-model-validation/',
         summary: 'Trace JSON into a supplied request record, distinguish C# nullability guidance from runtime validation, and predict accepted and rejected responses.',

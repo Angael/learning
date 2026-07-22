@@ -63,3 +63,12 @@ Look only at the lower `ein/eine` table and the Akkusativ column. Start from eac
 - Result: the target Akkusativ articles are correct: `einen Kaffee` is masculine Akkusativ and `ein Brötchen` is neuter Akkusativ. The decline and farewell are also correct in meaning.
 - Correction: the task requested exactly three customer utterances, but the learner also copied the staff lines. Write only the three customer lines next time. Spell `Kaffee` with two `e`; `Broetchen` is accepted as the keyboard form of `Brötchen`.
 - Repair assigned: `[learn:german/006:q2]` asks for the same three customer lines only. This is a short format-and-spelling repair, not a new grammar assessment.
+
+## Repair task
+
+- ID: `[learn:german/006:q2]`
+- Difficulty: 2/5
+- Exact task: copy only the three supplied customer lines, omit all staff lines, and spell `Kaffee` with two `e`.
+- Copy template is self-contained: it includes the ID, all three supplied lines, the no-staff and no-explanation limits, the `Broetchen` allowance, the spelling reminder, and three answer lines.
+- Expected answer: the same three lines listed under `Expected answer` above. `Broetchen` remains acceptable for `Brötchen`.
+- Await `[learn:german/006:q2]`.
