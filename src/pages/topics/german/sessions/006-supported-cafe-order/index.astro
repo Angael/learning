@@ -33,21 +33,7 @@ Klient:
 Użyj podanego podziękowania i pożegnania.
 Klient:`;
 
-const repairText = `[learn:german/006:q2]
 
-Napisz dokładnie 3 wiersze klienta. Nie kopiuj kwestii obsługi. Nie dodawaj wyjaśnienia.
-
-Przepisz te trzy wiersze:
-1. Ich hätte gern einen Kaffee und ein Brötchen, bitte.
-2. Nein, danke.
-3. Danke. Auf Wiedersehen.
-
-Możesz napisać Broetchen zamiast Brötchen. Napisz Kaffee z dwoma e.
-
-Odpowiedź — tylko 3 wiersze klienta:
-1.
-2.
-3.`;
 ---
 
 <SessionPage
@@ -104,15 +90,4 @@ Odpowiedź — tylko 3 wiersze klienta:
     <p>Nie zmieniaj kwestii obsługi. Nie dodawaj produktów, pytań ani wyjaśnienia. Możesz używać <code>ae/oe/ue/ss</code>.</p>
   </ReplyTask>
 
-  <SessionSection title="Krótka naprawa">
-    <ReplyTask id="learn:german/006:q2" copyText={repairText} difficulty={2} language="pl">
-      <p>Twoje odpowiedzi klienta były prawie dobre. Teraz napisz <strong>dokładnie trzy wiersze</strong> klienta — bez kwestii obsługi.</p>
-      <ol>
-        <li><code>Ich hätte gern einen Kaffee und ein Brötchen, bitte.</code></li>
-        <li><code>Nein, danke.</code></li>
-        <li><code>Danke. Auf Wiedersehen.</code></li>
-      </ol>
-      <p>Możesz napisać <code>Broetchen</code> zamiast <code>Brötchen</code>, ale napisz <code>Kaffee</code> z dwoma <code>e</code>.</p>
-    </ReplyTask>
-  </SessionSection>
 </SessionPage>

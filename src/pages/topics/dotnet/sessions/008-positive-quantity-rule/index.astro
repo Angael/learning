@@ -5,122 +5,108 @@ import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
 
-const requestCode = `public record AddCartItemRequest(
-    string Sku,
-    int Quantity);`;
-
-const endpointCode = `app.MapPost("/cart/items", (AddCartItemRequest request) =>
+const endpointCode = `app.MapPost("/users", async (
+    CreateUserRequest request,
+    AppDbContext db,
+    CancellationToken cancellationToken) =>
 {
-    if (request.Quantity <= 0)
+    var exists = await db.Users.AnyAsync(
+        user => user.Email == request.Email,
+        cancellationToken);
+
+    if (exists)
     {
-        return Results.BadRequest(new
-        {
-            error = "Quantity must be greater than zero."
-        });
+        return Results.Conflict(new { error = "Email is already in use." });
     }
 
-    return Results.Ok(new
-    {
-        accepted = true,
-        sku = request.Sku,
-        quantity = request.Quantity
-    });
+    db.Users.Add(new User { Email = request.Email });
+    await db.SaveChangesAsync(cancellationToken);
+
+    return Results.Created($"/users/{request.Email}", new { request.Email });
 });`;
 
-const positiveBody = `{
-  "sku": "ABC-123",
-  "quantity": 2
-}`;
-
-const zeroBody = `{
-  "sku": "ABC-123",
-  "quantity": 0
-}`;
+const timeline = `Request A: AnyAsync(email) → false
+Request B: AnyAsync(email) → false
+Request A: SaveChangesAsync() → succeeds
+Request B: SaveChangesAsync() → database unique constraint fails`;
 
 const replyText = `[learn:dotnet/008:q1]
 
-Read the supplied code only. Do not write or run a project.
+Read the supplied code and timeline. Do not build a project.
 
-Request type:
-public record AddCartItemRequest(
-    string Sku,
-    int Quantity);
-
-Handler:
-app.MapPost("/cart/items", (AddCartItemRequest request) =>
+Endpoint:
+app.MapPost("/users", async (
+    CreateUserRequest request,
+    AppDbContext db,
+    CancellationToken cancellationToken) =>
 {
-    if (request.Quantity <= 0)
+    var exists = await db.Users.AnyAsync(
+        user => user.Email == request.Email,
+        cancellationToken);
+
+    if (exists)
     {
-        return Results.BadRequest(new { error = "Quantity must be greater than zero." });
+        return Results.Conflict(new { error = "Email is already in use." });
     }
 
-    return Results.Ok(new
-    {
-        accepted = true,
-        sku = request.Sku,
-        quantity = request.Quantity
-    });
+    db.Users.Add(new User { Email = request.Email });
+    await db.SaveChangesAsync(cancellationToken);
+
+    return Results.Created($"/users/{request.Email}", new { request.Email });
 });
 
-Request 1:
-{"sku":"ABC-123","quantity":2}
+Concurrent timeline:
+A: AnyAsync(email) → false
+B: AnyAsync(email) → false
+A: SaveChangesAsync() → succeeds
+B: SaveChangesAsync() → database unique constraint fails
 
-Request 2:
-{"sku":"ABC-123","quantity":0}
-
-A. Does the type int itself reject 0? Which expression enforces the positive-quantity rule?
+A. Why can both AnyAsync calls return false even though the endpoint checks first? Answer in 2–4 sentences.
 Answer:
 
-B. For Request 1, is request.Quantity <= 0 true or false? Give the exact HTTP status and returned JSON values.
+B. Name the layer that must be the final authority for email uniqueness. What HTTP outcome should the API deliberately return when that layer rejects a duplicate created by this race?
 Answer:
 
-C. For Request 2, is request.Quantity <= 0 true or false? Give the exact HTTP status and returned JSON values.
-Answer:
-
-Exact JSON spacing and property order do not matter. Property names and values do matter.`;
+C. Give a compact production approach (3–5 bullets or pseudocode). Include the database rule, where the exception is translated, and how CancellationToken is handled. Do not write provider-specific exception-number code.
+Answer:`;
 ---
 
 <SessionPage
-  title="Session 8 · .NET: positive quantity rule"
-  heading="Trace one positive-quantity runtime rule"
-  lede="Read a supplied request type and handler. Decide what int permits, test one condition with two values, and predict each response."
+  title="Session 8 · .NET: race-safe uniqueness"
+  heading="Review a duplicate-email endpoint under concurrent requests"
+  lede="A friendly pre-check can improve the normal response, but it cannot make a uniqueness guarantee. Trace the race, choose the authoritative layer, and sketch a production-safe response path."
   backHref="/topics/dotnet/"
   backLabel=".NET sessions"
 >
-  <SessionSection title="Type and rule are different">
-    <Callout>
-      <code>int</code> represents whole numbers. It permits negative numbers, <code>0</code>, and positive numbers. It does not mean “positive number.”
-    </Callout>
-    <p>This endpoint needs a separate runtime rule. The condition <code>request.Quantity &lt;= 0</code> rejects zero and negative quantities.</p>
-  </SessionSection>
-
-  <SessionSection title="Supplied request type">
-    <Code code={requestCode} lang="csharp" />
-    <p>The request has a product code and a whole-number quantity. The record carries the values. The handler applies the positive-quantity rule.</p>
-  </SessionSection>
-
-  <SessionSection title="Supplied handler">
+  <SessionSection title="The tempting endpoint">
     <Code code={endpointCode} lang="csharp" />
+    <p>On its own, this looks reasonable: it checks for an existing email, returns <code>409 Conflict</code> when it finds one, then inserts the new user.</p>
+  </SessionSection>
+
+  <SessionSection title="The gap between check and write">
+    <Code code={timeline} lang="text" />
+    <Callout>
+      Two requests can both read “no user yet” before either one writes. The application-level pre-check is useful for the common case, but it is not a concurrency guarantee.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="A reliable boundary">
     <ul>
-      <li>If <code>request.Quantity &lt;= 0</code> is <code>true</code>, the handler returns <code>400 Bad Request</code>.</li>
-      <li>If it is <code>false</code>, execution continues to <code>200 OK</code>.</li>
+      <li>Put a unique constraint or unique index on the email column in the database.</li>
+      <li>Keep the pre-check only as an optional fast path and user-friendly response.</li>
+      <li>At the write boundary, catch and recognize the database’s unique-constraint failure, then translate that expected conflict to <code>409 Conflict</code>.</li>
+      <li>Let the request <code>CancellationToken</code> flow to async database work. Do not turn client cancellation into a fake duplicate-email response.</li>
     </ul>
+    <p>The exact exception type and constraint inspection are database-provider-specific. That detail belongs behind a small, tested translation boundary rather than scattered through endpoint code.</p>
   </SessionSection>
 
-  <SessionSection title="Two complete request bodies">
-    <p><strong>Request 1: quantity 2</strong></p>
-    <Code code={positiveBody} lang="json" />
-    <p><strong>Request 2: quantity 0</strong></p>
-    <Code code={zeroBody} lang="json" />
-  </SessionSection>
-
-  <ReplyTask id="learn:dotnet/008:q1" copyText={replyText} difficulty={3}>
-    <p>Answer three short questions. Read the code only; do not create or run a project.</p>
+  <ReplyTask id="learn:dotnet/008:q1" copyText={replyText} difficulty={4}>
+    <p>Review this as a backend engineer. Explain the race, identify the real uniqueness authority, then propose a concise production approach.</p>
     <ol>
-      <li>Does <code>int</code> itself reject <code>0</code>? Which expression enforces the positive-quantity rule?</li>
-      <li>For Request 1, is the condition <code>true</code> or <code>false</code>? Give the exact HTTP status and returned JSON values.</li>
-      <li>For Request 2, is the condition <code>true</code> or <code>false</code>? Give the exact HTTP status and returned JSON values.</li>
+      <li>Explain how both reads can say “not found.”</li>
+      <li>Choose the final enforcement layer and the deliberate HTTP result for the raced duplicate.</li>
+      <li>Outline the database rule, exception translation boundary, and cancellation behavior.</li>
     </ol>
-    <p>Exact JSON spacing and property order do not matter. Property names and values do matter.</p>
+    <p>You do not need a full project or provider-specific error numbers. Precision about responsibilities matters more than syntax.</p>
   </ReplyTask>
 </SessionPage>

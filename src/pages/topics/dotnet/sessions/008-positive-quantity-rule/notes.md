@@ -1,50 +1,41 @@
-# Notes: Positive quantity rule
+# Notes: Race-safe uniqueness
 
 ## Session summary
 
-Published 2026-07-22. This is a narrow validation transfer from .NET 007. The learner reads a supplied request type and Minimal API handler, separates the range of `int` from an explicit positive-quantity rule, evaluates one condition for two complete bodies, and predicts each response. No project construction, binding edge case, or validation framework is introduced.
+Published 2026-07-22; revised the same day after learner feedback that the prior `int`/zero trace was below their level. This session assumes practical backend experience and moves to a real API boundary: a duplicate-email pre-check is helpful but cannot guarantee uniqueness under concurrent requests. The learner reviews the interleaving, identifies the database unique constraint/index as the authority, and outlines a concise production response path.
 
 ## Reply task
 
 - ID: `[learn:dotnet/008:q1]`
-- Difficulty: 3/5
-- Exact task: explain why `int` itself permits `0`; identify `request.Quantity <= 0` as the explicit runtime rule; evaluate the condition for quantities `2` and `0`; predict the exact status and JSON values for each branch.
-- Copy template is self-contained: it includes the ID, complete supplied request type and handler, both complete JSON bodies, scope instruction, every prompt, and separate answer fields.
+- Difficulty: 4/5
+- Exact task: explain how two concurrent `AnyAsync` checks can both return false; name the database uniqueness rule as the final authority and `409 Conflict` as the deliberate response for the raced duplicate; outline the unique database rule, an exception-translation boundary, and correct `CancellationToken` flow.
+- Scope: supplied code and timeline only. No project construction, EF migrations, provider-specific error numbers, transaction-isolation deep dive, authentication, tests, or full implementation.
 
 ## Expected reasoning
 
-- `int` represents whole numbers, including negative values, `0`, and positive values. It does not express a positive-only rule.
-- `request.Quantity <= 0` is the explicit runtime guard. It rejects zero and negative values.
-- For quantity `2`, `2 <= 0` is `false`, so execution reaches `Results.Ok`.
-- Request 1 returns `200 OK` with `accepted: true`, `sku: "ABC-123"`, and `quantity: 2`.
-- For quantity `0`, `0 <= 0` is `true`, so the handler immediately returns `Results.BadRequest`.
-- Request 2 returns `400 Bad Request` with `error: "Quantity must be greater than zero."`.
-
-## Expected answer
-
-A. No. `0` is a valid `int`. The positive-only rule is `request.Quantity <= 0`.
-
-B. `false`; `200 OK`; `{ "accepted": true, "sku": "ABC-123", "quantity": 2 }`.
-
-C. `true`; `400 Bad Request`; `{ "error": "Quantity must be greater than zero." }`.
+- The read and write are separate operations. Before either request commits an insert, both concurrent reads may observe no matching row.
+- A unique constraint or unique index in the database must be the final guard because it serializes the invariant at the persistence boundary.
+- A pre-check is optional: it gives a quick normal-case `409`, but it does not replace the database rule.
+- The application should recognize the expected unique-constraint failure at a small persistence/service translation boundary and return `409 Conflict`, rather than leak a provider exception or produce `500` for an expected domain conflict.
+- The endpoint should pass the request `CancellationToken` into `AnyAsync` and `SaveChangesAsync`; cancellation is not a duplicate-email error.
 
 ## Acceptable variants
 
-- `200` / `200 OK` and `400` / `400 Bad Request` are equivalent.
-- JSON spacing and property order do not matter. Property names and values do.
-- “The condition,” “guard,” “check,” or “runtime rule” are acceptable names for `request.Quantity <= 0`.
-- The learner may note that the condition also rejects negative values, but no negative request needs to be traced.
+- “Unique constraint” and “unique index” are acceptable when the learner explains it enforces the invariant in the database.
+- The exception translation may live in a repository, application service, endpoint filter, or central exception handler if the responsibility remains narrow and testable.
+- `409 Conflict` with a stable error payload, problem-details response, or an equivalent established API error format is acceptable.
+- It is fine to omit the pre-check entirely if the answer still gives a useful duplicate response from the database-constraint path.
 
 ## Likely misconception
 
-- `int` means positive integer or rejects `0` by itself.
-- `0 <= 0` is false because zero is not negative.
-- The `Ok` response also runs after `BadRequest`, despite the earlier `return`.
-- The record enforces the positive-quantity rule by itself.
+- The pre-check makes concurrent duplicates impossible.
+- A transaction or `async` alone makes the check-and-insert atomic.
+- The database conflict should surface as an unhandled `500`.
+- Request cancellation should be caught and reported as an email conflict.
 
 ## Next hint
 
-Substitute only the supplied number into `request.Quantity <= 0`. If the result is true, stop at `BadRequest`. If it is false, continue to `Ok`.
+Separate “a read that looks clear now” from “the one write that must remain valid when every request races.” The latter needs database enforcement.
 
 ## Evaluation
 

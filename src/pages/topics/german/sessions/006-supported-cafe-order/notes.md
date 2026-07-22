@@ -9,7 +9,7 @@ Published 2026-07-21. This is one tightly supported practical exchange after sec
 - ID: `[learn:german/006:q1]`
 - Difficulty: 3/5
 - Exact task: write exactly three customer replies in the supplied exchange; order `der Kaffee` and `das Brötchen` with `Ich hätte gern ..., bitte.`, decline one closed offer with the supplied fixed reply, and close politely with the supplied fixed reply.
-- Copy template is self-contained: it includes the ID, the relevant masculine/neuter article reference, supplied nouns with Polish meanings, all fixed frames, every staff prompt, scope limits, keyboard allowance, and three answer fields.
+- Copy template is self-contained: it includes the ID, the relevant masculine/neuter article reference, supplied nouns with Polish meanings, all fixed frames, every staff prompt, scope limits, and three answer fields.
 
 ## Exact prompt
 
@@ -42,33 +42,10 @@ Do not change staff lines or add products, questions, or explanation.
 - Minor punctuation, capitalization, or spacing errors are low-value if the target articles and fixed replies are correct.
 - Do not infer independent café fluency: all vocabulary and interaction frames were visible.
 
-## Likely misconception
-
-- `ein Kaffee` retains Nominativ instead of masculine Akkusativ `einen Kaffee`.
-- `einen Brötchen` overgeneralizes the masculine change to a neuter noun.
-- `eine Brötchen` shows uncertain lexical gender.
-- `den Kaffee` or `einem Kaffee` comes from the wrong article table or case column.
-- `Nein, bitte` confuses the fixed decline frame.
-- Extra menu items or invented staff turns exceed the controlled scope.
-
-## Next hint
-
-Look only at the lower `ein/eine` table and the Akkusativ column. Start from each dictionary article: `der Kaffee` points to masculine `einen`; `das Brötchen` points to neuter `ein`. Then copy the two short social frames exactly.
-
 ## Evaluation
 
 ### 2026-07-21 · `[learn:german/006:q1]`
 
 - Learner response: `Was moechten Sie? Ich haette gern einen Kaffe und ein Broetchen, bitte. Moechten Sie sonst noch etwas? Nein, danke. Bitte schoen. Danke, auf Wiedersehen!`
 - Result: the target Akkusativ articles are correct: `einen Kaffee` is masculine Akkusativ and `ein Brötchen` is neuter Akkusativ. The decline and farewell are also correct in meaning.
-- Correction: the task requested exactly three customer utterances, but the learner also copied the staff lines. Write only the three customer lines next time. Spell `Kaffee` with two `e`; `Broetchen` is accepted as the keyboard form of `Brötchen`.
-- Repair assigned: `[learn:german/006:q2]` asks for the same three customer lines only. This is a short format-and-spelling repair, not a new grammar assessment.
-
-## Repair task
-
-- ID: `[learn:german/006:q2]`
-- Difficulty: 2/5
-- Exact task: copy only the three supplied customer lines, omit all staff lines, and spell `Kaffee` with two `e`.
-- Copy template is self-contained: it includes the ID, all three supplied lines, the no-staff and no-explanation limits, the `Broetchen` allowance, the spelling reminder, and three answer lines.
-- Expected answer: the same three lines listed under `Expected answer` above. `Broetchen` remains acceptable for `Brötchen`.
-- Await `[learn:german/006:q2]`.
+- Feedback: copying the staff lines and spelling `Kaffee` as `Kaffe` are noted, but neither changes the grammar result and neither merits a separate repair or transcription task. Future feedback should correct comparable low-value slips inline while the next session uses fresh language.

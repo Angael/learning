@@ -71,9 +71,9 @@ export const topics: Topic[] = [
     summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
     sessions: [
       {
-        title: 'Positive quantity rule',
+        title: 'Race-safe uniqueness',
         href: '/topics/dotnet/sessions/008-positive-quantity-rule/',
-        summary: 'Explain why int permits zero, evaluate one explicit positive-quantity guard, and predict its success and rejection responses.',
+        summary: 'Review a concurrent duplicate-email race, put uniqueness at the database boundary, and translate the expected write conflict into a deliberate API response.',
         date: '2026-07-22',
       },
       {
