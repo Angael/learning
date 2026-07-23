@@ -63,4 +63,17 @@ Write the three declared types in order: `string`, `int`, `string?`. Now place e
 
 ## Response and evaluation
 
-No response yet.
+### 2026-07-23 — Angeal
+
+> `var request = new DeliveryRequest("Notebook", 2, "Leave at desk");`
+>
+> Both errors were caused by swapping the second and third arguments; `string?` allows `null`, but the third argument must still be provided.
+>
+> `request.Quantity`: `2`
+> `request.Note`: `"Leave at desk"`
+>
+> The record expects arguments in the order `string`, `int`, `string?`.
+
+**Assessment:** Secure. The corrected call, shared positional cause, nullable-versus-optional distinction, and both generated property values are all correct. The extra final sentence accurately states the constructor order. No repair is needed.
+
+**Next action:** Stop here. This target is secure; a later session can revisit positional arguments in a new context.
