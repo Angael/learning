@@ -21,6 +21,12 @@ export const topics: Topic[] = [
     summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
     sessions: [
       {
+        title: 'Positional constructor mismatch',
+        href: '/topics/csharp/sessions/008-positional-constructor-mismatch/',
+        summary: 'Use two compiler type errors to find one reversed argument pair, repair the constructor call, and verify the generated property values.',
+        date: '2026-07-23',
+      },
+      {
         title: 'Compact request model',
         href: '/topics/csharp/sessions/007-compact-request-model/',
         summary: 'Write one public positional record from a supplied three-field specification, construct one value, and read one generated property.',

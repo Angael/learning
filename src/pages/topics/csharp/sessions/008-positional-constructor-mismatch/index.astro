@@ -1,0 +1,70 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const brokenCode = `public record DeliveryRequest(string Item, int Quantity, string? Note);
+
+var request = new DeliveryRequest("Notebook", "Leave at desk", 2);`;
+
+const compilerMessages = `error CS1503: Argument 2: cannot convert from 'string' to 'int'
+error CS1503: Argument 3: cannot convert from 'int' to 'string?'`;
+
+const replyText = `[learn:csharp/008:q1]
+
+The supplied declaration must not change:
+public record DeliveryRequest(string Item, int Quantity, string? Note);
+
+This constructor call does not compile:
+var request = new DeliveryRequest("Notebook", "Leave at desk", 2);
+
+Compiler messages:
+error CS1503: Argument 2: cannot convert from 'string' to 'int'
+error CS1503: Argument 3: cannot convert from 'int' to 'string?'
+
+Write only:
+A. One corrected constructor line. Do not change the record declaration.
+B. One short sentence that gives the shared root cause of both errors and explains why string? does not make that position optional.
+C. The resulting values of request.Quantity and request.Note.
+
+A. Corrected constructor line:
+
+B. Shared root cause and string? meaning:
+
+C. Resulting values:
+request.Quantity =
+request.Note =`;
+---
+
+<SessionPage
+  title="Session 8 · C#: positional constructor mismatch"
+  heading="Find one constructor fault behind two type errors"
+  lede="Read the declared positions and the compiler messages. Then repair one line and check the generated property values."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="Read positions from left to right">
+    <p>A positional record fixes the constructor order in its declaration. Each constructor argument must match the type in the same position.</p>
+    <Callout>
+      <code>string?</code> allows a string or <code>null</code> in that position. It does not remove the position. This constructor still needs three arguments.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="The code that does not compile">
+    <Code code={brokenCode} lang="csharp" />
+    <p>The compiler reports two type errors:</p>
+    <Code code={compilerMessages} lang="text" />
+    <p>Do not treat them as two separate bugs yet. Compare argument 2 and argument 3 with the declaration first.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/008:q1" difficulty={3} copyText={replyText}>
+    <ol>
+      <li>Write one corrected constructor line.</li>
+      <li>In one short sentence, give the shared cause of both errors. Also say why <code>string?</code> does not make the third position optional.</li>
+      <li>Give the resulting values of <code>request.Quantity</code> and <code>request.Note</code>.</li>
+    </ol>
+    <p>Do not change the record declaration. Write only the corrected line, one sentence, and the two values.</p>
+  </ReplyTask>
+</SessionPage>

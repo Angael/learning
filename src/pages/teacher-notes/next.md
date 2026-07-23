@@ -1,7 +1,7 @@
 # Next learning sessions
 
 - Date: 2026-07-23
-- Status: planned
+- Status: implemented
 - Weekly note: [2026-W30](/teacher-notes/weekly/2026-W30/)
 
 ## Block 1
@@ -15,6 +15,7 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [/topics/csharp/sessions/008-positional-constructor-mismatch/](/topics/csharp/sessions/008-positional-constructor-mismatch/)
+- Review: two read-only advisers checked compiler accuracy and exercise quality. The task keeps the declaration fixed, hides the diagnosis, asks for one shared cause behind both errors, and uses a self-contained reply template.
+- Commit: current production commit

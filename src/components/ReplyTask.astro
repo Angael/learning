@@ -6,6 +6,7 @@ type Props = {
   difficulty?: number;
   label?: string;
   language?: 'en' | 'pl';
+  copyText?: string;
 };
 
 const {
@@ -13,6 +14,7 @@ const {
   difficulty = 3,
   label,
   language = 'en',
+  copyText,
 } = Astro.props;
 
 const text = language === 'pl'
@@ -23,8 +25,9 @@ const text = language === 'pl'
       placeholder: 'Wpisz tylko odpowiedzi do tego zadania.',
       copy: 'Kopiuj odpowiedź',
       copied: 'Skopiowano',
-      success: 'Skopiowano identyfikator i Twoją odpowiedź. Wklej je na Discordzie.',
+      success: 'Skopiowano zadanie i Twoją odpowiedź. Wklej je na Discordzie.',
       failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator i odpowiedź ręcznie.',
+      answerCopy: 'Twoja odpowiedź:',
     }
   : {
       label: 'Reply task',
@@ -33,8 +36,9 @@ const text = language === 'pl'
       placeholder: 'Write only your answers to this task.',
       copy: 'Copy answer',
       copied: 'Copied',
-      success: 'Copied the ID and your answer. Paste them into Discord.',
+      success: 'Copied the task and your answer. Paste them into Discord.',
       failure: 'Copy failed. Select the ID and answer manually.',
+      answerCopy: 'Your answer:',
     };
 
 if (!/^learn:[a-z0-9./-]+(?::[a-z0-9-]+)?$/i.test(id)) {
@@ -46,6 +50,9 @@ if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
 
 const marker = `[${id}]`;
 const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
+if (copyText && !copyText.startsWith(marker)) {
+  throw new Error(`ReplyTask copyText must start with "${marker}"`);
+}
 ---
 
 <div
@@ -56,6 +63,8 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
   data-copy-success={text.success}
   data-copy-failure={text.failure}
   data-copied-label={text.copied}
+  data-copy-template={copyText ?? ''}
+  data-answer-copy-label={text.answerCopy}
 >
   <SessionSection title={title} variant="checkpoint">
     <button slot="right" class="reply-task__copy" type="button" data-copy-trigger>{text.copy}</button>
@@ -95,8 +104,13 @@ const title = `${label ?? text.label} · ${text.difficulty} ${difficulty}/5`;
     button.dataset.ready = 'true';
     button.addEventListener('click', async () => {
       const id = task.dataset.replyId ?? '';
+      const suppliedTemplate = task.dataset.copyTemplate ?? '';
+      const template = suppliedTemplate || id;
       const response = answer.value.trim();
-      const copyText = response ? `${id}\n\n${response}` : id;
+      const answerLabel = task.dataset.answerCopyLabel ?? '';
+      const copyText = response
+        ? `${template}\n\n${suppliedTemplate ? `${answerLabel}\n` : ''}${response}`
+        : template;
       try {
         if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(copyText);
         else copyFallback(copyText, button);
