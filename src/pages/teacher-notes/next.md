@@ -1,21 +1,20 @@
 # Next learning sessions
 
-- Date: 2026-07-23
-- Status: implemented
+- Date: 2026-07-24
+- Status: planned
 - Weekly note: [2026-W30](/teacher-notes/weekly/2026-W30/)
 
 ## Block 1
 
-- Topic / type: C# / positional-record read and debug transfer
-- Outcome: connect two compiler type errors to one reversed-argument fault; repair the constructor call without changing the declaration; explain that `string?` permits `null` but does not make the constructor position optional; verify the resulting generated-property values.
-- Evidence: [C# 007 notes](/topics/csharp/sessions/007-compact-request-model/notes/) show secure declaration, ordered construction, nullable argument, and generated-property reading under a model. [.NET 008 notes](/topics/dotnet/sessions/008-positive-quantity-rule/notes/) show strong backend reasoning and no repair need, so today's C# task should require diagnosis rather than another copy-shaped syntax drill.
-- Scope limit: supply one correct three-field positional record, one constructor call with the last two arguments reversed, and the two resulting compiler messages. Require one corrected line, one short root-cause explanation, and the resulting values of two properties. No declaration rewrite, class/record choice, setters, methods, endpoint, EF Core, optional/default parameters, named arguments, custom constructors, project construction, or compiler setup.
-- Session: new `/topics/csharp/sessions/008-positional-constructor-mismatch/`
-- Reply ID: `learn:csharp/008:q1`
+- Topic / type: German / fresh practical reading-to-response
+- Outcome: read a short German note about a neighbour accepting a parcel, identify who has it, why, and the earliest collection time, then write exactly two supported German reply sentences: one thanks with `Danke, dass ...` and one collection confirmation with `Ich hole ... ab.`
+- Evidence: [German 006 notes](/topics/german/sessions/006-supported-cafe-order/notes/) secure the targeted Akkusativ articles and fixed practical replies; copied staff lines and `Kaffe` are low-value slips, not repair. [German plan](/topics/german/plan/) calls for fresh short production, vocabulary with articles and Polish meanings, visible case support when needed, and modelling before constrained production. German 005 already supports a bounded return to verb-final `dass`, but not unsupported fluency.
+- Scope limit: use one 40–50-word parcel note and one different-content worked example. Supply vocabulary with articles, Polish meanings, relevant Perfekt forms, a compact article aid, the referent of source-text `es`, both response frames, and permitted pickup times. Ask for one compact Polish comprehension line and exactly two German reply sentences. Assess reading facts, coherent use of the frames, verb-final order after `dass`, and a valid time. No café repair, transcription, open role-play, invented questions, independent Perfekt retrieval, possessives, two-pronoun order, separate case transformation, or more than one subordinate clause in the reply. Accept `ae/oe/ue/ss`; correct minor spelling and punctuation inline only.
+- Session: new `/topics/german/sessions/007-package-note-reading-response/`
+- Reply ID: `learn:german/007:q1`
 
 ## Implementation
 
-- Status: implemented
-- Sessions: [/topics/csharp/sessions/008-positional-constructor-mismatch/](/topics/csharp/sessions/008-positional-constructor-mismatch/)
-- Review: two read-only advisers checked compiler accuracy and exercise quality. The task keeps the declaration fixed, hides the diagnosis, asks for one shared cause behind both errors, and uses a self-contained reply template.
-- Commit: current production commit
+- Status: not started
+- Sessions:
+- Commit:
