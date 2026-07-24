@@ -15,6 +15,6 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: [German 007](/topics/german/sessions/007-package-note-reading-response/)
+- Commit: pending

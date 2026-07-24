@@ -133,6 +133,12 @@ export const topics: Topic[] = [
     summary: 'B1 German reactivation: practical fluency, short production, correction, grammar repair, and useful real-life prompts.',
     sessions: [
       {
+        title: 'Wiadomość o paczce: czytanie i odpowiedź',
+        href: '/topics/german/sessions/007-package-note-reading-response/',
+        summary: 'Przeczytaj krótką wiadomość od sąsiadki, znajdź trzy fakty i napisz dwa wsparte zdania: podziękowanie oraz termin odbioru.',
+        date: '2026-07-24',
+      },
+      {
         title: 'Zamówienie w kawiarni ze wsparciem',
         href: '/topics/german/sessions/006-supported-cafe-order/',
         summary: 'Uzupełnij trzy wypowiedzi klienta: zamów kawę i bułkę z poprawnym Akkusativ, odmów kolejnej propozycji i zakończ uprzejmie.',

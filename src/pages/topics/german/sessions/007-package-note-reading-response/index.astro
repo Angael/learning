@@ -1,0 +1,106 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const replyText = `[learn:german/007:q1]
+
+Przeczytaj notatkę:
+Hallo Marta, ich bin Lena aus der Nachbarwohnung. Der Paketbote war heute hier. Ich habe das Paket für dich angenommen, weil du nicht zu Hause warst. Es liegt jetzt bei mir. Du kannst es heute ab 18 Uhr oder morgen ab 8 Uhr abholen. Viele Grüße, Lena
+
+Dozwolone pomoce:
+- das Paket = paczka; w Nominativ i Akkusativ: das Paket; zaimek: es
+- Oba słowa „es” w notatce znaczą „das Paket”.
+- annehmen = przyjąć; du hast angenommen; po „dass”: dass du ... angenommen hast
+- abholen = odebrać; Ich hole ... ab.
+- „ab 18 Uhr” = od godziny 18:00; „um 18 Uhr” = o godzinie 18:00.
+- W zdaniu B2 wybierz poprawny czas: dziś o 18:00 lub później albo jutro o 8:00 lub później.
+- Możesz używać ae/oe/ue/ss.
+
+Napisz tylko:
+A. Jedną krótką linię po polsku: kto ma teraz paczkę; dlaczego ją przyjął; kiedy można odebrać ją najwcześniej.
+B1. Dokładnie jedno zdanie po niemiecku w ramie: Danke, dass du ... angenommen hast.
+B2. Dokładnie jedno zdanie po niemiecku w ramie: Ich hole es heute/morgen um ... Uhr ab.
+
+Nie dodawaj pytań, wyjaśnienia ani trzeciego zdania po niemiecku.
+
+A. Kto; dlaczego; najwcześniejszy odbiór:
+
+B1. Podziękowanie:
+
+B2. Potwierdzenie odbioru:`;
+---
+
+<SessionPage
+  title="Sesja 7 · Niemiecki: wiadomość o paczce"
+  heading="Przeczytaj wiadomość i napisz dwuzdaniową odpowiedź"
+  lede="Znajdziesz trzy fakty w krótkiej wiadomości. Potem użyjesz dwóch podanych ram, aby podziękować i potwierdzić odbiór paczki."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Wiadomość od sąsiadki">
+    <Callout>
+      Hallo Marta, ich bin Lena aus der Nachbarwohnung. Der Paketbote war heute hier. Ich habe das Paket für dich angenommen, weil du nicht zu Hause warst. Es liegt jetzt bei mir. Du kannst es heute ab 18 Uhr oder morgen ab 8 Uhr abholen. Viele Grüße, Lena
+    </Callout>
+    <p>Najpierw ustal: <strong>kto ma teraz paczkę</strong>, <strong>dlaczego ją przyjął</strong> i <strong>kiedy można ją odebrać najwcześniej</strong>.</p>
+  </SessionSection>
+
+  <SessionSection title="Słowa i formy dozwolone w zadaniu">
+    <SessionGrid>
+      <div>
+        <h3>Rzeczowniki</h3>
+        <ul>
+          <li><code>die Nachbarwohnung</code> — sąsiednie mieszkanie</li>
+          <li><code>der Paketbote</code> — kurier</li>
+          <li><code>das Paket</code> — paczka</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Czasowniki i czas</h3>
+        <ul>
+          <li><code>annehmen — hat angenommen</code> — przyjąć</li>
+          <li><code>du hast angenommen</code> — przyjąłeś / przyjęłaś</li>
+          <li><code>abholen — hat abgeholt</code> — odebrać</li>
+          <li><code>ab 18 Uhr</code> — od godziny 18:00</li>
+          <li><code>um 18 Uhr</code> — o godzinie 18:00</li>
+        </ul>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Mała ściąga: das Paket i es">
+    <SessionGrid>
+      <Callout><strong>Nominativ:</strong> <code>das Paket</code> → <code>es</code></Callout>
+      <Callout><strong>Akkusativ:</strong> <code>das Paket</code> → <code>es</code></Callout>
+    </SessionGrid>
+    <p>Rodzajnik <code>das</code> nie zmienia się tu w Akkusativ. Oba słowa <code>es</code> w wiadomości odnoszą się do <code>das Paket</code>.</p>
+  </SessionSection>
+
+  <SessionSection title="Wzór na innej treści">
+    <p><strong>Informacja:</strong> <code>Das Buch liegt bei mir. Du kannst es morgen ab 10 Uhr abholen.</code></p>
+    <p><strong>Odpowiedź:</strong> <code>Danke, dass du das Buch aufbewahrt hast. Ich hole es morgen um 10 Uhr ab.</code></p>
+    <ul>
+      <li>Po <code>dass</code> forma czasownika stoi na końcu: <code>... aufbewahrt hast</code>.</li>
+      <li>W zdaniu głównym <code>abholen</code> rozdziela się: <code>Ich hole ... ab.</code></li>
+      <li><code>es</code> zastępuje tu <code>das Buch</code>. W zadaniu zastąpi <code>das Paket</code>.</li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="Ramy odpowiedzi">
+    <ol>
+      <li><code>Danke, dass du ... angenommen hast.</code></li>
+      <li><code>Ich hole es heute/morgen um ... Uhr ab.</code></li>
+    </ol>
+    <p>W drugim zdaniu wybierz czas zgodny z wiadomością: dziś o 18:00 lub później albo jutro o 8:00 lub później.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/007:q1" difficulty={3} language="pl" copyText={replyText}>
+    <ol>
+      <li>Napisz jedną krótką linię po polsku: kto ma paczkę, dlaczego ją przyjął i kiedy można odebrać ją najwcześniej. Oddziel trzy części średnikami.</li>
+      <li>Napisz dokładnie dwa zdania po niemiecku: podziękowanie z <code>Danke, dass ...</code> oraz potwierdzenie z <code>Ich hole ... ab.</code></li>
+    </ol>
+    <p>Nie dodawaj pytania, wyjaśnienia ani trzeciego zdania po niemiecku. Możesz używać <code>ae/oe/ue/ss</code>.</p>
+  </ReplyTask>
+</SessionPage>
