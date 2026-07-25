@@ -1,0 +1,133 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+
+const recordCode = `public record TicketRequest(
+    string EventCode,
+    int Seats,
+    string? Note);`;
+
+const endpointCode = `app.MapPost("/tickets", (TicketRequest request) =>
+{
+    if (request.Seats is < 1 or > 6)
+    {
+        return Results.BadRequest(new
+        {
+            error = "Seats must be between 1 and 6."
+        });
+    }
+
+    return Results.Ok();
+});`;
+
+const requestBody = `{
+  "Note": "Aisle seat, please.",
+  "Seats": 8,
+  "EventCode": "JAZZ-42"
+}`;
+
+const replyText = `[learn:dotnet/009:q1]
+
+Read the supplied code and request only. Do not write or run code.
+
+TicketRequest.cs:
+public record TicketRequest(
+    string EventCode,
+    int Seats,
+    string? Note);
+
+Program.cs endpoint:
+app.MapPost("/tickets", (TicketRequest request) =>
+{
+    if (request.Seats is < 1 or > 6)
+    {
+        return Results.BadRequest(new
+        {
+            error = "Seats must be between 1 and 6."
+        });
+    }
+
+    return Results.Ok();
+});
+
+Supplied JSON request body:
+{
+  "Note": "Aisle seat, please.",
+  "Seats": 8,
+  "EventCode": "JAZZ-42"
+}
+
+Trace only this request. Stop when it reaches a return. Do not analyse the other path. Exact JSON spacing does not matter.
+
+A. Handler input
+Parameter name:
+Parameter type:
+
+B. Bound property values
+request.EventCode =
+request.Seats =
+request.Note =
+
+C. Mapping rule
+In one short sentence, explain why the JSON member order does not move these values into constructor positions:
+
+D. Result
+HTTP status:
+JSON payload:`;
+---
+
+<SessionPage
+  title="Session 9 · .NET: request record boundary trace"
+  heading="Trace one JSON body by name, then follow one guard"
+  lede="Read one supplied request record and Minimal API handler. Track three JSON values into named properties, then predict the rejected response. No project setup or code writing is needed."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="The path">
+    <p><code>JSON body → TicketRequest request → named properties → Seats guard → HTTP response</code></p>
+    <p>ASP.NET Core passes the body-bound value to the handler as <code>TicketRequest request</code>. The record gives that value three named properties: <code>EventCode</code>, <code>Seats</code>, and <code>Note</code>.</p>
+  </SessionSection>
+
+  <SessionSection title="Small model: match names, not order">
+    <p>Suppose an object has properties named <code>Size</code> and <code>Color</code>. This JSON writes <code>Color</code> first:</p>
+    <Code code={`{
+  "Color": "blue",
+  "Size": 3
+}`} lang="json" />
+    <ul>
+      <li><code>Color</code> is <code>"blue"</code>.</li>
+      <li><code>Size</code> is <code>3</code>.</li>
+    </ul>
+    <Callout>JSON object members match the named members. Their written order does not choose constructor positions.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Supplied request record">
+    <p>This record is supplied in <code>TicketRequest.cs</code>:</p>
+    <Code code={recordCode} lang="csharp" />
+  </SessionSection>
+
+  <SessionSection title="Supplied Program.cs endpoint">
+    <Code code={endpointCode} lang="csharp" />
+    <p>The visible rule accepts from <code>1</code> to <code>6</code> seats. If the condition is true, the first <code>return</code> ends this request.</p>
+  </SessionSection>
+
+  <SessionSection title="One request body">
+    <Code code={requestBody} lang="json" />
+    <p>The members are deliberately written as <code>Note</code>, <code>Seats</code>, then <code>EventCode</code>. Trace their names. Do not rearrange them into constructor order.</p>
+  </SessionSection>
+
+  <p><strong>Today’s one action:</strong> trace only the supplied request. Stop when it reaches a <code>return</code>. Do not analyse the other path, write code, or run a project.</p>
+
+  <ReplyTask id="learn:dotnet/009:q1" difficulty={3} copyText={replyText}>
+    <ol>
+      <li>Give the handler parameter name and type.</li>
+      <li>Give the values of <code>request.EventCode</code>, <code>request.Seats</code>, and <code>request.Note</code>.</li>
+      <li>In one short sentence, explain why the JSON member order does not move the values into constructor positions.</li>
+      <li>Give the resulting HTTP status and JSON payload.</li>
+    </ol>
+    <p>Exact JSON spacing does not matter.</p>
+  </ReplyTask>
+</SessionPage>

@@ -77,6 +77,12 @@ export const topics: Topic[] = [
     summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
     sessions: [
       {
+        title: 'Request record boundary trace',
+        href: '/topics/dotnet/sessions/009-request-record-boundary-trace/',
+        summary: 'Trace one reordered JSON object into a positional record by member name, then follow an explicit seat-count guard to the rejected response.',
+        date: '2026-07-25',
+      },
+      {
         title: 'Race-safe uniqueness',
         href: '/topics/dotnet/sessions/008-positive-quantity-rule/',
         summary: 'Review a concurrent duplicate-email race, put uniqueness at the database boundary, and translate the expected write conflict into a deliberate API response.',

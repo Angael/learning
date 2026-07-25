@@ -15,6 +15,6 @@
 
 ## Implementation
 
-- Status: not started
-- Sessions:
-- Commit:
+- Status: implemented
+- Sessions: `/topics/dotnet/sessions/009-request-record-boundary-trace/`
+- Commit: pending
