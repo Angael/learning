@@ -1,20 +1,20 @@
 # Next learning sessions
 
-- Date: 2026-07-24
+- Date: 2026-07-25
 - Status: planned
 - Weekly note: [2026-W30](/teacher-notes/weekly/2026-W30/)
 
 ## Block 1
 
-- Topic / type: German / fresh practical reading-to-response
-- Outcome: read a short German note about a neighbour accepting a parcel, identify who has it, why, and the earliest collection time, then write exactly two supported German reply sentences: one thanks with `Danke, dass ...` and one collection confirmation with `Ich hole ... ab.`
-- Evidence: [German 006 notes](/topics/german/sessions/006-supported-cafe-order/notes/) secure the targeted Akkusativ articles and fixed practical replies; copied staff lines and `Kaffe` are low-value slips, not repair. [German plan](/topics/german/plan/) calls for fresh short production, vocabulary with articles and Polish meanings, visible case support when needed, and modelling before constrained production. German 005 already supports a bounded return to verb-final `dass`, but not unsupported fluency.
-- Scope limit: use one 40–50-word parcel note and one different-content worked example. Supply vocabulary with articles, Polish meanings, relevant Perfekt forms, a compact article aid, the referent of source-text `es`, both response frames, and permitted pickup times. Ask for one compact Polish comprehension line and exactly two German reply sentences. Assess reading facts, coherent use of the frames, verb-final order after `dass`, and a valid time. No café repair, transcription, open role-play, invented questions, independent Perfekt retrieval, possessives, two-pronoun order, separate case transformation, or more than one subordinate clause in the reply. Accept `ae/oe/ue/ss`; correct minor spelling and punctuation inline only.
-- Session: new `/topics/german/sessions/007-package-note-reading-response/`
-- Reply ID: `learn:german/007:q1`
+- Topic / type: C# + .NET / integrated supplied-code trace
+- Outcome: trace one JSON request body whose members appear in a different order from a supplied positional record through ASP.NET Core body binding, generated-property access, and one explicit numeric guard; explain name-based JSON mapping, report the bound values, and predict the rejected status and payload.
+- Evidence: [C# 008 notes](/topics/csharp/sessions/008-positional-constructor-mismatch/notes/) secure positional constructor order, nullable-versus-optional reasoning, and generated-property values after a repair. [C# plan](/topics/csharp/plan/) next calls for reading API code and translating TypeScript/backend models into C#. [.NET 007 notes](/topics/dotnet/sessions/007-request-model-validation/notes/) secure one scaffolded request-binding and runtime-validation trace, while [.NET plan](/topics/dotnet/plan/) prioritizes practical production boundaries. This event should integrate those secure parts rather than repeat either task.
+- Scope limit: supply one `TicketRequest(string EventCode, int Seats, string? Note)` record, one Minimal API handler, and one JSON body ordered `Note`, `Seats`, `EventCode`, with `Seats` outside a visible `1..6` guard. Ask only for the handler parameter and type, the three bound property values, one short explanation that JSON object members map by name rather than constructor position, and the resulting `400 Bad Request` payload. Use one request and one branch. No code writing, project creation, framework setup, compilation, accepted-case comparison, missing or malformed JSON, naming-policy internals, validation library, middleware, persistence, concurrency, cancellation, tests, or new interface/generic work.
+- Session: new `/topics/dotnet/sessions/009-request-record-boundary-trace/`
+- Reply ID: `learn:dotnet/009:q1`
 
 ## Implementation
 
-- Status: implemented
-- Sessions: [German 007](/topics/german/sessions/007-package-note-reading-response/)
-- Commit: `8e0277f`
+- Status: not started
+- Sessions:
+- Commit:
