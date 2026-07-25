@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { basename, join, relative, sep } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();

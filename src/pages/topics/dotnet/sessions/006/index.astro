@@ -34,18 +34,6 @@ const laterResolution = `app.MapGet("/status", (AppInfo info) => new
     Status = "ok"
 });`;
 
-const replyTemplate = `[learn:dotnet/006:q1]
-
-Context: builder.Services.AddSingleton<StatusFormatter>(); and the /status handler asks for StatusFormatter.
-
-1. What useful facts would the registration descriptor need to store about StatusFormatter?
-Answer: ...
-
-2. On the first /status request, describe the chain from the handler asking for StatusFormatter to receiving an instance.
-Answer: ...
-
-3. Correct this precisely: “The generic type StatusFormatter runs the registration code.”
-Answer: ...`;
 ---
 
 <SessionPage session={session}

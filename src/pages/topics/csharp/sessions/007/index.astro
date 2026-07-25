@@ -11,33 +11,6 @@ const modelCode = `public record Score(string Player, int Points);
 var score = new Score("Iris", 12);
 var points = score.Points;`;
 
-const replyText = `[learn:csharp/007:q1]
-
-Use this syntax model. Its names are different from your task:
-
-public record Score(string Player, int Points);
-var score = new Score("Iris", 12);
-var points = score.Points;
-
-Your specification:
-- Type name: WorkshopSignupRequest
-- AttendeeName: string
-- SeatCount: int
-- Note: string?
-- Keep this exact field order.
-- Construct a value named signup with "Maya", 2, and null.
-- Read the generated SeatCount property into a variable named seats.
-
-Write exactly three C# lines: one declaration, one new expression assigned to signup, and one property read assigned to seats. Do not write a class, method, full program, attributes, validation, or extra code.
-
-A. Public positional record declaration:
-Answer:
-
-B. Construction assigned to signup:
-Answer:
-
-C. SeatCount property read assigned to seats:
-Answer:`;
 ---
 
 <SessionPage session={session}

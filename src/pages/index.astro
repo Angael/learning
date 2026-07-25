@@ -4,13 +4,6 @@ import SessionList from '../components/SessionList.astro';
 import { topics } from '../data/catalog';
 import { learningWeeks } from '../data/learning/weeks.ts';
 
-type CatalogSession = (typeof topics)[number]['sessions'][number];
-type TimelineSession = CatalogSession & {
-  topicTitle: string;
-  topicHref: string;
-  topicSlug: string;
-};
-
 const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? '';
 const sortedSessions = <T extends { href: string; date?: string }>(sessions: T[]) => [...sessions].sort((a, b) => {
   const dateCompare = (b.date ?? '').localeCompare(a.date ?? '');

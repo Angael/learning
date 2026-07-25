@@ -46,24 +46,6 @@ Console.WriteLine(webhook.Attempts);
 RetryTracker.RecordAttempt();
 email.IsValidMaxAttempts(2);`;
 
-const replyText = `[learn:csharp/004:q1]
-
-1. Predicted output:
-- Line 1:
-- Line 2:
-- Line 3:
-
-2. Repaired calls:
-\`\`\`csharp
-// Replace the final two invalid lines here.
-\`\`\`
-
-3. Ownership:
-- Why RecordAttempt is an instance method:
-- Why IsValidMaxAttempts is static:
-
-4. Separate state:
-- Why email.Attempts changed but webhook.Attempts did not:`;
 ---
 
 <SessionPage session={session}

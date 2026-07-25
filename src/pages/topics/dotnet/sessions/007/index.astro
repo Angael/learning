@@ -40,39 +40,6 @@ const blankBody = `{
   "postalCode": "80-001"
 }`;
 
-const replyText = `[learn:dotnet/007:q1]
-
-Read the supplied code only; do not write or run a project.
-
-Code:
-public record ShippingAddress(
-    string Street,
-    string City,
-    string PostalCode);
-
-app.MapPost("/shipping-addresses", (ShippingAddress address) =>
-{
-    if (string.IsNullOrWhiteSpace(address.Street))
-    {
-        return Results.BadRequest(new { error = "Street is required." });
-    }
-
-    return Results.Ok(new { accepted = true, city = address.City });
-});
-
-A. Which handler parameter receives the request-body data, and what is its type?
-Answer:
-
-B. Does the non-nullable type string itself reject "   " at runtime? Which expression performs this check?
-Answer:
-
-C. Valid request:
-{"street":"12 Oak Street","city":"Gdańsk","postalCode":"80-001"}
-Predicted HTTP status and JSON values:
-
-D. Blank-street request:
-{"street":"   ","city":"Gdańsk","postalCode":"80-001"}
-Predicted HTTP status and JSON values:`;
 ---
 
 <SessionPage session={session}

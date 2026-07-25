@@ -21,43 +21,6 @@ public bool Confirm()
     return true;
 }`;
 
-const replyText = `[learn:csharp/006:q1]
-
-Use only the supplied facts, choices, and method. Do not write code. Reply with four short answers.
-
-Domain facts:
-- TableBookingRequest has Name and PartySize. It is one request value supplied as a whole; this workflow does not change it.
-- TableBooking represents the same continuing booking. Its Status may change only through Confirm().
-
-Available type choices for each: positional record or class.
-
-Status property choices:
-1. public string Status { get; set; }
-2. public string Status { get; private set; }
-
-Supplied transition method:
-// Initial value: Status == "Pending"
-public bool Confirm()
-{
-    if (Status != "Pending") return false;
-
-    Status = "Confirmed";
-    return true;
-}
-
-A. For TableBookingRequest, choose positional record or class and give one short reason.
-Answer:
-
-B. For TableBooking, choose positional record or class and give one short reason.
-Answer:
-
-C. Which Status property is safer for this design: choice 1 or choice 2? Why?
-Answer:
-
-D. On one new TableBooking, call Confirm() twice in sequence. Predict both calls:
-- First Confirm(): returned Boolean / final Status
-- Second Confirm(): returned Boolean / final Status
-Answer:`;
 ---
 
 <SessionPage session={session}
