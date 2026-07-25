@@ -13,13 +13,14 @@ A minimal Astro site and typed, repo-backed learning workspace for Angeal.
 
 ## Structure
 
-Each learner-facing page has a numeric route and a matching typed record:
+Each learner-facing page has a numeric route and a colocated typed record:
 
 ```text
-src/pages/topics/<topic>/sessions/<NNN>/index.astro
-src/data/learning/sessions/<topic>/<NNN>/session.ts
+src/pages/topics/<topic>/sessions/<NNN>/
+├── index.astro
+└── _session.ts
 ```
 
-`session.ts` is the source of truth for session type, reason, prior evidence, reply history, evaluation, and future implications. `next.ts` and `weeks/*.ts` hold typed planning state. Old descriptive URLs remain as redirects to numeric canonical routes.
+`_session.ts` is the source of truth for session type, reason, prior evidence, reply history, evaluation, and future implications. Its underscore prefix excludes it from Astro routing. `next.ts` and `weeks/*.ts` hold typed planning state. Old descriptive URLs remain as redirects to numeric canonical routes.
 
 See `AGENTS.md` for the repository contract.

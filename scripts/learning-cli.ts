@@ -7,7 +7,7 @@ import { next } from '../src/data/learning/next.ts';
 import { learningWeeks } from '../src/data/learning/weeks.ts';
 
 const root = resolve(import.meta.dirname, '..');
-const sessionsRoot = join(root, 'src/data/learning/sessions');
+const topicsRoot = join(root, 'src/pages/topics');
 
 const help = (error = '') => {
   if (error) console.error(`Error: ${error}\n`);
@@ -31,11 +31,11 @@ Examples:
 
 const loadSessions = async () => {
   const sessions = [];
-  for (const topic of readdirSync(sessionsRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name)) {
-    const dir = join(sessionsRoot, topic);
+  for (const topic of readdirSync(topicsRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name)) {
+    const dir = join(topicsRoot, topic, 'sessions');
     if (!existsSync(dir)) continue;
     for (const number of readdirSync(dir, { withFileTypes: true }).filter((entry) => entry.isDirectory() && /^\d{3}$/.test(entry.name)).map((entry) => entry.name)) {
-      const file = join(dir, number, 'session.ts');
+      const file = join(dir, number, '_session.ts');
       if (!existsSync(file)) continue;
       const { session } = await import(pathToFileURL(file).href);
       sessions.push(session);
@@ -62,13 +62,11 @@ const create = (topic, sessions) => {
   const numbers = sessions.filter((session) => session.topic === topic).map((session) => Number(session.number));
   const number = String(Math.max(...numbers) + 1).padStart(3, '0');
   const dir = join(root, 'src/pages/topics', topic, 'sessions', number);
-  const metadataDir = join(sessionsRoot, topic, number);
   const id = `learn:${topic}/${number}`;
   const taskId = `${id}:q1`;
   mkdirSync(dir, { recursive: true });
-  mkdirSync(metadataDir, { recursive: true });
-  writeFileSync(join(metadataDir, 'session.ts'), `import type { ILearningSession } from '../../../../../data/learning/types.ts';\n\nexport const session: ILearningSession = {\n  id: '${id}',\n  topic: '${topic}',\n  number: '${number}',\n  type: 'lesson',\n  title: 'Untitled session',\n  summary: 'Replace this scaffold summary before publication.',\n  date: new Date().toISOString().slice(0, 10),\n  why: 'Replace with a precise reason based on cited prior evidence.',\n  buildsOn: [],\n  focus: ['Replace with a distinct observable learning target.'],\n  replyTasks: { '${taskId}': [] },\n  replyTaskState: { '${taskId}': 'open' },\n  evaluation: [],\n  misconceptions: [],\n  next: [],\n  published: { route: '/topics/${topic}/sessions/${number}/', canonicalUrl: 'https://learn.widacki.me/topics/${topic}/sessions/${number}/' },\n  archive: '',\n};\n`);
-  writeFileSync(join(dir, 'index.astro'), `---\nimport ReplyTask from '../../../../../components/ReplyTask.astro';\nimport SessionPage from '../../../../../components/SessionPage.astro';\nimport { session } from '../../../../../data/learning/sessions/${topic}/${number}/session.ts';\n---\n\n<SessionPage session={session} title=\"Session ${number}\" heading=\"Replace this heading\" lede=\"Replace this learner-facing summary.\" backHref=\"/topics/${topic}/\" backLabel=\"${topic} sessions\">\n  <ReplyTask id=\"${taskId}\" difficulty={3}>\n    <p>Replace this task before publication.</p>\n  </ReplyTask>\n</SessionPage>\n`);
+  writeFileSync(join(dir, '_session.ts'), `import type { ILearningSession } from '../../../../../data/learning/types.ts';\n\nexport const session: ILearningSession = {\n  id: '${id}',\n  topic: '${topic}',\n  number: '${number}',\n  type: 'lesson',\n  title: 'Untitled session',\n  summary: 'Replace this scaffold summary before publication.',\n  date: new Date().toISOString().slice(0, 10),\n  why: 'Replace with a precise reason based on cited prior evidence.',\n  buildsOn: [],\n  focus: ['Replace with a distinct observable learning target.'],\n  replyTasks: { '${taskId}': [] },\n  replyTaskState: { '${taskId}': 'open' },\n  evaluation: [],\n  misconceptions: [],\n  next: [],\n  published: { route: '/topics/${topic}/sessions/${number}/', canonicalUrl: 'https://learn.widacki.me/topics/${topic}/sessions/${number}/' },\n  archive: '',\n};\n`);
+  writeFileSync(join(dir, 'index.astro'), `---\nimport ReplyTask from '../../../../../components/ReplyTask.astro';\nimport SessionPage from '../../../../../components/SessionPage.astro';\nimport { session } from './_session.ts';\n---\n\n<SessionPage session={session} title=\"Session ${number}\" heading=\"Replace this heading\" lede=\"Replace this learner-facing summary.\" backHref=\"/topics/${topic}/\" backLabel=\"${topic} sessions\">\n  <ReplyTask id=\"${taskId}\" difficulty={3}>\n    <p>Replace this task before publication.</p>\n  </ReplyTask>\n</SessionPage>\n`);
   console.log(`Created scaffold: ${dir}`);
 };
 

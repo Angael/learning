@@ -24,7 +24,7 @@ for (const topicDir of directories(topicsRoot)) {
   for (const sessionDir of sessionDirs.filter((dir) => /^\d{3}$/.test(basename(dir)))) {
     const number = basename(sessionDir);
     const page = join(sessionDir, 'index.astro');
-    const metadata = join(root, 'src/data/learning/sessions', topic, number, 'session.ts');
+    const metadata = join(sessionDir, '_session.ts');
     if (!existsSync(page)) errors.push(`${relative(root, page)} is missing`);
     if (!existsSync(metadata)) errors.push(`${relative(root, metadata)} is missing`);
     if (!existsSync(page) || !existsSync(metadata)) continue;

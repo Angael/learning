@@ -1,6 +1,6 @@
 import type { ILearningSession } from './types.ts';
 
-const modules = import.meta.glob('./sessions/*/*/session.ts', {
+const modules = import.meta.glob('/src/pages/topics/*/sessions/*/_session.ts', {
   eager: true,
   import: 'session',
 }) as Record<string, ILearningSession>;

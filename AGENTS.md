@@ -13,7 +13,7 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - `src/pages/topics/<topic>/index.astro` — topic page
 - `src/pages/topics/<topic>/plan.md` — durable topic direction and topic-specific teaching policy
 - `src/pages/topics/<topic>/sessions/<NNN>/index.astro` — learner-facing learning event
-- `src/data/learning/sessions/<topic>/<NNN>/session.ts` — typed source of truth for the matching event, including replies and evaluation
+- `src/pages/topics/<topic>/sessions/<NNN>/_session.ts` — colocated typed source of truth for the matching event, including replies and evaluation
 - `src/data/learning/next.ts` — typed dated planning state
 - `src/data/learning/weeks/YYYY-Www.ts` — typed weekly synthesis
 - `src/data/catalog.ts` — public topics and sessions
@@ -25,7 +25,7 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - Every assigned action must appear on a session `index.astro` page before delivery. Related actions and repairs may share or update one page.
 - Sessions and response tasks use permanent `[learn:...]` IDs.
 - Public links target session pages, never `/notes/` or GitHub source.
-- Every public session has a numeric route and matching typed `session.ts`; catalog entries are derived from those records.
+- Every public session has a numeric route and matching colocated typed `_session.ts`; catalog entries are derived from those records.
 - Session types are only `lesson`, `practice`, `exam`, or `project`. Learner-facing content follows the topic plan's language policy.
 - Use `SessionPage`, `SessionSection`, `SessionGrid`, `SessionList`, `Code`, `Callout`, `CommandList`, `TagList`, and `ReplyTask` rather than one-off markup.
 - Use `Code.astro` for code samples; do not import Shiki or render plain `<pre><code>` for code sessions.
