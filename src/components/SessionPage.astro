@@ -25,18 +25,29 @@ const taskEntries = Object.entries(session.replyTasks);
     </header>
 
     <aside class="session-record" aria-label="Session record">
-      <p class="session-record__type">{session.type}</p>
-      <h2>Why this session exists</h2>
-      <p>{session.why}</p>
-      <dl>
-        <div><dt>Session ID</dt><dd><code>{session.id}</code></dd></div>
-        <div><dt>Builds on</dt><dd>{session.buildsOn.length ? session.buildsOn.join(', ') : 'Historical session; no typed prerequisite was retained.'}</dd></div>
-        <div><dt>Focus</dt><dd><ul>{session.focus.map((item) => <li>{item}</li>)}</ul></dd></div>
-        <div><dt>Reply tasks</dt><dd>{taskEntries.length ? <ul>{taskEntries.map(([id, responses]) => <li><code>{id}</code> · {session.replyTaskState[id]} · {responses.length} learner response{responses.length === 1 ? '' : 's'}</li>)}</ul> : 'No reply task recorded.'}</dd></div>
+      <dl class="session-record__important">
+        <div class="session-record__type"><dt>Type</dt><dd>{session.type}</dd></div>
+        <div class="session-record__id"><dt>Session ID</dt><dd><code>{session.id}</code></dd></div>
+        <div class="session-record__builds-on"><dt>Builds on</dt><dd>{session.buildsOn.length ? session.buildsOn.join(', ') : 'No typed prerequisite retained'}</dd></div>
+        <div class="session-record__focus"><dt>Focus</dt><dd><ul>{session.focus.map((item) => <li>{item}</li>)}</ul></dd></div>
       </dl>
-      <details>
-        <summary>Full typed session record</summary>
-        <pre>{JSON.stringify(session, null, 2)}</pre>
+
+      <details class="session-record__remaining">
+        <summary>All session details</summary>
+        <div class="session-record__details">
+          <section>
+            <h2>Why this session exists</h2>
+            <p>{session.why}</p>
+          </section>
+          <section>
+            <h2>Reply tasks</h2>
+            {taskEntries.length ? <ul>{taskEntries.map(([id, responses]) => <li><code>{id}</code> · {session.replyTaskState[id]} · {responses.length} learner response{responses.length === 1 ? '' : 's'}</li>)}</ul> : <p>No reply task recorded.</p>}
+          </section>
+          <details class="session-record__raw">
+            <summary>Full typed session record</summary>
+            <pre>{JSON.stringify(session, null, 2)}</pre>
+          </details>
+        </div>
       </details>
     </aside>
 
@@ -52,23 +63,39 @@ const taskEntries = Object.entries(session.replyTasks);
   .session-header { margin-bottom: 28px; }
   .session-title { max-width: 820px; margin: 0 0 12px; font-size: clamp(2.1rem, 8vw, 5.2rem); line-height: .92; letter-spacing: -.065em; }
   .session-lede { max-width: 700px; font-size: 1.08rem; line-height: 1.6; }
-  .session-record { display: grid; gap: 10px; margin: 0 0 28px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
-  .session-record__type { width: fit-content; margin: 0; padding: 3px 8px; border-radius: 999px; background: var(--code); color: var(--code-text) !important; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
-  .session-record h2 { margin: 0; font-size: 1.1rem; }
-  .session-record p { margin: 0; }
-  .session-record dl { display: grid; gap: 10px; margin: 0; }
-  .session-record dl > div { display: grid; gap: 3px; }
-  .session-record dt { color: var(--text); font-weight: 750; }
-  .session-record dd { margin: 0; color: var(--muted); }
-  .session-record ul { margin: 0; }
-  .session-record details { margin-top: 4px; }
-  .session-record summary { cursor: pointer; font-weight: 700; }
-  .session-record pre { max-height: 28rem; }
+  .session-record { min-width: 0; margin: 0 0 28px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; }
+  .session-record__important { display: grid; grid-template-columns: auto 1fr; margin: 0; }
+  .session-record__important > div { min-width: 0; padding: 14px 16px; }
+  .session-record__important > div + div { border-left: 1px solid var(--line); }
+  .session-record__important dt { margin-bottom: 5px; color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .session-record__important dd { margin: 0; color: var(--text); }
+  .session-record__type { background: var(--code); }
+  .session-record__type dt { color: var(--code-text); opacity: .65; }
+  .session-record__type dd { color: var(--code-text); font-size: .84rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+  .session-record__builds-on, .session-record__focus { grid-column: 1 / -1; border-top: 1px solid var(--line); border-left: 0 !important; }
+  .session-record__focus { padding-top: 16px !important; padding-bottom: 18px !important; }
+  .session-record__focus ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 0 24px; margin-top: 10px; padding: 0; list-style: none; }
+  .session-record .session-record__focus li { padding: 10px 0 9px; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; font-weight: 400; line-height: 1.4; }
+  .session-record__remaining { border-top: 1px solid var(--line); }
+  .session-record summary { cursor: pointer; font-weight: 750; }
+  .session-record__remaining > summary { padding: 11px 16px; color: var(--muted); font-size: .86rem; }
+  .session-record__remaining[open] > summary { border-bottom: 1px solid var(--line); }
+  .session-record__details { display: grid; gap: 18px; min-width: 0; padding: 16px; }
+  .session-record__details h2 { margin: 0 0 5px; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; }
+  .session-record__details p, .session-record__details ul { margin: 0; }
+  .session-record__raw { min-width: 0; }
+  .session-record__raw summary { width: fit-content; }
+  .session-record__raw pre { width: 100%; max-width: 100%; max-height: 28rem; overflow-x: auto; }
   .session-shell h3 { margin: 22px 0 8px; font-size: 1rem; }
   .session-shell p, .session-shell li { color: var(--muted); line-height: 1.6; }
   .session-shell p { margin: 0 0 12px; }
   .session-shell ul, .session-shell ol { margin: 10px 0 0; padding-left: 1.25rem; }
   .session-shell strong { color: var(--text); }
   .session-shell pre { max-width: 100%; margin: 12px 0 0; padding: 16px; overflow-x: auto; border-radius: 16px; background: var(--code); color: var(--code-text); line-height: 1.55; }
+  @media (min-width: 600px) {
+    .session-record__important { grid-template-columns: auto minmax(10rem, .65fr) minmax(15rem, 1fr); }
+    .session-record__builds-on { grid-column: auto; border-top: 0; border-left: 1px solid var(--line) !important; }
+    .session-record__focus { grid-column: 1 / -1; }
+  }
   @media (min-width: 760px) { .session-shell { width: min(860px, calc(100% - 32px)); padding-top: 52px; } }
 </style>
