@@ -17,4 +17,4 @@
 
 - Status: implemented
 - Sessions: `/topics/dotnet/sessions/009-request-record-boundary-trace/`
-- Commit: pending
+- Commit: `f609a4c`
