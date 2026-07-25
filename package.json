@@ -9,13 +9,19 @@
     "dev": "astro dev",
     "validate:learning": "node --experimental-strip-types scripts/validate-learning-artifacts.mjs",
     "learning": "node --experimental-strip-types scripts/learning-cli.ts",
-    "check": "npm run validate:learning && npm run build",
+    "check:astro": "astro check",
+    "check": "npm run validate:learning && npm run check:astro && npm run build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "astro": "^7.0.6",
-    "shiki": "^4.3.1"
+    "shiki": "^4.3.1",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1"
   }
 }
