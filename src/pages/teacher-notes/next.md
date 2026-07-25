@@ -1,20 +1,11 @@
 # Next learning sessions
 
 - Date: 2026-07-25
-- Status: planned
+- Status: replanning
 - Weekly note: [2026-W30](/teacher-notes/weekly/2026-W30/)
 
-## Block 1
+## Current direction
 
-- Topic / type: C# + .NET / integrated supplied-code trace
-- Outcome: trace one JSON request body whose members appear in a different order from a supplied positional record through ASP.NET Core body binding, generated-property access, and one explicit numeric guard; explain name-based JSON mapping, report the bound values, and predict the rejected status and payload.
-- Evidence: [C# 008 notes](/topics/csharp/sessions/008-positional-constructor-mismatch/notes/) secure positional constructor order, nullable-versus-optional reasoning, and generated-property values after a repair. [C# plan](/topics/csharp/plan/) next calls for reading API code and translating TypeScript/backend models into C#. [.NET 007 notes](/topics/dotnet/sessions/007-request-model-validation/notes/) secure one scaffolded request-binding and runtime-validation trace, while [.NET plan](/topics/dotnet/plan/) prioritizes practical production boundaries. This event should integrate those secure parts rather than repeat either task.
-- Scope limit: supply one `TicketRequest(string EventCode, int Seats, string? Note)` record, one Minimal API handler, and one JSON body ordered `Note`, `Seats`, `EventCode`, with `Seats` outside a visible `1..6` guard. Ask only for the handler parameter and type, the three bound property values, one short explanation that JSON object members map by name rather than constructor position, and the resulting `400 Bad Request` payload. Use one request and one branch. No code writing, project creation, framework setup, compilation, accepted-case comparison, missing or malformed JSON, naming-policy internals, validation library, middleware, persistence, concurrency, cancellation, tests, or new interface/generic work.
-- Session: new `/topics/dotnet/sessions/009-request-record-boundary-trace/`
-- Reply ID: `learn:dotnet/009:q1`
-
-## Implementation
-
-- Status: implemented
-- Sessions: `/topics/dotnet/sessions/009-request-record-boundary-trace/`
-- Commit: `f609a4c`
+- Do not schedule another .NET request-model / request-record binding trace. .NET 007 already assessed body binding, named record properties, an explicit runtime guard, and accepted versus rejected responses.
+- The next .NET block must use a different target: the planned narrow endpoint behavior test, with supplied production code and no project setup.
+- The next C# block remains the supplied nominal-interface comparison. German 007 is already published and awaits its exact reply.
