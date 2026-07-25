@@ -1,0 +1,12 @@
+---
+import TeacherNote from '../../../components/TeacherNote.astro';
+import { learningWeeks } from '../../../data/learning/weeks.ts';
+
+export function getStaticPaths() {
+  return learningWeeks.map((week) => ({ params: { week: week.id }, props: { week } }));
+}
+
+const { week } = Astro.props;
+---
+
+<TeacherNote note={week} kind="week" />

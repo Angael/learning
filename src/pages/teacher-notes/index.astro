@@ -1,16 +1,10 @@
 ---
-import { readdirSync } from 'node:fs';
-import { join } from 'node:path';
 import PageShell from '../../components/PageShell.astro';
+import { learningWeeks } from '../../data/learning/weeks.ts';
 
-const weeklyDir = join(process.cwd(), 'src/pages/teacher-notes/weekly');
-const weeklyNotes = readdirSync(weeklyDir)
-  .filter((file) => /^\d{4}-W\d{2}\.md$/.test(file))
-  .sort((a, b) => b.localeCompare(a))
-  .map((file) => ({
-    title: file.replace(/\.md$/, ''),
-    href: `/teacher-notes/weekly/${file.replace(/\.md$/, '')}/`,
-  }));
+const weeklyNotes = [...learningWeeks]
+  .sort((left, right) => right.id.localeCompare(left.id))
+  .map((week) => ({ title: week.id, href: `/teacher-notes/weekly/${week.id}/` }));
 ---
 
 <PageShell
