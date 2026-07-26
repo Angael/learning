@@ -5,7 +5,7 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 ## Hard rules
 
 - Work directly on `main`; no PRs or force-push unless explicitly requested.
-- Run `npm run check`, then commit and push completed repository changes.
+- Do not start `pnpm dev` or a preview server. Verify repository work with `pnpm check` and `pnpm build`, then commit and push completed changes.
 
 ## Project shape
 
