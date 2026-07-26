@@ -3,7 +3,6 @@
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { next } from '../src/data/learning/next.ts';
 import { learningWeeks } from '../src/data/learning/weeks.ts';
 
 const root = resolve(import.meta.dirname, '..');
@@ -11,27 +10,44 @@ const topicsRoot = join(root, 'src/pages/topics');
 
 const help = (error = '') => {
   if (error) console.error(`Error: ${error}\n`);
-  console.log(`Learning history CLI
+  console.log(`Learning curriculum CLI
 
 Usage:
   learning <help|-h|--help>
+  learning topics
+  learning topic <topic>
   learning sessions
   learning sessions <topic>
   learning sessions <topic> <number>
   learning sessions <topic> --create
-  learning next
   learning weeks [YYYY-Www]
 
 Examples:
-  learning sessions dotnet
+  learning topics
+  learning topic dotnet
   learning sessions dotnet 007
   learning sessions german --create`);
   process.exitCode = error ? 1 : 0;
 };
 
+const topicDirectories = () => readdirSync(topicsRoot, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name);
+
+const loadTopics = async () => {
+  const topics = [];
+  for (const id of topicDirectories()) {
+    const file = join(topicsRoot, id, '_topic.ts');
+    if (!existsSync(file)) continue;
+    const { topic } = await import(pathToFileURL(file).href);
+    topics.push(topic);
+  }
+  return topics.sort((left, right) => left.id.localeCompare(right.id));
+};
+
 const loadSessions = async () => {
   const sessions = [];
-  for (const topic of readdirSync(topicsRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => entry.name)) {
+  for (const topic of topicDirectories()) {
     const dir = join(topicsRoot, topic, 'sessions');
     if (!existsSync(dir)) continue;
     for (const number of readdirSync(dir, { withFileTypes: true }).filter((entry) => entry.isDirectory() && /^\d{3}$/.test(entry.name)).map((entry) => entry.name)) {
@@ -54,28 +70,51 @@ const printSession = (session) => {
   console.log(`Replies: ${Object.keys(session.replyTasks).length} (${openCount(session)} open)`);
 };
 
-const create = (topic, sessions) => {
-  if (!sessions.some((session) => session.topic === topic)) {
+const candidateCount = (topic, status) => topic.candidates.filter((candidate) => candidate.status === status).length;
+const printTopic = (topic) => {
+  console.log(`${topic.title} (${topic.id})`);
+  console.log(`Goal: ${topic.goal}`);
+  console.log('Milestones:');
+  for (const milestone of topic.milestones) console.log(`- ${milestone.status.padEnd(11)} ${milestone.title} — ${milestone.evidence}`);
+  console.log('Curriculum queue:');
+  for (const candidate of topic.candidates) {
+    console.log(`- ${candidate.status.padEnd(7)} ${candidate.type.padEnd(8)} ${candidate.id}: ${candidate.title}`);
+    console.log(`  Why: ${candidate.why}`);
+    console.log(`  Builds on: ${candidate.buildsOn.length ? candidate.buildsOn.join(', ') : 'none recorded'}`);
+    if (candidate.blockedBy?.length) console.log(`  Blocked by: ${candidate.blockedBy.join('; ')}`);
+    if (candidate.sessionId) console.log(`  Published as: ${candidate.sessionId}`);
+    if (candidate.closedReason) console.log(`  Closure: ${candidate.closedReason}`);
+  }
+};
+
+const create = (topic, sessions, topics) => {
+  if (!topics.some((item) => item.id === topic)) {
     help(`Unknown topic: ${topic}`);
     return;
   }
   const numbers = sessions.filter((session) => session.topic === topic).map((session) => Number(session.number));
-  const number = String(Math.max(...numbers) + 1).padStart(3, '0');
+  const number = String(Math.max(0, ...numbers) + 1).padStart(3, '0');
   const dir = join(root, 'src/pages/topics', topic, 'sessions', number);
   const id = `learn:${topic}/${number}`;
   const taskId = `${id}:q1`;
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, '_session.ts'), `import type { ILearningSession } from '../../../../../data/learning/types.ts';\n\nexport const session: ILearningSession = {\n  id: '${id}',\n  topic: '${topic}',\n  number: '${number}',\n  type: 'lesson',\n  title: 'Untitled session',\n  summary: 'Replace this scaffold summary before publication.',\n  date: new Date().toISOString().slice(0, 10),\n  why: 'Replace with a precise reason based on cited prior evidence.',\n  buildsOn: [],\n  focus: ['Replace with a distinct observable learning target.'],\n  replyTasks: { '${taskId}': [] },\n  replyTaskState: { '${taskId}': 'open' },\n  evaluation: [],\n  misconceptions: [],\n  next: [],\n  published: { route: '/topics/${topic}/sessions/${number}/', canonicalUrl: 'https://learn.widacki.me/topics/${topic}/sessions/${number}/' },\n  archive: '',\n};\n`);
+  writeFileSync(join(dir, '_session.ts'), `import type { ILearningSession } from '../../../../../data/learning/types.ts';\n\nexport const session: ILearningSession = {\n  id: '${id}',\n  topic: '${topic}',\n  number: '${number}',\n  type: 'lesson',\n  title: 'Untitled session',\n  summary: 'Replace this scaffold summary before publication.',\n  date: new Date().toISOString().slice(0, 10),\n  why: 'Replace with a precise reason based on cited prior evidence and a topic.ts candidate.',\n  buildsOn: [],\n  focus: ['Replace with a distinct observable learning target.'],\n  replyTasks: { '${taskId}': [] },\n  replyTaskState: { '${taskId}': 'open' },\n  evaluation: [],\n  misconceptions: [],\n  next: [],\n  published: { route: '/topics/${topic}/sessions/${number}/', canonicalUrl: 'https://learn.widacki.me/topics/${topic}/sessions/${number}/' },\n  archive: '',\n};\n`);
   writeFileSync(join(dir, 'index.astro'), `---\nimport ReplyTask from '../../../../../components/ReplyTask.astro';\nimport SessionPage from '../../../../../components/SessionPage.astro';\nimport { session } from './_session.ts';\n---\n\n<SessionPage session={session} title=\"Session ${number}\" heading=\"Replace this heading\" lede=\"Replace this learner-facing summary.\" backHref=\"/topics/${topic}/\" backLabel=\"${topic} sessions\">\n  <ReplyTask id=\"${taskId}\" difficulty={3}>\n    <p>Replace this task before publication.</p>\n  </ReplyTask>\n</SessionPage>\n`);
   console.log(`Created scaffold: ${dir}`);
 };
 
 const args = process.argv.slice(2);
 if (!args.length || ['help', '-h', '--help'].includes(args[0])) help();
-else if (args[0] === 'next') {
-  console.log(`${next.date} — ${next.status}`);
-  for (const block of next.blocks) console.log(`${block.topic}  ${block.type}  ${block.why}`);
-  if (!next.blocks.length) console.log('No structured blocks are currently planned.');
+else if (args[0] === 'topics' || args[0] === 'topic') {
+  const topics = await loadTopics();
+  const id = args[1];
+  if (args[0] === 'topics' && !id) {
+    for (const topic of topics) console.log(`${topic.id.padEnd(8)} ${candidateCount(topic, 'ready')} ready, ${candidateCount(topic, 'blocked')} blocked, ${candidateCount(topic, 'done')} done, ${candidateCount(topic, 'dropped')} dropped — ${topic.title}`);
+  } else {
+    const topic = topics.find((item) => item.id === id);
+    if (!topic) help(`Unknown topic: ${id ?? ''}`);
+    else printTopic(topic);
+  }
 }
 else if (args[0] === 'weeks' || args[0] === 'week') {
   const id = args[1];
@@ -89,14 +128,15 @@ else if (args[0] === 'weeks' || args[0] === 'week') {
 else if (args[0] !== 'sessions') help(`Unknown command: ${args[0]}`);
 else {
   const sessions = await loadSessions();
+  const topics = await loadTopics();
   const [topic, detail] = args.slice(1);
   if (!topic) {
     for (const session of sessions) console.log(`${session.topic.padEnd(8)} ${session.number}  ${session.type.padEnd(8)} ${session.title}`);
   } else if (detail === '--create') {
-    create(topic, sessions);
+    create(topic, sessions, topics);
   } else {
     const topicSessions = sessions.filter((session) => session.topic === topic);
-    if (!topicSessions.length) help(`Unknown topic: ${topic}`);
+    if (!topics.some((item) => item.id === topic)) help(`Unknown topic: ${topic}`);
     else if (detail) {
       const session = topicSessions.find((item) => item.number === detail.padStart(3, '0'));
       if (!session) help(`Unknown session: ${topic} ${detail}`);

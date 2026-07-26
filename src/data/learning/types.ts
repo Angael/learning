@@ -2,6 +2,8 @@ export const sessionTypes = ['lesson', 'practice', 'exam', 'project'] as const;
 export type SessionType = (typeof sessionTypes)[number];
 
 export type ReplyTaskState = 'open' | 'complete' | 'legacy-complete';
+export type CurriculumCandidateStatus = 'ready' | 'blocked' | 'done' | 'dropped';
+export type CurriculumMilestoneStatus = 'not-started' | 'in-progress' | 'secure';
 
 export interface ILearningSession {
   id: string;
@@ -26,30 +28,39 @@ export interface ILearningSession {
   archive: string;
 }
 
-export interface ILearningPlanBlock {
-  topic: string;
+export interface ICurriculumMilestone {
+  title: string;
+  status: CurriculumMilestoneStatus;
+  evidence: string;
+}
+
+export interface ICurriculumCandidate {
+  id: string;
+  status: CurriculumCandidateStatus;
   type: SessionType;
+  title: string;
   why: string;
   buildsOn: string[];
   focus: string[];
-  scope: string[];
-  replyTaskCount: number;
+  blockedBy?: string[];
+  sessionId?: string;
+  closedReason?: string;
 }
 
-export interface ILearningNext {
-  date: string;
-  status: 'planned' | 'implemented' | 'replanning';
-  blocks: ILearningPlanBlock[];
-  archive: string;
+export interface ILearningTopic {
+  id: string;
+  title: string;
+  goal: string;
+  baseline: string[];
+  policies: string[];
+  progression: string[];
+  milestones: ICurriculumMilestone[];
+  candidates: ICurriculumCandidate[];
 }
 
 export interface ILearningWeek {
   id: string;
   intent: string[];
-  days: Array<{
-    date: string;
-    plan: string;
-  }>;
   coverage: string[];
   backlog: string[];
   outlook: string[];

@@ -3,7 +3,6 @@ import type { ILearningWeek } from '../types.ts';
 export const week2026W28: ILearningWeek = {
   "id": "2026-W28",
   "intent": [],
-  "days": [],
   "coverage": [],
   "backlog": [],
   "outlook": [],

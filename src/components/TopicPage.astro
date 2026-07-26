@@ -1,6 +1,4 @@
 ---
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
 import SessionList from './SessionList.astro';
 import PageShell from './PageShell.astro';
 import type { Topic } from '../data/catalog';
@@ -18,18 +16,14 @@ type Props = {
 
 const { topic } = Astro.props;
 const sessions = sortedSessions(topic.sessions);
-const planPath = join(process.cwd(), `src/pages/topics/${topic.slug}/plan.md`);
-const hasPlan = existsSync(planPath);
 ---
 
 <PageShell title={`${topic.title} · Learning`} heading={topic.title} summary={topic.summary} backHref="/" backLabel="All topics" narrow>
-  {hasPlan && (
-    <aside class="helper-link">
-      <strong>Topic plan</strong>
-      <span>Short helper note for goals, progression, and current state.</span>
-      <a href={`${topic.href}plan/`}>Open plan →</a>
-    </aside>
-  )}
+  <aside class="helper-link">
+    <strong>Topic plan</strong>
+    <span>Goals, learner progress, and the public curriculum queue.</span>
+    <a href={`${topic.href}plan/`}>Open plan →</a>
+  </aside>
 
   <div class="list-wrap">
     <SessionList sessions={sessions} ariaLabel={`${topic.title} sessions`} />

@@ -14,6 +14,40 @@ const directories = (path) => readdirSync(path)
 
 for (const topicDir of directories(topicsRoot)) {
   const topic = basename(topicDir);
+  const topicFile = join(topicDir, '_topic.ts');
+  if (!existsSync(topicFile)) {
+    errors.push(`${relative(root, topicFile)} is missing`);
+  } else {
+    try {
+      const { topic: topicPlan } = await import(pathToFileURL(topicFile).href);
+      if (topicPlan.id !== topic) errors.push(`${relative(root, topicFile)} id must be ${topic}`);
+      for (const key of ['title', 'goal']) if (!topicPlan[key]) errors.push(`${relative(root, topicFile)} must provide ${key}`);
+      for (const key of ['baseline', 'policies', 'progression', 'milestones', 'candidates']) {
+        if (!Array.isArray(topicPlan[key]) || !topicPlan[key].length) errors.push(`${relative(root, topicFile)} must provide a non-empty ${key}`);
+      }
+      for (const milestone of topicPlan.milestones ?? []) {
+        if (!['not-started', 'in-progress', 'secure'].includes(milestone.status) || !milestone.title || !milestone.evidence) {
+          errors.push(`${relative(root, topicFile)} has an invalid milestone`);
+        }
+      }
+      const candidateIds = new Set();
+      for (const candidate of topicPlan.candidates ?? []) {
+        if (!candidate.id || candidateIds.has(candidate.id)) errors.push(`${relative(root, topicFile)} has a missing or duplicate candidate id`);
+        candidateIds.add(candidate.id);
+        if (!['ready', 'blocked', 'done', 'dropped'].includes(candidate.status)) errors.push(`${relative(root, topicFile)} has an invalid candidate status`);
+        if (!['lesson', 'practice', 'exam', 'project'].includes(candidate.type)) errors.push(`${relative(root, topicFile)} has an invalid candidate type`);
+        if (!candidate.title || !candidate.why || !Array.isArray(candidate.focus) || !candidate.focus.length || !Array.isArray(candidate.buildsOn)) {
+          errors.push(`${relative(root, topicFile)} has an incomplete candidate`);
+        }
+        if (candidate.status === 'blocked' && (!Array.isArray(candidate.blockedBy) || !candidate.blockedBy.length)) errors.push(`${relative(root, topicFile)} blocked candidate ${candidate.id} needs blockedBy`);
+        if (candidate.status === 'done' && (!candidate.sessionId || !candidate.closedReason)) errors.push(`${relative(root, topicFile)} done candidate ${candidate.id} needs sessionId and closedReason`);
+        if (candidate.status === 'dropped' && !candidate.closedReason) errors.push(`${relative(root, topicFile)} dropped candidate ${candidate.id} needs closedReason`);
+      }
+    } catch (error) {
+      errors.push(`${relative(root, topicFile)} cannot be imported: ${error.message}`);
+    }
+  }
+
   const sessionsDir = join(topicDir, 'sessions');
   if (!existsSync(sessionsDir)) {
     errors.push(`${relative(root, topicDir)}/sessions/ is missing`);

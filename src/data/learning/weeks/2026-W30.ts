@@ -5,20 +5,6 @@ export const week2026W30: ILearningWeek = {
   "intent": [
     "Keep new work capability-led: explicit C# interface contracts, observable .NET endpoint tests, and supported German production only after current evidence arrives."
   ],
-  "days": [
-    {
-      "date": "2026-07-26",
-      "plan": "Publish nothing new. German 007 already supplies the supported practical reading-to-response work mapped for today and its reply remains open; a second routine version would duplicate assessed work. Preserve the distinct C# interface and .NET behavior-test blocks for later mapped days."
-    },
-    {
-      "date": "2026-07-27",
-      "plan": "After a fresh backlog check, publish the supplied C# nominal-interface comparison and missing-member diagnosis if no new evidence changes the need."
-    },
-    {
-      "date": "2026-07-28",
-      "plan": "After a fresh backlog check, publish one narrow .NET endpoint behavior-test transfer with production code and test setup supplied if it remains novel."
-    }
-  ],
   "coverage": [
     "C# 007 established bounded positional-record declaration and use; C# 008 established diagnosis of a reversed positional constructor pair. The next interface block must not repeat record construction.",
     ".NET 007 established request binding and explicit runtime validation; .NET 008 established race-safe uniqueness and deliberate conflict translation. The next block must assess endpoint behavior through a test, not another request trace or architecture explanation.",

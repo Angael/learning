@@ -11,11 +11,11 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 
 - `src/pages/index.astro` — topic index
 - `src/pages/topics/<topic>/index.astro` — topic page
-- `src/pages/topics/<topic>/plan.md` — durable topic direction and topic-specific teaching policy
+- `src/pages/topics/<topic>/_topic.ts` — typed durable goal, learner state, policy, progress milestones, and curriculum queue
+- `src/pages/topics/<topic>/plan.astro` — public rendering of that typed topic record
 - `src/pages/topics/<topic>/sessions/<NNN>/index.astro` — learner-facing learning event
 - `src/pages/topics/<topic>/sessions/<NNN>/_session.ts` — colocated typed source of truth for the matching event, including replies and evaluation
-- `src/data/learning/next.ts` — typed dated planning state
-- `src/data/learning/weeks/YYYY-Www.ts` — typed weekly synthesis
+- `src/data/learning/weeks/YYYY-Www.ts` — typed weekly synthesis; do not assign future sessions to calendar dates
 - `src/data/catalog.ts` — public topics and sessions
 - `src/components/` — shared page, session, and content components
 
@@ -26,7 +26,7 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - Sessions and response tasks use permanent `[learn:...]` IDs.
 - Public links target session pages, never `/notes/` or GitHub source.
 - Every public session has a numeric route and matching colocated typed `_session.ts`; catalog entries are derived from those records.
-- Session types are only `lesson`, `practice`, `exam`, or `project`. Learner-facing content follows the topic plan's language policy.
+- Session types are only `lesson`, `practice`, `exam`, or `project`. Learner-facing content follows the typed topic record's language policy.
 - Use `SessionPage`, `SessionSection`, `SessionGrid`, `SessionList`, `Code`, `Callout`, `CommandList`, `TagList`, and `ReplyTask` rather than one-off markup.
 - Use `Code.astro` for code samples; do not import Shiki or render plain `<pre><code>` for code sessions.
 - Every response request uses `ReplyTask` with a permanent ID. Never renumber published IDs. Store learner text in `replyTasks` and teacher judgment in the dedicated typed fields.

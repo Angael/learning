@@ -1,0 +1,33 @@
+---
+import PageShell from './PageShell.astro';
+import type { ILearningTopic } from '../data/learning/types.ts';
+
+type Props = { topic: ILearningTopic };
+const { topic } = Astro.props;
+---
+
+<PageShell title={`${topic.title} plan · Learning`} heading={`${topic.title} plan`} summary={topic.goal} backHref={`/topics/${topic.id}/`} backLabel={`${topic.title} sessions`} narrow>
+  <section><h2>Baseline</h2><ul>{topic.baseline.map((item) => <li>{item}</li>)}</ul></section>
+  <section><h2>Teaching policy</h2><ul>{topic.policies.map((item) => <li>{item}</li>)}</ul></section>
+  <section><h2>Progression</h2><ol>{topic.progression.map((item) => <li>{item}</li>)}</ol></section>
+  <section><h2>Progress</h2><ul class="milestones">{topic.milestones.map((item) => <li><strong>{item.status}</strong><span>{item.title}</span><small>{item.evidence}</small></li>)}</ul></section>
+  <section><h2>Curriculum queue</h2><p class="intro">These are teacher-planning candidates, not promises of published sessions.</p><ol class="queue">{topic.candidates.map((item) => <li><strong>{item.status} · {item.type}</strong><h3>{item.title}</h3><p>{item.why}</p><ul>{item.focus.map((focus) => <li>{focus}</li>)}</ul>{item.buildsOn.length > 0 && <p><small>Builds on: {item.buildsOn.join(', ')}</small></p>}{item.blockedBy?.length && <p><small>Blocked by: {item.blockedBy.join('; ')}</small></p>}{item.sessionId && <p><small>Published as: {item.sessionId}</small></p>}{item.closedReason && <p><small>Closure: {item.closedReason}</small></p>}</li>)}</ol></section>
+  <details class="record"><summary>Full typed record</summary><pre>{JSON.stringify(topic, null, 2)}</pre></details>
+</PageShell>
+
+<style>
+  section { margin: 0 0 28px; }
+  h2 { margin: 0 0 8px; }
+  h3 { margin: 6px 0; font-size: 1rem; }
+  p, li { color: var(--muted); line-height: 1.6; }
+  .intro { margin-top: 0; }
+  .milestones, .queue { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .milestones li, .queue > li { padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .milestones li { display: grid; gap: 3px; }
+  .milestones strong, .queue strong { color: var(--accent); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+  .milestones small, .queue small { color: var(--muted); }
+  .queue p { margin: 6px 0; }
+  .queue ul { margin: 8px 0; padding-left: 1.2rem; }
+  .record summary { cursor: pointer; font-weight: 700; }
+  pre { max-height: 36rem; overflow: auto; }
+</style>

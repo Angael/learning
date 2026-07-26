@@ -1,31 +1,16 @@
 ---
 import PageShell from './PageShell.astro';
-import type { ILearningNext, ILearningWeek } from '../data/learning/types.ts';
+import type { ILearningWeek } from '../data/learning/types.ts';
 
-type Props = { note: ILearningNext | ILearningWeek; kind: 'next' | 'week' };
-const { note, kind } = Astro.props;
-const isWeek = kind === 'week';
+type Props = { note: ILearningWeek };
+const { note } = Astro.props;
 ---
 
-<PageShell
-  title={isWeek ? `Week ${(note as ILearningWeek).id}` : 'Next learning sessions'}
-  heading={isWeek ? `Week ${(note as ILearningWeek).id}` : 'Next learning sessions'}
-  summary={isWeek ? 'Typed weekly learning state.' : `Status: ${(note as ILearningNext).status}`}
-  backHref="/teacher-notes/"
-  backLabel="Teacher notes"
-  narrow
->
-  {isWeek ? (
-    <>
-      <section><h2>Intent</h2><ul>{(note as ILearningWeek).intent.map((item) => <li>{item}</li>)}</ul></section>
-      <section><h2>Daily map</h2><ul>{(note as ILearningWeek).days.map((day) => <li><strong>{day.date}</strong>: {day.plan}</li>)}</ul></section>
-      <section><h2>Coverage</h2><ul>{(note as ILearningWeek).coverage.map((item) => <li>{item}</li>)}</ul></section>
-      <section><h2>Backlog</h2><ul>{(note as ILearningWeek).backlog.map((item) => <li>{item}</li>)}</ul></section>
-      <section><h2>Outlook</h2><ul>{(note as ILearningWeek).outlook.map((item) => <li>{item}</li>)}</ul></section>
-    </>
-  ) : (
-    <section><h2>Blocks</h2>{(note as ILearningNext).blocks.length ? <ol>{(note as ILearningNext).blocks.map((block) => <li><strong>{block.topic} · {block.type}</strong><p>{block.why}</p><ul>{block.focus.map((item) => <li>{item}</li>)}</ul></li>)}</ol> : <p>Replanning. No session is assigned yet.</p>}</section>
-  )}
+<PageShell title={`Week ${note.id}`} heading={`Week ${note.id}`} summary="Typed weekly learning synthesis." backHref="/teacher-notes/" backLabel="Teacher notes" narrow>
+  <section><h2>Intent</h2><ul>{note.intent.map((item) => <li>{item}</li>)}</ul></section>
+  <section><h2>Coverage</h2><ul>{note.coverage.map((item) => <li>{item}</li>)}</ul></section>
+  <section><h2>Backlog</h2><ul>{note.backlog.map((item) => <li>{item}</li>)}</ul></section>
+  <section><h2>Outlook</h2><ul>{note.outlook.map((item) => <li>{item}</li>)}</ul></section>
   <details class="archive"><summary>Full typed record</summary><pre>{JSON.stringify(note, null, 2)}</pre></details>
 </PageShell>
 
