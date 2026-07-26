@@ -14,14 +14,20 @@ export const session: ILearningSession = {
     "Przeczytaj krótką wiadomość od sąsiadki, znajdź trzy fakty i napisz dwa wsparte zdania: podziękowanie oraz termin odbioru."
   ],
   "replyTasks": {
-    "learn:german/007:q1": []
+    "learn:german/007:q1": [
+      "1. Sąsiadka Lena wzieła paczkę bo Marta nie była w domu, marta może dostać paczke jak przyjdzie do niej dzisiaj od 18 lub jutro od 8.\n2. Danke, dass du four mich das Paket angenommen hast. Ich hole es Morgen um 10 ab."
+    ]
   },
   "replyTaskState": {
-    "learn:german/007:q1": "open"
+    "learn:german/007:q1": "complete"
   },
-  "evaluation": [],
+  "evaluation": [
+    "German 007 q1: Odczyt faktów jest poprawny: Lena ma paczkę, przyjęła ją, bo Marty nie było w domu, a odbiór jest możliwy dziś od 18:00. Obie niemieckie konstrukcje są poprawnie zbudowane: `dass du ... angenommen hast` oraz rozdzielone `Ich hole ... ab`. Popraw tylko drobiazgi: `für`, małe `morgen` i `Uhr` — `Danke, dass du für mich das Paket angenommen hast. Ich hole es morgen um 10 Uhr ab.` Zadanie zamknięte; to nie wymaga osobnej naprawy."
+  ],
   "misconceptions": [],
-  "next": [],
+  "next": [
+    "Kontynuuj istniejącą sesję German 008; tam sprawdzimy świeżą praktyczną wymianę, bez powtarzania wiadomości o paczce."
+  ],
   "published": {
     "route": "/topics/german/sessions/007/",
     "canonicalUrl": "https://learn.widacki.me/topics/german/sessions/007/"

@@ -10,15 +10,16 @@ export const topic: ILearningTopic = {
   milestones: [
     { title: 'Write simple recent-life sentences with correction support.', status: 'secure', evidence: 'German 001 and 005.' },
     { title: 'Use selected Akkusativ/Dativ articles in supported practical patterns.', status: 'secure', evidence: 'German 003, 004, and 006.' },
-    { title: 'Read a short practical note and produce a constrained response.', status: 'in-progress', evidence: 'German 007 awaits reply evidence.' },
+    { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
     { title: 'Use Perfekt independently under practical pressure.', status: 'not-started', evidence: 'Supported forms are secure; independent retrieval remains untested.' },
     { title: 'Sustain a short corrected German chat.', status: 'not-started', evidence: 'Open dialogue is deliberately deferred.' },
   ],
   candidates: [
     {
-      id: 'parcel-response-evidence', status: 'blocked', type: 'practice', title: 'Choose the next German transfer from parcel-response evidence',
-      why: 'German 007 already supplies the current supported reading-to-response target. Its reply should determine whether to advance fluency, revisit a grammar distinction, or add support.',
-      buildsOn: ['learn:german/007'], focus: ['Use exact learner evidence to select a fresh practical target.'], blockedBy: ['Await [learn:german/007:q1] or explicitly close it as stale.'],
+      id: 'parcel-response-evidence', status: 'done', type: 'practice', title: 'Choose the next German transfer from parcel-response evidence',
+      why: 'German 007 supplied the current supported reading-to-response target. Its reply confirms that the next transfer can stay practical rather than repeat this pattern.',
+      buildsOn: ['learn:german/007'], focus: ['Use exact learner evidence to select a fresh practical target.'],
+      sessionId: 'learn:german/007', closedReason: 'Correct fact retrieval and both target sentence patterns; only low-value spelling and response-format slips.',
     },
     {
       id: 'supported-practical-exchange', status: 'done', type: 'practice', title: 'Fresh supported practical exchange',
