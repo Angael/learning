@@ -12,7 +12,7 @@ export const topic: ILearningTopic = {
     { title: 'Understand the request pipeline.', status: 'secure', evidence: '.NET 002.' },
     { title: 'Use dependency injection and configuration in an endpoint.', status: 'secure', evidence: '.NET 003–006.' },
     { title: 'Reason about request validation and database uniqueness under concurrency.', status: 'secure', evidence: '.NET 007–008.' },
-    { title: 'Write or complete a focused endpoint behavior test.', status: 'in-progress', evidence: '.NET 009 supplies accepted and rejected HTTP assertions; reply evidence remains open.' },
+    { title: 'Write or complete a focused endpoint behavior test.', status: 'secure', evidence: '.NET 009 correctly asserted `201 Created` and `400 BadRequest`, then distinguished response-only evidence from proof of persistence.' },
   ],
   candidates: [
     {

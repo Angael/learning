@@ -15,11 +15,20 @@ export const session: ILearningSession = {
     'Test the public response rather than an internal implementation detail.',
     'State the narrow guarantee and one important limit of the tests.',
   ],
-  replyTasks: { 'learn:dotnet/009:q1': [] },
-  replyTaskState: { 'learn:dotnet/009:q1': 'open' },
-  evaluation: [],
+  replyTasks: {
+    'learn:dotnet/009:q1': [
+      'Assert.Equal(HttpStatusCode.Created, response.StatusCode);',
+      'Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);',
+      'Those tests basically only prove that, given some input, some HTTP status is returned. It does not check whether anything was actually created.',
+    ],
+  },
+  replyTaskState: { 'learn:dotnet/009:q1': 'complete' },
+  evaluation: [
+    'Correct: the accepted case asserts `201 Created` and the rejected case asserts `400 BadRequest` against the observed `response.StatusCode`.',
+    'Strong limit identified: status-only tests verify the public response for the supplied inputs, not that a resource was persisted or persisted correctly.',
+  ],
   misconceptions: [],
-  next: ['Use a focused test to protect error translation at a data-access boundary.'],
+  next: ['Next, verify a real effect through a response representation, a follow-up GET, or direct test-database inspection when that effect is part of the endpoint contract.'],
   published: {
     route: '/topics/dotnet/sessions/009/',
     canonicalUrl: 'https://learn.widacki.me/topics/dotnet/sessions/009/',
