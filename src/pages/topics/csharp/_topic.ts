@@ -18,19 +18,20 @@ export const topic: ILearningTopic = {
     { title: 'Distinguish value types, reference types, and nullable reference types.', status: 'secure', evidence: 'C# 002.' },
     { title: 'Choose a small class or record only where it improves the model.', status: 'secure', evidence: 'C# 005–008.' },
     { title: 'Explain static with a precise ownership model.', status: 'secure', evidence: 'C# 003–004.' },
-    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# model work is secure; interfaces are next.' },
+    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 introduces explicit nominal interface implementation; reply evidence and generic transfer remain open.' },
   ],
   candidates: [
     {
-      id: 'nominal-interface-contract', status: 'ready', type: 'lesson', title: 'Nominal interface contract',
+      id: 'nominal-interface-contract', status: 'done', type: 'lesson', title: 'Nominal interface contract',
       why: 'C# 007–008 assessed positional-record construction and diagnosis. This adds explicit interface implementation, a TypeScript structural-typing comparison, and a missing-member compiler failure.',
       buildsOn: ['learn:csharp/007', 'learn:csharp/008'],
       focus: ['Read one supplied interface and implementation.', 'Explain why matching shape alone does not implement a C# interface.', 'Diagnose one missing-member compiler failure.'],
+      sessionId: 'learn:csharp/009', closedReason: 'Published as C# 009 with explicit nominal-contract teaching and a CS0535 repair task.',
     },
     {
-      id: 'collections-after-interfaces', status: 'blocked', type: 'lesson', title: 'Collections and LINQ foundations',
-      why: 'Collections should follow the first explicit contract and generic vocabulary rather than arrive as ungrounded syntax.',
-      buildsOn: [], focus: ['Use a typed collection and one simple query pipeline.'], blockedBy: ['Complete or deliberately drop nominal-interface-contract first.'],
+      id: 'collections-after-interfaces', status: 'ready', type: 'lesson', title: 'Collections and LINQ foundations',
+      why: 'Collections now follow the first explicit interface contract, so typed collection and generic vocabulary can be grounded in C# 009 rather than arrive as isolated syntax.',
+      buildsOn: ['learn:csharp/009'], focus: ['Use a typed collection and one simple query pipeline.'],
     },
   ],
 };

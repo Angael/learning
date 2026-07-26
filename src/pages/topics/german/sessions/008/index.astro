@@ -1,0 +1,68 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+---
+
+<SessionPage session={session}
+  title="Sesja 8 · Niemiecki: bilet kolejowy"
+  heading="Kup bilet w krótkiej rozmowie"
+  lede="Masz wszystkie potrzebne słowa. Odpowiesz na trzy pytania: dokąd, jaki bilet i kiedy."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Słowa i zwroty">
+    <SessionGrid>
+      <div>
+        <h3>Bilet</h3>
+        <ul>
+          <li><code>die Fahrkarte</code> — bilet</li>
+          <li><code>einfach</code> — w jedną stronę</li>
+          <li><code>hin und zurück</code> — tam i z powrotem</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Cel i czas</h3>
+        <ul>
+          <li><code>nach + miasto</code> — do + miasto</li>
+          <li><code>am Dienstag</code> — we wtorek</li>
+          <li><code>um 10 Uhr</code> — o godzinie 10:00</li>
+        </ul>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Wzór na innej podróży">
+    <Callout>
+      <strong>Kasjer:</strong> Wohin möchten Sie fahren?<br />
+      <strong>Klient:</strong> Nach Bonn, bitte.<br />
+      <strong>Kasjer:</strong> Einfach oder hin und zurück?<br />
+      <strong>Klient:</strong> Einfach, bitte.<br />
+      <strong>Kasjer:</strong> Wann möchten Sie fahren?<br />
+      <strong>Klient:</strong> Am Freitag um 8 Uhr.
+    </Callout>
+    <p><code>nach</code> łączy się tu bez rodzajnika z nazwą miasta. Dzień podajemy z <code>am</code>, a godzinę z <code>um</code>.</p>
+  </SessionSection>
+
+  <SessionSection title="Twoje dane">
+    <ul>
+      <li>cel: Leipzig</li>
+      <li>bilet: tam i z powrotem</li>
+      <li>wyjazd: wtorek, 10:00</li>
+    </ul>
+    <p>Użyj tych trzech ram: <code>Nach ..., bitte.</code> — <code>Hin und zurück, bitte.</code> — <code>Am ... um ... Uhr.</code></p>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/008:q1" difficulty={3} language="pl">
+    <p>Odpowiedz jako klient. Napisz tylko trzy krótkie kwestie po niemiecku.</p>
+    <ol>
+      <li><strong>Wohin möchten Sie fahren?</strong></li>
+      <li><strong>Einfach oder hin und zurück?</strong></li>
+      <li><strong>Wann möchten Sie fahren?</strong></li>
+    </ol>
+    <p>Użyj danych z sekcji „Twoje dane”. Możesz używać <code>ae/oe/ue/ss</code>.</p>
+  </ReplyTask>
+</SessionPage>

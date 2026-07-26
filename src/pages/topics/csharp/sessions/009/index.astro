@@ -1,0 +1,72 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const model = `public interface INotifier
+{
+    void Send(string message);
+}
+
+public sealed class ConsoleNotifier : INotifier
+{
+    public void Send(string message) => Console.WriteLine(message);
+}`;
+
+const shapeOnly = `public sealed class ShapeOnlyNotifier
+{
+    public void Send(string message) => Console.WriteLine(message);
+}
+
+INotifier notifier = new ShapeOnlyNotifier();
+// CS0029: Cannot implicitly convert type 'ShapeOnlyNotifier' to 'INotifier'`;
+
+const broken = `public interface IPriceLabel
+{
+    string Format(decimal amount);
+}
+
+public sealed class UsdPriceLabel : IPriceLabel
+{
+    // Add the missing member here.
+}
+
+// CS0535: 'UsdPriceLabel' does not implement interface member
+// 'IPriceLabel.Format(decimal)'`;
+---
+
+<SessionPage session={session}
+  title="Session 9 · C#: nominal interface contracts"
+  heading="Make an interface contract explicit"
+  lede="In C#, matching method names are not enough. A class names the interface it implements, then provides every required member."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="Read a complete implementation">
+    <Code code={model} lang="csharp" />
+    <p><code>INotifier</code> is the contract. The colon says that <code>ConsoleNotifier</code> promises to implement it. The public <code>Send</code> method keeps that promise.</p>
+  </SessionSection>
+
+  <SessionSection title="The key difference from TypeScript">
+    <Code code={shapeOnly} lang="csharp" />
+    <Callout>
+      TypeScript often accepts a value because its shape matches. C# interfaces are nominal here: the class must explicitly name the interface. It must also provide all required members.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="A missing-member failure">
+    <Code code={broken} lang="csharp" />
+    <p>The class names <code>IPriceLabel</code>, so the compiler checks the promise. The error tells you the exact member that is missing.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/009:q1" difficulty={3}>
+    <ol>
+      <li>Add one public <code>Format</code> method inside <code>UsdPriceLabel</code>. It must return an amount such as <code>$12.50</code>.</li>
+      <li>In one short sentence, say why another class with the same <code>Format</code> method does not automatically implement <code>IPriceLabel</code>.</li>
+    </ol>
+    <p>Reply with the method and one sentence. Do not rewrite the interface.</p>
+  </ReplyTask>
+</SessionPage>

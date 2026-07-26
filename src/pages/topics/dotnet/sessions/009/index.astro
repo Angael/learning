@@ -1,0 +1,77 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const contract = `POST /widgets
+
+{ "name": "Desk lamp" }  -> 201 Created
+{ "name": "" }           -> 400 Bad Request`;
+
+const testSetup = `public sealed class WidgetEndpointTests(
+    WebApplicationFactory<Program> factory)
+    : IClassFixture<WebApplicationFactory<Program>>
+{
+    private readonly HttpClient _client = factory.CreateClient();
+
+    [Fact]
+    public async Task Accepts_a_named_widget()
+    {
+        var response = await _client.PostAsJsonAsync(
+            "/widgets",
+            new { Name = "Desk lamp" });
+
+        Assert.Equal(/* expected status */, /* actual status */);
+    }
+
+    [Fact]
+    public async Task Rejects_a_blank_name()
+    {
+        var response = await _client.PostAsJsonAsync(
+            "/widgets",
+            new { Name = "" });
+
+        Assert.Equal(/* expected status */, /* actual status */);
+    }
+}`;
+
+const example = `var response = await client.GetAsync("/health");
+Assert.Equal(HttpStatusCode.OK, response.StatusCode);`;
+---
+
+<SessionPage session={session}
+  title="Session 9 · .NET: endpoint behavior test"
+  heading="Test the HTTP behavior, not the endpoint's private steps"
+  lede="The app and test host are already supplied. Complete two small assertions against the response a client can see."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="The public contract">
+    <Code code={contract} lang="text" />
+    <p>The test target is narrow. One request should be accepted. One should be rejected. The status code is public behavior.</p>
+  </SessionSection>
+
+  <SessionSection title="The assertion pattern">
+    <Code code={example} lang="csharp" />
+    <Callout>
+      Put the expected value first and the observed value second. Here, <code>response.StatusCode</code> is the observed result.
+    </Callout>
+  </SessionSection>
+
+  <SessionSection title="Complete the supplied tests">
+    <Code code={testSetup} lang="csharp" />
+    <p><code>WebApplicationFactory</code> starts the supplied app in a test host. <code>HttpClient</code> then calls the real HTTP pipeline in that host.</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:dotnet/009:q1" difficulty={3}>
+    <ol>
+      <li>Write the complete <code>Assert.Equal(...)</code> line for the accepted request.</li>
+      <li>Write the complete <code>Assert.Equal(...)</code> line for the rejected request.</li>
+      <li>In one short sentence, say what these tests prove and what they do not prove.</li>
+    </ol>
+    <p>Do not build a project or rewrite the setup. Reply with two assertion lines and one sentence.</p>
+  </ReplyTask>
+</SessionPage>
