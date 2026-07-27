@@ -19,15 +19,17 @@ export const session: ILearningSession = {
     'learn:german/008:q1': [
       '1. Ich moechte im Lips von 13 Uhr werden.\n2. Ist die Verbindung direkt?\n3. Ich kann Im Berlin umsteigen.\n4. Von welchen Gleis fahrt der Zug von Hamburg ab?',
       'Ich moechte im Lips von 13 Uhr ankommen.\nIst die Verbindung direkt?\nIch kann In Berlin umsteigen.\nVon welchen Gleis faehrt der Zug von Hamburg ab?',
+      'Ich moechte in Leipzig vor 13 Uhr ankommen.\nJa, das ist in Ordnung. Ich steige in Berlin um.\nVon welchem Gleis faehrt der Zug von Hamburg ab?',
     ],
   },
-  replyTaskState: { 'learn:german/008:q1': 'open' },
+  replyTaskState: { 'learn:german/008:q1': 'complete' },
   evaluation: [
     'German 008 q1: Zdanie 2 jest poprawne. W zdaniu 1 potrzebujesz `ankommen`, nie `werden`: celem jest dotarcie do Lipska. W zdaniu 3 jest `in Berlin`, bez `im`, a odpowiedź powinna też zaakceptować przesiadkę. W zdaniu 4 po `von` jest Dativ: `welchem Gleis`; czasownik ma formę `fährt`. Naprawa jest potrzebna, ponieważ zadanie sprawdzało właśnie `ankommen` i `abfahren` oraz praktyczną akceptację przesiadki.',
     'German 008 q1, druga próba: `ankommen` i szyk `fährt ... ab` są już użyte poprawnie, a zdanie 2 nadal jest poprawne. Zostały trzy formy do naprawy: `in Leipzig` (nie `im Lips`), `vor 13 Uhr` (nie `von 13 Uhr`) oraz `von welchem Gleis` (nie `von welchen Gleis`). `Ich kann in Berlin umsteigen.` jest gramatycznie poprawne, ale do celu rozmowy lepiej wyraża zgodę `Ja, das ist in Ordnung. Ich steige in Berlin um.`',
+    'German 008 q1, naprawa: kompletne i poprawne. Uczeń użył `in Leipzig`, `vor 13 Uhr`, `ankommen`, jasnej akceptacji przesiadki z `Ich steige in Berlin um` oraz pytania `Von welchem Gleis fährt ... ab?`. Zadanie zamknięte.',
   ],
-  misconceptions: ['In German 008, `werden` was used instead of the travel verb `ankommen`; this changes the intended meaning.'],
-  next: ['W odpowiedzi do learn:german/008:q1 napisz tylko poprawione kwestie 1 i 4; dla kwestii 3 użyj też wyraźnej zgody na przesiadkę.'],
+  misconceptions: [],
+  next: ['Use evidence from German 007 and 008 to choose one later fluency or grammar target.'],
   published: {
     route: '/topics/german/sessions/008/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/008/',

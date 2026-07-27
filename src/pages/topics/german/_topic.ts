@@ -25,7 +25,7 @@ export const topic: ILearningTopic = {
       id: 'supported-practical-exchange', status: 'done', type: 'practice', title: 'Fresh supported practical exchange',
       why: 'German needs frequent contact. Use new material and a distinct target without repeating the parcel-message task.',
       buildsOn: ['learn:german/006'], focus: ['Read or produce a short useful exchange with visible vocabulary and controlled output.'],
-      sessionId: 'learn:german/008', closedReason: 'Published as German 008 with a supported three-turn railway-ticket exchange distinct from the parcel response.',
+      sessionId: 'learn:german/008', closedReason: 'Completed as German 008: the learner repaired the supported railway exchange and correctly used arrival, transfer acceptance, and a platform question.',
     },
   ],
 };
