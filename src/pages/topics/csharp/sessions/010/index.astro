@@ -1,0 +1,68 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const model = `List<int> scores = [48, 72, 91];
+
+List<string> labels = scores
+    .Where(score => score >= 60)
+    .Select(score => $"Pass: {score}")
+    .ToList();
+
+// labels: ["Pass: 72", "Pass: 91"]`;
+
+const task = `public sealed record Order(string Id, decimal Total, bool IsPaid);
+
+List<Order> orders =
+[
+    new("A-10", 120m, true),
+    new("B-20", 80m, true),
+    new("C-30", 150m, true),
+    new("D-40", 200m, false),
+];
+
+List<string> largePaidOrderIds = orders
+    .Where(order => /* keep paid orders of at least 100 */)
+    .Select(order => /* return only the ID */)
+    .ToList();`;
+---
+
+<SessionPage session={session}
+  title="Session 10 · C#: typed collections and LINQ"
+  heading="Filter a typed list, then change its shape"
+  lede="A generic collection keeps one element type. A short LINQ pipeline can keep some elements and turn them into a new result."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="Read the type first">
+    <p><code>List&lt;int&gt;</code> means “a list whose elements are integers.” The name inside <code>&lt;...&gt;</code> is the element type.</p>
+    <p>Many LINQ methods work with <code>IEnumerable&lt;T&gt;</code>. This means a typed sequence that can be read one item at a time.</p>
+  </SessionSection>
+
+  <SessionSection title="One complete pipeline">
+    <Code code={model} lang="csharp" />
+    <ul>
+      <li><code>Where</code> keeps values that pass a yes-or-no test.</li>
+      <li><code>Select</code> changes each kept value into another value.</li>
+      <li><code>ToList</code> makes the result a <code>List&lt;string&gt;</code>.</li>
+    </ul>
+    <Callout>The lambda <code>score =&gt; score &gt;= 60</code> means: take one score and test whether it is at least 60.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Complete a fresh pipeline">
+    <Code code={task} lang="csharp" />
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/010:q1" difficulty={3}>
+    <ol>
+      <li>Replace the comment inside <code>Where</code>.</li>
+      <li>Replace the comment inside <code>Select</code>.</li>
+      <li>Write the final IDs in their output order.</li>
+    </ol>
+    <p>Reply with the two completed LINQ lines and one short output line.</p>
+  </ReplyTask>
+</SessionPage>

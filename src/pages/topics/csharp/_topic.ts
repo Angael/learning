@@ -18,7 +18,7 @@ export const topic: ILearningTopic = {
     { title: 'Distinguish value types, reference types, and nullable reference types.', status: 'secure', evidence: 'C# 002.' },
     { title: 'Choose a small class or record only where it improves the model.', status: 'secure', evidence: 'C# 005–008.' },
     { title: 'Explain static with a precise ownership model.', status: 'secure', evidence: 'C# 003–004.' },
-    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 introduces explicit nominal interface implementation; reply evidence and generic transfer remain open.' },
+    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 now tests generic collection and LINQ transfer.' },
   ],
   candidates: [
     {
@@ -29,9 +29,15 @@ export const topic: ILearningTopic = {
       sessionId: 'learn:csharp/009', closedReason: 'Published as C# 009 with explicit nominal-contract teaching and a CS0535 repair task.',
     },
     {
-      id: 'collections-after-interfaces', status: 'ready', type: 'lesson', title: 'Collections and LINQ foundations',
+      id: 'collections-after-interfaces', status: 'done', type: 'lesson', title: 'Collections and LINQ foundations',
       why: 'Collections now follow the first explicit interface contract, so typed collection and generic vocabulary can be grounded in C# 009 rather than arrive as isolated syntax.',
       buildsOn: ['learn:csharp/009'], focus: ['Use a typed collection and one simple query pipeline.'],
+      sessionId: 'learn:csharp/010', closedReason: 'Published as C# 010 with List<T>, the IEnumerable<T> sequence idea, and a fresh Where-then-Select completion task.',
+    },
+    {
+      id: 'linq-execution-timing', status: 'ready', type: 'practice', title: 'LINQ execution timing',
+      why: 'After the first collection pipeline, a small trace can distinguish building an IEnumerable<T> query from evaluating it without adding another broad syntax lesson.',
+      buildsOn: ['learn:csharp/010'], focus: ['Predict when a short LINQ query reads its source.'],
     },
   ],
 };

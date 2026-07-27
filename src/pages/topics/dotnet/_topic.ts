@@ -23,9 +23,21 @@ export const topic: ILearningTopic = {
       sessionId: 'learn:dotnet/009', closedReason: 'Published as .NET 009 with supplied WebApplicationFactory setup and two focused status assertions.',
     },
     {
-      id: 'data-access-boundary', status: 'ready', type: 'practice', title: 'Data-access boundary transfer',
+      id: 'data-access-boundary', status: 'dropped', type: 'practice', title: 'Data-access boundary transfer',
       why: 'A later transfer can connect validation, persistence, and error translation after observable endpoint behavior is secure.',
       buildsOn: ['learn:dotnet/009'], focus: ['Choose the boundary responsible for an expected persistence conflict.'],
+      closedReason: '.NET 008 already assessed the database uniqueness authority and the expected-conflict translation boundary; another task would duplicate that evidence.',
+    },
+    {
+      id: 'endpoint-persistence-effect', status: 'done', type: 'practice', title: 'Verify an API-visible created resource',
+      why: '.NET 009 proved only response statuses, and the learner explicitly noted that this did not check whether anything was created. Follow the returned Location and verify the representation through GET.',
+      buildsOn: ['learn:dotnet/009'], focus: ['Follow a 201 Location header.', 'Read the created resource through GET.', 'State the stronger guarantee and its limit.'],
+      sessionId: 'learn:dotnet/010', closedReason: 'Published as .NET 010 with a follow-up GET and representation assertion based on the limit identified in the .NET 009 reply.',
+    },
+    {
+      id: 'structured-logging-boundary', status: 'ready', type: 'lesson', title: 'Structured logging boundary',
+      why: 'After validation, concurrency handling, and API-visible effect tests, the next production transfer is to record useful request outcomes without logging secrets or scattering provider details.',
+      buildsOn: ['learn:dotnet/010'], focus: ['Choose one useful structured event and keep sensitive values out of it.'],
     },
   ],
 };

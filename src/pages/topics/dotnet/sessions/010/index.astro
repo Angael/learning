@@ -1,0 +1,78 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const contract = `POST /widgets
+{ "name": "Desk lamp" }
+
+201 Created
+Location: /widgets/42
+
+GET /widgets/42
+200 OK
+{ "id": 42, "name": "Desk lamp" }`;
+
+const model = `var createResponse = await _client.PostAsJsonAsync(
+    "/profiles",
+    new { DisplayName = "Ada" });
+
+Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
+Assert.NotNull(createResponse.Headers.Location);
+
+var profile = await _client.GetFromJsonAsync<ProfileResponse>(
+    createResponse.Headers.Location);
+
+Assert.Equal("Ada", profile!.DisplayName);`;
+
+const task = `public sealed record WidgetResponse(int Id, string Name);
+
+[Fact]
+public async Task Creates_a_widget_that_can_be_read_back()
+{
+    var createResponse = await _client.PostAsJsonAsync(
+        "/widgets",
+        new { Name = "Desk lamp" });
+
+    Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
+
+    // 1. Check that the response supplied a Location.
+
+    // 2. GET that Location as WidgetResponse.
+
+    // 3. Check that the returned Name is "Desk lamp".
+}`;
+---
+
+<SessionPage session={session}
+  title="Session 10 · .NET: verify the created resource"
+  heading="Follow 201 Created to the resource"
+  lede="A 201 status says the request was accepted as a create operation. A follow-up GET gives stronger evidence about what a client can now read."
+  backHref="/topics/dotnet/"
+  backLabel=".NET sessions"
+>
+  <SessionSection title="The public flow">
+    <Code code={contract} lang="text" />
+    <p>The server returns the new resource address in the <code>Location</code> header. The test can follow that address instead of guessing the new ID.</p>
+  </SessionSection>
+
+  <SessionSection title="A complete example">
+    <Code code={model} lang="csharp" />
+    <Callout>This checks an API-visible effect. It still does not prove that data survives an app restart or that production uses the same database setup.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Complete the widget test">
+    <Code code={task} lang="csharp" />
+  </SessionSection>
+
+  <ReplyTask id="learn:dotnet/010:q1" difficulty={3}>
+    <ol>
+      <li>Write the three missing C# statements.</li>
+      <li>In one short sentence, say what this test proves and one thing it still does not prove.</li>
+    </ol>
+    <p>Use the returned <code>Location</code>. Do not guess an ID or build a project.</p>
+  </ReplyTask>
+</SessionPage>
