@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Użyj czasownika rozdzielnie złożonego: abfahren / umsteigen.',
     'Zapytaj o godzinę odjazdu i peron w uprzejmej formie.',
   ],
-  replyTasks: { 'learn:german/008:q1': [] },
+  replyTasks: {
+    'learn:german/008:q1': [
+      '1. Ich moechte im Lips von 13 Uhr werden.\n2. Ist die Verbindung direkt?\n3. Ich kann Im Berlin umsteigen.\n4. Von welchen Gleis fahrt der Zug von Hamburg ab?',
+    ],
+  },
   replyTaskState: { 'learn:german/008:q1': 'open' },
-  evaluation: [],
-  misconceptions: [],
-  next: ['Use evidence from German 007 and 008 to choose one later fluency or grammar target.'],
+  evaluation: [
+    'German 008 q1: Zdanie 2 jest poprawne. W zdaniu 1 potrzebujesz `ankommen`, nie `werden`: celem jest dotarcie do Lipska. W zdaniu 3 jest `in Berlin`, bez `im`, a odpowiedź powinna też zaakceptować przesiadkę. W zdaniu 4 po `von` jest Dativ: `welchem Gleis`; czasownik ma formę `fährt`. Naprawa jest potrzebna, ponieważ zadanie sprawdzało właśnie `ankommen` i `abfahren` oraz praktyczną akceptację przesiadki.',
+  ],
+  misconceptions: ['In German 008, `werden` was used instead of the travel verb `ankommen`; this changes the intended meaning.'],
+  next: ['W odpowiedzi do learn:german/008:q1 napisz tylko poprawione kwestie 1, 3 i 4.'],
   published: {
     route: '/topics/german/sessions/008/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/008/',
