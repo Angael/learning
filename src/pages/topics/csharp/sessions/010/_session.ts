@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Separate filtering with Where from transformation with Select.',
     'Complete and trace one short query pipeline.',
   ],
-  replyTasks: { 'learn:csharp/010:q1': [] },
-  replyTaskState: { 'learn:csharp/010:q1': 'open' },
-  evaluation: [],
+  replyTasks: {
+    'learn:csharp/010:q1': [
+      'List<string> largePaidOrderIds = orders\n    .Where(order => order.IsPaid && order.Total >= 100)\n    .Select(order => order.Id)\n    .ToList();\n\nA-10 C-30',
+    ],
+  },
+  replyTaskState: { 'learn:csharp/010:q1': 'complete' },
+  evaluation: [
+    'C# 010 q1: Correct. `Where` keeps the paid orders worth at least 100, and `Select` turns those remaining orders into IDs. The output is `A-10`, then `C-30`, in source order. Task closed; the first filter-then-transform LINQ target is secure enough to continue.',
+  ],
   misconceptions: [],
-  next: ['Use reply evidence to decide whether to practise LINQ execution timing or add a second collection operation.'],
+  next: ['Next, practise when a LINQ query actually reads its source.'],
   published: {
     route: '/topics/csharp/sessions/010/',
     canonicalUrl: 'https://learn.widacki.me/topics/csharp/sessions/010/',
