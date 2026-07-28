@@ -1,0 +1,61 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+---
+
+<SessionPage session={session}
+  title="Sesja 9 · Niemiecki: Perfekt bez gotowych form"
+  heading="Opowiedz krótko, co się wydarzyło"
+  lede="Znasz już wzór Perfekt. Teraz samodzielnie odtworzysz trzy częste formy. Dostajesz sens zdań i krótką ściągę, ale nie gotowe odpowiedzi."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Ściąga, z której możesz korzystać">
+    <SessionGrid>
+      <div>
+        <h3>Budowa</h3>
+        <p><code>osoba + haben/sein + reszta + Partizip II</code></p>
+        <p>Przykład: <code>Ich habe Suppe gekocht.</code></p>
+      </div>
+      <div>
+        <h3>Wybór czasownika</h3>
+        <p>Najczęściej używasz <code>haben</code>. Przy ruchu z miejsca do miejsca często używasz <code>sein</code>.</p>
+        <p>Przykład: <code>Wir sind nach Hause gefahren.</code></p>
+      </div>
+    </SessionGrid>
+    <Callout>W zwykłym zdaniu <code>habe/bin</code> stoi na drugim miejscu. Partizip II idzie na koniec.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Potrzebne słowa">
+    <ul>
+      <li><code>arbeiten</code> — pracować</li>
+      <li><code>gehen</code> — iść</li>
+      <li><code>sehen</code> — widzieć, oglądać</li>
+      <li><code>bis 14 Uhr</code> — do godziny 14:00</li>
+      <li><code>der Supermarkt</code> — supermarket; <code>in den Supermarkt</code> — do supermarketu</li>
+      <li><code>der Film</code> — film; Akkusativ: <code>einen Film</code></li>
+    </ul>
+  </SessionSection>
+
+  <SessionSection title="Trzy fakty">
+    <ol>
+      <li>W sobotę pracowałeś do 14:00.</li>
+      <li>Potem poszedłeś do supermarketu.</li>
+      <li>Wieczorem obejrzałeś film.</li>
+    </ol>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/009:q1" difficulty={3} language="pl">
+    <p>Napisz po niemiecku <strong>dokładnie trzy zdania</strong>, po jednym do każdego faktu.</p>
+    <ol>
+      <li>Użyj Perfekt w każdym zdaniu.</li>
+      <li>Sam wybierz <code>haben</code> albo <code>sein</code>.</li>
+      <li>Sam utwórz formę Partizip II od podanego czasownika.</li>
+    </ol>
+    <p>Możesz używać <code>ae/oe/ue/ss</code>. Nie dodawaj tłumaczenia ani reguł.</p>
+  </ReplyTask>
+</SessionPage>

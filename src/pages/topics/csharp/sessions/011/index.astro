@@ -1,0 +1,54 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const model = `List<int> scores = [40, 70];
+
+IEnumerable<int> passing = scores.Where(score => score >= 60);
+
+scores.Add(90);
+
+List<int> saved = passing.ToList();
+// saved: [70, 90]`;
+
+const task = `List<int> temperatures = [18, 24];
+
+IEnumerable<int> warm = temperatures.Where(value => value >= 20);
+
+temperatures.Add(30);
+List<int> firstRead = warm.ToList();
+
+temperatures.Add(35);
+List<int> secondRead = warm.ToList();`;
+---
+
+<SessionPage session={session}
+  title="Session 11 · C#: when a LINQ query runs"
+  heading="A query is not always a saved result"
+  lede="A LINQ query can wait. It may read its source only when you enumerate it. ToList reads now and saves a separate list."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="Build now, read later">
+    <Code code={model} lang="csharp" />
+    <p><code>Where</code> builds the query. It does not make a new list here. <code>ToList</code> later reads the current source and saves the matching values.</p>
+    <Callout>This is called deferred execution: the query waits until code asks for its values. A loop, <code>ToList</code>, and many result methods can trigger that read.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Trace two reads">
+    <Code code={task} lang="csharp" />
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/011:q1" difficulty={3}>
+    <ol>
+      <li>Write the values in <code>firstRead</code>.</li>
+      <li>Write the values in <code>secondRead</code>.</li>
+      <li>In one short sentence, explain why the lists differ.</li>
+    </ol>
+    <p>Reply with two output lines and one explanation line. Do not run the code.</p>
+  </ReplyTask>
+</SessionPage>

@@ -12,12 +12,12 @@ export const topic: ILearningTopic = {
     { title: 'Understand the request pipeline.', status: 'secure', evidence: '.NET 002.' },
     { title: 'Use dependency injection and configuration in an endpoint.', status: 'secure', evidence: '.NET 003–006.' },
     { title: 'Reason about request validation and database uniqueness under concurrency.', status: 'secure', evidence: '.NET 007–008.' },
-    { title: 'Write or complete a focused endpoint behavior test.', status: 'secure', evidence: '.NET 009 correctly asserted `201 Created` and `400 BadRequest`, then distinguished response-only evidence from proof of persistence.' },
+    { title: 'Write or complete a focused endpoint behavior test.', status: 'secure', evidence: '.NET 009 correctly asserted `201 Created` and `400 BadRequest`, then distinguished response-only evidence from proof of persistence. .NET 010 asks for the follow-up API-visible effect check.' },
   ],
   candidates: [
     {
       id: 'endpoint-behavior-test', status: 'done', type: 'practice', title: 'Narrow endpoint behavior test',
-      why: '.NET 007 assessed request binding and runtime validation, while .NET 008 assessed a concurrency invariant. This transfers to observable accepted-versus-rejected behavior through supplied test setup.',
+      why: '.NET 007 assessed request binding and runtime rejection, while .NET 008 assessed a concurrency invariant. This transfers to observable accepted-versus-rejected behavior through supplied test setup.',
       buildsOn: ['learn:dotnet/007', 'learn:dotnet/008'],
       focus: ['Identify the behavior one endpoint test proves.', 'Complete or explain one accepted case and one rejected case.', 'Separate public response behavior from implementation details.'],
       sessionId: 'learn:dotnet/009', closedReason: 'Published as .NET 009 with supplied WebApplicationFactory setup and two focused status assertions.',
@@ -35,9 +35,10 @@ export const topic: ILearningTopic = {
       sessionId: 'learn:dotnet/010', closedReason: 'Published as .NET 010 with a follow-up GET and representation assertion based on the limit identified in the .NET 009 reply.',
     },
     {
-      id: 'structured-logging-boundary', status: 'ready', type: 'lesson', title: 'Structured logging boundary',
+      id: 'structured-logging-boundary', status: 'done', type: 'lesson', title: 'Structured logging boundary',
       why: 'After validation, concurrency handling, and API-visible effect tests, the next production transfer is to record useful request outcomes without logging secrets or scattering provider details.',
       buildsOn: ['learn:dotnet/010'], focus: ['Choose one useful structured event and keep sensitive values out of it.'],
+      sessionId: 'learn:dotnet/011', closedReason: 'Published as .NET 011 with one ILogger message-template task that records WidgetId and StatusCode while excluding the API key and raw request.',
     },
   ],
 };

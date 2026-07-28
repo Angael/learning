@@ -11,7 +11,7 @@ export const topic: ILearningTopic = {
     { title: 'Write simple recent-life sentences with correction support.', status: 'secure', evidence: 'German 001 and 005.' },
     { title: 'Use selected Akkusativ/Dativ articles in supported practical patterns.', status: 'secure', evidence: 'German 003, 004, and 006.' },
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
-    { title: 'Use Perfekt independently under practical pressure.', status: 'not-started', evidence: 'Supported forms are secure; independent retrieval remains untested.' },
+    { title: 'Use Perfekt independently under practical pressure.', status: 'in-progress', evidence: 'German 005 used supported forms. German 009 now checks spaced retrieval of three common forms without supplying the participles.' },
     { title: 'Sustain a short corrected German chat.', status: 'not-started', evidence: 'Open dialogue is deliberately deferred.' },
   ],
   candidates: [
@@ -26,6 +26,12 @@ export const topic: ILearningTopic = {
       why: 'German needs frequent contact. Use new material and a distinct target without repeating the parcel-message task.',
       buildsOn: ['learn:german/006'], focus: ['Read or produce a short useful exchange with visible vocabulary and controlled output.'],
       sessionId: 'learn:german/008', closedReason: 'Completed as German 008: the learner repaired the supported railway exchange and correctly used arrival, transfer acceptance, and a platform question.',
+    },
+    {
+      id: 'independent-perfekt-retrieval', status: 'done', type: 'practice', title: 'Retrieve common Perfekt forms',
+      why: 'German 005 supplied exact Perfekt forms, and German 008 showed that constrained production succeeds after correction. A spaced task can now test auxiliary and participle retrieval while keeping meaning and sentence structure visible.',
+      buildsOn: ['learn:german/005', 'learn:german/008'], focus: ['Retrieve haben or sein and Partizip II for three common verbs in a short practical report.'],
+      sessionId: 'learn:german/009', closedReason: 'Published as German 009 with three controlled recent-event sentences that do not supply the assessed auxiliary-participle pairs.',
     },
   ],
 };

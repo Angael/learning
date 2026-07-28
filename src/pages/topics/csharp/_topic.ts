@@ -18,7 +18,7 @@ export const topic: ILearningTopic = {
     { title: 'Distinguish value types, reference types, and nullable reference types.', status: 'secure', evidence: 'C# 002.' },
     { title: 'Choose a small class or record only where it improves the model.', status: 'secure', evidence: 'C# 005–008.' },
     { title: 'Explain static with a precise ownership model.', status: 'secure', evidence: 'C# 003–004.' },
-    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 secured one typed-list LINQ pipeline: filter with Where, transform with Select, and predict source-order output.' },
+    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 secured one typed-list LINQ pipeline: filter with Where, transform with Select, and predict source-order output. C# 011 now checks deferred execution and ToList snapshot reasoning.' },
   ],
   candidates: [
     {
@@ -35,9 +35,10 @@ export const topic: ILearningTopic = {
       sessionId: 'learn:csharp/010', closedReason: 'Published as C# 010 with List<T>, the IEnumerable<T> sequence idea, and a fresh Where-then-Select completion task.',
     },
     {
-      id: 'linq-execution-timing', status: 'ready', type: 'practice', title: 'LINQ execution timing',
+      id: 'linq-execution-timing', status: 'done', type: 'practice', title: 'LINQ execution timing',
       why: 'After the first collection pipeline, a small trace can distinguish building an IEnumerable<T> query from evaluating it without adding another broad syntax lesson.',
       buildsOn: ['learn:csharp/010'], focus: ['Predict when a short LINQ query reads its source.'],
+      sessionId: 'learn:csharp/011', closedReason: 'Published as C# 011 with a two-read trace that contrasts deferred enumeration with a ToList snapshot.',
     },
   ],
 };
