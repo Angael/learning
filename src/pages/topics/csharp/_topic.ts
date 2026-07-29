@@ -19,6 +19,7 @@ export const topic: ILearningTopic = {
     { title: 'Choose a small class or record only where it improves the model.', status: 'secure', evidence: 'C# 005–008.' },
     { title: 'Explain static with a precise ownership model.', status: 'secure', evidence: 'C# 003–004.' },
     { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 secured one typed-list LINQ pipeline: filter with Where, transform with Select, and predict source-order output. C# 011 now checks deferred execution and ToList snapshot reasoning.' },
+    { title: 'Read and write a first asynchronous result boundary.', status: 'in-progress', evidence: 'C# 012 now checks the distinction between Task<T> and T through one awaited API-style result.' },
   ],
   candidates: [
     {
@@ -39,6 +40,12 @@ export const topic: ILearningTopic = {
       why: 'After the first collection pipeline, a small trace can distinguish building an IEnumerable<T> query from evaluating it without adding another broad syntax lesson.',
       buildsOn: ['learn:csharp/010'], focus: ['Predict when a short LINQ query reads its source.'],
       sessionId: 'learn:csharp/011', closedReason: 'Published as C# 011 with a two-read trace that contrasts deferred enumeration with a ToList snapshot.',
+    },
+    {
+      id: 'first-async-boundary', status: 'done', type: 'lesson', title: 'A first async boundary',
+      why: 'C# 010 secured a typed LINQ pipeline, and C# 011 already holds the focused execution-timing check. The next API-relevant transfer is to distinguish Task<T> from its T result and cross that boundary with await.',
+      buildsOn: ['learn:csharp/010', 'learn:csharp/011'], focus: ['Read Task<T> as a later typed result.', 'Await one result before using its members.'],
+      sessionId: 'learn:csharp/012', closedReason: 'Published as C# 012 with a fresh Task<Widget> completion and one Task<T>-versus-T explanation.',
     },
   ],
 };

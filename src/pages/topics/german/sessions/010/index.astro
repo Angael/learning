@@ -1,0 +1,66 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+---
+
+<SessionPage session={session}
+  title="Sesja 10 · Niemiecki: krótki czat"
+  heading="Odmów, zaproponuj inny termin, potwierdź"
+  lede="Nie musisz wymyślać całej rozmowy. Dostajesz sytuację, potrzebne słowa i trzy małe kroki."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Model z inną sytuacją">
+    <p><strong>Lea:</strong> Hast du am Dienstag Zeit? Wollen wir ins Konzert gehen?</p>
+    <p><strong>Du:</strong> Am Dienstag kann ich leider nicht, weil ich lange arbeiten muss.</p>
+    <p><strong>Du:</strong> Hast du am Donnerstag um 19 Uhr Zeit?</p>
+    <p><strong>Lea:</strong> Ja. Passt 19 Uhr?</p>
+    <p><strong>Du:</strong> Ja, das passt gut. Bis Donnerstag!</p>
+    <Callout>Po <code>weil</code> odmieniony czasownik idzie na koniec: <code>weil ich lange arbeiten muss</code>.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Ściąga do zadania">
+    <SessionGrid>
+      <div>
+        <h3>Gotowe części</h3>
+        <ul>
+          <li><code>leider nicht</code> — niestety nie</li>
+          <li><code>weil ich arbeiten muss</code> — ponieważ muszę pracować</li>
+          <li><code>Hast du ... Zeit?</code> — Czy masz czas...?</li>
+          <li><code>Das passt gut.</code> — To mi pasuje.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Czas i miejsce</h3>
+        <ul>
+          <li><code>am Samstag</code> — w sobotę</li>
+          <li><code>am Sonntag um 15 Uhr</code> — w niedzielę o 15:00</li>
+          <li><code>das Café</code> — kawiarnia</li>
+          <li><code>ins Café gehen</code> — iść do kawiarni</li>
+        </ul>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Twój czat">
+    <p><strong>Tom:</strong> Hast du am Samstag Zeit? Wollen wir zusammen ins Café gehen?</p>
+    <p><strong>Du:</strong> [odmów i podaj powód: musisz pracować]</p>
+    <p><strong>Du:</strong> [zaproponuj niedzielę o 15:00]</p>
+    <p><strong>Tom:</strong> Ja. Passt 15 Uhr?</p>
+    <p><strong>Du:</strong> [potwierdź i pożegnaj się do niedzieli]</p>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/010:q1" difficulty={3} language="pl">
+    <ol>
+      <li>Napisz tylko trzy kwestie oznaczone <strong>Du</strong>.</li>
+      <li>W pierwszej użyj <code>weil</code>.</li>
+      <li>W drugiej podaj niedzielę i godzinę 15:00.</li>
+      <li>W trzeciej potwierdź termin.</li>
+    </ol>
+    <p>Możesz korzystać ze ściągi. Nie przepisuj kwestii Toma i nie dodawaj tłumaczenia.</p>
+  </ReplyTask>
+</SessionPage>

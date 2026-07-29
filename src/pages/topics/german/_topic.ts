@@ -12,7 +12,7 @@ export const topic: ILearningTopic = {
     { title: 'Use selected Akkusativ/Dativ articles in supported practical patterns.', status: 'secure', evidence: 'German 003, 004, and 006.' },
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
     { title: 'Use Perfekt independently under practical pressure.', status: 'in-progress', evidence: 'German 005 used supported forms. German 009 now checks spaced retrieval of three common forms without supplying the participles.' },
-    { title: 'Sustain a short corrected German chat.', status: 'not-started', evidence: 'Open dialogue is deliberately deferred.' },
+    { title: 'Sustain a short corrected German chat.', status: 'in-progress', evidence: 'German 010 now checks a tightly guided three-turn social chat: refusal with a reason, an alternative time, and confirmation. Open dialogue remains deferred.' },
   ],
   candidates: [
     {
@@ -32,6 +32,12 @@ export const topic: ILearningTopic = {
       why: 'German 005 supplied exact Perfekt forms, and German 008 showed that constrained production succeeds after correction. A spaced task can now test auxiliary and participle retrieval while keeping meaning and sentence structure visible.',
       buildsOn: ['learn:german/005', 'learn:german/008'], focus: ['Retrieve haben or sein and Partizip II for three common verbs in a short practical report.'],
       sessionId: 'learn:german/009', closedReason: 'Published as German 009 with three controlled recent-event sentences that do not supply the assessed auxiliary-participle pairs.',
+    },
+    {
+      id: 'guided-social-chat', status: 'done', type: 'practice', title: 'Guided social chat',
+      why: 'German 008 secured a corrected three-move service exchange, while German 009 separately checks Perfekt. A tightly guided social exchange can now begin the chat milestone without repeating either target or requiring open role-play.',
+      buildsOn: ['learn:german/008'], focus: ['Refuse with a short reason.', 'Offer a concrete alternative.', 'Confirm the agreement in a final turn.'],
+      sessionId: 'learn:german/010', closedReason: 'Published as German 010 with a model using different details, visible vocabulary, and three constrained learner turns.',
     },
   ],
 };

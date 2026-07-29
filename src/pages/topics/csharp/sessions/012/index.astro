@@ -1,0 +1,52 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const model = `static async Task<int> GetLengthAsync(string path)
+{
+    string text = await File.ReadAllTextAsync(path);
+    return text.Length;
+}
+
+Task<int> pendingLength = GetLengthAsync("note.txt");
+int length = await pendingLength;`;
+
+const task = `static async Task<string> BuildLabelAsync(int id)
+{
+    _____ pending = LoadWidgetAsync(id);
+    _____ widget = _____ pending;
+    string label = widget.Name;
+    return label;
+}`;
+---
+
+<SessionPage session={session}
+  title="Session 12 · C#: a first async boundary"
+  heading="A Task is not its result"
+  lede="Async work may finish later. Task<T> names that work. await gives you its T result."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="One value, two types">
+    <Code code={model} lang="csharp" />
+    <p><code>pendingLength</code> has type <code>Task&lt;int&gt;</code>. It stands for work that will produce an <code>int</code>. After <code>await</code>, <code>length</code> is the plain <code>int</code> value.</p>
+    <Callout><code>async</code> lets the method use <code>await</code>. A method declared as <code>Task&lt;int&gt;</code> produces an <code>int</code> result asynchronously.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Complete a fresh boundary">
+    <p>Assume <code>LoadWidgetAsync(id)</code> returns <code>Task&lt;Widget&gt;</code>. A <code>Widget</code> has a <code>Name</code> property.</p>
+    <Code code={task} lang="csharp" />
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/012:q1" difficulty={3}>
+    <ol>
+      <li>Replace all three blanks.</li>
+      <li>Then write one short sentence: why can the code read <code>widget.Name</code>, but not <code>pending.Name</code>?</li>
+    </ol>
+    <p>Reply with the completed code block and one explanation sentence. Do not add other code.</p>
+  </ReplyTask>
+</SessionPage>
