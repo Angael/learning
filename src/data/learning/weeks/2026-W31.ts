@@ -8,7 +8,7 @@ export const week2026W31: ILearningWeek = {
     'Begin one API-relevant C# async boundary and one tightly guided German social chat without repeating the still-open tasks.',
   ],
   coverage: [
-    'C# 010 and C# 011 closed correctly. C# 011 secured deferred-query timing and List<T> snapshots made at two different reads; the learner also identified a clearer trace design using a later value that fails the filter.',
+    'C# 010 and C# 011 closed. C# 011 secured deferred-query timing and List<T> snapshots made at two different reads, with one low-value output slip (`20` for `24`) corrected inline; the learner also identified a clearer trace design using a later value that fails the filter.',
     '.NET 010 remains open and checks a created resource through its Location. .NET 011 adds a separate production skill: one searchable ILogger event with named fields and no API key or raw request.',
     'The .NET data-access-boundary candidate was dropped because .NET 008 had already assessed database uniqueness authority and exception translation; publishing it would have repeated prior evidence.',
     'German 008 closed after repair. German 009 revisits Perfekt with less support: sentence meaning and structure remain visible, but the learner retrieves three auxiliary-participle pairs.',

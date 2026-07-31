@@ -22,7 +22,7 @@ export const session: ILearningSession = {
   },
   replyTaskState: { 'learn:csharp/011:q1': 'complete' },
   evaluation: [
-    'C# 011 q1: Correct. `firstRead` is [24, 30], and `secondRead` is [24, 30, 35]. Your recipe-and-baking model is accurate: `Where` builds the deferred query, while each `ToList` reads it and makes a separate list at that time. Good design note too: adding a value below 20 between the reads would make the filter’s effect clearer while still demonstrating deferred execution. Task closed; the LINQ timing and snapshot target is secure enough to continue.',
+    'C# 011 q1: Your execution model is correct, with one trace correction: `firstRead` is [24, 30], and `secondRead` is [24, 30, 35], not [20, 30, 35]. `20` never occurs in the source; it is the filter threshold. Your recipe-and-baking model is accurate: `Where` builds the deferred query, while each `ToList` reads it and makes a separate list at that time. Good design note too: adding a value below 20 between the reads would make the filter’s effect clearer while still demonstrating deferred execution. This is a small output slip, not a target-level misunderstanding. Task closed; the LINQ timing and snapshot target is secure enough to continue.',
   ],
   misconceptions: [],
   next: ['Continue with the already published async boundary in C# 012.'],
