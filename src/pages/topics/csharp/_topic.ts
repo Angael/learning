@@ -18,7 +18,7 @@ export const topic: ILearningTopic = {
     { title: 'Distinguish value types, reference types, and nullable reference types.', status: 'secure', evidence: 'C# 002.' },
     { title: 'Choose a small class or record only where it improves the model.', status: 'secure', evidence: 'C# 005–008.' },
     { title: 'Explain static with a precise ownership model.', status: 'secure', evidence: 'C# 003–004.' },
-    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 secured one typed-list LINQ pipeline: filter with Where, transform with Select, and predict source-order output. C# 011 now checks deferred execution and ToList snapshot reasoning.' },
+    { title: 'Translate TypeScript model habits into idiomatic C# interfaces and generics.', status: 'in-progress', evidence: 'C# 009 secured explicit nominal interface implementation. C# 010 secured one typed-list LINQ pipeline: filter with Where, transform with Select, and predict source-order output. C# 011 secured deferred execution and ToList snapshot reasoning.' },
     { title: 'Read and write a first asynchronous result boundary.', status: 'in-progress', evidence: 'C# 012 now checks the distinction between Task<T> and T through one awaited API-style result.' },
   ],
   candidates: [

@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Predict how source changes affect later enumeration.',
     'Distinguish a deferred query from a List<T> snapshot made by ToList.',
   ],
-  replyTasks: { 'learn:csharp/011:q1': [] },
-  replyTaskState: { 'learn:csharp/011:q1': 'open' },
-  evaluation: [],
+  replyTasks: {
+    'learn:csharp/011:q1': [
+      '1. 24 and 30, though the exercise would prove the point better if added value was below the where filter. This would showcase the deferred behavior better.\n\n2. 20, 30, 35\n\n3. Where() method creates kind of a recipe, and ToList() bakes the array from it.',
+    ],
+  },
+  replyTaskState: { 'learn:csharp/011:q1': 'complete' },
+  evaluation: [
+    'C# 011 q1: Correct. `firstRead` is [24, 30], and `secondRead` is [24, 30, 35]. Your recipe-and-baking model is accurate: `Where` builds the deferred query, while each `ToList` reads it and makes a separate list at that time. Good design note too: adding a value below 20 between the reads would make the filter’s effect clearer while still demonstrating deferred execution. Task closed; the LINQ timing and snapshot target is secure enough to continue.',
+  ],
   misconceptions: [],
-  next: ['Use the trace to decide whether another LINQ practice or an async boundary is the better next C# step.'],
+  next: ['Continue with the already published async boundary in C# 012.'],
   published: {
     route: '/topics/csharp/sessions/011/',
     canonicalUrl: 'https://learn.widacki.me/topics/csharp/sessions/011/',
