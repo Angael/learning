@@ -6,11 +6,11 @@ export const topic: ILearningTopic = {
   goal: 'Angeal can read, write, and debug modern C# confidently enough to build .NET APIs without treating the language as magic or ceremony.',
   baseline: [
     'Used C# lightly about eight years ago for Unity and small Windows apps; remembers little now.',
-    'Strong JS/TS and backend API background; comfortable with terminal and Git.',
+    'Professional TypeScript/JavaScript developer across browser and Node.js work, including React and Hono/Express-style API frameworks; comfortable with terminal and Git.',
     'Wants .NET APIs and useful native Windows context, but not Blazor.',
     'Needs targeted correction around numeric operations, type inference, runtime model, value/reference types, nullability, and C# nominal types versus TypeScript habits.',
   ],
-  policies: ['Teach C# for a TypeScript/backend developer, not from zero.', 'Prefer small API-relevant transfers over ceremony or isolated syntax drills.'],
+  policies: ['Teach C# for a professional TypeScript/JavaScript browser and Node.js developer, not from zero.', 'Use React, Hono, Express, Promise, and TypeScript comparisons when they clarify a real similarity or difference; name important mismatches directly.', 'Prefer small API-relevant transfers over ceremony or isolated syntax drills.'],
   progression: ['Execution model and tools.', 'Types, nullability, and errors.', 'Methods and stateful classes.', 'Models and public surfaces.', 'Interfaces, generics, collections, and LINQ.', 'Async, testing, debugging, and ASP.NET Core transfer.'],
   milestones: [
     { title: 'Predict integer division and explain why 5 / 2 is not 2.5.', status: 'secure', evidence: 'C# 001.' },

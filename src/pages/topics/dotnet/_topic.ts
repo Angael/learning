@@ -4,8 +4,8 @@ export const topic: ILearningTopic = {
   id: 'dotnet',
   title: '.NET',
   goal: 'Angeal can build and reason about practical .NET backend services, from C# fundamentals to deployment-aware APIs.',
-  baseline: ['Strong backend API background.', 'Comfortable with terminal and Git workflows; prefers terminal-first development.', 'Wants practical .NET APIs and deployment-aware services.', 'Does not need introductory type drills or Blazor.'],
-  policies: ['Prioritize .NET-specific production decisions, failure modes, and trade-offs.', 'Supply setup when the learning target is endpoint behavior or reasoning rather than project construction.'],
+  baseline: ['Professional TypeScript/JavaScript developer across browser and Node.js work, including React and Hono/Express-style API frameworks.', 'Comfortable with terminal and Git workflows; prefers terminal-first development.', 'Wants practical .NET APIs and deployment-aware services.', 'Does not need introductory type drills or Blazor.'],
+  policies: ['Prioritize .NET-specific production decisions, failure modes, and trade-offs.', 'Use React, Hono, Express, and Node.js comparisons when they clarify a real similarity or difference; name important mismatches directly.', 'Supply setup when the learning target is endpoint behavior or reasoning rather than project construction.'],
   progression: ['C# runtime and dotnet CLI.', 'ASP.NET Core pipeline.', 'Dependency injection and configuration.', 'Data access and validation.', 'Concurrency, testing, logging, containers, and deployment.'],
   milestones: [
     { title: 'Build and read a minimal API endpoint.', status: 'secure', evidence: '.NET 001 and 005.' },
