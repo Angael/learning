@@ -11,7 +11,7 @@ export const topic: ILearningTopic = {
     { title: 'Write simple recent-life sentences with correction support.', status: 'secure', evidence: 'German 001 and 005.' },
     { title: 'Use selected Akkusativ/Dativ articles in supported practical patterns.', status: 'secure', evidence: 'German 003, 004, and 006.' },
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
-    { title: 'Use Perfekt independently under practical pressure.', status: 'in-progress', evidence: 'German 005 used supported forms. German 009 now checks spaced retrieval of three common forms without supplying the participles.' },
+    { title: 'Use Perfekt independently under practical pressure.', status: 'secure', evidence: 'German 009: correct retrieval of `habe ... gearbeitet` and `bin ... gegangen`, followed by one successful repair of `sehen → gesehen`.' },
     { title: 'Sustain a short corrected German chat.', status: 'in-progress', evidence: 'German 010 now checks a tightly guided three-turn social chat: refusal with a reason, an alternative time, and confirmation. Open dialogue remains deferred.' },
   ],
   candidates: [
@@ -31,7 +31,7 @@ export const topic: ILearningTopic = {
       id: 'independent-perfekt-retrieval', status: 'done', type: 'practice', title: 'Retrieve common Perfekt forms',
       why: 'German 005 supplied exact Perfekt forms, and German 008 showed that constrained production succeeds after correction. A spaced task can now test auxiliary and participle retrieval while keeping meaning and sentence structure visible.',
       buildsOn: ['learn:german/005', 'learn:german/008'], focus: ['Retrieve haben or sein and Partizip II for three common verbs in a short practical report.'],
-      sessionId: 'learn:german/009', closedReason: 'Published as German 009 with three controlled recent-event sentences that do not supply the assessed auxiliary-participle pairs.',
+      sessionId: 'learn:german/009', closedReason: 'German 009 closed: correct independent retrieval for `arbeiten` and `gehen`, then one successful focused repair of `sehen → gesehen` and `Am Abend`.',
     },
     {
       id: 'guided-social-chat', status: 'done', type: 'practice', title: 'Guided social chat',

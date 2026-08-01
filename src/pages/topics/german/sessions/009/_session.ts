@@ -18,14 +18,16 @@ export const session: ILearningSession = {
   replyTasks: {
     'learn:german/009:q1': [
       'Am Samstag habe ich bis 14:00 gearbeitet.\nDann bin ich in den Supermarkt gegangen.\nIn Abend habe ich einen Film geschaut.',
+      'Am Abend habe ich einen Film gesehen.',
     ],
   },
-  replyTaskState: { 'learn:german/009:q1': 'open' },
+  replyTaskState: { 'learn:german/009:q1': 'complete' },
   evaluation: [
     'German 009 q1, pierwsza próba: Pierwsze dwa zdania są poprawne: `habe ... gearbeitet` oraz `bin ... gegangen`. W trzecim zdaniu potrzebujesz `Am Abend`, nie `In Abend`. Zadanie sprawdza też czasownik `sehen`, więc użyj `habe ... gesehen`, nie `habe ... geschaut`. Mała naprawa jest potrzebna, ponieważ chodzi o samodzielne przypomnienie tej pary Perfekt.',
+    'German 009 q1, naprawa: poprawnie — `Am Abend habe ich einen Film gesehen.` Uczeń poprawił zarówno wyrażenie czasu, jak i formę `sehen → gesehen`. Zadanie zamknięte.',
   ],
   misconceptions: ['German 009 q1: `Am Abend` and `sehen → habe ... gesehen` need one short repair; `arbeiten → habe ... gearbeitet` and `gehen → bin ... gegangen` are secure in this attempt.'],
-  next: ['Poproś o poprawienie tylko trzeciego zdania, potem zamknij zadanie, jeśli forma jest poprawna.'],
+  next: ['Perfekt w tym kontrolowanym zadaniu jest wystarczająco pewny; przejdź do pozostającego krótkiego, prowadzonego czatu German 010.'],
   published: {
     route: '/topics/german/sessions/009/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/009/',
