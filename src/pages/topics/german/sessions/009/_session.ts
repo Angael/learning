@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Utwórz i umieść Partizip II na końcu zdania.',
     'Połącz trzy fakty w krótką praktyczną relację.',
   ],
-  replyTasks: { 'learn:german/009:q1': [] },
+  replyTasks: {
+    'learn:german/009:q1': [
+      'Am Samstag habe ich bis 14:00 gearbeitet.\nDann bin ich in den Supermarkt gegangen.\nIn Abend habe ich einen Film geschaut.',
+    ],
+  },
   replyTaskState: { 'learn:german/009:q1': 'open' },
-  evaluation: [],
-  misconceptions: [],
-  next: ['Na podstawie odpowiedzi zdecyduj, czy Perfekt wymaga jeszcze jednej kontrolowanej próby, czy można przejść do krótkiego dialogu.'],
+  evaluation: [
+    'German 009 q1, pierwsza próba: Pierwsze dwa zdania są poprawne: `habe ... gearbeitet` oraz `bin ... gegangen`. W trzecim zdaniu potrzebujesz `Am Abend`, nie `In Abend`. Zadanie sprawdza też czasownik `sehen`, więc użyj `habe ... gesehen`, nie `habe ... geschaut`. Mała naprawa jest potrzebna, ponieważ chodzi o samodzielne przypomnienie tej pary Perfekt.',
+  ],
+  misconceptions: ['German 009 q1: `Am Abend` and `sehen → habe ... gesehen` need one short repair; `arbeiten → habe ... gearbeitet` and `gehen → bin ... gegangen` are secure in this attempt.'],
+  next: ['Poproś o poprawienie tylko trzeciego zdania, potem zamknij zadanie, jeśli forma jest poprawna.'],
   published: {
     route: '/topics/german/sessions/009/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/009/',
