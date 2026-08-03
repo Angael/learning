@@ -1,0 +1,62 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+---
+
+<SessionPage session={session}
+  title="Sesja 11 · Niemiecki: krótka relacja"
+  heading="Pokaż kolejność trzech zdarzeń"
+  lede="Formy Perfekt są już podane. Teraz ćwiczysz tylko jasną kolejność i miejsce czasownika."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Model z innymi zdarzeniami">
+    <p><code>Zuerst habe ich Kaffee getrunken.</code></p>
+    <p><code>Dann bin ich zur Arbeit gefahren.</code></p>
+    <p><code>Danach habe ich meinen Bruder angerufen.</code></p>
+    <Callout>Gdy <code>zuerst</code>, <code>dann</code> lub <code>danach</code> stoi na początku, odmieniony czasownik jest drugi: <code>Danach habe ich ...</code></Callout>
+  </SessionSection>
+
+  <SessionSection title="Gotowe części do zadania">
+    <SessionGrid>
+      <div>
+        <h3>Kolejność</h3>
+        <ul>
+          <li><code>zuerst</code> — najpierw</li>
+          <li><code>dann</code> — potem</li>
+          <li><code>danach</code> — następnie, po tym</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zdarzenia</h3>
+        <ul>
+          <li><code>habe ich eine E-Mail beantwortet</code> — odpowiedziałem na e-mail</li>
+          <li><code>habe ich Mittagessen gekocht</code> — ugotowałem obiad</li>
+          <li><code>bin ich spazieren gegangen</code> — poszedłem na spacer</li>
+        </ul>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Twoja kolejność">
+    <ol>
+      <li>Najpierw odpowiedziałeś na e-mail.</li>
+      <li>Potem ugotowałeś obiad.</li>
+      <li>Następnie poszedłeś na spacer.</li>
+    </ol>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/011:q1" difficulty={3} language="pl">
+    <ol>
+      <li>Napisz dokładnie trzy zdania po niemiecku.</li>
+      <li>Pierwsze zacznij od <code>Zuerst</code>.</li>
+      <li>Drugie zacznij od <code>Dann</code>.</li>
+      <li>Trzecie zacznij od <code>Danach</code>.</li>
+    </ol>
+    <p>Użyj gotowych części ze ściągi. Nie dodawaj tłumaczenia ani nowych zdarzeń.</p>
+  </ReplyTask>
+</SessionPage>

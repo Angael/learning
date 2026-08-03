@@ -1,0 +1,62 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+
+const model = `Dictionary<string, int> ports = new()
+{
+    ["http"] = 80,
+    ["https"] = 443,
+};
+
+if (ports.TryGetValue("https", out int port))
+{
+    Console.WriteLine(port);
+}`;
+
+const task = `public sealed record Product(int Id, string Sku);
+
+static string FindSku(Dictionary<int, Product> products, int id)
+{
+    if (products.__________(id, out Product? product))
+    {
+        return __________;
+    }
+
+    return "not found";
+}`;
+---
+
+<SessionPage session={session}
+  title="Session 13 · C#: safe dictionary lookup"
+  heading="Ask whether the key exists"
+  lede="A dictionary maps each key to one value. TryGetValue checks the key and gives you the value in one step."
+  backHref="/topics/csharp/"
+  backLabel="C# sessions"
+>
+  <SessionSection title="One lookup, two results">
+    <Code code={model} lang="csharp" />
+    <ul>
+      <li><code>TryGetValue</code> returns <code>true</code> when the key exists.</li>
+      <li>Its <code>out</code> parameter receives the matching value.</li>
+      <li>When it returns <code>false</code>, do not use the value as a found result.</li>
+    </ul>
+    <Callout>Using <code>ports["ftp"]</code> would throw if that key did not exist. <code>TryGetValue</code> makes the missing case visible.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Complete a fresh lookup">
+    <p>Assume the dictionary is already filled with products. Complete the two blanks.</p>
+    <Code code={task} lang="csharp" />
+  </SessionSection>
+
+  <ReplyTask id="learn:csharp/013:q1" difficulty={3}>
+    <ol>
+      <li>Replace both blanks.</li>
+      <li>Write one short sentence: what does <code>false</code> from the lookup mean?</li>
+    </ol>
+    <p>Reply with the completed <code>if</code> block and one sentence. Do not add setup code.</p>
+  </ReplyTask>
+</SessionPage>

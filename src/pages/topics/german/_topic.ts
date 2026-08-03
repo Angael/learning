@@ -13,6 +13,7 @@ export const topic: ILearningTopic = {
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
     { title: 'Use Perfekt independently under practical pressure.', status: 'secure', evidence: 'German 009: correct retrieval of `habe ... gearbeitet` and `bin ... gegangen`, followed by one successful repair of `sehen → gesehen`.' },
     { title: 'Sustain a short corrected German chat.', status: 'in-progress', evidence: 'German 010 now checks a tightly guided three-turn social chat: refusal with a reason, an alternative time, and confirmation. Open dialogue remains deferred.' },
+    { title: 'Order a short past account with simple connectors.', status: 'in-progress', evidence: 'German 011 now checks zuerst, dann, danach and verb-second order while completed Perfekt forms remain visible.' },
   ],
   candidates: [
     {
@@ -38,6 +39,12 @@ export const topic: ILearningTopic = {
       why: 'German 008 secured a corrected three-move service exchange, while German 009 separately checks Perfekt. A tightly guided social exchange can now begin the chat milestone without repeating either target or requiring open role-play.',
       buildsOn: ['learn:german/008'], focus: ['Refuse with a short reason.', 'Offer a concrete alternative.', 'Confirm the agreement in a final turn.'],
       sessionId: 'learn:german/010', closedReason: 'Published as German 010 with a model using different details, visible vocabulary, and three constrained learner turns.',
+    },
+    {
+      id: 'sequence-a-short-account', status: 'done', type: 'practice', title: 'Sequence a short past account',
+      why: 'German 009 secured the needed Perfekt forms. The next distinct transfer is to order three past events with simple connectors while keeping verb forms visible, so it does not repeat independent Perfekt retrieval or the open social chat.',
+      buildsOn: ['learn:german/009'], focus: ['Use zuerst, dann, and danach.', 'Keep the finite auxiliary in second position.'],
+      sessionId: 'learn:german/011', closedReason: 'Published as German 011 with three supplied Perfekt chunks and a constrained event-order task.',
     },
   ],
 };
