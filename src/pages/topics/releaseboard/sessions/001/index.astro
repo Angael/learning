@@ -1,0 +1,116 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import CommandList from '../../../../../components/CommandList.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+import { session } from './_session.ts';
+
+const targetTree = `projects/releaseboard/
+  ReleaseBoard.slnx
+  Directory.Build.props
+  .editorconfig
+  README.md
+  src/
+    ReleaseBoard.Api/
+  tests/
+    ReleaseBoard.Api.UnitTests/
+  ReleaseBoard.http`;
+
+const commands = [
+  'git switch -c feature/releaseboard-bootstrap',
+  'mkdir -p projects/releaseboard/src projects/releaseboard/tests',
+  'dotnet --list-sdks',
+  'dotnet new sln --name ReleaseBoard --format slnx',
+  'dotnet new webapi --name ReleaseBoard.Api --use-controllers --output src/ReleaseBoard.Api',
+  'dotnet new nunit --name ReleaseBoard.Api.UnitTests --output tests/ReleaseBoard.Api.UnitTests',
+  'dotnet sln ReleaseBoard.slnx add src/ReleaseBoard.Api/ReleaseBoard.Api.csproj tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj',
+  'dotnet add tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj reference src/ReleaseBoard.Api/ReleaseBoard.Api.csproj',
+  'dotnet run --project src/ReleaseBoard.Api',
+  'dotnet test ReleaseBoard.slnx',
+  'dotnet format ReleaseBoard.slnx whitespace --verify-no-changes',
+];
+---
+
+<SessionPage session={session}
+  title="Session 001 · ReleaseBoard Project"
+  heading="Create the project that will carry the curriculum"
+  lede="You will make the ReleaseBoard baseline yourself. This is not a toy snippet: it becomes the codebase for every later vertical slice."
+  backHref="/topics/releaseboard/"
+  backLabel="ReleaseBoard sessions"
+>
+  <TagList tags={['project setup', '.NET 10', 'ASP.NET Core', 'NUnit', 'Git evidence']} />
+
+  <SessionSection title="Why this increment exists">
+    <p>The old C# and .NET tracks gave small, disconnected exercises. ReleaseBoard replaces them with one codebase. First, prove that you can create, navigate, run, test, and commit it without Hermes building it for you.</p>
+    <Callout>Bound the work: no SQL Server, RabbitMQ, domain workflow, Docker, or telemetry today. We only need a clean executable baseline.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Three ideas to notice">
+    <ul>
+      <li><strong>Solution:</strong> a workspace that coordinates related projects. It is close to a repo-level workspace, not a deployable app by itself.</li>
+      <li><strong>Project:</strong> one build unit with its own <code>.csproj</code>. Here, the API and its NUnit tests are separate projects.</li>
+      <li><strong>Project reference:</strong> the test project can compile against the API project. This is closer to an explicit package/workspace dependency than an import that finds files by path at runtime.</li>
+    </ul>
+    <p>In TypeScript terms, the solution is like a small workspace index. The API project is a package that produces an executable service; the test project is a package that depends on it for test compilation.</p>
+  </SessionSection>
+
+  <SessionSection title="Target shape">
+    <Code code={targetTree} lang="text" />
+    <p>Create this inside the Astro repository. Do not touch the older dirty <code>priv-learn-dotnet/HelloApi</code> experiment. The <code>projects/releaseboard</code> directory is the durable code artifact; the Astro page is the learning record.</p>
+  </SessionSection>
+
+  <SessionSection title="Build it yourself">
+    <p>From the learning repository root, create a short-lived feature branch. Then work inside <code>projects/releaseboard</code>. These are the useful commands; read their output and adapt the local URL shown by the API.</p>
+    <CommandList commands={commands} />
+    <p>The current target is .NET 10. If <code>dotnet --list-sdks</code> does not show a 10.x SDK, stop before creating anything and report that fact in your reply.</p>
+  </SessionSection>
+
+  <SessionSection title="Required baseline choices">
+    <ol>
+      <li>Create <code>ReleaseBoard.slnx</code>, one ASP.NET Core API project under <code>src</code>, and one NUnit test project under <code>tests</code>.</li>
+      <li>Add both projects to the solution and add the test-to-API project reference.</li>
+      <li>Add a repository-level <code>Directory.Build.props</code> that keeps nullable reference types enabled and turns on a reasonable current analyzer baseline. Add a root <code>.editorconfig</code> and make the formatting check pass.</li>
+      <li>Add one deliberately simple <code>GET /health</code> or equivalent smoke endpoint. Do not add ReleaseBoard domain models yet.</li>
+      <li>Add <code>ReleaseBoard.http</code> with a request for that endpoint. Run the API and send the request using your HTTP client. Record the observed status and response.</li>
+      <li>Write a short <code>README.md</code>: prerequisite SDK, restore/run/test commands, and the health request path.</li>
+      <li>Run tests and formatting. Commit intentional working changes, push the branch, and keep the commit SHA.</li>
+    </ol>
+  </SessionSection>
+
+  <SessionSection title="Acceptance criteria">
+    <ul>
+      <li>The solution and both projects exist at the target paths; <code>dotnet test ReleaseBoard.slnx</code> passes.</li>
+      <li>The API starts locally and the <code>.http</code> request receives a successful smoke response.</li>
+      <li>Nullable and analyzer settings are visible in the repository baseline; formatting verification passes.</li>
+      <li>The README lets a fresh developer find the basic local commands.</li>
+      <li>Your branch contains one intentional commit with the project setup. Do not make a meaningless “lesson complete” commit.</li>
+    </ul>
+  </SessionSection>
+
+  <details>
+    <summary>Hint 1 — only if you are stuck before project creation</summary>
+    <p>Run <code>dotnet new sln --help</code>. The solution template exposes the format choice; use it to create the requested <code>.slnx</code> file.</p>
+  </details>
+  <details>
+    <summary>Hint 2 — only if the smoke request cannot connect</summary>
+    <p>Keep <code>dotnet run</code> open. Copy the HTTP address printed by the API into <code>ReleaseBoard.http</code>. Do not guess a port.</p>
+  </details>
+  <details>
+    <summary>Hint 3 — only if formatting fails</summary>
+    <p>Run the formatting command without <code>--verify-no-changes</code>, inspect the changed files, then run verification again. Do not hide the failure by removing the baseline.</p>
+  </details>
+
+  <ReplyTask id="learn:releaseboard/001:q1" difficulty={3}>
+    <ol>
+      <li>Paste the relevant line from <code>dotnet --list-sdks</code>.</li>
+      <li>Give one short summary each for the API smoke request, <code>dotnet test</code>, and formatting verification.</li>
+      <li>Give the commit SHA.</li>
+      <li>Answer in one or two sentences: what is the difference between a solution and a project in the ReleaseBoard tree?</li>
+      <li>Name one thing you had to discover or fix yourself.</li>
+    </ol>
+    <p>Do not paste every generated file. Evidence and your explanation are enough. We will review this same task before moving on.</p>
+  </ReplyTask>
+</SessionPage>

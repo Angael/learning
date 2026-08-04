@@ -17,14 +17,19 @@ export type Topic = {
 
 const topicDefinitions = [
   {
-    title: 'C#',
-    slug: 'csharp',
-    summary: 'Modern C# for a TypeScript/backend developer: types, runtime model, classes, async, LINQ, and API-ready language habits.',
+    title: 'ReleaseBoard Project',
+    slug: 'releaseboard',
+    summary: 'One evolving .NET backend: C#, ASP.NET Core, SQL Server, Dapper, messaging, tests, telemetry, containers, and operational evidence.',
   },
   {
-    title: '.NET',
+    title: 'C# (deprecated)',
+    slug: 'csharp',
+    summary: 'Historical reference. New C# work continues in the ReleaseBoard Project.',
+  },
+  {
+    title: '.NET (deprecated)',
     slug: 'dotnet',
-    summary: 'The .NET runtime, ASP.NET Core, testing, and deployment-aware backend services.',
+    summary: 'Historical reference. New .NET work continues in the ReleaseBoard Project.',
   },
   {
     title: 'German',

@@ -2,43 +2,37 @@ import type { ILearningTopic } from '../../../data/learning/types.ts';
 
 export const topic: ILearningTopic = {
   id: 'dotnet',
-  title: '.NET',
-  goal: 'Angeal can build and reason about practical .NET backend services, from C# fundamentals to deployment-aware APIs.',
-  baseline: ['Professional TypeScript/JavaScript developer across browser and Node.js work, including React and Hono/Express-style API frameworks.', 'Comfortable with terminal and Git workflows; prefers terminal-first development.', 'Wants practical .NET APIs and deployment-aware services.', 'Does not need introductory type drills or Blazor.'],
-  policies: ['Prioritize .NET-specific production decisions, failure modes, and trade-offs.', 'Use React, Hono, Express, and Node.js comparisons when they clarify a real similarity or difference; name important mismatches directly.', 'Supply setup when the learning target is endpoint behavior or reasoning rather than project construction.'],
-  progression: ['C# runtime and dotnet CLI.', 'ASP.NET Core pipeline.', 'Dependency injection and configuration.', 'Data access and validation.', 'Concurrency, testing, logging, containers, and deployment.'],
+  title: '.NET (deprecated)',
+  goal: 'Historical reference for completed .NET foundations that now continue through the ReleaseBoard Project.',
+  baseline: [
+    'This topic is retained so completed work remains readable.',
+    'New .NET work belongs in ReleaseBoard, where runtime, HTTP, persistence, messaging, and operations form one system.',
+  ],
+  policies: [
+    'Deprecated: do not publish or queue further .NET sessions here.',
+    'Treat the retained sessions as historical reference, not proof of current mastery.',
+    'Revisit endpoint, DI, validation, and test concepts through ReleaseBoard implementation.',
+  ],
+  progression: ['Historical foundations: ASP.NET Core pipeline and composition.', 'Historical foundations: validation, concurrency, and HTTP tests.', 'Continuation: ReleaseBoard Project.'],
   milestones: [
     { title: 'Build and read a minimal API endpoint.', status: 'secure', evidence: '.NET 001 and 005.' },
     { title: 'Understand the request pipeline.', status: 'secure', evidence: '.NET 002.' },
     { title: 'Use dependency injection and configuration in an endpoint.', status: 'secure', evidence: '.NET 003–006.' },
     { title: 'Reason about request validation and database uniqueness under concurrency.', status: 'secure', evidence: '.NET 007–008.' },
-    { title: 'Write or complete a focused endpoint behavior test.', status: 'secure', evidence: '.NET 009 correctly asserted `201 Created` and `400 BadRequest`, then distinguished response-only evidence from proof of persistence. .NET 010 asks for the follow-up API-visible effect check.' },
+    { title: 'Write or complete a focused endpoint behavior test.', status: 'secure', evidence: '.NET 009; deepen this through ReleaseBoard integration work.' },
   ],
   candidates: [
     {
       id: 'endpoint-behavior-test', status: 'done', type: 'practice', title: 'Narrow endpoint behavior test',
-      why: '.NET 007 assessed request binding and runtime rejection, while .NET 008 assessed a concurrency invariant. This transfers to observable accepted-versus-rejected behavior through supplied test setup.',
-      buildsOn: ['learn:dotnet/007', 'learn:dotnet/008'],
-      focus: ['Identify the behavior one endpoint test proves.', 'Complete or explain one accepted case and one rejected case.', 'Separate public response behavior from implementation details.'],
-      sessionId: 'learn:dotnet/009', closedReason: 'Published as .NET 009 with supplied WebApplicationFactory setup and two focused status assertions.',
+      why: 'Historical .NET foundation.', buildsOn: ['learn:dotnet/007', 'learn:dotnet/008'],
+      focus: ['Identify public endpoint behavior.', 'Separate public response behavior from implementation details.'],
+      sessionId: 'learn:dotnet/009', closedReason: 'Published as .NET 009.',
     },
     {
       id: 'data-access-boundary', status: 'dropped', type: 'practice', title: 'Data-access boundary transfer',
-      why: 'A later transfer can connect validation, persistence, and error translation after observable endpoint behavior is secure.',
-      buildsOn: ['learn:dotnet/009'], focus: ['Choose the boundary responsible for an expected persistence conflict.'],
-      closedReason: '.NET 008 already assessed the database uniqueness authority and the expected-conflict translation boundary; another task would duplicate that evidence.',
-    },
-    {
-      id: 'endpoint-persistence-effect', status: 'done', type: 'practice', title: 'Verify an API-visible created resource',
-      why: '.NET 009 proved only response statuses, and the learner explicitly noted that this did not check whether anything was created. Follow the returned Location and verify the representation through GET.',
-      buildsOn: ['learn:dotnet/009'], focus: ['Follow a 201 Location header.', 'Read the created resource through GET.', 'State the stronger guarantee and its limit.'],
-      sessionId: 'learn:dotnet/010', closedReason: 'Published as .NET 010 with a follow-up GET and representation assertion based on the limit identified in the .NET 009 reply.',
-    },
-    {
-      id: 'structured-logging-boundary', status: 'done', type: 'lesson', title: 'Structured logging boundary',
-      why: 'After validation, concurrency handling, and API-visible effect tests, the next production transfer is to record useful request outcomes without logging secrets or scattering provider details.',
-      buildsOn: ['learn:dotnet/010'], focus: ['Choose one useful structured event and keep sensitive values out of it.'],
-      sessionId: 'learn:dotnet/011', closedReason: 'Published as .NET 011 with one ILogger message-template task that records WidgetId and StatusCode while excluding the API key and raw request.',
+      why: 'A separate task would duplicate existing evidence and the ongoing work has moved to ReleaseBoard.', buildsOn: ['learn:dotnet/009'],
+      focus: ['Choose the boundary responsible for an expected persistence conflict.'],
+      closedReason: 'Superseded by the ReleaseBoard Project migration.',
     },
   ],
 };

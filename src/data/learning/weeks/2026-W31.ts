@@ -3,25 +3,21 @@ import type { ILearningWeek } from '../types.ts';
 export const week2026W31: ILearningWeek = {
   id: '2026-W31',
   intent: [
-    'Move C# from a first LINQ pipeline into execution-timing reasoning, and move .NET from API-visible effect tests into one safe structured logging boundary.',
-    'Keep German contact useful with spaced Perfekt retrieval after the completed supported railway exchange.',
-    'Begin one API-relevant C# async boundary and one tightly guided German social chat without repeating the still-open tasks.',
+    'Record the then-current C#/.NET foundation work and continued German practice.',
+    'This historical week was superseded by the ReleaseBoard migration on 2026-08-04.',
   ],
   coverage: [
-    'C# 010 and C# 011 closed. C# 011 secured deferred-query timing and List<T> snapshots made at two different reads, with one low-value output slip (`20` for `24`) corrected inline; the learner also identified a clearer trace design using a later value that fails the filter.',
-    '.NET 010 remains open and checks a created resource through its Location. .NET 011 adds a separate production skill: one searchable ILogger event with named fields and no API key or raw request.',
-    'The .NET data-access-boundary candidate was dropped because .NET 008 had already assessed database uniqueness authority and exception translation; publishing it would have repeated prior evidence.',
+    'C# 010 and C# 011 closed. C# 011 secured deferred-query timing and List<T> snapshots made at two different reads.',
+    '.NET 009 secured focused endpoint behavior evidence.',
     'German 008 closed after repair. German 009 also closed: `arbeiten` and `gehen` were retrieved independently, and `sehen → gesehen` was repaired successfully after focused feedback.',
-    'C# 012 adds the separate capability of distinguishing Task<T> from T and awaiting one API-style result; it does not repeat the open LINQ timing trace.',
-    'German 010 begins the chat milestone with a supported refusal, reason, alternative, and confirmation; it does not assess the open Perfekt target.',
+    'German 010 began the chat milestone with a supported refusal, reason, alternative, and confirmation.',
   ],
   backlog: [
-    'Open: [learn:csharp/012:q1], [learn:dotnet/010:q1], [learn:dotnet/011:q1], and [learn:german/010:q1]. .NET remains at the two-open-task limit; German has one open task; C# has room only if the C# 012 evidence makes another reply-required task worthwhile.',
+    'Historical C#/.NET follow-up tasks were deleted during the ReleaseBoard migration. They do not remain active work or evidence.',
   ],
   outlook: [
-    'C#: use C# 011 and 012 evidence before choosing more LINQ work, async control flow, or an ASP.NET Core transfer.',
-    '.NET: publish no further reply-required work until one of .NET 010 or 011 closes; then use both replies to choose testing, observability, or deployment work.',
-    'German: use German 009 closure and German 010 evidence to choose the next guided chat step, a later spaced Perfekt revisit, or a deliberate pause.',
+    'All future C# and .NET curriculum work belongs to ReleaseBoard, which has one unfinished-session gate.',
+    'German remains an independent active topic.',
   ],
-  archive: 'Week 2026-W31 now contains seven evidence-led sessions. C# moved from nominal contracts through a completed LINQ timing check and into a first Task<T>/await boundary. .NET moved from status tests to an API-visible created-resource check and then to a safe structured log event; the duplicate persistence-boundary candidate stayed dropped. German 008 and 009 closed; German 009 confirmed controlled Perfekt retrieval after one focused repair. German 010 begins a tightly guided social chat. .NET has two open tasks, German one, and C# one. No future publication dates are assigned.',
+  archive: 'Week 2026-W31 is retained as historical coverage. On 2026-08-04, its unanswered C#/.NET follow-ups were removed and their concepts moved into the ReleaseBoard Project, so this record intentionally does not retain dangling task identifiers.',
 };
