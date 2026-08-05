@@ -1,10 +1,11 @@
-import { sessionsForTopic } from './learning/sessions.ts';
+import { isSessionComplete, sessionsForTopic } from './learning/sessions.ts';
 
 export type Session = {
   title: string;
   href: string;
   summary: string;
   date?: string;
+  completed: boolean;
 };
 
 export type Topic = {
@@ -46,5 +47,6 @@ export const topics: Topic[] = topicDefinitions.map((topic) => ({
     href: session.published.route,
     summary: session.summary,
     date: session.date,
+    completed: isSessionComplete(session),
   })),
 }));

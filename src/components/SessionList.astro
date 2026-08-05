@@ -4,6 +4,7 @@ type Session = {
   title: string;
   summary: string;
   date?: string;
+  completed: boolean;
 };
 
 type Props = {
@@ -20,7 +21,10 @@ const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? ''
     {sessions.map((session) => (
       <li>
         <a class="session-card" href={session.href}>
-          <small>Session {sessionNumber(session.href)} · {session.date ?? 'Undated'}</small>
+          <small>
+            <span>Session {sessionNumber(session.href)} · {session.date ?? 'Undated'}</span>
+            {session.completed && <span class="completion-mark" aria-label="Completed" title="Completed">✓</span>}
+          </small>
           <strong>{session.title}</strong>
           <span>{session.summary}</span>
         </a>
@@ -51,11 +55,29 @@ const sessionNumber = (href: string) => href.match(/sessions\/(\d+)/)?.[1] ?? ''
   }
 
   .session-card small {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 4px;
     color: var(--muted);
     font-size: .82rem;
     font-weight: 650;
+  }
+
+  .completion-mark {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1px solid color-mix(in srgb, #2c9b64 38%, var(--line));
+    border-radius: 50%;
+    background: color-mix(in srgb, #2c9b64 13%, var(--panel));
+    color: #207a4d;
+    font-size: .92rem;
+    font-weight: 800;
+    line-height: 1;
   }
 
   .session-card strong {

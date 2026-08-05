@@ -69,7 +69,10 @@ const weeklyNotes = [...learningWeeks]
             <article>
               <a class="all-sessions-timeline__topic" href={session.topicHref}>{session.topicTitle}</a>
               <a class="all-sessions-timeline__session" href={session.href}>
-                <strong>Session {sessionNumber(session.href)} · {session.title}</strong>
+                <strong>
+                  <span>Session {sessionNumber(session.href)} · {session.title}</span>
+                  {session.completed && <span class="completion-mark" aria-label="Completed" title="Completed">✓</span>}
+                </strong>
                 <span>{session.summary}</span>
               </a>
             </article>
@@ -200,7 +203,21 @@ const weeklyNotes = [...learningWeeks]
     border-radius: 14px;
     background: var(--panel);
   }
-  .all-sessions-timeline__session strong { font-size: 1rem; letter-spacing: -.01em; }
+  .all-sessions-timeline__session strong { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 1rem; letter-spacing: -.01em; }
+  .completion-mark {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    border: 1px solid color-mix(in srgb, #2c9b64 38%, var(--line));
+    border-radius: 50%;
+    background: color-mix(in srgb, #2c9b64 13%, var(--panel));
+    color: #207a4d;
+    font-size: .92rem;
+    font-weight: 800;
+    line-height: 1;
+  }
   .all-sessions-timeline__session span { color: var(--muted); line-height: 1.45; }
   .helper-notes {
     margin-top: 28px;
