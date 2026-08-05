@@ -22,3 +22,25 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# .NET build output and package caches
+bin/
+obj/
+artifacts/
+packages/
+*.nupkg
+*.snupkg
+
+# Visual Studio and user-specific project files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET test and coverage output
+TestResults/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
