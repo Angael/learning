@@ -1,4 +1,4 @@
-﻿namespace ReleaseBoard.Api.UnitTests;
+namespace ReleaseBoard.Api.UnitTests;
 
 public class Tests
 {
