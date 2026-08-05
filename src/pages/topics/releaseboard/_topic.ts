@@ -25,7 +25,7 @@ export const topic: ILearningTopic = {
     'Add logs, telemetry, health checks, containers, architecture/NFR docs, CI, and a smaller independent capstone.',
   ],
   milestones: [
-    { title: 'Create and navigate a runnable .NET 10 solution with an API and NUnit tests.', status: 'in-progress', evidence: 'ReleaseBoard 001 is the active setup task; await command output and commit SHA.' },
+    { title: 'Create and navigate a runnable .NET 10 solution with an API and NUnit tests.', status: 'secure', evidence: 'ReleaseBoard 001 complete: branch `feature/releaseboard-bootstrap` at `712c44d` provides solution/API/tests, health smoke evidence, shared nullable/analyzer baseline, formatting, README, and Git evidence.' },
     { title: 'Build and test release-request HTTP and domain slices.', status: 'not-started', evidence: 'Planned after executable-project evidence.' },
     { title: 'Persist drafts with SQL Server, FluentMigrator, Dapper, transactions, and optimistic concurrency.', status: 'not-started', evidence: 'Planned after the first working API slices.' },
     { title: 'Operate service and messaging boundaries with safe failure handling.', status: 'not-started', evidence: 'Planned after local persistence is established.' },
@@ -37,14 +37,13 @@ export const topic: ILearningTopic = {
       why: 'A durable project replaces disconnected snippets. Before domain or infrastructure work, the learner must create, navigate, run, test, and commit the actual solution.',
       buildsOn: ['learn:csharp/001', 'learn:csharp/002', 'learn:csharp/009', 'learn:dotnet/001', 'learn:dotnet/003', 'learn:dotnet/009'],
       focus: ['Use the .NET CLI and a .slnx solution.', 'Separate solution and project.', 'Run an API, make an HTTP smoke call, run tests, and record setup evidence.'],
-      sessionId: 'learn:releaseboard/001', closedReason: 'Published as the only active ReleaseBoard session. Closure awaits learner command output, commit SHA, and explanation.',
+      sessionId: 'learn:releaseboard/001', closedReason: 'Completed: the learner created and pushed the executable solution baseline. Branch `feature/releaseboard-bootstrap` reached `712c44d` with API/tests, health smoke evidence, root HTTP request, README, .editorconfig, and shared nullable/analyzer props.',
     },
     {
-      id: 'first-release-request-endpoint', status: 'blocked', type: 'project', title: 'Create the first release-request endpoint',
+      id: 'first-release-request-endpoint', status: 'ready', type: 'project', title: 'Create the first release-request endpoint',
       why: 'The first domain slice needs a verified executable solution, not a prebuilt scaffold.',
       buildsOn: ['learn:releaseboard/001'],
       focus: ['Model a small create request and response.', 'Choose an endpoint style deliberately.', 'Return an observable HTTP result.'],
-      blockedBy: ['Completion evidence for learn:releaseboard/001.'],
     },
     {
       id: 'release-request-validation-and-tests', status: 'blocked', type: 'project', title: 'Validate and test a release-request slice',

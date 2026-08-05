@@ -22,14 +22,15 @@ export const session: ILearningSession = {
       'Supplied the .NET SDK line: `10.0.110 [/usr/share/dotnet/sdk]`. Asked the teacher to inspect the branch for the final SHA rather than pasting it. Branch inspection confirmed `origin/feature/releaseboard-bootstrap` at `7634f9b` and verified root `.editorconfig`, root `ReleaseBoard.http`, README `/health` documentation, and the working controller. Inspection found no root `Directory.Build.props`; nullable is currently set only in the API `.csproj`, and no repository-wide analyzer baseline is visible.',
     ],
   },
-  replyTaskState: { 'learn:releaseboard/001:q1': 'open' },
+  replyTaskState: { 'learn:releaseboard/001:q1': 'complete' },
   evaluation: [
     'ReleaseBoard 001 interim feedback: The solution/project/reference explanation is correct. The missing evidence and work are the .NET 10 SDK line, an intentional `GET /health` endpoint, a successful request to it, repository baseline files (`Directory.Build.props`, `.editorconfig`, README, and `.http` request), formatting verification, and the commit SHA. Do not start a new session: finish these small baseline steps in this session.',
     'ReleaseBoard 001 health-step feedback: The observed `200 OK` and JSON body are valid smoke evidence. Using `dotnet watch` for local edit feedback is appropriate. Keep the simple health endpoint, but do not carry over WeatherForecast code or behavior beyond what it needs. Two acceptance details remain: the task requires `ReleaseBoard.http` at the ReleaseBoard repository root, and the README must name the health request path so a fresh developer can verify the service. Still need the .NET 10 SDK line, commit SHA, and confirmation that root `Directory.Build.props` enables nullable plus analyzers and root `.editorconfig` exists.',
     'ReleaseBoard 001 branch review: Checked `origin/feature/releaseboard-bootstrap` at `7634f9b`; the SDK, root HTTP request, README health path, and root `.editorconfig` requirements are now evidenced. The remaining blocker is real and narrow: `Directory.Build.props` is absent. `Nullable` inside `ReleaseBoard.Api.csproj` helps only that project; the requested root props file is shared build configuration inherited by the API and tests. Add the requested nullable/analyzer baseline there, verify, commit, and push before closing.',
+    'ReleaseBoard 001 closure: Branch `origin/feature/releaseboard-bootstrap` now points to `712c44d` (`add Directory build props`). It adds root `Directory.Build.props` with `Nullable=enable`, `AnalysisLevel=latest-recommended`, and `EnforceCodeStyleInBuild=true`, and removes the API-only nullable duplicate. The earlier response provides successful health, test, and formatting evidence. The executable-baseline target is complete.',
   ],
   misconceptions: [],
-  next: ['Give the learner the minimal `Directory.Build.props` explanation and property names. Keep `learn:releaseboard/001:q1` open until its root shared nullable/analyzer baseline is committed, pushed, and verified.'],
+  next: ['ReleaseBoard 001 is complete. The next candidate may begin with a small release-request endpoint, using this baseline rather than generated WeatherForecast code.'],
   published: {
     route: '/topics/releaseboard/sessions/001/',
     canonicalUrl: 'https://learn.widacki.me/topics/releaseboard/sessions/001/',

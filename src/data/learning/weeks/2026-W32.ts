@@ -9,13 +9,13 @@ export const week2026W32: ILearningWeek = {
   coverage: [
     'German 011 adds zuerst, dann, danach and verb-second order for a three-event account. Full Perfekt chunks remain visible, so the task does not repeat German 009 retrieval or German 010 social chat.',
     'C# and .NET are now deprecated historical topics. Their unanswered sessions were deleted rather than treated as completed.',
-    'ReleaseBoard 001 is the only active .NET-learning task: the learner establishes a .NET 10 solution, API, NUnit tests, smoke request, baseline quality settings, README, and Git evidence.',
+    'ReleaseBoard 001 established the .NET 10 solution, API, NUnit tests, smoke request, shared quality baseline, README, and Git evidence. Its next endpoint candidate is ready, but no further ReleaseBoard event is yet published.',
   ],
   backlog: [
-    'Open: [learn:releaseboard/001:q1], [learn:german/010:q1], and [learn:german/011:q1]. ReleaseBoard may not receive another session until its single open task closes.',
+    'Open: [learn:german/010:q1] and [learn:german/011:q1]. ReleaseBoard 001 is closed; its next endpoint candidate is ready for a later published event.',
   ],
   outlook: [
-    'ReleaseBoard: inspect evidence, give staged hints, or resize the existing task if needed; publish no new ReleaseBoard content while it is open.',
+    'ReleaseBoard: plan and publish the first release-request endpoint event from the now-verified baseline when appropriate.',
     'German: wait for one reply before adding more reply-required work; use German 010 for chat coherence and German 011 for event order evidence.',
   ],
   archive: 'Week 2026-W32 records the curriculum correction: C# and .NET became deprecated historical references; C# 012/013 and .NET 010/011 were deleted with their open tasks; ReleaseBoard replaced their separate queues with one accumulating project and one-unfinished-session policy.',
