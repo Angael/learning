@@ -2,7 +2,3 @@
 
 GET {{ReleaseBoard.Api_HostAddress}}/weatherforecast/
 Accept: application/json
-
-###
-
-GET {{ReleaseBoard.Api_HostAddress}}/health

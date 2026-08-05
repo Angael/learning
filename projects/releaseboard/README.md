@@ -25,3 +25,7 @@ Formatting:
 ```bash
 dotnet format
 ```
+
+## Probe endpoints
+
+- `/health` GET endpoint returns 200 if service is running and responding
