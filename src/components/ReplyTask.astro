@@ -25,8 +25,8 @@ const text = language === 'pl'
       placeholder: 'Wpisz tylko odpowiedzi do tego zadania.',
       copy: 'Kopiuj odpowiedź',
       copied: 'Skopiowano',
-      success: 'Skopiowano zadanie i Twoją odpowiedź. Wklej je na Discordzie.',
-      failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator i odpowiedź ręcznie.',
+      success: 'Skopiowano identyfikator, learning-follow-up i Twoją odpowiedź. Wklej je na Discordzie.',
+      failure: 'Kopiowanie nie powiodło się. Zaznacz identyfikator, learning-follow-up i odpowiedź ręcznie.',
       answerCopy: 'Twoja odpowiedź:',
     }
   : {
@@ -36,8 +36,8 @@ const text = language === 'pl'
       placeholder: 'Write only your answers to this task.',
       copy: 'Copy answer',
       copied: 'Copied',
-      success: 'Copied the task and your answer. Paste them into Discord.',
-      failure: 'Copy failed. Select the ID and answer manually.',
+      success: 'Copied the ID, learning-follow-up, and your answer. Paste them into Discord.',
+      failure: 'Copy failed. Select the ID, learning-follow-up, and answer manually.',
       answerCopy: 'Your answer:',
     };
 
@@ -104,8 +104,12 @@ if (copyText && !copyText.startsWith(marker)) {
     button.dataset.ready = 'true';
     button.addEventListener('click', async () => {
       const id = task.dataset.replyId ?? '';
+      const followUpSkill = 'learning-follow-up';
       const suppliedTemplate = task.dataset.copyTemplate ?? '';
-      const template = suppliedTemplate || id;
+      const templateTail = suppliedTemplate.startsWith(id)
+        ? suppliedTemplate.slice(id.length).trimStart()
+        : suppliedTemplate;
+      const template = [id, followUpSkill, templateTail].filter(Boolean).join('\n');
       const response = answer.value.trim();
       const answerLabel = task.dataset.answerCopyLabel ?? '';
       const copyText = response
