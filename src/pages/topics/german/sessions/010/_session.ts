@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Zaproponuj konkretny inny termin.',
     'Potwierdź termin w ostatniej turze czatu.',
   ],
-  replyTasks: { 'learn:german/010:q1': [] },
-  replyTaskState: { 'learn:german/010:q1': 'open' },
-  evaluation: [],
+  replyTasks: {
+    'learn:german/010:q1': [
+      'Leider habe ich kein Zeit,.weil ich arbeiten muss.\nVielleicht können wir am Sonntag um 15 Uhr treffen?\nDas passt mir gut. Bis Sonntag!',
+    ],
+  },
+  replyTaskState: { 'learn:german/010:q1': 'complete' },
+  evaluation: [
+    'German 010 q1: Zadanie jest wykonane. Uczeń zachował trzy tury: uprzejmą odmowę z powodem, konkretną propozycję niedzieli o 15:00 oraz potwierdzenie. Szyk po `weil` jest poprawny: `weil ich arbeiten muss`. Dwie małe korekty: `keine Zeit` (bo `die Zeit`) oraz `Können wir uns ... treffen?` (czasownik zwrotny `sich treffen`). Interpunkcja w `Zeit, weil` jest drobną uwagą. Osobna naprawa nie jest potrzebna.',
+  ],
   misconceptions: [],
-  next: ['Po odpowiedzi oceń spójność trzech tur i szyk po weil; nie twórz osobnej naprawy dla drobnej pisowni.'],
+  next: ['Krótki prowadzony czat jest wystarczająco pewny. Następne otwarte zadanie German 011 sprawdza kolejność wydarzeń z zuerst, dann i danach.'],
   published: {
     route: '/topics/german/sessions/010/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/010/',

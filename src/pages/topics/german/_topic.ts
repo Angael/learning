@@ -12,7 +12,7 @@ export const topic: ILearningTopic = {
     { title: 'Use selected Akkusativ/Dativ articles in supported practical patterns.', status: 'secure', evidence: 'German 003, 004, and 006.' },
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
     { title: 'Use Perfekt independently under practical pressure.', status: 'secure', evidence: 'German 009: correct retrieval of `habe ... gearbeitet` and `bin ... gegangen`, followed by one successful repair of `sehen → gesehen`.' },
-    { title: 'Sustain a short corrected German chat.', status: 'in-progress', evidence: 'German 010 now checks a tightly guided three-turn social chat: refusal with a reason, an alternative time, and confirmation. Open dialogue remains deferred.' },
+    { title: 'Sustain a short corrected German chat.', status: 'secure', evidence: 'German 010: completed a coherent three-turn social chat with a polite refusal, correct weil clause, concrete alternative, and confirmation; only two small form corrections (`keine Zeit`, `uns treffen`). Open dialogue remains deferred.' },
     { title: 'Order a short past account with simple connectors.', status: 'in-progress', evidence: 'German 011 now checks zuerst, dann, danach and verb-second order while completed Perfekt forms remain visible.' },
   ],
   candidates: [
@@ -38,7 +38,7 @@ export const topic: ILearningTopic = {
       id: 'guided-social-chat', status: 'done', type: 'practice', title: 'Guided social chat',
       why: 'German 008 secured a corrected three-move service exchange, while German 009 separately checks Perfekt. A tightly guided social exchange can now begin the chat milestone without repeating either target or requiring open role-play.',
       buildsOn: ['learn:german/008'], focus: ['Refuse with a short reason.', 'Offer a concrete alternative.', 'Confirm the agreement in a final turn.'],
-      sessionId: 'learn:german/010', closedReason: 'Published as German 010 with a model using different details, visible vocabulary, and three constrained learner turns.',
+      sessionId: 'learn:german/010', closedReason: 'Completed with all three chat moves and correct weil verb placement; only low-value corrections were `keine Zeit` and reflexive `uns treffen`.',
     },
     {
       id: 'sequence-a-short-account', status: 'done', type: 'practice', title: 'Sequence a short past account',
