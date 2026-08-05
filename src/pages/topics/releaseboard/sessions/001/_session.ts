@@ -18,14 +18,16 @@ export const session: ILearningSession = {
   replyTasks: {
     'learn:releaseboard/001:q1': [
       'Created `ReleaseBoard.slnx`, scaffolded `src/ReleaseBoard.Api` with the Web API template, scaffolded NUnit tests, added both projects to the solution, and added the test-to-API reference. The API ran after installing a runtime on Arch and tests passed. The learner pushed the changes. They understand that the solution command added both projects and that the test project depends on the API, but need guidance on the generated controller, local request paths, and the required baseline choices.',
+      'Verified `http://localhost:5195/weatherforecast` returns JSON. Copied and adapted the generated controller to make a health endpoint returning HTTP 200 with `{ "ok": true }`; used `dotnet watch` during edits. Installed VS Code REST Client and successfully sent the API-local `ReleaseBoard.http` request. Reported that README, formatting, mocked tests, API, and HTTP requests work, but did not supply the required SDK line, commit SHA, or explicit confirmation of `Directory.Build.props` and `.editorconfig`.',
     ],
   },
   replyTaskState: { 'learn:releaseboard/001:q1': 'open' },
   evaluation: [
     'ReleaseBoard 001 interim feedback: The solution/project/reference explanation is correct. The missing evidence and work are the .NET 10 SDK line, an intentional `GET /health` endpoint, a successful request to it, repository baseline files (`Directory.Build.props`, `.editorconfig`, README, and `.http` request), formatting verification, and the commit SHA. Do not start a new session: finish these small baseline steps in this session.',
+    'ReleaseBoard 001 health-step feedback: The observed `200 OK` and JSON body are valid smoke evidence. Using `dotnet watch` for local edit feedback is appropriate. Keep the simple health endpoint, but do not carry over WeatherForecast code or behavior beyond what it needs. Two acceptance details remain: the task requires `ReleaseBoard.http` at the ReleaseBoard repository root, and the README must name the health request path so a fresh developer can verify the service. Still need the .NET 10 SDK line, commit SHA, and confirmation that root `Directory.Build.props` enables nullable plus analyzers and root `.editorconfig` exists.',
   ],
   misconceptions: [],
-  next: ['Guide the learner through the health endpoint and baseline files one small step at a time. Keep `learn:releaseboard/001:q1` open until command evidence, health response, formatting verification, and commit SHA are supplied.'],
+  next: ['Ask for one focused repair: move `ReleaseBoard.http` to the project root, add the `/health` path to README, then rerun the request, tests, and formatting. Obtain the SDK line, baseline-file confirmation, and commit SHA before closing `learn:releaseboard/001:q1`.'],
   published: {
     route: '/topics/releaseboard/sessions/001/',
     canonicalUrl: 'https://learn.widacki.me/topics/releaseboard/sessions/001/',
