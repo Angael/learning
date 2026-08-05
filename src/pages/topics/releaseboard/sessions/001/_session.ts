@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Explain solution versus project using the created artifact.',
     'Run an API, send one HTTP smoke request, run NUnit tests, and record evidence.',
   ],
-  replyTasks: { 'learn:releaseboard/001:q1': [] },
+  replyTasks: {
+    'learn:releaseboard/001:q1': [
+      'Created `ReleaseBoard.slnx`, scaffolded `src/ReleaseBoard.Api` with the Web API template, scaffolded NUnit tests, added both projects to the solution, and added the test-to-API reference. The API ran after installing a runtime on Arch and tests passed. The learner pushed the changes. They understand that the solution command added both projects and that the test project depends on the API, but need guidance on the generated controller, local request paths, and the required baseline choices.',
+    ],
+  },
   replyTaskState: { 'learn:releaseboard/001:q1': 'open' },
-  evaluation: [],
+  evaluation: [
+    'ReleaseBoard 001 interim feedback: The solution/project/reference explanation is correct. The missing evidence and work are the .NET 10 SDK line, an intentional `GET /health` endpoint, a successful request to it, repository baseline files (`Directory.Build.props`, `.editorconfig`, README, and `.http` request), formatting verification, and the commit SHA. Do not start a new session: finish these small baseline steps in this session.',
+  ],
   misconceptions: [],
-  next: ['Do not start another ReleaseBoard session. Evaluate the setup evidence, then give hints or debugging help in this same session until it closes.'],
+  next: ['Guide the learner through the health endpoint and baseline files one small step at a time. Keep `learn:releaseboard/001:q1` open until command evidence, health response, formatting verification, and commit SHA are supplied.'],
   published: {
     route: '/topics/releaseboard/sessions/001/',
     canonicalUrl: 'https://learn.widacki.me/topics/releaseboard/sessions/001/',
