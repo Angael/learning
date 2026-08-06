@@ -1,0 +1,132 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import Code from '../../../../../components/Code.astro';
+import CommandList from '../../../../../components/CommandList.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import TagList from '../../../../../components/TagList.astro';
+import { session } from './_session.ts';
+
+const requestBody = `{
+  "application": "billing-api",
+  "version": "2026.08.1",
+  "requestedBy": "angeal"
+}`;
+
+const responseBody = `{
+  "id": "<server-generated UUID>",
+  "application": "billing-api",
+  "version": "2026.08.1",
+  "requestedBy": "angeal",
+  "status": "draft",
+  "createdAtUtc": "<server-generated UTC timestamp>"
+}`;
+
+const suggestedPaths = `src/ReleaseBoard.Api/
+  ReleaseRequests/
+    CreateReleaseRequestRequest.cs
+    ReleaseRequestResponse.cs
+    ReleaseRequestsController.cs  # if you choose controllers
+  Program.cs
+ReleaseBoard.http`;
+
+const commands = [
+  'git fetch origin',
+  'git switch -c feature/releaseboard-first-endpoint origin/feature/releaseboard-bootstrap',
+  'cd projects/releaseboard',
+  'dotnet build ReleaseBoard.slnx',
+  'dotnet run --project src/ReleaseBoard.Api',
+  'curl -i -X POST "$RELEASEBOARD_URL/release-requests" -H "Content-Type: application/json" --data \'{"application":"billing-api","version":"2026.08.1","requestedBy":"angeal"}\'',
+  'dotnet test ReleaseBoard.slnx',
+  'dotnet format ReleaseBoard.slnx whitespace --verify-no-changes',
+  'git status --short',
+];
+---
+
+<SessionPage session={session}
+  title="Session 002 · ReleaseBoard Project"
+  heading="Create one clear HTTP slice"
+  lede="Replace the generated sample with one learner-written ReleaseBoard endpoint. Keep it small: accept a request, create server-owned fields, and return a clear HTTP result."
+  backHref="/topics/releaseboard/"
+  backLabel="ReleaseBoard sessions"
+>
+  <TagList tags={['project', 'ASP.NET Core', 'HTTP contract', 'POST', '201 Created']} />
+
+  <SessionSection title="Why this increment exists">
+    <p>ReleaseBoard 001 proved that your solution runs. It did not yet prove that you can shape an HTTP contract. This increment checks that new skill without mixing in SQL Server, custom validation, or a full domain design.</p>
+    <Callout>Work from commit <code>712c44d</code> on <code>origin/feature/releaseboard-bootstrap</code>. Do not wait for that learner branch to appear on <code>main</code>. Create a new branch from it as shown below.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Keep three things separate">
+    <ol>
+      <li><strong>Underlying problem:</strong> a client needs to ask for a release and receive a stable ID plus the first state.</li>
+      <li><strong>Public ASP.NET Core mechanism:</strong> a controller action or a Minimal API handler can map <code>POST /release-requests</code> to code and return an HTTP result.</li>
+      <li><strong>ReleaseBoard convention:</strong> this project uses the route and DTO names below. A real company may use other folders, wrappers, or naming rules. Those are local conventions, not ASP.NET Core rules.</li>
+    </ol>
+  </SessionSection>
+
+  <SessionSection title="Choose the endpoint style">
+    <p>You may use a controller or a Minimal API handler. Make one choice and explain it in your reply. Since the baseline already uses controllers, a controller is the lower-change path. Minimal API is still valid if you keep <code>Program.cs</code> readable and place the endpoint code in a clear ReleaseRequests area.</p>
+    <p>Do not implement both. Remove the generated WeatherForecast endpoint and its sample types so the API exposes only intentional behavior.</p>
+  </SessionSection>
+
+  <SessionSection title="Contract to implement">
+    <p>Add <code>POST /release-requests</code>. The client sends:</p>
+    <Code code={requestBody} lang="json" />
+    <p>On a valid request, return <code>201 Created</code>. Include a <code>Location: /release-requests/&lt;id&gt;</code> header and this JSON shape:</p>
+    <Code code={responseBody} lang="json" />
+    <p>The server owns <code>id</code>, <code>status</code>, and <code>createdAtUtc</code>. Use a new UUID, the exact initial state <code>draft</code>, and a UTC timestamp. Echo the three client fields in the response.</p>
+    <Callout>No persistence yet. The response may exist only for this request. Do not add a fake repository, static list, SQL Server, authentication, custom validation library, or GET endpoint.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Paths and work steps">
+    <p>This is a small suggested shape, not a demand for extra architecture:</p>
+    <Code code={suggestedPaths} lang="text" />
+    <ol>
+      <li>Create separate request and response DTOs. Do not reuse one type in both directions.</li>
+      <li>Add the POST endpoint in your chosen style.</li>
+      <li>Remove WeatherForecast code and requests.</li>
+      <li>Replace the root <code>ReleaseBoard.http</code> sample with the POST request. Keep <code>GET /health</code>.</li>
+      <li>Run the API. Use the URL printed by the API as <code>RELEASEBOARD_URL</code>, then send the request.</li>
+      <li>Build, test, and check formatting. Commit and push the new branch.</li>
+    </ol>
+    <CommandList commands={commands} />
+  </SessionSection>
+
+  <SessionSection title="Acceptance criteria">
+    <ul>
+      <li><code>POST /release-requests</code> accepts the three stated client fields.</li>
+      <li>The response is <code>201 Created</code> and has the stated JSON shape.</li>
+      <li>The <code>Location</code> header ends with the same ID as the JSON body.</li>
+      <li>The ID is generated by the server, status is <code>draft</code>, and the timestamp is UTC.</li>
+      <li><code>GET /health</code> still works. WeatherForecast behavior is gone.</li>
+      <li>The solution builds, existing tests pass, and formatting verification passes.</li>
+      <li>The branch is pushed with one intentional implementation commit.</li>
+    </ul>
+  </SessionSection>
+
+  <details>
+    <summary>Hint 1 — route or JSON binding does not work</summary>
+    <p>First inspect how your chosen endpoint style maps a route and a request body. For a controller, check the controller route, HTTP method attribute, and <code>[ApiController]</code>. For Minimal API, check the <code>MapPost</code> route and handler parameter.</p>
+  </details>
+  <details>
+    <summary>Hint 2 — you do not know how to return 201</summary>
+    <p>Search the public ASP.NET Core docs for “Created result”. Controllers expose created-result helpers. Minimal APIs expose <code>Results.Created</code>. Supply the resource path and response DTO; do not hand-build an HTTP response string.</p>
+  </details>
+  <details>
+    <summary>Hint 3 — the Location ID and body ID differ</summary>
+    <p>Generate the ID once. Store it in a local variable. Use that same value when you build both the response DTO and the Location path.</p>
+  </details>
+
+  <ReplyTask id="learn:releaseboard/002:q1" difficulty={3}>
+    <ol>
+      <li>Name the endpoint style you chose and the paths you changed.</li>
+      <li>Give a short request summary and report the observed status, Location header, and response body values. Do not paste the full server log.</li>
+      <li>Give one short result each for <code>dotnet build</code>, <code>dotnet test</code>, and formatting verification.</li>
+      <li>Give the pushed commit SHA.</li>
+      <li><strong>Reasoning:</strong> why should <code>id</code>, <code>status</code>, and <code>createdAtUtc</code> be owned by the server rather than trusted from this create request?</li>
+    </ol>
+    <p>If you are blocked, reply with the failing command, the key error lines, and your current file path. We will debug or shrink this same session instead of opening a new one.</p>
+  </ReplyTask>
+</SessionPage>

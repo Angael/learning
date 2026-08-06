@@ -26,7 +26,7 @@ export const topic: ILearningTopic = {
   ],
   milestones: [
     { title: 'Create and navigate a runnable .NET 10 solution with an API and NUnit tests.', status: 'secure', evidence: 'ReleaseBoard 001 complete: branch `feature/releaseboard-bootstrap` at `712c44d` provides solution/API/tests, health smoke evidence, shared nullable/analyzer baseline, formatting, README, and Git evidence.' },
-    { title: 'Build and test release-request HTTP and domain slices.', status: 'not-started', evidence: 'Planned after executable-project evidence.' },
+    { title: 'Build and test release-request HTTP and domain slices.', status: 'in-progress', evidence: 'ReleaseBoard 002 now asks the learner to implement and evidence the first POST /release-requests contract; validation and HTTP tests remain blocked until that endpoint works.' },
     { title: 'Persist drafts with SQL Server, FluentMigrator, Dapper, transactions, and optimistic concurrency.', status: 'not-started', evidence: 'Planned after the first working API slices.' },
     { title: 'Operate service and messaging boundaries with safe failure handling.', status: 'not-started', evidence: 'Planned after local persistence is established.' },
     { title: 'Ship a locally observable, containerized backend with concise operational documentation.', status: 'not-started', evidence: 'Planned after APIs, storage, and worker exist.' },
@@ -40,10 +40,11 @@ export const topic: ILearningTopic = {
       sessionId: 'learn:releaseboard/001', closedReason: 'Completed: the learner created and pushed the executable solution baseline. Branch `feature/releaseboard-bootstrap` reached `712c44d` with API/tests, health smoke evidence, root HTTP request, README, .editorconfig, and shared nullable/analyzer props.',
     },
     {
-      id: 'first-release-request-endpoint', status: 'ready', type: 'project', title: 'Create the first release-request endpoint',
+      id: 'first-release-request-endpoint', status: 'done', type: 'project', title: 'Create the first release-request endpoint',
       why: 'The first domain slice needs a verified executable solution, not a prebuilt scaffold.',
       buildsOn: ['learn:releaseboard/001'],
       focus: ['Model a small create request and response.', 'Choose an endpoint style deliberately.', 'Return an observable HTTP result.'],
+      sessionId: 'learn:releaseboard/002', closedReason: 'Published as ReleaseBoard 002 from the verified executable baseline. The learner must implement and evidence the first POST /release-requests contract before later validation and test work is unblocked.',
     },
     {
       id: 'release-request-validation-and-tests', status: 'blocked', type: 'project', title: 'Validate and test a release-request slice',
