@@ -29,6 +29,7 @@ Angeal's durable learning workspace and minimal Astro site: https://learn.widack
 - Session types are only `lesson`, `practice`, `exam`, or `project`. Learner-facing content follows the typed topic record's language policy.
 - Use `SessionPage`, `SessionSection`, `SessionGrid`, `SessionList`, `Code`, `Callout`, `CommandList`, `TagList`, and `ReplyTask` rather than one-off markup.
 - Use `Code.astro` for code samples; do not import Shiki or render plain `<pre><code>` for code sessions. The "Full typed session record" must always render through `Code` with `lang="json"`, never a plain `<pre>`.
+- Render multi-step or long shell-command sequences with `Code` and a shell language (for example, `lang="shellscript"`), not `CommandList`, so they receive syntax highlighting. Add a brief one-sentence `#` comment immediately before any command that is complicated, long, or hard to read, explaining its purpose.
 - Every response request uses `ReplyTask` with a permanent ID. Never renumber published IDs. Store learner text in `replyTasks` and teacher judgment in the dedicated typed fields.
 - The `ReplyTask` copy button must copy only the permanent ID and the learner's typed answer. Do not add a copy-content prop or duplicate task text in copied replies.
 - Keep session-specific CSS out by default and do not add eyebrow/kicker headers.

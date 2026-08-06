@@ -1,7 +1,6 @@
 ---
 import Callout from '../../../../../components/Callout.astro';
 import Code from '../../../../../components/Code.astro';
-import CommandList from '../../../../../components/CommandList.astro';
 import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
@@ -19,19 +18,24 @@ const targetTree = `projects/releaseboard/
     ReleaseBoard.Api.UnitTests/
   ReleaseBoard.http`;
 
-const commands = [
-  'git switch -c feature/releaseboard-bootstrap',
-  'mkdir -p projects/releaseboard/src projects/releaseboard/tests',
-  'dotnet --list-sdks',
-  'dotnet new sln --name ReleaseBoard --format slnx',
-  'dotnet new webapi --name ReleaseBoard.Api --use-controllers --output src/ReleaseBoard.Api',
-  'dotnet new nunit --name ReleaseBoard.Api.UnitTests --output tests/ReleaseBoard.Api.UnitTests',
-  'dotnet sln ReleaseBoard.slnx add src/ReleaseBoard.Api/ReleaseBoard.Api.csproj tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj',
-  'dotnet add tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj reference src/ReleaseBoard.Api/ReleaseBoard.Api.csproj',
-  'dotnet run --project src/ReleaseBoard.Api',
-  'dotnet test ReleaseBoard.slnx',
-  'dotnet format ReleaseBoard.slnx whitespace --verify-no-changes',
-];
+const bootstrapCommands = `git switch -c feature/releaseboard-bootstrap
+mkdir -p projects/releaseboard/src projects/releaseboard/tests
+dotnet --list-sdks
+dotnet new sln --name ReleaseBoard --format slnx
+
+# Generates the API and test project scaffolds directly in the required source and test directories.
+dotnet new webapi --name ReleaseBoard.Api --use-controllers --output src/ReleaseBoard.Api
+dotnet new nunit --name ReleaseBoard.Api.UnitTests --output tests/ReleaseBoard.Api.UnitTests
+
+# Registers both projects with the solution so they build and test together.
+dotnet sln ReleaseBoard.slnx add src/ReleaseBoard.Api/ReleaseBoard.Api.csproj tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj
+
+# Lets the NUnit project compile against the API project.
+dotnet add tests/ReleaseBoard.Api.UnitTests/ReleaseBoard.Api.UnitTests.csproj reference src/ReleaseBoard.Api/ReleaseBoard.Api.csproj
+
+dotnet run --project src/ReleaseBoard.Api
+dotnet test ReleaseBoard.slnx
+dotnet format ReleaseBoard.slnx whitespace --verify-no-changes`;
 ---
 
 <SessionPage session={session}
@@ -64,7 +68,8 @@ const commands = [
 
   <SessionSection title="Build it yourself">
     <p>From the learning repository root, create a short-lived feature branch. Then work inside <code>projects/releaseboard</code>. These are the useful commands; read their output and adapt the local URL shown by the API.</p>
-    <CommandList commands={commands} />
+    <Code code={bootstrapCommands} lang="shellscript" />
+    <p>Run <code>dotnet run</code> in its own terminal and leave it running while you send HTTP requests from another terminal.</p>
     <p>The current target is .NET 10. If <code>dotnet --list-sdks</code> does not show a 10.x SDK, stop before creating anything and report that fact in your reply.</p>
   </SessionSection>
 

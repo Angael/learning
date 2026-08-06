@@ -1,7 +1,6 @@
 ---
 import Callout from '../../../../../components/Callout.astro';
 import Code from '../../../../../components/Code.astro';
-import CommandList from '../../../../../components/CommandList.astro';
 import ReplyTask from '../../../../../components/ReplyTask.astro';
 import SessionPage from '../../../../../components/SessionPage.astro';
 import SessionSection from '../../../../../components/SessionSection.astro';
@@ -31,17 +30,19 @@ const suggestedPaths = `src/ReleaseBoard.Api/
   Program.cs
 ReleaseBoard.http`;
 
-const commands = [
-  'git fetch origin',
-  'git switch -c feature/releaseboard-first-endpoint origin/feature/releaseboard-bootstrap',
-  'cd projects/releaseboard',
-  'dotnet build ReleaseBoard.slnx',
-  'dotnet run --project src/ReleaseBoard.Api',
-  'curl -i -X POST "$RELEASEBOARD_URL/release-requests" -H "Content-Type: application/json" --data \'{"application":"billing-api","version":"2026.08.1","requestedBy":"angeal"}\'',
-  'dotnet test ReleaseBoard.slnx',
-  'dotnet format ReleaseBoard.slnx whitespace --verify-no-changes',
-  'git status --short',
-];
+const endpointCommands = `# Refreshes origin references before creating the branch from the verified baseline.
+git fetch origin
+git switch -c feature/releaseboard-first-endpoint origin/feature/releaseboard-bootstrap
+cd projects/releaseboard
+dotnet build ReleaseBoard.slnx
+dotnet run --project src/ReleaseBoard.Api
+
+# Sends the required JSON body to the local endpoint and includes response headers in the output.
+curl -i -X POST "$RELEASEBOARD_URL/release-requests" -H "Content-Type: application/json" --data '{"application":"billing-api","version":"2026.08.1","requestedBy":"angeal"}'
+
+dotnet test ReleaseBoard.slnx
+dotnet format ReleaseBoard.slnx whitespace --verify-no-changes
+git status --short`;
 ---
 
 <SessionPage session={session}
@@ -91,7 +92,8 @@ const commands = [
       <li>Run the API. Use the URL printed by the API as <code>RELEASEBOARD_URL</code>, then send the request.</li>
       <li>Build, test, and check formatting. Commit and push the new branch.</li>
     </ol>
-    <CommandList commands={commands} />
+    <Code code={endpointCommands} lang="shellscript" />
+    <p>Run <code>dotnet run</code> in its own terminal and leave it running before you send the <code>curl</code> request from another terminal.</p>
   </SessionSection>
 
   <SessionSection title="Acceptance criteria">
