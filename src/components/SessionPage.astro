@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Code from './Code.astro';
 import type { ILearningSession } from '../data/learning/types.ts';
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 
 const { session, title, heading, lede, backHref, backLabel } = Astro.props;
 const taskEntries = Object.entries(session.replyTasks);
+const fullSessionRecord = JSON.stringify(session, null, 2);
 ---
 
 <BaseLayout title={title}>
@@ -45,7 +47,7 @@ const taskEntries = Object.entries(session.replyTasks);
           </section>
           <details class="session-record__raw">
             <summary>Full typed session record</summary>
-            <pre>{JSON.stringify(session, null, 2)}</pre>
+            <Code code={fullSessionRecord} lang="json" />
           </details>
         </div>
       </details>
