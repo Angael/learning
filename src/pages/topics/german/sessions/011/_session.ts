@@ -15,11 +15,17 @@ export const session: ILearningSession = {
     'Użyj zuerst, dann i danach na początku zdań.',
     'Zachowaj czasownik odmieniony na drugim miejscu.',
   ],
-  replyTasks: { 'learn:german/011:q1': [] },
-  replyTaskState: { 'learn:german/011:q1': 'open' },
-  evaluation: [],
+  replyTasks: {
+    'learn:german/011:q1': [
+      'Zuerst habe ich auf eine E-Mail geantwortet,\nDann habe ich Mittagessen gekocht,\nDanach bin ich spazieren gegangen.',
+    ],
+  },
+  replyTaskState: { 'learn:german/011:q1': 'complete' },
+  evaluation: [
+    'German 011 q1: Zadanie jest wykonane poprawnie. Wszystkie trzy wydarzenia są w dobrej kolejności, każde zdanie zaczyna się od wymaganego łącznika, a odmieniony czasownik stoi na drugim miejscu: `habe`, `habe`, `bin`. Formy Perfekt są poprawne. Przecinki na końcu dwóch pierwszych zdań można zamienić na kropki, ale to drobna kwestia zapisu i nie wymaga osobnej naprawy.',
+  ],
   misconceptions: [],
-  next: ['Po odpowiedzi oceń kolejność i pozycję czasownika; drobne błędy pisowni popraw krótko bez osobnej sesji naprawczej.'],
+  next: ['Cel tej sesji jest pewny. Nie ma teraz otwartego zadania z niemieckiego.'],
   published: {
     route: '/topics/german/sessions/011/',
     canonicalUrl: 'https://learn.widacki.me/topics/german/sessions/011/',

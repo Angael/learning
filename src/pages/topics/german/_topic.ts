@@ -13,7 +13,7 @@ export const topic: ILearningTopic = {
     { title: 'Read a short practical note and produce a constrained response.', status: 'secure', evidence: 'German 007: correct fact retrieval and both supported German sentence patterns; only minor spelling/format slips.' },
     { title: 'Use Perfekt independently under practical pressure.', status: 'secure', evidence: 'German 009: correct retrieval of `habe ... gearbeitet` and `bin ... gegangen`, followed by one successful repair of `sehen → gesehen`.' },
     { title: 'Sustain a short corrected German chat.', status: 'secure', evidence: 'German 010: completed a coherent three-turn social chat with a polite refusal, correct weil clause, concrete alternative, and confirmation; only two small form corrections (`keine Zeit`, `uns treffen`). Open dialogue remains deferred.' },
-    { title: 'Order a short past account with simple connectors.', status: 'in-progress', evidence: 'German 011 now checks zuerst, dann, danach and verb-second order while completed Perfekt forms remain visible.' },
+    { title: 'Order a short past account with simple connectors.', status: 'secure', evidence: 'German 011: correct three-event order with zuerst, dann, danach and verb-second auxiliaries; only low-value end punctuation feedback.' },
   ],
   candidates: [
     {
@@ -44,7 +44,7 @@ export const topic: ILearningTopic = {
       id: 'sequence-a-short-account', status: 'done', type: 'practice', title: 'Sequence a short past account',
       why: 'German 009 secured the needed Perfekt forms. The next distinct transfer is to order three past events with simple connectors while keeping verb forms visible, so it does not repeat independent Perfekt retrieval or the open social chat.',
       buildsOn: ['learn:german/009'], focus: ['Use zuerst, dann, and danach.', 'Keep the finite auxiliary in second position.'],
-      sessionId: 'learn:german/011', closedReason: 'Published as German 011 with three supplied Perfekt chunks and a constrained event-order task.',
+      sessionId: 'learn:german/011', closedReason: 'German 011 completed the three-event order with zuerst, dann, danach and correct verb-second auxiliaries; only low-value end punctuation feedback.',
     },
   ],
 };
