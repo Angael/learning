@@ -1,0 +1,3 @@
+@ReleaseBoard.Api_HostAddress = http://localhost:5195
+
+GET {{ReleaseBoard.Api_HostAddress}}/health
