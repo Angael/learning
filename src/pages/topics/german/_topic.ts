@@ -46,5 +46,11 @@ export const topic: ILearningTopic = {
       buildsOn: ['learn:german/009'], focus: ['Use zuerst, dann, and danach.', 'Keep the finite auxiliary in second position.'],
       sessionId: 'learn:german/011', closedReason: 'German 011 completed the three-event order with zuerst, dann, danach and correct verb-second auxiliaries; only low-value end punctuation feedback.',
     },
+    {
+      id: 'state-and-explain-a-preference', status: 'done', type: 'practice', title: 'State and explain a preference',
+      why: 'German 010 secured one supported weil clause in a social exchange, and German 011 secured connector-first word order. The next distinct transfer is to compare two choices with lieber ... als and give a short reason, with all needed words visible.',
+      buildsOn: ['learn:german/010', 'learn:german/011'], focus: ['Compare two choices with lieber ... als.', 'Give one reason with weil and place the finite verb at the end.'],
+      sessionId: 'learn:german/012', closedReason: 'Published as German 012: a fresh controlled preference task combining lieber ... als with a supported weil reason. Completion awaits the learner reply.',
+    },
   ],
 };

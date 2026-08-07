@@ -1,0 +1,70 @@
+---
+import Callout from '../../../../../components/Callout.astro';
+import ReplyTask from '../../../../../components/ReplyTask.astro';
+import SessionGrid from '../../../../../components/SessionGrid.astro';
+import SessionPage from '../../../../../components/SessionPage.astro';
+import SessionSection from '../../../../../components/SessionSection.astro';
+import { session } from './_session.ts';
+---
+
+<SessionPage session={session}
+  title="Sesja 12 · Niemiecki: lieber ... als ..."
+  heading="Powiedz, co wolisz, i podaj powód"
+  lede="Dostajesz wszystkie potrzebne słowa. Łączysz tylko wybór z krótkim powodem."
+  backHref="/topics/german/"
+  backLabel="Sesje z niemieckiego"
+>
+  <SessionSection title="Model z innymi słowami">
+    <p><code>Ich fahre lieber mit dem Zug als mit dem Auto, weil ich im Zug lesen kann.</code></p>
+    <p>Wolę jechać pociągiem niż samochodem, ponieważ w pociągu mogę czytać.</p>
+    <SessionGrid>
+      <div>
+        <h3>Wybór</h3>
+        <p><code>Ich fahre lieber mit dem Zug als mit dem Auto</code></p>
+      </div>
+      <div>
+        <h3>Powód</h3>
+        <p><code>weil ich im Zug lesen kann</code></p>
+      </div>
+    </SessionGrid>
+    <Callout>Po <code>weil</code> odmieniony czasownik idzie na koniec: <code>weil Tee warm ist</code>, <code>weil ich mehr Energie habe</code>.</Callout>
+  </SessionSection>
+
+  <SessionSection title="Ściąga do dwóch zdań">
+    <SessionGrid>
+      <div>
+        <h3>Zdanie 1</h3>
+        <ul>
+          <li><code>der Tee</code> — herbata</li>
+          <li><code>der Kaffee</code> — kawa</li>
+          <li><code>warm sein</code> — być ciepłym</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Zdanie 2</h3>
+        <ul>
+          <li><code>morgens</code> — rano</li>
+          <li><code>abends</code> — wieczorem</li>
+          <li><code>mehr Energie haben</code> — mieć więcej energii</li>
+        </ul>
+      </div>
+    </SessionGrid>
+  </SessionSection>
+
+  <SessionSection title="Dwa małe kroki">
+    <ol>
+      <li>Połącz: wolę pić herbatę niż kawę + herbata jest ciepła.</li>
+      <li>Połącz: wolę uczyć się rano niż wieczorem + wtedy mam więcej energii.</li>
+    </ol>
+    <p>Rama: <code>Ich ... lieber ... als ..., weil ... .</code></p>
+  </SessionSection>
+
+  <ReplyTask id="learn:german/012:q1" difficulty={3} language="pl">
+    <ol>
+      <li>Napisz dokładnie dwa zdania po niemiecku.</li>
+      <li>W obu użyj <code>lieber ... als ...</code>.</li>
+      <li>W obu dodaj podany powód z <code>weil</code>.</li>
+    </ol>
+    <p>Możesz korzystać ze ściągi. Nie dodawaj tłumaczenia.</p>
+  </ReplyTask>
+</SessionPage>
